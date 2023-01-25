@@ -1,0 +1,590 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>SpringBoot笔记（一） | Meowrain's Blog</title><meta name="author" content="MeowRain"><meta name="copyright" content="MeowRain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SpringBoot一站式开发官网：https:&#x2F;&#x2F;spring.io&#x2F;projects&#x2F;spring-boot  Spring Boot可以轻松创建独立的、基于Spring的生产级应用程序，它可以让你“运行即可”。大多数Spring Boot应用程序只需要少量的Spring配置。  SpringBoot功能：  创建独立的Spring应用程序  直接嵌入Tomcat、Jetty或Underto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot笔记（一）">
+<meta property="og:url" content="http://example.com/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/index.html">
+<meta property="og:site_name" content="Meowrain&#39;s Blog">
+<meta property="og:description" content="SpringBoot一站式开发官网：https:&#x2F;&#x2F;spring.io&#x2F;projects&#x2F;spring-boot  Spring Boot可以轻松创建独立的、基于Spring的生产级应用程序，它可以让你“运行即可”。大多数Spring Boot应用程序只需要少量的Spring配置。  SpringBoot功能：  创建独立的Spring应用程序  直接嵌入Tomcat、Jetty或Underto">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-01-24T14:03:14.433Z">
+<meta property="article:modified_time" content="2023-01-24T14:04:36.300Z">
+<meta property="article:author" content="MeowRain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SpringBoot笔记（一）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-24 22:04:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Meowrain's Blog"><span class="site-name">Meowrain's Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">SpringBoot笔记（一）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-24T14:03:14.433Z" title="发表于 2023-01-24 22:03:14">2023-01-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-24T14:04:36.300Z" title="更新于 2023-01-24 22:04:36">2023-01-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/Springboot%E7%AC%94%E8%AE%B0/">Springboot笔记</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p><img src="/resources/5b7aeada084b43d9b7466f5cdde65ae7.jpg" alt="点击查看源网页"></p>
+<h1 id="SpringBoot一站式开发"><a href="#SpringBoot一站式开发" class="headerlink" title="SpringBoot一站式开发"></a>SpringBoot一站式开发</h1><p>官网：<ins><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-boot">https://spring.io/projects/spring-boot</a></ins></p>
+<blockquote>
+<p>Spring Boot可以轻松创建独立的、基于Spring的生产级应用程序，它可以让你“运行即可”。大多数Spring Boot应用程序只需要少量的Spring配置。</p>
+</blockquote>
+<p>SpringBoot功能：</p>
+<ul>
+<li><p>创建独立的Spring应用程序</p>
+</li>
+<li><p>直接嵌入Tomcat、Jetty或Undertow（无需部署WAR包，打包成Jar本身就是一个可以运行的应用程序）</p>
+</li>
+<li><p>提供一站式的“starter”依赖项，以简化Maven配置（需要整合什么框架，直接导对应框架的starter依赖）</p>
+</li>
+<li><p>尽可能自动配置Spring和第三方库（除非特殊情况，否则几乎不需要你进行什么配置）</p>
+</li>
+<li><p>提供生产就绪功能，如指标、运行状况检查和外部化配置</p>
+</li>
+<li><p>没有代码生成，也没有XML配置的要求（XML是什么，好吃吗）</p>
+</li>
+</ul>
+<p>SpringBoot是现在最主流的开发框架，它提供了一站式的开发体验，大幅度提高了我们的开发效率。</p>
+<h2 id="走进SpringBoot"><a href="#走进SpringBoot" class="headerlink" title="走进SpringBoot"></a>走进SpringBoot</h2><p>在SSM阶段，当我们需要搭建一个基于Spring全家桶的Web应用程序时，我们不得不做大量的依赖导入和框架整合相关的Bean定义，光是整合框架就花费了我们大量的时间，但是实际上我们发现，整合框架其实基本都是一些固定流程，我们每创建一个新的Web应用程序，基本都会使用同样的方式去整合框架，我们完全可以将一些重复的配置作为约定，只要框架遵守这个约定，为我们提供默认的配置就好，这样就不用我们再去配置了，约定优于配置！</p>
+<p>而SpringBoot正是将这些过程大幅度进行了简化，它可以自动进行配置，我们只需要导入对应的启动器（starter）依赖即可。</p>
+<p>完成本阶段的学习，基本能够胜任部分网站系统的后端开发工作，也建议同学们学习完SpringBoot之后寻找合适的队友去参加计算机项目相关的高校竞赛。</p>
+<p>我们可以通过IDEA来演示如何快速创建一个SpringBoot项目，并且无需任何配置，就可以实现Bean注册。</p>
+<h2 id="SpringBoot项目文件结构"><a href="#SpringBoot项目文件结构" class="headerlink" title="SpringBoot项目文件结构"></a>SpringBoot项目文件结构</h2><p>我们在创建SpringBoot项目之后，首先会自动生成一个主类，而主类中的<code>main</code>方法中调用了<code>SpringApplication</code>类的静态方法来启动整个SpringBoot项目，并且我们可以看到主类的上方有一个<code>@SpringBootApplication</code>注解：</p>
+<p> @SpringBootApplication<br> public class SpringBootTestApplication {<br> ​<br>  public static void main(String[] args) {<br>  SpringApplication.run(SpringBootTestApplication.class, args);<br>  }<br> ​<br> }</p>
+<p>同时还自带了一个测试类，测试类的上方仅添加了一个<code>@SpringBootTest</code>注解：</p>
+<p> @SpringBootTest<br> class SpringBootTestApplicationTests {<br> ​<br>  @Test<br>  void contextLoads() {<br> <br>  }<br> ​<br> }</p>
+<p>我们接着来看Maven中写了哪些内容：</p>
+<p> <?xml version="1.0" encoding="UTF-8"?><br> &lt;project xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>“ xmlns:xsi&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>“<br>  xsi:schemaLocation&#x3D;”<a target="_blank" rel="noopener" href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a target="_blank" rel="noopener" href="https://maven.apache.org/xsd/maven-4.0.0.xsd%22%3E">https://maven.apache.org/xsd/maven-4.0.0.xsd"></a><br>  <modelVersion>4.0.0</modelVersion><br>  &lt;!–  父工程  –&gt;<br>  <parent><br>  <groupId>org.springframework.boot</groupId><br>  <artifactId>spring-boot-starter-parent</artifactId><br>  <version>2.6.2</version><br>  <relativePath/> &lt;!– lookup parent from repository –&gt;<br>  </parent><br>  <groupId>com.example</groupId><br>  <artifactId>springboot-study</artifactId><br>  <version>0.0.1-SNAPSHOT</version><br>  <name>SpringBootTest</name><br>  <description>SpringBootTest</description><br>  <properties><br>  &lt;java.version&gt;1.8&lt;&#x2F;java.version&gt;<br>  </properties><br>  <dependencies><br>  &lt;!–  spring-boot-starter SpringBoot核心启动器  –&gt;<br>  <dependency><br>  <groupId>org.springframework.boot</groupId><br>  <artifactId>spring-boot-starter</artifactId><br>  </dependency><br>  &lt;!–  spring-boot-starter-test SpringBoot测试模块启动器  –&gt;<br>  <dependency><br>  <groupId>org.springframework.boot</groupId><br>  <artifactId>spring-boot-starter-test</artifactId><br>  <scope>test</scope><br>  </dependency><br>  </dependencies><br> ​<br>  <build><br>  <plugins><br>  &lt;!–  SpringBoot Maven插件，打包Jar都不用你操心了   –&gt;<br>  <plugin><br>  <groupId>org.springframework.boot</groupId><br>  <artifactId>spring-boot-maven-plugin</artifactId><br>  </plugin><br>  </plugins><br>  </build><br> ​<br> </project></p>
+<p>除了以上这些文件以外，我们的项目目录下还有：</p>
+<ul>
+<li><p>.gitignore - Git忽略名单，下一章我们会专门讲解Git版本控制。</p>
+</li>
+<li><p>application.properties - SpringBoot的配置文件，所有依赖的配置都在这里编写，但是一般情况下只需要配置必要项即可。</p>
+</li>
+</ul>
+<hr>
+<h2 id="整合Web相关框架"><a href="#整合Web相关框架" class="headerlink" title="整合Web相关框架"></a>整合Web相关框架</h2><p>我们来看一下，既然我们前面提到SpringBoot会内嵌一个Tomcat服务器，也就是说我们的Jar打包后，相当于就是一个可以直接运行的应用程序，我们来看一下如何创建一个SpringBootWeb项目。</p>
+<p>这里我们演示使用IDEA来创建一个基于SpringBoot的Web应用程序。</p>
+<h3 id="它是真的快"><a href="#它是真的快" class="headerlink" title="它是真的快"></a>它是真的快</h3><p>创建完成后，直接开启项目，我们就可以直接访问：<ins><a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a></ins>，我们可以看到，但是由于我们没有编写任何的请求映射，所以没有数据。我们可以来看看日志：</p>
+<p> 2022-01-06 22:17:46.308  INFO 853 — [           main] c.example.SpringBootWebTestApplication   : Starting SpringBootWebTestApplication using Java 1.8.0_312 on NagodeMacBook-Pro.local with PID 853 (&#x2F;Users&#x2F;nagocoler&#x2F;Downloads&#x2F;SpringBootWebTest&#x2F;target&#x2F;classes started by nagocoler in &#x2F;Users&#x2F;nagocoler&#x2F;Downloads&#x2F;SpringBootWebTest)<br> 2022-01-06 22:17:46.309  INFO 853 — [           main] c.example.SpringBootWebTestApplication   : No active profile set, falling back to default profiles: default<br> 2022-01-06 22:17:46.629  INFO 853 — [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)<br> 2022-01-06 22:17:46.632  INFO 853 — [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]<br> 2022-01-06 22:17:46.632  INFO 853 — [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat&#x2F;9.0.56]<br> 2022-01-06 22:17:46.654  INFO 853 — [           main] o.a.c.c.C.[Tomcat].[localhost].[&#x2F;]       : Initializing Spring embedded WebApplicationContext<br> 2022-01-06 22:17:46.654  INFO 853 — [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 325 ms<br> 2022-01-06 22:17:46.780  INFO 853 — [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ‘’<br> 2022-01-06 22:17:46.785  INFO 853 — [           main] c.example.SpringBootWebTestApplication   : Started SpringBootWebTestApplication in 0.62 seconds (JVM running for 0.999)<br> 2022-01-06 22:18:02.979  INFO 853 — [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[&#x2F;]       : Initializing Spring DispatcherServlet ‘dispatcherServlet’<br> 2022-01-06 22:18:02.979  INFO 853 — [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet ‘dispatcherServlet’<br> 2022-01-06 22:18:02.980  INFO 853 — [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms</p>
+<p>我们可以看到，日志中除了最基本的SpringBoot启动日志以外，还新增了内嵌Web服务器（Tomcat）的启动日志，并且显示了当前Web服务器所开放的端口，并且自动帮助我们初始化了DispatcherServlet，但是我们只是创建了项目，导入了web相关的starter依赖，没有进行任何的配置，实际上它使用的是starter提供的默认配置进行初始化的。</p>
+<p>由于SpringBoot是自动扫描的，因此我们直接创建一个Controller即可被加载：</p>
+<p> @Controller<br> public class MainController {<br> ​<br>  &#x2F;&#x2F;直接访问<a target="_blank" rel="noopener" href="http://localhost:8080/index%E5%8D%B3%E5%8F%AF%EF%BC%8C%E4%B8%8D%E7%94%A8%E5%8A%A0web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%90%8D%E7%A7%B0%E4%BA%86">http://localhost:8080/index即可，不用加web应用程序名称了</a><br>  @RequestMapping(“&#x2F;index”)<br>  @ResponseBody<br>  public String index(){<br>  return “你好，欢迎访问主页！”;<br>  }<br> }</p>
+<p>我们几乎没有做任何配置，但是可以直接开始配置Controller，SpringBoot创建一个Web项目的速度就是这么快！</p>
+<p>它还可以自动识别类型，如果我们返回的是一个对象类型的数据，那么它会自动转换为JSON数据格式，无需配置：</p>
+<p> @Data<br> public class Student {<br>  int sid;<br>  String name;<br>  String sex;<br> }</p>
+<p> @RequestMapping(“&#x2F;student”)<br> @ResponseBody<br> public Student student(){<br>  Student student &#x3D; new Student();<br>  student.setName(“小明”);<br>  student.setSex(“男”);<br>  student.setSid(10);<br>  return student;<br> }</p>
+<p>最后浏览器能够直接得到<code>application/json</code>的响应数据，就是这么方便。</p>
+<h3 id="修改Web相关配置"><a href="#修改Web相关配置" class="headerlink" title="修改Web相关配置"></a>修改Web相关配置</h3><p>如果我们需要修改Web服务器的端口或是一些其他的内容，我们可以直接在<code>application.properties</code>中进行修改，它是整个SpringBoot的配置文件：</p>
+<p> # 修改端口为80<br> server.port&#x3D;80</p>
+<p>我们还可以编写自定义的配置项，并在我们的项目中通过<code>@Value</code>直接注入：</p>
+<p>test.data&#x3D;100</p>
+<p>@Controller<br>public class MainController {<br>@Value(“${test.data}”)<br>int data;</p>
+<p>通过这种方式，我们就可以更好地将一些需要频繁修改的配置项写在配置文件中，并通过注解方式去获取值。</p>
+<p>配置文件除了使用<code>properties</code>格式以外，还有一种叫做<code>yaml</code>格式，它的语法如下：</p>
+<p>一级目录:<br>二级目录:<br>三级目录1: 值<br>三级目录2: 值<br>三级目录List:<br>- 元素1<br>- 元素2<br>- 元素3</p>
+<p>我们可以看到，每一级目录都是通过缩进（不能使用Tab，只能使用空格）区分，并且键和值之间需要添加冒号+空格来表示。</p>
+<p>SpringBoot也支持这种格式的配置文件，我们可以将<code>application.properties</code>修改为<code>application.yml</code>或是<code>application.yaml</code>来使用YAML语法编写配置：</p>
+<p>server:<br>port: 80</p>
+<h3 id="整合SpringSecurity依赖"><a href="#整合SpringSecurity依赖" class="headerlink" title="整合SpringSecurity依赖"></a>整合SpringSecurity依赖</h3><p>我们接着来整合一下SpringSecurity依赖，继续感受SpringBoot带来的光速开发体验，只需要导入SpringSecurity的Starter依赖即可：</p>
+<p>&lt;dependency&gt;<br>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-starter-security&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;</p>
+<p>导入依赖后，我们直接启动SpringBoot应用程序，可以发现SpringSecurity已经生效了。</p>
+<p>并且SpringSecurity会自动为我们生成一个默认用户<code>user</code>，它的密码会出现在日志中：</p>
+<p>2022-01-06 23:10:51.329  INFO 2901 — [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]<br>2022-01-06 23:10:51.329  INFO 2901 — [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat&#x2F;9.0.56]<br>2022-01-06 23:10:51.350  INFO 2901 — [           main] o.a.c.c.C.[Tomcat].[localhost].[&#x2F;]       : Initializing Spring embedded WebApplicationContext<br>2022-01-06 23:10:51.351  INFO 2901 — [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 341 ms<br>2022-01-06 23:10:51.469  INFO 2901 — [           main] .s.s.UserDetailsServiceAutoConfiguration :<br>Using generated security password: ff24bee3-e1b7-4309-9609-d32618baf5cb</p>
+<p>其中<code>ff24bee3-e1b7-4309-9609-d32618baf5cb</code>就是随机生成的一个密码，我们可以使用此用户登录。</p>
+<p>我们也可以在配置文件中直接配置：</p>
+<p>spring:<br>security:<br>user:<br>name: test   # 用户名<br>password: 123456  # 密码<br>roles:   # 角色<br>- user<br>- admin</p>
+<p>实际上这样的配置方式就是一个<code>inMemoryAuthentication</code>，只是我们可以直接配置而已。</p>
+<p>当然，页面的控制和数据库验证我们还是需要提供<code>WebSecurityConfigurerAdapter</code>的实现类去完成：</p>
+<p>@Configuration<br>public class SecurityConfiguration extends WebSecurityConfigurerAdapter {<br>@Override<br>protected void configure(HttpSecurity http) throws Exception {<br>http<br>.authorizeRequests()<br>.antMatchers(“&#x2F;login”).permitAll()<br>.anyRequest().hasRole(“user”)<br>.and()<br>.formLogin();<br>}<br>}</p>
+<p>注意这里不需要再添加<code>@EnableWebSecurity</code>了，因为starter依赖已经帮我们添加了。</p>
+<p>使用了SpringBoot之后，我们发现，需要什么功能，只需要导入对应的starter依赖即可，甚至都不需要你去进行额外的配置，你只需要关注依赖本身的必要设置即可，大大提高了我们的开发效率。</p>
+<hr>
+<h2 id="整合Mybatis框架"><a href="#整合Mybatis框架" class="headerlink" title="整合Mybatis框架"></a>整合Mybatis框架</h2><p>我们接着来看如何整合Mybatis框架，同样的，我们只需要导入对应的starter依赖即可：</p>
+<p>&lt;dependency&gt;<br>&lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;<br>&lt;version&gt;2.2.0&lt;&#x2F;version&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;</p>
+<p>导入依赖后，直接启动会报错，是因为有必要的配置我们没有去编写，我们需要指定数据源的相关信息：</p>
+<p>spring:<br>datasource:<br>url: jdbc:mysql:&#x2F;&#x2F;localhost:3306<br>username: root<br>password: 123456<br>driver-class-name: com.mysql.cj.jdbc.Driver</p>
+<p>再次启动，成功。</p>
+<p>我们发现日志中会出现这样一句话：</p>
+<p>2022-01-07 12:32:09.106  WARN 6917 — [           main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in ‘[com.example]’ package. Please check your configuration.</p>
+<p>这是Mybatis自动扫描输出的语句，导入依赖后，我们不需要再去设置Mybatis的相关Bean了，也不需要添加任何<code>@MapperSacn</code>注解，因为starter已经帮助我们做了，它会自动扫描项目中添加了<code>@Mapper</code>注解的接口，直接将其注册为Bean，不需要进行任何配置。</p>
+<p>@Mapper<br>public interface MainMapper {<br>@Select(“select * from users where username &#x3D; #{username}”)<br>UserData findUserByName(String username);<br>}</p>
+<p>当然，如果你觉得每个接口都去加一个<code>@Mapper</code>比较麻烦的话也可以用回之前的方式，直接<code>@MapperScan</code>使用包扫描。</p>
+<p>添加Mapper之后，使用方法和SSM阶段是一样的，我们可以将其与SpringSecurity结合使用：</p>
+<p>@Service<br>public class UserAuthService implements UserDetailsService {<br>@Resource<br>MainMapper mapper;<br>@Override<br>public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {<br>UserData data &#x3D; mapper.findUserByName(username);<br>if(data &#x3D;&#x3D; null) throw new UsernameNotFoundException(“用户 “+username+” 登录失败，用户名不存在！”);<br>return User<br>.withUsername(data.getUsername())<br>.password(data.getPassword())<br>.roles(data.getRole())<br>.build();<br>}<br>}</p>
+<p>最后配置一下自定义验证即可，注意这样之前配置文件里面配置的用户就失效了：</p>
+<p>@Override<br>protected void configure(AuthenticationManagerBuilder auth) throws Exception {<br>auth<br>.userDetailsService(service)<br>.passwordEncoder(new BCryptPasswordEncoder());<br>}</p>
+<p>在首次使用时，我们发现日志中输出以以下语句：</p>
+<p>2022-01-07 12:39:40.559  INFO 6930 — [nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting…<br>2022-01-07 12:39:41.033  INFO 6930 — [nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.</p>
+<p>实际上，SpringBoot会自动为Mybatis配置数据源，默认使用的就是<code>HikariCP</code>数据源。</p>
+<hr>
+<h2 id="整合Thymeleaf框架"><a href="#整合Thymeleaf框架" class="headerlink" title="整合Thymeleaf框架"></a>整合Thymeleaf框架</h2><p>整合Thymeleaf也只需导入对应的starter即可：</p>
+<p>&lt;dependency&gt;<br>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;</p>
+<p>接着我们只需要直接使用即可：</p>
+<p>@RequestMapping(“&#x2F;index”)<br>public String index(){<br>return “index”;<br>}</p>
+<p>但是注意，这样只能正常解析HTML页面，但是js、css等静态资源我们需要进行路径指定，不然无法访问，我们在配文件中配置一下静态资源的访问前缀：</p>
+<p>spring:<br>mvc:<br>static-path-pattern: &#x2F;static&#x2F;**</p>
+<p>接着我们像之前一样，把登陆页面实现一下吧。</p>
+<html lang="en" xmlns:th=http://www.thymeleaf.org
+xmlns:sec=http://www.thymeleaf.org/extras/spring-security>
+
+<hr>
+<h2 id="日志系统"><a href="#日志系统" class="headerlink" title="日志系统"></a>日志系统</h2><p>SpringBoot为我们提供了丰富的日志系统，它几乎是开箱即用的。</p>
+<h3 id="日志门面和日志实现"><a href="#日志门面和日志实现" class="headerlink" title="日志门面和日志实现"></a>日志门面和日志实现</h3><p>我们首先要区分一下，什么是日志门面（Facade）什么是日志实现，我们之前学习的JUL实际上就是一种日志实现，我们可以直接使用JUL为我们提供的日志框架来规范化打印日志，而日志门面，如Slf4j，是把不同的日志系统的实现进行了具体的抽象化，只提供了统一的日志使用接口，使用时只需要按照其提供的接口方法进行调用即可，由于它只是一个接口，并不是一个具体的可以直接单独使用的日志框架，所以最终日志的格式、记录级别、输出方式等都要通过接口绑定的具体的日志系统来实现，这些具体的日志系统就有log4j、logback、java.util.logging等，它们才实现了具体的日志系统的功能。</p>
+<p>日志门面和日志实现就像JDBC和数据库驱动一样，一个是画大饼的，一个是真的去做饼的。</p>
+<p><img src="/resources/34ac413f2d1545b4bf0994da27599c05.png" alt="img"></p>
+<p>但是现在有一个问题就是，不同的框架可能使用了不同的日志框架，如果这个时候出现众多日志框架并存的情况，我们现在希望的是所有的框架一律使用日志门面（Slf4j）进行日志打印，这时该怎么去解决？我们不可能将其他框架依赖的日志框架替换掉，直接更换为Slf4j吧，这样显然不现实。</p>
+<p>这时，可以采取类似于偷梁换柱的做法，只保留不同日志框架的接口和类定义等关键信息，而将实现全部定向为Slf4j调用。相当于有着和原有日志框架一样的外壳，对于其他框架来说依然可以使用对应的类进行操作，而具体如何执行，真正的内心已经是Slf4j的了。</p>
+<p><img src="/resources/ca2d2ebc636549ca812a437985f5896d.png" alt="img"></p>
+<p>所以，SpringBoot为了统一日志框架的使用，做了这些事情：</p>
+<ul>
+<li><p>直接将其他依赖以前的日志框架剔除</p>
+</li>
+<li><p>导入对应日志框架的Slf4j中间包</p>
+</li>
+<li><p>导入自己官方指定的日志实现，并作为Slf4j的日志实现层</p>
+</li>
+</ul>
+<h3 id="在SpringBoot中打印日志信息"><a href="#在SpringBoot中打印日志信息" class="headerlink" title="在SpringBoot中打印日志信息"></a>在SpringBoot中打印日志信息</h3><p>SpringBoot使用的是Slf4j作为日志门面，Logback（<ins>Logback</ins> 是log4j 框架的作者开发的新一代日志框架，它效率更高、能够适应诸多的运行环境，同时天然支持SLF4J）作为日志实现，对应的依赖为：</p>
+<p>&lt;dependency&gt;<br>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-starter-logging&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;</p>
+<p>此依赖已经被包含了，所以我们如果需要打印日志，可以像这样：</p>
+<p>@RequestMapping(“&#x2F;login”)<br>public String login(){<br>Logger logger &#x3D; LoggerFactory.getLogger(MainController.class);<br>logger.info(“用户访问了一次登陆界面”);<br>return “login”;<br>}</p>
+<p>因为我们使用了Lombok，所以直接一个注解也可以搞定哦：</p>
+<p>@Slf4j<br>@Controller<br>public class MainController {<br>@RequestMapping(“&#x2F;login”)<br>public String login(){<br>log.info(“用户访问了一次登陆界面”);<br>return “login”;<br>}</p>
+<p>日志级别从低到高分为TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL，SpringBoot默认只会打印INFO以上级别的信息。</p>
+<h3 id="配置Logback日志"><a href="#配置Logback日志" class="headerlink" title="配置Logback日志"></a>配置Logback日志</h3><p>Logback官网：<ins><a target="_blank" rel="noopener" href="https://logback.qos.ch/">https://logback.qos.ch</a></ins></p>
+<p>和JUL一样，Logback也能实现定制化，我们可以编写对应的配置文件，SpringBoot推荐将配置文件名称命名为<code>logback-spring.xml</code>表示这是SpringBoot下Logback专用的配置，可以使用SpringBoot 的高级Proﬁle功能，它的内容类似于这样：</p>
+<p>&lt;?xml version&#x3D;”1.0” encoding&#x3D;”UTF-8”?&gt;<br>&lt;configuration&gt;<br>&lt;!– 配置 –&gt;<br>&lt;&#x2F;configuration&gt;</p>
+<p>最外层由<code>configuration</code>包裹，一旦编写，那么就会替换默认的配置，所以如果内部什么都不写的话，那么会导致我们的SpringBoot项目没有配置任何日志输出方式，控制台也不会打印日志。</p>
+<p>我们接着来看如何配置一个控制台日志打印，我们可以直接导入并使用SpringBoot为我们预设好的日志格式，在<code>org/springframework/boot/logging/logback/defaults.xml</code>中已经帮我们把日志的输出格式定义好了，我们只需要设置对应的<code>appender</code>即可：</p>
+<p>&lt;included&gt;<br>&lt;conversionRule conversionWord&#x3D;”clr” converterClass&#x3D;”org.springframework.boot.logging.logback.ColorConverter” &#x2F;&gt;<br>&lt;conversionRule conversionWord&#x3D;”wex” converterClass&#x3D;”org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter” &#x2F;&gt;<br>&lt;conversionRule conversionWord&#x3D;”wEx” converterClass&#x3D;”org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter” &#x2F;&gt;<br>&lt;property name&#x3D;”CONSOLE_LOG_PATTERN” value&#x3D;”${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(—){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}”&#x2F;&gt;<br>&lt;property name&#x3D;”CONSOLE_LOG_CHARSET” value&#x3D;”${CONSOLE_LOG_CHARSET:-${file.encoding:-UTF-8}}”&#x2F;&gt;<br>&lt;property name&#x3D;”FILE_LOG_PATTERN” value&#x3D;”${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } — [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}”&#x2F;&gt;<br>&lt;property name&#x3D;”FILE_LOG_CHARSET” value&#x3D;”${FILE_LOG_CHARSET:-${file.encoding:-UTF-8}}”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.apache.catalina.startup.DigesterFactory” level&#x3D;”ERROR”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.apache.catalina.util.LifecycleBase” level&#x3D;”ERROR”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.apache.coyote.http11.Http11NioProtocol” level&#x3D;”WARN”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.apache.sshd.common.util.SecurityUtils” level&#x3D;”WARN”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.apache.tomcat.util.net.NioSelectorPool” level&#x3D;”WARN”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.eclipse.jetty.util.component.AbstractLifeCycle” level&#x3D;”ERROR”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.hibernate.validator.internal.util.Version” level&#x3D;”WARN”&#x2F;&gt;<br>&lt;logger name&#x3D;”org.springframework.boot.actuate.endpoint.jmx” level&#x3D;”WARN”&#x2F;&gt;<br>&lt;&#x2F;included&gt;</p>
+<p>导入后，我们利用预设的日志格式创建一个控制台日志打印：</p>
+<p>&lt;?xml version&#x3D;”1.0” encoding&#x3D;”UTF-8”?&gt;<br>&lt;configuration&gt;<br>&lt;!–  导入其他配置文件，作为预设  –&gt;<br>&lt;include resource&#x3D;”org&#x2F;springframework&#x2F;boot&#x2F;logging&#x2F;logback&#x2F;defaults.xml” &#x2F;&gt;<br>&lt;!–  Appender作为日志打印器配置，这里命名随意  –&gt;<br>&lt;!–  ch.qos.logback.core.ConsoleAppender是专用于控制台的Appender  –&gt;<br>&lt;appender name&#x3D;”CONSOLE” class&#x3D;”ch.qos.logback.core.ConsoleAppender”&gt;<br>&lt;encoder&gt;<br>&lt;pattern&gt;${CONSOLE_LOG_PATTERN}&lt;&#x2F;pattern&gt;<br>&lt;charset&gt;${CONSOLE_LOG_CHARSET}&lt;&#x2F;charset&gt;<br>&lt;&#x2F;encoder&gt;<br>&lt;&#x2F;appender&gt;<br>&lt;!–  指定日志输出级别，以及启用的Appender，这里就使用了我们上面的ConsoleAppender  –&gt;<br>&lt;root level&#x3D;”INFO”&gt;<br>&lt;appender-ref ref&#x3D;”CONSOLE”&#x2F;&gt;<br>&lt;&#x2F;root&gt;<br>&lt;&#x2F;configuration&gt;</p>
+<p>配置完成后，我们发现控制台已经可以正常打印日志信息了。</p>
+<p>接着我们来看看如何开启文件打印，我们只需要配置一个对应的Appender即可：</p>
+<p>&lt;!–  ch.qos.logback.core.rolling.RollingFileAppender用于文件日志记录，它支持滚动  –&gt;<br>&lt;appender name&#x3D;”FILE” class&#x3D;”ch.qos.logback.core.rolling.RollingFileAppender”&gt;<br>&lt;encoder&gt;<br>&lt;pattern&gt;${FILE_LOG_PATTERN}&lt;&#x2F;pattern&gt;<br>&lt;charset&gt;${FILE_LOG_CHARSET}&lt;&#x2F;charset&gt;<br>&lt;&#x2F;encoder&gt;<br>&lt;!–  自定义滚动策略，防止日志文件无限变大，也就是日志文件写到什么时候为止，重新创建一个新的日志文件开始写  –&gt;<br>&lt;rollingPolicy class&#x3D;”ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy”&gt;<br>&lt;!–  文件保存位置以及文件命名规则，这里用到了%d{yyyy-MM-dd}表示当前日期，%i表示这一天的第N个日志  –&gt;<br>&lt;FileNamePattern&gt;log&#x2F;%d{yyyy-MM-dd}-spring-%i.log&lt;&#x2F;FileNamePattern&gt;<br>&lt;!–  到期自动清理日志文件  –&gt;<br>&lt;cleanHistoryOnStart&gt;true&lt;&#x2F;cleanHistoryOnStart&gt;<br>&lt;!–  最大日志保留时间  –&gt;<br>&lt;maxHistory&gt;7&lt;&#x2F;maxHistory&gt;<br>&lt;!–  最大单个日志文件大小  –&gt;<br>&lt;maxFileSize&gt;10MB&lt;&#x2F;maxFileSize&gt;<br>&lt;&#x2F;rollingPolicy&gt;<br>&lt;&#x2F;appender&gt;<br>&lt;!–  指定日志输出级别，以及启用的Appender，这里就使用了我们上面的ConsoleAppender  –&gt;<br>&lt;root level&#x3D;”INFO”&gt;<br>&lt;appender-ref ref&#x3D;”CONSOLE”&#x2F;&gt;<br>&lt;appender-ref ref&#x3D;”FILE”&#x2F;&gt;<br>&lt;&#x2F;root&gt;</p>
+<p>配置完成后，我们可以看到日志文件也能自动生成了。</p>
+<p>我们也可以魔改官方提供的日志格式，官方文档：<ins><a target="_blank" rel="noopener" href="https://logback.qos.ch/manual/layouts.html">https://logback.qos.ch/manual/layouts.html</a></ins></p>
+<p>这里需要提及的是MDC机制，Logback内置的日志字段还是比较少，如果我们需要打印有关业务的更多的内容，包括自定义的一些数据，需要借助logback MDC机制，MDC为“Mapped Diagnostic Context”（映射诊断上下文），即将一些运行时的上下文数据通过logback打印出来；此时我们需要借助org.sl4j.MDC类。</p>
+<p>比如我们现在需要记录是哪个用户访问我们网站的日志，只要是此用户访问我们网站，都会在日志中携带该用户的ID，我们希望每条日志中都携带这样一段信息文本，而官方提供的字段无法实现此功能，这时就需要使用MDC机制：</p>
+<p>@Slf4j<br>@Controller<br>public class MainController {<br>@RequestMapping(“&#x2F;login”)<br>public String login(){<br>&#x2F;&#x2F;这里就用Session代替ID吧<br>MDC.put(“reqId”, request.getSession().getId());<br>log.info(“用户访问了一次登陆界面”);<br>return “login”;<br>}</p>
+<p>通过这种方式，我们就可以向日志中传入自定义参数了，我们日志中添加这样一个占位符<code>%X&#123;键值&#125;</code>，名字保持一致：</p>
+<p>%clr([%X{reqId}]){faint}</p>
+<p>这样当我们向MDC中添加信息后，只要是当前线程（本质是ThreadLocal实现）下输出的日志，都会自动替换占位符。</p>
+<h3 id="自定义Banner"><a href="#自定义Banner" class="headerlink" title="自定义Banner"></a>自定义Banner</h3><p>我们在之前发现，实际上Banner部分和日志部分是独立的，SpringBoot启动后，会先打印Banner部分，那么这个Banner部分是否可以自定义呢？答案是可以的。</p>
+<p>我们可以直接来配置文件所在目录下创建一个名为<code>banner.txt</code>的文本文档，内容随便你：</p>
+<p>&#x2F;&#x2F;                          _ooOoo_                               &#x2F;&#x2F;<br>&#x2F;&#x2F;                         o8888888o                              &#x2F;&#x2F;<br>&#x2F;&#x2F;                         88” . “88                              &#x2F;&#x2F;<br>&#x2F;&#x2F;                         (| ^<em>^ |)                              &#x2F;&#x2F;<br>&#x2F;&#x2F;                         O\  &#x3D;  &#x2F;O                              &#x2F;&#x2F;<br>&#x2F;&#x2F;                      __**&#x2F;<code>---&#39;\\____                           // //                    .&#39;  \\\|     |//  </code>.                         &#x2F;&#x2F;<br>&#x2F;&#x2F;                   &#x2F;  \|||  :  |||&#x2F;&#x2F;  \                        &#x2F;&#x2F;<br>&#x2F;&#x2F;                  &#x2F;  <em>||||| -:- |||||-  \                       &#x2F;&#x2F;<br>&#x2F;&#x2F;                  |   | \\  -  &#x2F;&#x2F;&#x2F; |   |                       &#x2F;&#x2F;<br>&#x2F;&#x2F;                  | \</em>|  ‘’\—&#x2F;‘’  |   |                       &#x2F;&#x2F;<br>&#x2F;&#x2F;                  \  .-\*</em>  <code>-</code>  __*&#x2F;-. &#x2F;                       &#x2F;&#x2F;<br>&#x2F;&#x2F;                ***<code>. .&#39;  /--.--\  </code>. . ___                     &#x2F;&#x2F;<br>&#x2F;&#x2F;              .”” ‘&lt;  <code>.___\\_&lt;|&amp;gt;_/___.&#39;  &gt;&#39;&quot;&quot;.                  // //            | | :  </code>- \<code>.;</code>\ _ &#x2F;<code>;.</code>&#x2F; - <code>: | |                 // //            \  \</code>-.   \* **\ &#x2F;** *&#x2F;   .-<code> /  /                 // //      ========</code>-.****<code>-.___\\_____/___.-</code>*___.-‘&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;         &#x2F;&#x2F;<br>&#x2F;&#x2F;                           `&#x3D;—&#x3D;’                              &#x2F;&#x2F;<br>&#x2F;&#x2F;      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        &#x2F;&#x2F;<br>&#x2F;&#x2F;             佛祖保佑          永无BUG         永不修改             &#x2F;&#x2F;</p>
+<p>可以使用在线生成网站进行生成自己的个性Banner：<ins><a target="_blank" rel="noopener" href="https://www.bootschool.net/ascii">https://www.bootschool.net/ascii</a></ins></p>
+<p>我们甚至还可以使用颜色代码来为文本切换颜色：</p>
+<p>${AnsiColor.BRIGHT_GREEN}  &#x2F;&#x2F;绿色</p>
+<p>也可以获取一些常用的变量信息：</p>
+<p>${AnsiColor.YELLOW} 当前 Spring Boot 版本：${spring-boot.version}</p>
+<p>玩的开心！</p>
+<hr>
+<h2 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h2><p>在日常开发中，我们项目会有多个环境。例如开发环境（develop）也就是我们研发过程中疯狂敲代码修BUG阶段，生产环境（production ）项目开发得差不多了，可以放在服务器上跑了。不同的环境下，可能我们的配置文件也存在不同，但是我们不可能切换环境的时候又去重新写一次配置文件，所以我们可以将多个环境的配置文件提前写好，进行自由切换。</p>
+<p>由于SpringBoot只会读取<code>application.properties</code>或是<code>application.yml</code>文件，那么怎么才能实现自由切换呢？SpringBoot给我们提供了一种方式，我们可以通过配置文件指定：</p>
+<p>spring:<br>profiles:<br>active: dev</p>
+<p>接着我们分别创建两个环境的配置文件，<code>application-dev.yml</code>和<code>application-prod.yml</code>分别表示开发环境和生产环境的配置文件，比如开发环境我们使用的服务器端口为8080，而生产环境下可能就需要设置为80或是443端口，那么这个时候就需要不同环境下的配置文件进行区分：</p>
+<p>server:<br>port: 8080</p>
+<p>server:<br>port: 80</p>
+<p>这样我们就可以灵活切换生产环境和开发环境下的配置文件了。</p>
+<p>SpringBoot自带的Logback日志系统也是支持多环境配置的，比如我们想在开发环境下输出日志到控制台，而生产环境下只需要输出到文件即可，这时就需要进行环境配置：</p>
+<p>&lt;springProfile name&#x3D;”dev”&gt;<br>&lt;root level&#x3D;”INFO”&gt;<br>&lt;appender-ref ref&#x3D;”CONSOLE”&#x2F;&gt;<br>&lt;appender-ref ref&#x3D;”FILE”&#x2F;&gt;<br>&lt;&#x2F;root&gt;<br>&lt;&#x2F;springProfile&gt;<br>&lt;springProfile name&#x3D;”prod”&gt;<br>&lt;root level&#x3D;”INFO”&gt;<br>&lt;appender-ref ref&#x3D;”FILE”&#x2F;&gt;<br>&lt;&#x2F;root&gt;<br>&lt;&#x2F;springProfile&gt;</p>
+<p>注意<code>springProfile</code>是区分大小写的！</p>
+<p>那如果我们希望生产环境中不要打包开发环境下的配置文件呢，我们目前虽然可以切换开发环境，但是打包的时候依然是所有配置文件全部打包，这样总感觉还欠缺一点完美，因此，打包的问题就只能找Maven解决了，Maven也可以设置多环境：</p>
+<p>&lt;!–分别设置开发，生产环境–&gt;<br>&lt;profiles&gt;<br>&lt;!– 开发环境 –&gt;<br>&lt;profile&gt;<br>&lt;id&gt;dev&lt;&#x2F;id&gt;<br>&lt;activation&gt;<br>&lt;activeByDefault&gt;true&lt;&#x2F;activeByDefault&gt;<br>&lt;&#x2F;activation&gt;<br>&lt;properties&gt;<br>&lt;environment&gt;dev&lt;&#x2F;environment&gt;<br>&lt;&#x2F;properties&gt;<br>&lt;&#x2F;profile&gt;<br>&lt;!– 生产环境 –&gt;<br>&lt;profile&gt;<br>&lt;id&gt;prod&lt;&#x2F;id&gt;<br>&lt;activation&gt;<br>&lt;activeByDefault&gt;false&lt;&#x2F;activeByDefault&gt;<br>&lt;&#x2F;activation&gt;<br>&lt;properties&gt;<br>&lt;environment&gt;prod&lt;&#x2F;environment&gt;<br>&lt;&#x2F;properties&gt;<br>&lt;&#x2F;profile&gt;<br>&lt;&#x2F;profiles&gt;</p>
+<p>接着，我们需要根据环境的不同，排除其他环境的配置文件：</p>
+<p>&lt;resources&gt;<br>&lt;!–排除配置文件–&gt;<br>&lt;resource&gt;<br>&lt;directory&gt;src&#x2F;main&#x2F;resources&lt;&#x2F;directory&gt;<br>&lt;!–先排除所有的配置文件–&gt;<br>&lt;excludes&gt;<br>&lt;!–使用通配符，当然可以定义多个exclude标签进行排除–&gt;<br>&lt;exclude&gt;application*.yml&lt;&#x2F;exclude&gt;<br>&lt;&#x2F;excludes&gt;<br>&lt;&#x2F;resource&gt;<br>&lt;!–根据激活条件引入打包所需的配置和文件–&gt;<br>&lt;resource&gt;<br>&lt;directory&gt;src&#x2F;main&#x2F;resources&lt;&#x2F;directory&gt;<br>&lt;!–引入所需环境的配置文件–&gt;<br>&lt;filtering&gt;true&lt;&#x2F;filtering&gt;<br>&lt;includes&gt;<br>&lt;include&gt;application.yml&lt;&#x2F;include&gt;<br>&lt;!–根据maven选择环境导入配置文件–&gt;<br>&lt;include&gt;application-${environment}.yml&lt;&#x2F;include&gt;<br>&lt;&#x2F;includes&gt;<br>&lt;&#x2F;resource&gt;<br>&lt;&#x2F;resources&gt;</p>
+<p>接着，我们可以直接将Maven中的<code>environment</code>属性，传递给SpringBoot的配置文件，在构建时替换为对应的值：</p>
+<p>spring:<br>profiles:<br>active: ‘@environment@’  #注意YAML配置文件需要加单引号，否则会报错</p>
+<p>这样，根据我们Maven环境的切换，SpringBoot的配置文件也会进行对应的切换。</p>
+<p>最后我们打开Maven栏目，就可以自由切换了，直接勾选即可，注意切换环境之后要重新加载一下Maven项目，不然不会生效！</p>
+<hr>
+<h2 id="打包运行"><a href="#打包运行" class="headerlink" title="打包运行"></a>打包运行</h2><p>现在我们的SpringBoot项目编写完成了，那么如何打包运行呢？非常简单，只需要点击Maven生命周期中的<code>package</code>即可，它会自动将其打包为可直接运行的Jar包，第一次打包可能会花费一些时间下载部分依赖的源码一起打包进Jar文件。</p>
+<p>我们发现在打包的过程中还会完整的将项目跑一遍进行测试，如果我们不想测试直接打包，可以手动使用以下命令：</p>
+<p>mvn package  -DskipTests</p>
+<p>打包后，我们会直接得到一个名为<code>springboot-study-0.0.1-SNAPSHOT.jar</code>的文件，这时在CMD窗口中输入命令：</p>
+<p>java -jar springboot-study-0.0.1-SNAPSHOT.jar</p>
+<p>输入后，可以看到我们的Java项目成功运行起来了，如果手动关闭窗口会导致整个项目终止运行。</p>
+<hr>
+<h2 id="再谈Spring框架"><a href="#再谈Spring框架" class="headerlink" title="再谈Spring框架"></a>再谈Spring框架</h2><p>**注意：**开始本部分前，建议先完成SSM阶段的Spring源码讲解部分。</p>
+<p>我们在SpringBoot阶段，需要继续扩充Spring框架的相关知识，来巩固和强化对于Spring框架的认识。</p>
+<h3 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h3><p>为了执行某些任务，我们可能需要一些非常规的操作，比如我们希望使用多线程来处理我们的结果或是执行一些定时任务，到达指定时间再去执行。</p>
+<p>这时我们首先想到的就是创建一个新的线程来处理，或是使用TimerTask来完成定时任务，但是我们有了Spring框架之后，就不用这样了，因为Spring框架为我们提供了更加便捷的方式进行任务调度。</p>
+<h4 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h4><p>需要使用Spring异步任务支持，我们需要在配置类上添加<code>@EnableAsync</code>或是在SpringBoot的启动类上添加也可以。</p>
+<p>@EnableAsync<br>@SpringBootApplication<br>public class SpringBootWebTestApplication {<br>public static void main(String[] args) {<br>SpringApplication.run(SpringBootWebTestApplication.class, args);<br>}<br>}</p>
+<p>接着我们只需要在需要异步执行的方法上，添加<code>@Async</code>注解即可将此方法标记为异步，当此方法被调用时，会异步执行，也就是新开一个线程执行，不是在当前线程执行。</p>
+<p>@Service<br>public class TestService {<br>@Async<br>public void test(){<br>try {<br>Thread.sleep(3000);<br>System.out.println(“我是异步任务！”);<br>} catch (InterruptedException e) {<br>e.printStackTrace();<br>}<br>}<br>}</p>
+<p>@RequestMapping(“&#x2F;login”)<br>public String login(HttpServletRequest request){<br>service.test();<br>System.out.println(“我是同步任务！”);<br>return “login”;<br>}</p>
+<p>实际上这也是得益于AOP机制，通过线程池实现，但是也要注意，正是因为它是AOP机制的产物，所以它只能是在Bean中才会生效！</p>
+<p>使用 @Async 注释的方法可以返回 ‘void’ 或 “Future” 类型，Future是一种用于接收任务执行结果的一种类型，我们会在Java并发编程中进行讲解，这里暂时不做介绍。</p>
+<h4 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h4><p>看完了异步任务，我们接着来看定时任务，定时任务其实就是指定在哪个时候再去执行，在JavaSE阶段我们使用过TimerTask来执行定时任务。</p>
+<p>Spring中的定时任务是全局性质的，当我们的Spring程序启动后，那么定时任务也就跟着启动了，我们可以在配置类上添加<code>@EnableScheduling</code>或是在SpringBoot的启动类上添加也可：</p>
+<p>@EnableAsync<br>@EnableScheduling<br>@SpringBootApplication<br>public class SpringBootWebTestApplication {<br>public static void main(String[] args) {<br>SpringApplication.run(SpringBootWebTestApplication.class, args);<br>}<br>}</p>
+<p>接着我们可以创建一个定时任务配置类，在配置类里面编写定时任务：</p>
+<p>@Configuration<br>public class ScheduleConfiguration {<br>@Scheduled(fixedRate &#x3D; 2000)<br>public void task(){<br>System.out.println(“我是定时任务！”+new Date());<br>}<br>}</p>
+<p>我们注意到<code>@Scheduled</code>中有很多参数，我们需要指定’cron’, ‘fixedDelay(String)’, or ‘fixedRate(String)’的其中一个，否则无法创建定时任务，他们的区别如下：</p>
+<ul>
+<li><p>fixedDelay：在上一次定时任务执行完之后，间隔多久继续执行。</p>
+</li>
+<li><p>fixedRate：无论上一次定时任务有没有执行完成，两次任务之间的时间间隔。</p>
+</li>
+<li><p>cron：使用cron表达式来指定任务计划。</p>
+</li>
+</ul>
+<p>这里重点讲解一下cron表达式：<ins><a target="_blank" rel="noopener" href="https://blog.csdn.net/sunnyzyq/article/details/98597252">https://blog.csdn.net/sunnyzyq/article/details/98597252</a></ins></p>
+<h3 id="监听器"><a href="#监听器" class="headerlink" title="监听器"></a>监听器</h3><p>监听器对我们来说也是一个比较陌生的概念，那么何谓监听呢？</p>
+<p>监听实际上就是等待某个事件的触发，当事件触发时，对应事件的监听器就会被通知。</p>
+<p>@Component<br>public class TestListener implements ApplicationListener&lt;ContextRefreshedEvent&gt; {<br>@Override<br>public void onApplicationEvent(ContextRefreshedEvent event) {<br>System.out.println(event.getApplicationContext());<br>}<br>}</p>
+<p>通过监听事件，我们就可以在对应的时机进行一些额外的处理，我们可以通过断点调试来查看一个事件是如何发生，以及如何通知监听器的。</p>
+<p>通过阅读源码，我们得知，一个事件实际上就是通过<code>publishEvent</code>方法来进行发布的，我们也可以自定义我们自己项目中的事件，并注册对应的监听器进行处理。</p>
+<p>public class TestEvent extends ApplicationEvent {   &#x2F;&#x2F;需要继承ApplicationEvent<br>public TestEvent(Object source) {<br>super(source);<br>}<br>}</p>
+<p>@Component<br>public class TestListener implements ApplicationListener&lt;TestEvent&gt; {<br>@Override<br>public void onApplicationEvent(TestEvent event) {<br>System.out.println(“自定义事件发生了：”+event.getSource());<br>}<br>}</p>
+<p>@Resource<br>ApplicationContext context;<br>@RequestMapping(“&#x2F;login”)<br>public String login(HttpServletRequest request){<br>context.publishEvent(new TestEvent(“有人访问了登录界面！”));<br>return “login”;<br>}</p>
+<p>这样，我们就实现了自定义事件发布和监听。</p>
+<h3 id="Aware系列接口"><a href="#Aware系列接口" class="headerlink" title="Aware系列接口"></a>Aware系列接口</h3><p>我们在之前讲解Spring源码时，经常会发现某些类的定义上，除了我们当时讲解的继承关系以外，还实现了一些接口，他们的名称基本都是<code>xxxxAware</code>，比如我们在讲解SpringSecurity的源码中，AbstractAuthenticationProcessingFilter类就是这样：</p>
+<p>public abstract class AbstractAuthenticationProcessingFilter extends GenericFilterBean implements ApplicationEventPublisherAware, MessageSourceAware {<br>protected ApplicationEventPublisher eventPublisher;<br>protected AuthenticationDetailsSource&lt;HttpServletRequest, ?&gt; authenticationDetailsSource &#x3D; new WebAuthenticationDetailsSource();<br>private AuthenticationManager authenticationManager;<br>…</p>
+<p>我们发现它除了继承自GenericFilterBean之外，还实现了ApplicationEventPublisherAware和MessageSourceAware接口，那么这些Aware接口到底是干嘛的呢？</p>
+<p>Aware的中文意思为<strong>感知</strong>。简单来说，他就是一个标识，实现此接口的类会获得某些感知能力，Spring容器会在Bean被加载时，根据类实现的感知接口，会调用类中实现的对应感知方法。</p>
+<p>比如AbstractAuthenticationProcessingFilter就实现了ApplicationEventPublisherAware接口，此接口的感知功能为事件发布器，在Bean加载时，会调用实现类中的<code>setApplicationEventPublisher</code>方法，而AbstractAuthenticationProcessingFilter类则利用此方法，在Bean加载阶段获得了容器的事件发布器，以便之后发布事件使用。</p>
+<p>public void setApplicationEventPublisher(ApplicationEventPublisher eventPublisher) {<br>this.eventPublisher &#x3D; eventPublisher;   &#x2F;&#x2F;直接存到成员变量<br>}</p>
+<p>protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {<br>SecurityContext context &#x3D; SecurityContextHolder.createEmptyContext();<br>context.setAuthentication(authResult);<br>SecurityContextHolder.setContext(context);<br>if (this.logger.isDebugEnabled()) {<br>this.logger.debug(LogMessage.format(“Set SecurityContextHolder to %s”, authResult));<br>}<br>this.rememberMeServices.loginSuccess(request, response, authResult);<br>&#x2F;&#x2F;在这里使用<br>if (this.eventPublisher !&#x3D; null) {<br>this.eventPublisher.publishEvent(new InteractiveAuthenticationSuccessEvent(authResult, this.getClass()));<br>}<br>this.successHandler.onAuthenticationSuccess(request, response, authResult);<br>}</p>
+<p>同样的，除了ApplicationEventPublisherAware接口外，我们再来演示一个接口，比如：</p>
+<p>@Service<br>public class TestService implements BeanNameAware {<br>@Override<br>public void setBeanName(String s) {<br>System.out.println(s);<br>}<br>}</p>
+<p>BeanNameAware就是感知Bean名称的一个接口，当Bean被加载时，会调用<code>setBeanName</code>方法并将Bean名称作为参数传递。</p>
+<p>有关所有的Aware这里就不一一列举了。</p>
+<hr>
+<h2 id="探究SpringBoot实现原理"><a href="#探究SpringBoot实现原理" class="headerlink" title="探究SpringBoot实现原理"></a>探究SpringBoot实现原理</h2><p>**注意：**难度较大，本版块作为选学内容，在开始前，必须完成SSM阶段源码解析部分的学习。</p>
+<p>我们在前面的学习中切实感受到了SpringBoot为我们带来的便捷，那么它为何能够实现如此快捷的开发模式，starter又是一个怎样的存在，它是如何进行自动配置的，我们现在就开始研究。</p>
+<h3 id="启动原理"><a href="#启动原理" class="headerlink" title="启动原理"></a>启动原理</h3><p>首先我们来看看，SpringBoot项目启动之后，做了什么事情，SpringApplication中的静态<code>run</code>方法：</p>
+<p>public static ConfigurableApplicationContext run(Class&lt;?&gt; primarySource, String… args) {<br>return run(new Class[]{primarySource}, args);<br>}</p>
+<p>套娃如下：</p>
+<p>public static ConfigurableApplicationContext run(Class&lt;?&gt;[] primarySources, String[] args) {<br>return (new SpringApplication(primarySources)).run(args);<br>}</p>
+<p>我们发现，这里直接new了一个新的SpringApplication对象，传入我们的主类作为构造方法参数，并调用了非static的<code>run</code>方法，我们先来看看构造方法里面做了什么事情：</p>
+<p>public SpringApplication(ResourceLoader resourceLoader, Class&lt;?&gt;… primarySources) {<br>…<br>this.resourceLoader &#x3D; resourceLoader;<br>Assert.notNull(primarySources, “PrimarySources must not be null”);<br>this.primarySources &#x3D; new LinkedHashSet(Arrays.asList(primarySources));<br>&#x2F;&#x2F;这里是关键，这里会判断当前SpringBoot应用程序是否为Web项目，并返回当前的项目类型<br>&#x2F;&#x2F;deduceFromClasspath是根据类路径下判断是否包含SpringBootWeb依赖，如果不包含就是NONE类型，包含就是SERVLET类型<br>this.webApplicationType &#x3D; WebApplicationType.deduceFromClasspath();<br>this.bootstrapRegistryInitializers &#x3D; new ArrayList(this.getSpringFactoriesInstances(BootstrapRegistryInitializer.class));<br>&#x2F;&#x2F;创建所有ApplicationContextInitializer实现类的对象<br>this.setInitializers(this.getSpringFactoriesInstances(ApplicationContextInitializer.class));<br>this.setListeners(this.getSpringFactoriesInstances(ApplicationListener.class));<br>this.mainApplicationClass &#x3D; this.deduceMainApplicationClass();<br>}</p>
+<p>关键就在这里了，它是如何知道哪些类是ApplicationContextInitializer的实现类的呢？</p>
+<p>这里就要提到spring.factories了，它是 Spring 仿造Java SPI实现的一种类加载机制。它在 META-INF&#x2F;spring.factories 文件中配置接口的实现类名称，然后在程序中读取这些配置文件并实例化。这种自定义的SPI机制是 Spring Boot Starter 实现的基础。</p>
+<p>SPI的常见例子：</p>
+<ul>
+<li><p>数据库驱动加载接口实现类的加载：JDBC加载不同类型数据库的驱动</p>
+</li>
+<li><p>日志门面接口实现类加载：SLF4J加载不同提供商的日志实现类</p>
+</li>
+</ul>
+<p>说白了就是人家定义接口，但是实现可能有很多种，但是核心只提供接口，需要我们按需选择对应的实现，这种方式是高度解耦的。</p>
+<p>我们来看看<code>getSpringFactoriesInstances</code>方法做了什么：</p>
+<p>private &lt;T&gt; Collection&lt;T&gt; getSpringFactoriesInstances(Class&lt;T&gt; type, Class&lt;?&gt;[] parameterTypes, Object… args) {<br>&#x2F;&#x2F;获取当前的类加载器<br>ClassLoader classLoader &#x3D; this.getClassLoader();<br>&#x2F;&#x2F;获取所有依赖中 META-INF&#x2F;spring.factories 中配置的对应接口类的实现类列表<br>Set&lt;String&gt; names &#x3D; new LinkedHashSet(SpringFactoriesLoader.loadFactoryNames(type, classLoader));<br>&#x2F;&#x2F;根据上方列表，依次创建实例对象<br>List&lt;T&gt; instances &#x3D; this.createSpringFactoriesInstances(type, parameterTypes, classLoader, args, names);<br>&#x2F;&#x2F;根据对应类上的Order接口或是注解进行排序<br>AnnotationAwareOrderComparator.sort(instances);<br>&#x2F;&#x2F;返回实例<br>return instances;<br>}</p>
+<p>其中<code>SpringFactoriesLoader.loadFactoryNames</code>正是读取配置的核心部分，我们后面还会遇到。</p>
+<p>接着我们来看run方法里面做了什么事情。</p>
+<p>public ConfigurableApplicationContext run(String… args) {<br>long startTime &#x3D; System.nanoTime();<br>DefaultBootstrapContext bootstrapContext &#x3D; this.createBootstrapContext();<br>ConfigurableApplicationContext context &#x3D; null;<br>this.configureHeadlessProperty();<br>&#x2F;&#x2F;获取所有的SpringApplicationRunListener，并通知启动事件，默认只有一个实现类EventPublishingRunListener<br>&#x2F;&#x2F;EventPublishingRunListener会将初始化各个阶段的事件转发给所有监听器<br>SpringApplicationRunListeners listeners &#x3D; this.getRunListeners(args);<br>listeners.starting(bootstrapContext, this.mainApplicationClass);<br>try {<br>&#x2F;&#x2F;环境配置<br>ApplicationArguments applicationArguments &#x3D; new DefaultApplicationArguments(args);<br>ConfigurableEnvironment environment &#x3D; this.prepareEnvironment(listeners, bootstrapContext, applicationArguments);<br>this.configureIgnoreBeanInfo(environment);<br>&#x2F;&#x2F;打印Banner<br>Banner printedBanner &#x3D; this.printBanner(environment);<br>&#x2F;&#x2F;创建ApplicationContext，注意这里会根据是否为Web容器使用不同的ApplicationContext实现类<br>context &#x3D; this.createApplicationContext();<br>context.setApplicationStartup(this.applicationStartup);<br>&#x2F;&#x2F;初始化ApplicationContext<br>this.prepareContext(bootstrapContext, context, environment, listeners, applicationArguments, printedBanner);<br>&#x2F;&#x2F;执行ApplicationContext的refresh方法<br>this.refreshContext(context);<br>this.afterRefresh(context, applicationArguments);<br>Duration timeTakenToStartup &#x3D; Duration.ofNanos(System.nanoTime() - startTime);<br>if (this.logStartupInfo) {<br>(new StartupInfoLogger(this.mainApplicationClass)).logStarted(this.getApplicationLog(), timeTakenToStartup);<br>}<br>….<br>}</p>
+<p>我们发现，实际上SpringBoot就是Spring的一层壳罢了，离不开最关键的ApplicationContext，也就是说，在启动后会自动配置一个ApplicationContext，只不过是进行了大量的扩展。</p>
+<p>我们来看ApplicationContext是怎么来的，打开<code>createApplicationContext</code>方法：</p>
+<p>protected ConfigurableApplicationContext createApplicationContext() {<br>return this.applicationContextFactory.create(this.webApplicationType);<br>}</p>
+<p>我们发现在构造方法中<code>applicationContextFactory</code>直接使用的是DEFAULT：</p>
+<p>this.applicationContextFactory &#x3D; ApplicationContextFactory.DEFAULT;</p>
+<p>ApplicationContextFactory DEFAULT &#x3D; (webApplicationType) -&gt; {<br>try {<br>switch(webApplicationType) {<br>case SERVLET:<br>return new AnnotationConfigServletWebServerApplicationContext();<br>case REACTIVE:<br>return new AnnotationConfigReactiveWebServerApplicationContext();<br>default:<br>return new AnnotationConfigApplicationContext();<br>}<br>} catch (Exception var2) {<br>throw new IllegalStateException(“Unable create a default ApplicationContext instance, you may need a custom ApplicationContextFactory”, var2);<br>}<br>};<br>ConfigurableApplicationContext create(WebApplicationType webApplicationType);</p>
+<p>DEFAULT是直接编写的一个匿名内部类，其实已经很明确了，正是根据<code>webApplicationType</code>类型进行判断，如果是SERVLET，那么久返回专用于Web环境的AnnotationConfigServletWebServerApplicationContext对象（SpringBoot中新增的），否则返回普通的AnnotationConfigApplicationContext对象，也就是到这里为止，Spring的容器就基本已经确定了。</p>
+<p>注意AnnotationConfigApplicationContext是Spring框架提供的类，从这里开始相当于我们在讲Spring的底层源码了，我们继续深入，AnnotationConfigApplicationContext对象在创建过程中会创建<code>AnnotatedBeanDefinitionReader</code>，它是用于通过注解解析Bean定义的工具类：</p>
+<p>public AnnotationConfigApplicationContext() {<br>StartupStep createAnnotatedBeanDefReader &#x3D; this.getApplicationStartup().start(“spring.context.annotated-bean-reader.create”);<br>this.reader &#x3D; new AnnotatedBeanDefinitionReader(this);<br>createAnnotatedBeanDefReader.end();<br>this.scanner &#x3D; new ClassPathBeanDefinitionScanner(this);<br>}</p>
+<p>其构造方法：</p>
+<p>public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environment environment) {<br>…<br>&#x2F;&#x2F;这里会注册很多的后置处理器<br>AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);<br>}</p>
+<p>public static Set&lt;BeanDefinitionHolder&gt; registerAnnotationConfigProcessors(BeanDefinitionRegistry registry, @Nullable Object source) {<br>DefaultListableBeanFactory beanFactory &#x3D; unwrapDefaultListableBeanFactory(registry);<br>….<br>Set&lt;BeanDefinitionHolder&gt; beanDefs &#x3D; new LinkedHashSet(8);<br>RootBeanDefinition def;<br>if (!registry.containsBeanDefinition(“org.springframework.context.annotation.internalConfigurationAnnotationProcessor”)) {<br>&#x2F;&#x2F;注册了ConfigurationClassPostProcessor用于处理@Configuration、@Import等注解<br>&#x2F;&#x2F;注意这里是关键，之后Selector还要讲到它<br>&#x2F;&#x2F;它是继承自BeanDefinitionRegistryPostProcessor，所以它的执行时间在Bean定义加载完成后，Bean初始化之前<br>def &#x3D; new RootBeanDefinition(ConfigurationClassPostProcessor.class);<br>def.setSource(source);<br>beanDefs.add(registerPostProcessor(registry, def, “org.springframework.context.annotation.internalConfigurationAnnotationProcessor”));<br>}<br>if (!registry.containsBeanDefinition(“org.springframework.context.annotation.internalAutowiredAnnotationProcessor”)) {<br>&#x2F;&#x2F;AutowiredAnnotationBeanPostProcessor用于处理@Value等注解自动注入<br>def &#x3D; new RootBeanDefinition(AutowiredAnnotationBeanPostProcessor.class);<br>def.setSource(source);<br>beanDefs.add(registerPostProcessor(registry, def, “org.springframework.context.annotation.internalAutowiredAnnotationProcessor”));<br>}</p>
+<pre><code>...
+</code></pre>
+<p>回到SpringBoot，我们最后来看，<code>prepareContext</code>方法中又做了什么事情：</p>
+<p>private void prepareContext(DefaultBootstrapContext bootstrapContext, ConfigurableApplicationContext context, ConfigurableEnvironment environment, SpringApplicationRunListeners listeners, ApplicationArguments applicationArguments, Banner printedBanner) {<br>&#x2F;&#x2F;环境配置<br>context.setEnvironment(environment);<br>this.postProcessApplicationContext(context);<br>this.applyInitializers(context);<br>listeners.contextPrepared(context);<br>bootstrapContext.close(context);<br>if (this.logStartupInfo) {<br>this.logStartupInfo(context.getParent() &#x3D;&#x3D; null);<br>this.logStartupProfileInfo(context);<br>}<br>&#x2F;&#x2F;将Banner注册为Bean<br>ConfigurableListableBeanFactory beanFactory &#x3D; context.getBeanFactory();<br>beanFactory.registerSingleton(“springApplicationArguments”, applicationArguments);<br>if (printedBanner !&#x3D; null) {<br>beanFactory.registerSingleton(“springBootBanner”, printedBanner);<br>}<br>if (beanFactory instanceof AbstractAutowireCapableBeanFactory) {<br>((AbstractAutowireCapableBeanFactory)beanFactory).setAllowCircularReferences(this.allowCircularReferences);<br>if (beanFactory instanceof DefaultListableBeanFactory) {<br>((DefaultListableBeanFactory)beanFactory).setAllowBeanDefinitionOverriding(this.allowBeanDefinitionOverriding);<br>}<br>}<br>if (this.lazyInitialization) {<br>context.addBeanFactoryPostProcessor(new LazyInitializationBeanFactoryPostProcessor());<br>}<br>&#x2F;&#x2F;这里会获取我们一开始传入的项目主类<br>Set&lt;Object&gt; sources &#x3D; this.getAllSources();<br>Assert.notEmpty(sources, “Sources must not be empty”);<br>&#x2F;&#x2F;这里会将我们的主类直接注册为Bean，这样就可以通过注解加载了<br>this.load(context, sources.toArray(new Object[0]));<br>listeners.contextLoaded(context);<br>}</p>
+<p>因此，在<code>prepareContext</code>执行完成之后，我们的主类成功完成Bean注册，接下来，就该类上注解大显身手了。</p>
+<h3 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h3><p>既然主类已经在初始阶段注册为Bean，那么在加载时，就会根据注解定义，进行更多的额外操作。所以我们来看看主类上的<code>@SpringBootApplication</code>注解做了什么事情。</p>
+<p>@Target({ElementType.TYPE})<br>@Retention(RetentionPolicy.RUNTIME)<br>@Documented<br>@Inherited<br>@SpringBootConfiguration<br>@EnableAutoConfiguration<br>@ComponentScan(<br>excludeFilters &#x3D; {@Filter(<br>type &#x3D; FilterType.CUSTOM,<br>classes &#x3D; {TypeExcludeFilter.class}<br>), @Filter(<br>type &#x3D; FilterType.CUSTOM,<br>classes &#x3D; {AutoConfigurationExcludeFilter.class}<br>)}<br>)<br>public @interface SpringBootApplication {</p>
+<p>我们发现，<code>@SpringBootApplication</code>上添加了<code>@ComponentScan</code>注解，此注解我们此前已经认识过了，但是这里并没有配置具体扫描的包，因此它会自动将声明此接口的类所在的包作为basePackage，因此当添加<code>@SpringBootApplication</code>之后也就等于直接开启了自动扫描，但是一定注意不能在主类之外的包进行Bean定义，否则无法扫描到，需要手动配置。</p>
+<p>接着我们来看第二个注解<code>@EnableAutoConfiguration</code>，它就是自动配置的核心了，我们来看看它是如何定义的：</p>
+<p>@Target({ElementType.TYPE})<br>@Retention(RetentionPolicy.RUNTIME)<br>@Documented<br>@Inherited<br>@AutoConfigurationPackage<br>@Import({AutoConfigurationImportSelector.class})<br>public @interface EnableAutoConfiguration {</p>
+<p>老套路了，直接一手<code>@Import</code>，通过这种方式来将一些外部的Bean加载到容器中。我们来看看AutoConfigurationImportSelector做了什么事情：</p>
+<p>public class AutoConfigurationImportSelector implements DeferredImportSelector, BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware, Ordered {<br>…<br>}</p>
+<p>我们看到它实现了很多接口，包括大量的Aware接口，实际上就是为了感知某些必要的对象，并将其存到当前类中。</p>
+<p>其中最核心的是<code>DeferredImportSelector</code>接口，它是<code>ImportSelector</code>的子类，它定义了<code>selectImports</code>方法，用于返回需要加载的类名称，在Spring加载ImportSelector类型的Bean时，会调用此方法来获取更多需要加载的类，并将这些类一并注册为Bean：</p>
+<p>public interface ImportSelector {<br>String[] selectImports(AnnotationMetadata importingClassMetadata);<br>@Nullable<br>default Predicate&lt;String&gt; getExclusionFilter() {<br>return null;<br>}<br>}</p>
+<p>到目前为止，我们了解了两种使用<code>@Import</code>有特殊机制的接口：ImportSelector（这里用到的）和ImportBeanDefinitionRegistrar（之前Mybatis-spring源码有讲）当然还有普通的<code>@Configuration</code>配置类。</p>
+<p>我们可以来阅读一下<code>ConfigurationClassPostProcessor</code>的源码，看看它到底是如何处理<code>@Import</code>的：</p>
+<p>public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {<br>List&lt;BeanDefinitionHolder&gt; configCandidates &#x3D; new ArrayList();<br>&#x2F;&#x2F;注意这个阶段仅仅是已经完成扫描了所有的Bean，得到了所有的BeanDefinition，但是还没有进行任何区分<br>&#x2F;&#x2F;candidate是候选者的意思，一会会将标记了@Configuration的类作为ConfigurationClass加入到configCandidates中<br>String[] candidateNames &#x3D; registry.getBeanDefinitionNames();<br>String[] var4 &#x3D; candidateNames;<br>int var5 &#x3D; candidateNames.length;<br>for(int var6 &#x3D; 0; var6 &lt; var5; ++var6) {<br>String beanName &#x3D; var4[var6];<br>BeanDefinition beanDef &#x3D; registry.getBeanDefinition(beanName);<br>if (beanDef.getAttribute(ConfigurationClassUtils.CONFIGURATION_CLASS_ATTRIBUTE) !&#x3D; null) {<br>if (this.logger.isDebugEnabled()) {<br>this.logger.debug(“Bean definition has already been processed as a configuration class: “ + beanDef);<br>}<br>} else if (ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)) {   &#x2F;&#x2F;判断是否添加了@Configuration注解<br>configCandidates.add(new BeanDefinitionHolder(beanDef, beanName));<br>}<br>}<br>if (!configCandidates.isEmpty()) {<br>&#x2F;&#x2F;…省略<br>&#x2F;&#x2F;这里创建了一个ConfigurationClassParser用于解析配置类<br>ConfigurationClassParser parser &#x3D; new ConfigurationClassParser(this.metadataReaderFactory, this.problemReporter, this.environment, this.resourceLoader, this.componentScanBeanNameGenerator, registry);<br>&#x2F;&#x2F;所有配置类的BeanDefinitionHolder列表<br>Set&lt;BeanDefinitionHolder&gt; candidates &#x3D; new LinkedHashSet(configCandidates);<br>&#x2F;&#x2F;已经解析完成的类<br>HashSet alreadyParsed &#x3D; new HashSet(configCandidates.size());<br>do {<br>&#x2F;&#x2F;这里省略，直到所有的配置类全部解析完成<br>&#x2F;&#x2F;注意在循环过程中可能会由于@Import新增更多的待解析配置类，一律丢进candidates集合中<br>} while(!candidates.isEmpty());<br>…<br>}<br>}</p>
+<p>我们接着来看，<code>ConfigurationClassParser</code>是如何进行解析的：</p>
+<p>protected void processConfigurationClass(ConfigurationClass configClass, Predicate&lt;String&gt; filter) throws IOException {<br>&#x2F;&#x2F;@Conditional相关注解处理<br>&#x2F;&#x2F;后面会讲<br>if (!this.conditionEvaluator.shouldSkip(configClass.getMetadata(), ConfigurationPhase.PARSE_CONFIGURATION)) {<br>…<br>}<br>ConfigurationClassParser.SourceClass sourceClass &#x3D; this.asSourceClass(configClass, filter);<br>do {<br>&#x2F;&#x2F;核心<br>sourceClass &#x3D; this.doProcessConfigurationClass(configClass, sourceClass, filter);<br>} while(sourceClass !&#x3D; null);<br>this.configurationClasses.put(configClass, configClass);<br>}<br>}</p>
+<p>最后我们再来看最核心的<code>doProcessConfigurationClass</code>方法：</p>
+<p>protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass)<br>…<br>processImports(configClass, sourceClass, getImports(sourceClass), true);    &#x2F;&#x2F; 处理Import注解<br>…<br>return null;<br>}</p>
+<p>private void processImports(ConfigurationClass configClass, ConfigurationClassParser.SourceClass currentSourceClass, Collection&lt;ConfigurationClassParser.SourceClass&gt; importCandidates, Predicate&lt;String&gt; exclusionFilter, boolean checkForCircularImports) {<br>if (!importCandidates.isEmpty()) {<br>if (checkForCircularImports &amp;&amp; this.isChainedImportOnStack(configClass)) {<br>this.problemReporter.error(new ConfigurationClassParser.CircularImportProblem(configClass, this.importStack));<br>} else {<br>this.importStack.push(configClass);<br>try {<br>Iterator var6 &#x3D; importCandidates.iterator();<br>while(var6.hasNext()) {<br>ConfigurationClassParser.SourceClass candidate &#x3D; (ConfigurationClassParser.SourceClass)var6.next();<br>Class candidateClass;<br>&#x2F;&#x2F;如果是ImportSelector类型，继续进行运行<br>if (candidate.isAssignable(ImportSelector.class)) {<br>candidateClass &#x3D; candidate.loadClass();<br>ImportSelector selector &#x3D; (ImportSelector)ParserStrategyUtils.instantiateClass(candidateClass, ImportSelector.class, this.environment, this.resourceLoader, this.registry);<br>Predicate&lt;String&gt; selectorFilter &#x3D; selector.getExclusionFilter();<br>if (selectorFilter !&#x3D; null) {<br>exclusionFilter &#x3D; exclusionFilter.or(selectorFilter);<br>}<br>&#x2F;&#x2F;如果是DeferredImportSelector的实现类，那么会走deferredImportSelectorHandler的handle方法<br>if (selector instanceof DeferredImportSelector) {<br>this.deferredImportSelectorHandler.handle(configClass, (DeferredImportSelector)selector);<br>&#x2F;&#x2F;否则就按照正常的ImportSelector类型进行加载<br>} else {<br>&#x2F;&#x2F;调用selectImports方法获取所有需要加载的类<br>String[] importClassNames &#x3D; selector.selectImports(currentSourceClass.getMetadata());<br>Collection&lt;ConfigurationClassParser.SourceClass&gt; importSourceClasses &#x3D; this.asSourceClasses(importClassNames, exclusionFilter);<br>&#x2F;&#x2F;递归处理，直到没有<br>this.processImports(configClass, currentSourceClass, importSourceClasses, exclusionFilter, false);<br>}<br>&#x2F;&#x2F;判断是否为ImportBeanDefinitionRegistrar类型<br>} else if (candidate.isAssignable(ImportBeanDefinitionRegistrar.class)) {<br>candidateClass &#x3D; candidate.loadClass();<br>ImportBeanDefinitionRegistrar registrar &#x3D; (ImportBeanDefinitionRegistrar)ParserStrategyUtils.instantiateClass(candidateClass, ImportBeanDefinitionRegistrar.class, this.environment, this.resourceLoader, this.registry);<br>&#x2F;&#x2F;往configClass丢ImportBeanDefinitionRegistrar信息进去，之后再处理<br>configClass.addImportBeanDefinitionRegistrar(registrar, currentSourceClass.getMetadata());<br>&#x2F;&#x2F;否则按普通的配置类进行处理<br>} else {<br>this.importStack.registerImport(currentSourceClass.getMetadata(), candidate.getMetadata().getClassName());<br>this.processConfigurationClass(candidate.asConfigClass(configClass), exclusionFilter);<br>}<br>}<br>} catch (BeanDefinitionStoreException var17) {<br>throw var17;<br>} catch (Throwable var18) {<br>throw new BeanDefinitionStoreException(“Failed to process import candidates for configuration class [“ + configClass.getMetadata().getClassName() + “]”, var18);<br>} finally {<br>this.importStack.pop();<br>}<br>}<br>}<br>}</p>
+<p>不难注意到，虽然这里额外处理了<code>ImportSelector</code>对象，但是还针对<code>ImportSelector</code>的子接口<code>DeferredImportSelector</code>进行了额外处理，Deferred是延迟的意思，它是一个延迟执行的<code>ImportSelector</code>，并不会立即进处理，而是丢进DeferredImportSelectorHandler，并且在<code>parse</code>方法的最后进行处理：</p>
+<p>public void parse(Set&lt;BeanDefinitionHolder&gt; configCandidates) {<br>…<br>this.deferredImportSelectorHandler.process();<br>}</p>
+<p>我们接着来看<code>DeferredImportSelector</code>正好就有一个<code>process</code>方法：</p>
+<p>public interface DeferredImportSelector extends ImportSelector {<br>@Nullable<br>default Class&lt;? extends DeferredImportSelector.Group&gt; getImportGroup() {<br>return null;<br>}<br>public interface Group {<br>void process(AnnotationMetadata metadata, DeferredImportSelector selector);<br>Iterable&lt;DeferredImportSelector.Group.Entry&gt; selectImports();<br>public static class Entry {<br>…</p>
+<p>最后经过ConfigurationClassParser处理完成后，通过<code>parser.getConfigurationClasses()</code>就能得到通过配置类导入了哪些额外的配置类。最后将这些配置类全部注册BeanDefinition，然后就可以交给接下来的Bean初始化过程去处理了。</p>
+<p>this.reader.loadBeanDefinitions(configClasses);</p>
+<p>最后我们再去看<code>loadBeanDefinitions</code>是如何运行的：</p>
+<p>public void loadBeanDefinitions(Set&lt;ConfigurationClass&gt; configurationModel) {<br>ConfigurationClassBeanDefinitionReader.TrackedConditionEvaluator trackedConditionEvaluator &#x3D; new ConfigurationClassBeanDefinitionReader.TrackedConditionEvaluator();<br>Iterator var3 &#x3D; configurationModel.iterator();<br>while(var3.hasNext()) {<br>ConfigurationClass configClass &#x3D; (ConfigurationClass)var3.next();<br>this.loadBeanDefinitionsForConfigurationClass(configClass, trackedConditionEvaluator);<br>}<br>}<br>private void loadBeanDefinitionsForConfigurationClass(ConfigurationClass configClass, ConfigurationClassBeanDefinitionReader.TrackedConditionEvaluator trackedConditionEvaluator) {<br>if (trackedConditionEvaluator.shouldSkip(configClass)) {<br>String beanName &#x3D; configClass.getBeanName();<br>if (StringUtils.hasLength(beanName) &amp;&amp; this.registry.containsBeanDefinition(beanName)) {<br>this.registry.removeBeanDefinition(beanName);<br>}<br>this.importRegistry.removeImportingClass(configClass.getMetadata().getClassName());<br>} else {<br>if (configClass.isImported()) {<br>this.registerBeanDefinitionForImportedConfigurationClass(configClass);  &#x2F;&#x2F;注册配置类自己<br>}<br>Iterator var3 &#x3D; configClass.getBeanMethods().iterator();<br>while(var3.hasNext()) {<br>BeanMethod beanMethod &#x3D; (BeanMethod)var3.next();<br>this.loadBeanDefinitionsForBeanMethod(beanMethod); &#x2F;&#x2F;注册@Bean注解标识的方法<br>}<br>&#x2F;&#x2F;注册<code>@ImportResource</code>引入的XML配置文件中读取的bean定义<br>this.loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());<br>&#x2F;&#x2F;注册configClass中经过解析后保存的所有ImportBeanDefinitionRegistrar，注册对应的BeanDefinition<br>this.loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());<br>}<br>}</p>
+<p>这样，整个<code>@Configuration</code>配置类的底层配置流程我们就大致了解了。接着我们来看AutoConfigurationImportSelector是如何实现自动配置的，可以看到内部类AutoConfigurationGroup的process方法，它是父接口的实现，因为父接口是<code>DeferredImportSelector</code>，那么很容易得知，实际上最后会调用<code>process</code>方法获取所有的自动配置类：</p>
+<p>public void process(AnnotationMetadata annotationMetadata, DeferredImportSelector deferredImportSelector) {<br>Assert.state(deferredImportSelector instanceof AutoConfigurationImportSelector, () -&gt; {<br>return String.format(“Only %s implementations are supported, got %s”, AutoConfigurationImportSelector.class.getSimpleName(), deferredImportSelector.getClass().getName());<br>});<br>&#x2F;&#x2F;获取所有的Entry，其实就是，读取spring.factories来查看有哪些自动配置类<br>AutoConfigurationImportSelector.AutoConfigurationEntry autoConfigurationEntry &#x3D; ((AutoConfigurationImportSelector)deferredImportSelector).getAutoConfigurationEntry(annotationMetadata);<br>this.autoConfigurationEntries.add(autoConfigurationEntry);<br>Iterator var4 &#x3D; autoConfigurationEntry.getConfigurations().iterator();<br>while(var4.hasNext()) {<br>String importClassName &#x3D; (String)var4.next();<br>this.entries.putIfAbsent(importClassName, annotationMetadata);<br>}<br>}</p>
+<p>我们接着来看<code>getAutoConfigurationEntry</code>方法：</p>
+<p>protected AutoConfigurationImportSelector.AutoConfigurationEntry getAutoConfigurationEntry(AnnotationMetadata annotationMetadata) {<br>&#x2F;&#x2F;判断是否开启了自动配置，是的，自动配置可以关<br>if (!this.isEnabled(annotationMetadata)) {<br>return EMPTY_ENTRY;<br>} else {<br>&#x2F;&#x2F;根据注解定义获取一些属性<br>AnnotationAttributes attributes &#x3D; this.getAttributes(annotationMetadata);<br>&#x2F;&#x2F;得到spring.factories文件中所有需要自动配置的类<br>List&lt;String&gt; configurations &#x3D; this.getCandidateConfigurations(annotationMetadata, attributes);<br>… 这里先看前半部分<br>}<br>}</p>
+<p>注意这里并不是spring.factories文件中所有的自动配置类都会被加载，它会根据@Condition注解的条件进行加载。这样就能实现我们需要什么模块添加对应依赖就可以实现自动配置了。</p>
+<p>所有的源码看不懂，都源自于你的心中没有形成一个完整的闭环！一旦一条线推到头，闭环形成，所有疑惑迎刃而解。</p>
+<h3 id="自定义Starter"><a href="#自定义Starter" class="headerlink" title="自定义Starter"></a>自定义Starter</h3><p>我们仿照Mybatis来编写一个自己的starter，Mybatis的starter包含两个部分：</p>
+<p>&lt;project xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>“ xmlns:xsi&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>“ xsi:schemaLocation&#x3D;”<a target="_blank" rel="noopener" href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a target="_blank" rel="noopener" href="http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;">http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</a>&gt;<br>&lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;<br>&lt;parent&gt;<br>&lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;mybatis-spring-boot&lt;&#x2F;artifactId&gt;<br>&lt;version&gt;2.2.0&lt;&#x2F;version&gt;<br>&lt;&#x2F;parent&gt;<br>&lt;!–  starter本身只做依赖集中管理，不编写任何代码  –&gt;<br>&lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;<br>&lt;name&gt;mybatis-spring-boot-starter&lt;&#x2F;name&gt;<br>&lt;properties&gt;<br>&lt;module.name&gt;org.mybatis.spring.boot.starter&lt;&#x2F;module.name&gt;<br>&lt;&#x2F;properties&gt;<br>&lt;dependencies&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-starter&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-starter-jdbc&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;!–  编写的专用配置模块   –&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;mybatis-spring-boot-autoconfigure&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.mybatis&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;mybatis&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.mybatis&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;mybatis-spring&lt;&#x2F;artifactId&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;&#x2F;dependencies&gt;<br>&lt;&#x2F;project&gt;</p>
+<p>因此我们也将我们自己的starter这样设计：</p>
+<p>我们设计三个模块：</p>
+<ul>
+<li><p>spring-boot-hello：基础业务功能模块</p>
+</li>
+<li><p>spring-boot-starter-hello：启动器</p>
+</li>
+<li><p>spring-boot-autoconifgurer-hello：自动配置依赖</p>
+</li>
+</ul>
+<p>首先是基础业务功能模块，这里我们随便创建一个类就可以了：</p>
+<p>public class HelloWorldService {</p>
+<p>}</p>
+<p>启动器主要做依赖管理，这里就不写任何代码，只写pom文件：</p>
+<p>&lt;dependencies&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.example&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-autoconfigurer-hello&lt;&#x2F;artifactId&gt;<br>&lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;&#x2F;dependencies&gt;</p>
+<p>导入autoconfigurer模块作为依赖即可，接着我们去编写autoconfigurer模块，首先导入依赖：</p>
+<p>&lt;dependencies&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-autoconfigure&lt;&#x2F;artifactId&gt;<br>&lt;version&gt;2.6.2&lt;&#x2F;version&gt;<br>&lt;&#x2F;dependency&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>&lt;artifactId&gt;spring-boot-configuration-processor&lt;&#x2F;artifactId&gt;<br>&lt;version&gt;2.6.2&lt;&#x2F;version&gt;<br>&lt;optional&gt;true&lt;&#x2F;optional&gt;<br>&lt;&#x2F;dependency&gt;</p>
+<pre><code>&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.example&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;spring-boot-hello&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+</code></pre>
+<p>&lt;&#x2F;dependencies&gt;</p>
+<p>接着创建一个HelloWorldAutoConfiguration作为自动配置类：</p>
+<p>@Configuration(proxyBeanMethods &#x3D; false)<br>@ConditionalOnWebApplication<br>@ConditionalOnClass(HelloWorldService.class)<br>@EnableConfigurationProperties(HelloWorldProperties.class)<br>public class HelloWorldAutoConfiguration {<br>Logger logger &#x3D; Logger.getLogger(this.getClass().getName());<br>@Resource<br>HelloWorldProperties properties;<br>@Bean<br>public HelloWorldService helloWorldService(){<br>logger.info(“自定义starter项目已启动！”);<br>logger.info(“读取到自定义配置：”+properties.getValue());<br>return new HelloWorldService();<br>}<br>}</p>
+<p>对应的配置读取类：</p>
+<p>@ConfigurationProperties(“hello.world”)<br>public class HelloWorldProperties {<br>private String value;<br>public void setValue(String value) {<br>this.value &#x3D; value;<br>}<br>public String getValue() {<br>return value;<br>}<br>}</p>
+<p>最后再编写<code>spring.factories</code>文件，并将我们的自动配置类添加即可：</p>
+<p>org.springframework.boot.autoconfigure.EnableAutoConfiguration&#x3D;<br>com.hello.autoconfigurer.HelloWorldAutoConfiguration</p>
+<p>最后再Maven根项目执行<code>install</code>安装到本地仓库，完成。接着就可以在其他项目中使用我们编写的自定义starter了。</p>
+<h3 id="Runner接口"><a href="#Runner接口" class="headerlink" title="Runner接口"></a>Runner接口</h3><p>在项目中，可能会遇到这样一个问题：我们需要在项目启动完成之后，紧接着执行一段代码。</p>
+<p>我们可以编写自定义的ApplicationRunner来解决，它会在项目启动完成后执行：</p>
+<p>@Component<br>public class TestRunner implements ApplicationRunner {<br>@Override<br>public void run(ApplicationArguments args) throws Exception {<br>System.out.println(“我是自定义执行！”);<br>}<br>}</p>
+<p>当然也可以使用CommandLineRunner，它也支持使用@Order或是实现Ordered接口来支持优先级执行。</p>
+<p>实际上它就是run方法的最后：</p>
+<p>public ConfigurableApplicationContext run(String… args) {<br>….<br>listeners.started(context, timeTakenToStartup);<br>&#x2F;&#x2F;这里已经完成整个SpringBoot项目启动，所以执行所有的Runner<br>this.callRunners(context, applicationArguments);<br>} catch (Throwable var12) {<br>this.handleRunFailure(context, var12, listeners);<br>throw new IllegalStateException(var12);<br>}<br>try {<br>Duration timeTakenToReady &#x3D; Duration.ofNanos(System.nanoTime() - startTime);<br>listeners.ready(context, timeTakenToReady);<br>return context;<br>} catch (Throwable var11) {<br>this.handleRunFailure(context, var11, (SpringApplicationRunListeners)null);<br>throw new IllegalStateException(var11);<br>}<br>}</p>
+<p>下一章，我们将继续讲解几乎程序员必会的Git版本控制。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/" title="SpringBoot笔记（二）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SpringBoot笔记（二）</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/" title="SQL事务（非常详细）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SQL事务（非常详细）</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E4%B8%80%E7%AB%99%E5%BC%8F%E5%BC%80%E5%8F%91"><span class="toc-number">1.</span> <span class="toc-text">SpringBoot一站式开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B0%E8%BF%9BSpringBoot"><span class="toc-number">1.1.</span> <span class="toc-text">走进SpringBoot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">SpringBoot项目文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88Web%E7%9B%B8%E5%85%B3%E6%A1%86%E6%9E%B6"><span class="toc-number">1.3.</span> <span class="toc-text">整合Web相关框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%83%E6%98%AF%E7%9C%9F%E7%9A%84%E5%BF%AB"><span class="toc-number">1.3.1.</span> <span class="toc-text">它是真的快</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9Web%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text">修改Web相关配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88SpringSecurity%E4%BE%9D%E8%B5%96"><span class="toc-number">1.3.3.</span> <span class="toc-text">整合SpringSecurity依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88Mybatis%E6%A1%86%E6%9E%B6"><span class="toc-number">1.4.</span> <span class="toc-text">整合Mybatis框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88Thymeleaf%E6%A1%86%E6%9E%B6"><span class="toc-number">1.5.</span> <span class="toc-text">整合Thymeleaf框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.</span> <span class="toc-text">日志系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E9%97%A8%E9%9D%A2%E5%92%8C%E6%97%A5%E5%BF%97%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.1.</span> <span class="toc-text">日志门面和日志实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8SpringBoot%E4%B8%AD%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E4%BF%A1%E6%81%AF"><span class="toc-number">1.6.2.</span> <span class="toc-text">在SpringBoot中打印日志信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AELogback%E6%97%A5%E5%BF%97"><span class="toc-number">1.6.3.</span> <span class="toc-text">配置Logback日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Banner"><span class="toc-number">1.6.4.</span> <span class="toc-text">自定义Banner</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.</span> <span class="toc-text">多环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E8%BF%90%E8%A1%8C"><span class="toc-number">1.8.</span> <span class="toc-text">打包运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E8%B0%88Spring%E6%A1%86%E6%9E%B6"><span class="toc-number">1.9.</span> <span class="toc-text">再谈Spring框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6"><span class="toc-number">1.9.1.</span> <span class="toc-text">任务调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.9.1.1.</span> <span class="toc-text">异步任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.9.1.2.</span> <span class="toc-text">定时任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-number">1.9.2.</span> <span class="toc-text">监听器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Aware%E7%B3%BB%E5%88%97%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.9.3.</span> <span class="toc-text">Aware系列接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A2%E7%A9%B6SpringBoot%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">1.10.</span> <span class="toc-text">探究SpringBoot实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86"><span class="toc-number">1.10.1.</span> <span class="toc-text">启动原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86"><span class="toc-number">1.10.2.</span> <span class="toc-text">自动配置原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Starter"><span class="toc-number">1.10.3.</span> <span class="toc-text">自定义Starter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runner%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.10.4.</span> <span class="toc-text">Runner接口</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
