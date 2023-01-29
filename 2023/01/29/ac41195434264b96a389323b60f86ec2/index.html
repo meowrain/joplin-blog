@@ -1,0 +1,352 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>04 【Nginx反向代理和负载均衡】 | Meowrain's Blog</title><meta name="author" content="MeowRain"><meta name="copyright" content="MeowRain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="反向代理在系统结构中的应用场景1.反向代理和正向代理1.1 反向代理描述:反向代理是指以代理服务器来接受连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器,而且整个过程对于客户端而言是透明的。  1.2 正向代理描述:正向代理意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04 【Nginx反向代理和负载均衡】">
+<meta property="og:url" content="http://example.com/2023/01/29/ac41195434264b96a389323b60f86ec2/index.html">
+<meta property="og:site_name" content="Meowrain&#39;s Blog">
+<meta property="og:description" content="反向代理在系统结构中的应用场景1.反向代理和正向代理1.1 反向代理描述:反向代理是指以代理服务器来接受连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器,而且整个过程对于客户端而言是透明的。  1.2 正向代理描述:正向代理意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-01-29T09:48:51.917Z">
+<meta property="article:modified_time" content="2023-01-29T09:51:29.899Z">
+<meta property="article:author" content="MeowRain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/01/29/ac41195434264b96a389323b60f86ec2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '04 【Nginx反向代理和负载均衡】',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-29 17:51:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">117</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Meowrain's Blog"><span class="site-name">Meowrain's Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">04 【Nginx反向代理和负载均衡】</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-29T09:48:51.917Z" title="发表于 2023-01-29 17:48:51">2023-01-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-29T09:51:29.899Z" title="更新于 2023-01-29 17:51:29">2023-01-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Nginx/">Nginx</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="反向代理在系统结构中的应用场景"><a href="#反向代理在系统结构中的应用场景" class="headerlink" title="反向代理在系统结构中的应用场景"></a>反向代理在系统结构中的应用场景</h1><h1 id="1-反向代理和正向代理"><a href="#1-反向代理和正向代理" class="headerlink" title="1.反向代理和正向代理"></a>1.反向代理和正向代理</h1><h2 id="1-1-反向代理"><a href="#1-1-反向代理" class="headerlink" title="1.1 反向代理"></a>1.1 反向代理</h2><p>描述:反向代理是指以代理服务器来接受连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器,而且整个过程对于客户端而言是透明的。</p>
+<p><img src="https://i0.hdslb.com/bfs/album/c960d7a924ce20ef449e4a480f40039a5dc3470a.png" alt="image-20220823114417662"></p>
+<h2 id="1-2-正向代理"><a href="#1-2-正向代理" class="headerlink" title="1.2 正向代理"></a>1.2 正向代理</h2><p>描述:正向代理意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后由代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
+<p>简单的说类似于采用VPN来访问google:</p>
+<p><img src="https://i0.hdslb.com/bfs/album/35c72461d0838b70010f3d9c31fe78ee73684540.png" alt="image-20220823114523751"></p>
+<p>区别正向代理、反向</p>
+<p>都是站在客户端的角度，看代理服务器是帮客户端代理，还是帮服务端代理</p>
+<h1 id="2-使用proyx-pass进行代理配置"><a href="#2-使用proyx-pass进行代理配置" class="headerlink" title="2. 使用proyx_pass进行代理配置"></a>2. 使用proyx_pass进行代理配置</h1><p>浏览器访问<code>虚拟机ip(比如：http://test80.xzj520520.cn/)</code>就会跳转到 <a target="_blank" rel="noopener" href="http://www.bilibili.com,同时域名没有变化(不支持https)/">http://www.bilibili.com,同时域名没有变化（不支持https）</a></p>
+<p>可以有多个server。然后根据策略、调度。</p>
+<p><img src="https://i0.hdslb.com/bfs/album/06a9917f53e715de3062199dd9064e5d33b5107f.png" alt="image-20220824135439846"></p>
+<p>访问<a target="_blank" rel="noopener" href="http://test80.xzj520520.cn/%EF%BC%9A">http://test80.xzj520520.cn/：</a></p>
+<h1 id="3-负载均衡"><a href="#3-负载均衡" class="headerlink" title="3.负载均衡"></a>3.负载均衡</h1><p>描述：负载均衡也是Nginx常用的一个功能。简单而言就是当有2台或以上服务器时，根据规则随机的将请求分发到指定的服务器上处理，负载均衡配置一般都需要同时配置反向代理，通过反向代理跳转到负载均衡。</p>
+<p>而Nginx目前支持自带3种负载均衡策略还有2种常用的第三方策略。</p>
+<p><img src="https://i0.hdslb.com/bfs/album/f4b9b827c7a66b7bd319dc24efd72d5d0346f730.png" alt="image-20220824135958921"></p>
+<h1 id="4-基于反向代理的负载均衡器"><a href="#4-基于反向代理的负载均衡器" class="headerlink" title="4.基于反向代理的负载均衡器"></a>4.基于反向代理的负载均衡器</h1><p>克隆两个centos，ip分别设为192.168.8.102，192.168.8.103（网段要用自己的电脑对应）</p>
+<p>修改静态ip<br><img src="https://i0.hdslb.com/bfs/album/b074f86a0c33f16da00936356ae2dd314e15b3f3.png" alt="image-20220824140153742"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/30e432cc5e27ece10e1319b24def17438f4f1026.png" alt="image-20220824140209449"></p>
+<p>重启网络服务：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/22294ca6230dab49a07ec4cff5b3b39d4ce7e0a8.png" alt="image-20220824140220392"></p>
+<p>另一个虚拟机的配置也是一样。配置好虚拟机之后,配置nginx.conf</p>
+<p>102的nginx.cfg</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#error_page  404              /404.html;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>102的nginx在html目录下的index.html文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Welcome to nginx!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">html</span> &#123; <span class="attribute">color</span>-scheme: light dark; &#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-tag">body</span> &#123; <span class="attribute">width</span>: <span class="number">35em</span>; <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="language-css"><span class="attribute">font-family</span>: Tahoma, Verdana, Arial, sans-serif; &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>I am from 192.168.8.102<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>103的nginx.cfg</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line"></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#error_page  404              /404.html;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>103的nginx在html目录下的index.html文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Welcome to nginx!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">html</span> &#123; <span class="attribute">color</span>-scheme: light dark; &#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-tag">body</span> &#123; <span class="attribute">width</span>: <span class="number">35em</span>; <span class="attribute">margin</span>: <span class="number">0</span> auto;</span></span><br><span class="line"><span class="language-css"><span class="attribute">font-family</span>: Tahoma, Verdana, Arial, sans-serif; &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>I am from 192.168.8.103<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<p>访问<a target="_blank" rel="noopener" href="http://192.168.8.102/">http://192.168.8.102/</a></p>
+<p><img src="https://i0.hdslb.com/bfs/album/3bc27ac96469708c2cd33362c45f53c8cc8329f1.png" alt="image-20220824140501399"></p>
+<p>访问<a target="_blank" rel="noopener" href="http://192.168.8.103/">http://192.168.8.103/</a></p>
+<p><img src="https://i0.hdslb.com/bfs/album/847e3e7f919a7c51622554de72ece6d4f2af705f.png" alt="image-20220824140511723"></p>
+<p>将101代理到102</p>
+<p>101的nginx.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1; <span class="comment">#允许进程数量，建议设置为cpu核心数或者auto自动检测，注意Windows服务器上虽然可以启动多个processes，但是实际只会用其中一个</span></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    <span class="comment">#单个进程最大连接数（最大连接数=连接数*进程数）</span></span><br><span class="line">    <span class="comment">#根据硬件调整，和前面工作进程配合起来用，尽量大，但是别把cpu跑到100%就行。</span></span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    <span class="comment">#文件扩展名与文件类型映射表(是conf目录下的一个文件)</span></span><br><span class="line">    include       mime.types;</span><br><span class="line">    <span class="comment">#默认文件类型，如果mime.types预先定义的类型没匹配上，默认使用二进制流的方式传输</span></span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#sendfile指令指定nginx是否调用sendfile 函数（zero copy 方式）来输出文件，对于普通应用，必须设为on。如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络IO处理速度。</span></span><br><span class="line">    sendfile        on;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">#长连接超时时间，单位是秒</span></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line"> <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">    <span class="comment">#监听端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#域名，可以有多个，用空格隔开</span></span><br><span class="line">        server_name  test80.xzj520520.cn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#配置根目录以及默认页面</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://192.168.8.102;</span><br><span class="line">            <span class="comment"># root   /www/test80;</span></span><br><span class="line">            <span class="comment"># index  index.html index.htm;</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#出错页面配置</span></span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        <span class="comment">#/50x.html文件所在位置</span></span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>测试，访问192.168.8.101</p>
+<p><img src="https://i0.hdslb.com/bfs/album/cf7cd82487140f336cc196885849d86f7c64a57b.png" alt="image-20220824140622198"></p>
+<p>配置101的负载均衡（轮询模式）</p>
+<p><img src="https://i0.hdslb.com/bfs/album/5693aef31d3a7ea62affdecc85435a07f7dbfbc4.png" alt="image-20220824140640967"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义一组服务器</span></span><br><span class="line">upstream httpds&#123;</span><br><span class="line">    server 192.168.8.102:80;</span><br><span class="line">    server 192.168.8.103:80;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"> <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">    <span class="comment">#监听端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#域名，可以有多个，用空格隔开</span></span><br><span class="line">        server_name  test80.xzj520520.cn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#配置根目录以及默认页面</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://httpds;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<p>多次访问<a target="_blank" rel="noopener" href="http://192.168.8.101/%E5%8F%91%E7%8E%B0102%E5%92%8C103%E8%A2%AB%E4%BA%A4%E6%9B%BF%E8%AE%BF%E9%97%AE">http://192.168.8.101/发现102和103被交替访问</a></p>
+<p><img src="https://i0.hdslb.com/bfs/album/2b97db7b7aacff421dbc7684fe8d77481d2ca614.png" alt="image-20220824140744772"></p>
+<p><img src="https://i0.hdslb.com/bfs/album/73c8d4dafe303213d5e90285e8a9ef9c757e6379.png" alt="image-20220824140751527"></p>
+<h1 id="5-负载均衡策略和调度算法"><a href="#5-负载均衡策略和调度算法" class="headerlink" title="5.负载均衡策略和调度算法"></a>5.负载均衡策略和调度算法</h1><p><strong>负载均衡策略</strong></p>
+<ul>
+<li><p>weight：权重</p>
+</li>
+<li><p>down : 当前server暂不参与负载均衡</p>
+</li>
+<li><p>backup : 预留的备份服务器； 其它所有的非backup机器down或者忙的时候，请求backup机器。</p>
+</li>
+<li><p>max_fails : 请求失败次数限制</p>
+</li>
+<li><p>fail_timeout : 经过max_fails后服务暂停时间</p>
+</li>
+<li><p>max_conns : 限制最大的连接数</p>
+</li>
+</ul>
+<p><strong>负载均衡调度算法</strong></p>
+<ul>
+<li>轮询:默认算法按时间顺序逐一分配到不同的后端服务器;</li>
+<li>加权轮询:Weight值越大，分配到访问几率越高;</li>
+</ul>
+<p><strong>其他负载调度算法（不常用）</strong></p>
+<ul>
+<li>ip_hash<br>根据客户端的ip地址转发同一台服务器，可以保持会话，但是很少用这种方式去保持会话，例如我们当前正在使用wifi访问，当切换成手机信号访问时，会话就不保持了。</li>
+<li>least_conn<br>最少连接访问，优先访问连接最少的那一台服务器，这种方式也很少使用，因为连接少，可能是由于该服务器配置较低，刚开始赋予的权重较低。</li>
+<li>url_hash（需要第三方插件）<br>根据用户访问的url定向转发请求，不同的url转发到不同的服务器进行处理（定向流量转发）。</li>
+<li>fair（需要第三方插件）<br>根据后端服务器响应时间转发请求，这种方式也很少使用，因为容易造成流量倾斜，给某一台服务器压垮。</li>
+</ul>
+<p>方式1: 轮询</p>
+<p>RR（默认轮询）每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉能自动剔除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义一组服务器</span></span><br><span class="line">upstream httpds&#123;</span><br><span class="line">    server 192.168.8.102 weight=10;</span><br><span class="line">    server 192.168.8.103 weight=1;</span><br><span class="line">    <span class="comment"># server 192.168.8.102 weight=10 down; #down表示不参与负载均衡</span></span><br><span class="line">    <span class="comment"># server 192.168.8.102 weight=10 backup; #backup表示是备用服务器，没有服务器可用的时候使用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">    <span class="comment">#监听端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#域名，可以有多个，用空格隔开</span></span><br><span class="line">        server_name  test80.xzj520520.cn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#配置根目录以及默认页面</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://httpds;</span><br><span class="line">            <span class="comment"># root   /www/test80;</span></span><br><span class="line">            <span class="comment"># index  index.html index.htm;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<p>多次访问<a target="_blank" rel="noopener" href="http://192.168.8.101/%E5%8F%91%E7%8E%B0102%E8%AE%BF%E9%97%AE%E7%9A%84%E6%AC%A1%E6%95%B0%E5%A4%9A%E4%BD%99103%E8%AE%BF%E9%97%AE%E7%9A%84%E6%AC%A1%E6%95%B0%E3%80%82">http://192.168.8.101/发现102访问的次数多余103访问的次数。</a></p>
+<p>方式2：权重</p>
+<p>权重指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。 例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义一组服务器</span></span><br><span class="line">upstream httpds&#123;</span><br><span class="line">    server 192.168.8.102:80 weight=1;</span><br><span class="line">    server 192.168.8.103:80 weight=9;  <span class="comment">#那么10次一般只会有1次会访问到8081，而有9次会访问到8080</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"> <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">    <span class="comment">#监听端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#域名，可以有多个，用空格隔开</span></span><br><span class="line">        server_name  test80.xzj520520.cn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#配置根目录以及默认页面</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://httpds;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方式3: ip_hash</p>
+<p>ip_hash 会话粘连, 上面的2种方式都有一个问题，那就是下一个请求来的时候请求可能分发到另外一个服务器，当我们的程序不是无状态的时候（采用了session保存数据），这时候就有一个很大的很问题了，比如把登录信息保存到了session中，那么跳转到另外一台服务器的时候就需要重新登录了，所以很多时候我们需要一个客户只访问一个服务器，那么就需要用iphash了，iphash的每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义一组服务器</span></span><br><span class="line">upstream httpds&#123;</span><br><span class="line"> 	ip_hash;</span><br><span class="line">    server 192.168.8.102:80;</span><br><span class="line">    server 192.168.8.103:80;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"> <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">    <span class="comment">#监听端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#域名，可以有多个，用空格隔开</span></span><br><span class="line">        server_name  test80.xzj520520.cn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#配置根目录以及默认页面</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://httpds;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>根据客户端的ip地址转发同一台服务器，可以保持会话，但是很少用这种方式去保持会话，例如我们当前正在使用wifi访问，当切换成手机信号访问时，会话就不保持了。</strong></p>
+<p>方式4：fair</p>
+<p>fair（需要第三方插件）按后端服务器 的响应时间来分配请求，响应时间短的优先分配。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义一组服务器</span></span><br><span class="line">upstream httpds&#123;</span><br><span class="line"> 	fail;</span><br><span class="line">    server 192.168.8.102:80;</span><br><span class="line">    server 192.168.8.103:80;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"> <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">    <span class="comment">#监听端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#域名，可以有多个，用空格隔开</span></span><br><span class="line">        server_name  test80.xzj520520.cn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#配置根目录以及默认页面</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://httpds;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>根据后端服务器响应时间转发请求，这种方式也很少使用，因为容易造成流量倾斜，给某一台服务器压垮。</strong></p>
+<p>方式5：least_conn</p>
+<p>描述: 将请求分配到连接数最少的服务上。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义一组服务器</span></span><br><span class="line">upstream httpds&#123;</span><br><span class="line"> 	least_conn;</span><br><span class="line">    server 192.168.8.102:80;</span><br><span class="line">    server 192.168.8.103:80;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"> <span class="comment">#虚拟主机的配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">    <span class="comment">#监听端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#域名，可以有多个，用空格隔开</span></span><br><span class="line">        server_name  test80.xzj520520.cn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#配置根目录以及默认页面</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://httpds;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>最少连接访问，优先访问连接最少的那一台服务器，这种方式也很少使用，因为连接少，可能是由于该服务器配置较低，刚开始赋予的权重较低。</strong></p>
+<p>可以根据实际情况选择使用哪种策略模式,不过fair和url_hash需要安装第三方模块才能使用.</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/29/15f5013cb2434287b1fc3c439b66dde6/" title="06 【防盗链】"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">06 【防盗链】</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/29/2b70f0c7afd84c2ebfada97329fd3a71/" title="03 【Nginx虚拟主机和域名解析】"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">03 【Nginx虚拟主机和域名解析】</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%9C%A8%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">反向代理在系统结构中的应用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">1.反向代理和正向代理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 反向代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 正向代理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8proyx-pass%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">2. 使用proyx_pass进行代理配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">4.</span> <span class="toc-text">3.负载均衡</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%9F%BA%E4%BA%8E%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">4.基于反向代理的负载均衡器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5%E5%92%8C%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">5.负载均衡策略和调度算法</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
