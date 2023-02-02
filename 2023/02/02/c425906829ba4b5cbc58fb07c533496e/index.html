@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>10【Promise对象】 | 知识库</title>
+    
+    
+        <meta name="keywords" content="10【Promise对象】" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="10【Promise对象】1.同步异步的介绍Promise 是异步操作的一种解决方案。  异步的概念异步（Asynchronous, async）是与同步（Synchronous, sync）相对的概念。 在我们学习的传统单线程编程中，程序的运行是同步的（同步不意味着所有步骤同时运行，而是指步骤在一个控制流序列中按顺序执行）。而异步的概念则是不保证同步的概念，也就是说，一个异步过程的执行将不再与原">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10【Promise对象】">
+<meta property="og:url" content="http://example.com/2023/02/02/c425906829ba4b5cbc58fb07c533496e/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="10【Promise对象】1.同步异步的介绍Promise 是异步操作的一种解决方案。  异步的概念异步（Asynchronous, async）是与同步（Synchronous, sync）相对的概念。 在我们学习的传统单线程编程中，程序的运行是同步的（同步不意味着所有步骤同时运行，而是指步骤在一个控制流序列中按顺序执行）。而异步的概念则是不保证同步的概念，也就是说，一个异步过程的执行将不再与原">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d1cc4d26fc4056acf3f704bddb4bfecdf3b3ddd0.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/365c74378381a0e69761dfe542d2de267c1b3828.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/ad3300e4fccf3861082bcb9633584d5aad190b98.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/a45ebe3c65367ca98ec1e4932a40f978cae5e818.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/97e97a5e20c5634615ea020b9840ef838d9c0718.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/1891f1c10ba44350cb747b01463178deb806c8bf.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/3d95f9d84019bfe212e1abec0eb135f92636a8ef.png">
+<meta property="article:published_time" content="2023-02-02T05:18:15.603Z">
+<meta property="article:modified_time" content="2023-02-02T05:23:17.968Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/d1cc4d26fc4056acf3f704bddb4bfecdf3b3ddd0.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知识库" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C/C++
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C语言程序设计笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0b556fd3fac3446ab962debd1d7d0d3d/">C语言（三）</a></li>  <li class="file"><a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/">C语言（二）</a></li>  <li class="file"><a href="/2023/01/18/47f2147369be440d89c32f4ac310c6a7/">C语言（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-c
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            lib
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/">assert.h</a></li>  <li class="file"><a href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/">ctype.h</a></li>  <li class="file"><a href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/">float.h</a></li>  <li class="file"><a href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/">errno.h</a></li>  <li class="file"><a href="/2023/02/02/03a886d85a6e423a9dea00ed1979a294/">stdarg.h</a></li>  <li class="file"><a href="/2023/02/02/174190d1271c441296fe6161dbe1e3b0/">inttypes.h</a></li>  <li class="file"><a href="/2023/02/02/3c0028c132394bf49855502500823843/">signal.h</a></li>  <li class="file"><a href="/2023/02/02/3c2477856e494e289da69d3223ba7674/">math.h</a></li>  <li class="file"><a href="/2023/02/02/3ec857ad74414dfa9785db229745cff4/">stdint.h</a></li>  <li class="file"><a href="/2023/02/02/4709412c44ae4a488075c134135a0c7d/">limits.h</a></li>  <li class="file"><a href="/2023/02/02/63a6e5300615432c802b5fad1526b013/">iso646.h</a></li>  <li class="file"><a href="/2023/02/02/74ea4d343a0a466dafd2938741af9b82/">stdio.h</a></li>  <li class="file"><a href="/2023/02/02/7c6a577e51b44a30896461029a72e0d9/">stddef.h</a></li>  <li class="file"><a href="/2023/02/02/f15fbe0430cd4183b0fce6d942edec61/">stdbool.h</a></li>  <li class="file"><a href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/">locale.h</a></li>  <li class="file"><a href="/2023/02/02/30aaa7981bcb41ecb2cab759dc8d61d9/">string.h</a></li>  <li class="file"><a href="/2023/02/02/43c955dbbcff4f31b6b395baf15b3643/">time.h</a></li>  <li class="file"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/">stdlib.h</a></li>  <li class="file"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/">wchar.h</a></li>  <li class="file"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/">wctype.h</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/">array</a></li>  <li class="file"><a href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/">enum</a></li>  <li class="file"><a href="/2023/02/02/88026f8bed5a4692a3eb48abb8cc2c47/">cli</a></li>  <li class="file"><a href="/2023/02/02/9e03d1990b4c477c8e5ecd52164183d1/">flow-control</a></li>  <li class="file"><a href="/2023/02/02/a57d1c9278214ad49c0c94d45a92af2b/">file</a></li>  <li class="file"><a href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/">io</a></li>  <li class="file"><a href="/2023/02/02/83858a169b23461eadc882914abf4bd1/">function</a></li>  <li class="file"><a href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/">intro</a></li>  <li class="file"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/">memory</a></li>  <li class="file"><a href="/2023/02/02/ec65e72324264fbb8acf7006f6ced494/">multibyte</a></li>  <li class="file"><a href="/2023/02/02/635718a1db8b4ccebbfd9a4f8a55de47/">preprocessor</a></li>  <li class="file"><a href="/2023/02/02/bb7bba4594234ae5832af49f8d3e56ee/">pointer</a></li>  <li class="file"><a href="/2023/02/02/cf8653eb740a49b7a58a852bbbed00a4/">string</a></li>  <li class="file"><a href="/2023/02/02/e1cb8d47ae9c459eb5ac11818a7c6e27/">operator</a></li>  <li class="file"><a href="/2023/02/02/ecce61b4548c4e45ba73284c9ba7f0cc/">specifier</a></li>  <li class="file"><a href="/2023/02/02/41797336ff734560a26025353b233d54/">types</a></li>  <li class="file"><a href="/2023/02/02/5f8eaecb5f1f414d9106a33847f193a9/">variable</a></li>  <li class="file"><a href="/2023/02/02/a86312379ebb44c39fbda22a6eecf977/">struct</a></li>  <li class="file"><a href="/2023/02/02/bf7f6d8e12f54a7c8802abcbdc18e689/">union</a></li>  <li class="file"><a href="/2023/02/02/c19ba4705d5142bf98d9207eece2ef79/">typedef</a></li>  <li class="file"><a href="/2023/02/02/cb86948a24cf470ea1c847f85f8b8349/">syntax</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/a2acb1e85c084003b09433633a27ec8f/">C++求和的多种方式</a></li>  <li class="file"><a href="/2023/01/25/dd59a1b3ef8343efb5e60f2fd43084a8/">水仙花题解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/20/b4a4813646324eab97b039cacf031705/">Docker容器技术</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/00429dd58f6c4ce6a2b03b9aeeb9d521/">git-log</a></li>  <li class="file"><a href="/2023/02/02/02fdd75f9f2a47489decf6f32d0b3c7a/">git-rebase</a></li>  <li class="file"><a href="/2023/02/02/0b2ea073a1c14893b3dd7098546e0655/">git-add</a></li>  <li class="file"><a href="/2023/02/02/13f9c3847de9456f9a8078f072da7eab/">git-init</a></li>  <li class="file"><a href="/2023/02/02/22d2d3f830f145289393d0f82e740cb9/">git-diff</a></li>  <li class="file"><a href="/2023/02/02/4781f042463f4f40b1bbad14879d0ac7/">git-clone</a></li>  <li class="file"><a href="/2023/02/02/58789f766a6c4768be5f19a121c6fd61/">git-checkout</a></li>  <li class="file"><a href="/2023/02/02/587e496a180048d98ac872605ced2d67/">git-cherry-pick</a></li>  <li class="file"><a href="/2023/02/02/63225ea3537e44c4bd42c553358e0a14/">git-cat-file</a></li>  <li class="file"><a href="/2023/02/02/6c452a5f156c43cfa90eb618191dcda7/">git-commit-tree</a></li>  <li class="file"><a href="/2023/02/02/6d6d53b08a474a0d938c0711dae464b1/">git-commit</a></li>  <li class="file"><a href="/2023/02/02/88a36c4e06f04c1c90ee2d93d231fcf0/">git-remote</a></li>  <li class="file"><a href="/2023/02/02/a4f4a7cf1b5446f58b3403e34b90adcb/">git-ls-files</a></li>  <li class="file"><a href="/2023/02/02/bbc2b9d3586f4c05946853201ac0e103/">git-hash-object</a></li>  <li class="file"><a href="/2023/02/02/cfc661f62c4f473fb166b17ef54c5d37/">git-merge</a></li>  <li class="file"><a href="/2023/02/02/e69a3fc86aad49f2a7e9b61b6377403e/">git-pull</a></li>  <li class="file"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/">git-branch</a></li>  <li class="file"><a href="/2023/02/02/0215eb43a3cd48af8db8b7826c738ae9/">git-show</a></li>  <li class="file"><a href="/2023/02/02/01c2ed5c17c944e4b3dede0de2616c27/">git-rm</a></li>  <li class="file"><a href="/2023/02/02/1ee03873808d4c469cfa0998032e4936/">git-write-tree</a></li>  <li class="file"><a href="/2023/02/02/2f3fcea5172b40dc8e12f9ef817fb413/">git-update-ref</a></li>  <li class="file"><a href="/2023/02/02/4027c7dfd0a849658d350c9374793484/">git-restore</a></li>  <li class="file"><a href="/2023/02/02/446de5db36bf4d5a858dc7d949a7da12/">git-update-index</a></li>  <li class="file"><a href="/2023/02/02/59d93e8c48164f0190417df6f9a1f573/">git-rev-parse</a></li>  <li class="file"><a href="/2023/02/02/69ebd17fb555427285f272241105d5cd/">git-reset</a></li>  <li class="file"><a href="/2023/02/02/861b301a7bce4dad8bb92d273cd75daf/">git-switch</a></li>  <li class="file"><a href="/2023/02/02/a4bb2f6830624e38bccbc32c93085d32/">git-stash</a></li>  <li class="file"><a href="/2023/02/02/bb8b63b8991b414d92411977cc87bbbe/">git-revert</a></li>  <li class="file"><a href="/2023/02/02/e6a606da62da484dbf52fce543abb094/">git-tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/">basic</a></li>  <li class="file"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/">branch</a></li>  <li class="file"><a href="/2023/02/02/1459cfd798b842b4a80ce78e41d4155d/">operations</a></li>  <li class="file"><a href="/2023/02/02/31b7e45e02f54e149fea5d1d8cda26fe/">internal</a></li>  <li class="file"><a href="/2023/02/02/26cbe9e22b164aeaabf617d844abc440/">reference</a></li>  <li class="file"><a href="/2023/02/02/90fb796e66734920ae724f9fa66ce763/">tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/c77ab20583d64ba9a3dc6f8d6ea89f55/">04 【忽略某些文件】</a></li>  <li class="file"><a href="/2023/02/02/2b8f3ce0fed44813a0919553cb304e64/">03 【远程库操作】</a></li>  <li class="file"><a href="/2023/02/02/aeb16e6138444c83ae3bd8886ba906bc/">01 【版本控制和Git的安装介绍】</a></li>  <li class="file"><a href="/2023/02/02/52d9a2a8683a42eb966022415a93058a/">02 【版本控制命令】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JAVASE
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/49756fe6e6cc44f88ee3cc213ec4bd67/">Java泛型</a></li>  <li class="file"><a href="/2023/01/19/338f5f76a1914f72822772ea3026f220/">Java 集合</a></li>  <li class="file"><a href="/2023/01/19/929bd134ed01499c92d8e177925950ef/">Java面向对象基础(初级)</a></li>  <li class="file"><a href="/2023/01/19/274b1dfaf07945e7ab77710afad502a3/">Java面向对象基础（中级）</a></li>  <li class="file"><a href="/2023/01/19/9a52b66178b746debfe7111574e464a2/">Java面向对象(高级)</a></li>  <li class="file"><a href="/2023/01/25/47c9d6ac38214463ae1ca07fd5b85614/">Java-Math类</a></li>  <li class="file"><a href="/2023/01/25/65905cb7c01348b0b1ac5264ecc87ab0/">Java Object类详解</a></li>  <li class="file"><a href="/2023/01/25/0b0365b51c0644958b204ed11719a88a/">Java 访问修饰符</a></li>  <li class="file"><a href="/2023/01/25/e7838ce563844f3a9811936eaa09cb09/">Java数据结构-栈</a></li>  <li class="file"><a href="/2023/01/25/cefb06ca6f8049a99703cf1b3bc1fa3d/">Java异常处理</a></li>  <li class="file"><a href="/2023/01/25/d8cc29145a834e3aaa2a43b7d88c9ce1/">java选择排序</a></li>  <li class="file"><a href="/2023/01/25/abec654a37ad4a498798cdf019a2e61e/">Java-枚举</a></li>  <li class="file"><a href="/2023/01/25/d5d66a7ebad94d6483e19407faf46cc5/">Java-包装类</a></li>  <li class="file"><a href="/2023/01/25/b3ada79e6ff745f0acd8edcf57c95acc/">Java-递归执行机制</a></li>  <li class="file"><a href="/2023/01/25/03f3dd343d094bd6baf6772f4a6a2aed/">Java-冒泡排序</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JUC笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/83aef7425d394df3901ca188c1afc6d5/">JUC笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/b41b5f3eb08f41cbbbf454a8c9922051/">JUC笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/1d97f5daca284471abd5c2a42c140143/">JUC笔记（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/f4f7756d2f6644d4b0e098cb3789a9c6/">JVM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/3222fc6cde8442a89eda4e5e0808952a/">JVM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/8e58362eaa734ad292f357536ef1b05e/">JVM笔记（三）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java-GUi
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/f7310f53495a4e258159180b2ce529db/">Java-GUI-窗口配置</a></li>  <li class="file"><a href="/2023/01/19/f172572c7d114592aaa804efa121761e/">Java-GUI-监听器</a></li>  <li class="file"><a href="/2023/01/19/2c969cb92c56489ab91482067305ab42/">Java-GUI-常用组件</a></li>  <li class="file"><a href="/2023/01/19/a8eb012039114ca6a601a1c34622ba93/">Java-GUI 布局</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记 2023重制版
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/09da4fbf346f4f459ef48c64c61f6cc1/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/30140692c4144c2cbc65ba707a7b0c89/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/aea1e8a802bd45ebbe33970dab1bad21/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/df26e1c8129b412a8284a955dbe26b3c/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/31ca9cc5ea8a4795b75b49ec9680cca7/">JavaSE笔记（一）重制版</a></li>  <li class="file"><a href="/2023/01/18/7ecb50884e214c28abe6a905186f2051/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/cae1499c7dd54b5f9729e77e75f9e92f/">JavaSE笔记（四）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记（含新特性介绍）
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0e413f24b04d46babc26b48035844a34/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/4781c8feb884488d93fcbc64d83998eb/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/6561c4991b054522a438ae9c3573bf7b/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/e9b900b310774688844b4e31729afc40/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/4616dce1a1c745fb84672ffed7bf43ed/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/5aef6240910849d4b69b36b03baf7d2c/">JavaSE笔记（四）重制版</a></li>  <li class="file"><a href="/2023/01/18/d7d20c40f1044de59760363f8b9d8c4b/">JavaSE笔记（一）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSSM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0dbb54c3201b45ec9eb61b3e76209382/">Java SSM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/13fdccb2f789426fb795cdb23e8cb0c0/">JavaSSM笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/86717e97bcd34af2ab62ade51eddc019/">JavaSSM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/9dfd598003ab43828c77f2676dd6cf8f/">JavaSSM笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/088fcec4e8a846479c3cfcf5a6a52da7/">JavaWeb笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/5756fdcc799c4064be4e4a84d7ab5244/">JavaWeb笔记（五）</a></li>  <li class="file"><a href="/2023/01/18/b79318accafa44dfaabad60dbbe8de4c/">JavaWeb笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/f795be55936d42ddafd17995abae6aa8/">JavaWeb笔记（三）</a></li>  <li class="file"><a href="/2023/01/23/65909752ee164b2c877f1f77097d6358/">使用Socket传输文件</a></li>  <li class="file"><a href="/2023/01/24/1c60970a20864932bc3ef0807b9fda67/">JavaWeb笔记（四）</a></li>  <li class="file"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/">SQL事务（非常详细）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java设计模式笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/022f64208f254fbea3a8fb31b281a85b/">Java设计模式（一）</a></li>  <li class="file"><a href="/2023/01/18/3e0642cd3b254fb2b80bf2932ac4b9be/">Java设计模式（三）</a></li>  <li class="file"><a href="/2023/01/18/407c5b3cecb14dfaa0649e6f89d0ec2b/">Java设计模式（四）</a></li>  <li class="file"><a href="/2023/01/18/7acbd5ac3c754f2287c448b72010bac1/">Java设计模式（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NIO笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/93e61e24ebe54aacb046d8fb7e524ec8/">Java NIO笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/cdec76bf6ea84248809947e5c365c26e/">Java NIO笔记（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringCloud笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/89a3686366ac4733a117121766e12109/">SpringCould笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/f828affac4f64da487d581f2cb0a7ddb/">SpringCloud笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/3156ff5edada4090a2470abcafcc1ace/">SpringCloud笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/af85cc65b701415f8bf1a97873320570/">SpringCloud笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Springboot笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/">SpringBoot笔记（一）</a></li>  <li class="file"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/">SpringBoot笔记（二）</a></li>  <li class="file"><a href="/2023/01/24/99650712d4104d00a2c4a5ccfc3f525e/">SpringBoot笔记（三）</a></li>  <li class="file"><a href="/2023/01/24/3636e46047924c11b7ec162ffc9f9271/">SprintBoot笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境配置
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/06a5ebd1d51442d58ba9f7b02612a94b/">Linux下JAVA环境配置</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Bash
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            archives
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/">cp</a></li>  <li class="file"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/">awk</a></li>  <li class="file"><a href="/2023/02/02/5e2e0bec39da4147b3fa493d53c38fcf/">clear</a></li>  <li class="file"><a href="/2023/02/02/6c931bc223d04f6ea0004ce2e60ed0a9/">cal</a></li>  <li class="file"><a href="/2023/02/02/e371d141f5e04b83985097a365e488f3/">alias</a></li>  <li class="file"><a href="/2023/02/02/eb9fd5a58ed4424db318906b45b3a2c1/">cat</a></li>  <li class="file"><a href="/2023/02/02/298cc2ee3f30471c95ffe20b7fd68de7/">find</a></li>  <li class="file"><a href="/2023/02/02/3262b0fe7c3c405693a43c3b00fd31a2/">cut</a></li>  <li class="file"><a href="/2023/02/02/4a44a9b960604e14b21acd79b661370d/">gunzip</a></li>  <li class="file"><a href="/2023/02/02/4e6e8b622ad94bc7b9beaac8b4db5e9b/">df</a></li>  <li class="file"><a href="/2023/02/02/57a4373ff3994387ba06b86756caa443/">dd</a></li>  <li class="file"><a href="/2023/02/02/66f0d5d37af44909b7a1826752bb25f8/">fmt</a></li>  <li class="file"><a href="/2023/02/02/6a731d9df2e2418b906e03243a37fe5a/">egrep</a></li>  <li class="file"><a href="/2023/02/02/7e8da3da77434aa3b080c04619bd6f6c/">export</a></li>  <li class="file"><a href="/2023/02/02/825b8a01e7684bf5817ef4aa18e1dcea/">file</a></li>  <li class="file"><a href="/2023/02/02/8a29743a5dd34506a48aed9f8f23e68e/">du</a></li>  <li class="file"><a href="/2023/02/02/96af26754cb14ae88ba85f62f34485e2/">gzcat</a></li>  <li class="file"><a href="/2023/02/02/af40050b4bbb4296a2359591e5267652/">date</a></li>  <li class="file"><a href="/2023/02/02/cd9720c1fa0e4e02a5fde942d26acace/">grep</a></li>  <li class="file"><a href="/2023/02/02/031200e492574917bc61ee527a9dbec2/">sort</a></li>  <li class="file"><a href="/2023/02/02/1a711a5945444415a8a3dd969f8ecd2e/">tr</a></li>  <li class="file"><a href="/2023/02/02/1ba049a64f9a46e983332666e7e82f90/">killall</a></li>  <li class="file"><a href="/2023/02/02/265f581f57e742a990d88f8e3b81e332/">lpr</a></li>  <li class="file"><a href="/2023/02/02/50ee6471baf0464380f10b8cdcf1ace7/">gzip</a></li>  <li class="file"><a href="/2023/02/02/58e2782991a046f9b090a30000ad263f/">ps</a></li>  <li class="file"><a href="/2023/02/02/5d789ba3d1df439fae3342ddab2e8936/">uptime</a></li>  <li class="file"><a href="/2023/02/02/89e04320d7f744c089eacbb3e0e119f9/">ls</a></li>  <li class="file"><a href="/2023/02/02/8e7aba35b4a2409aa2163e101ca9c459/">uniq</a></li>  <li class="file"><a href="/2023/02/02/92ca2811477044ad84363b2a0830bf8b/">last</a></li>  <li class="file"><a href="/2023/02/02/a548ef6cd0a047a59f705a4d72e69e79/">lpq</a></li>  <li class="file"><a href="/2023/02/02/bd5a94df51574676a7fb3cf91798129b/">kill</a></li>  <li class="file"><a href="/2023/02/02/c4dace09d06a4255ada3235e13622e84/">nl</a></li>  <li class="file"><a href="/2023/02/02/d39d39701de24c9e8fc1ee2a957df430/">sed</a></li>  <li class="file"><a href="/2023/02/02/d999bd8656094f66b6dd34cd212085d7/">uname</a></li>  <li class="file"><a href="/2023/02/02/ebc4924fe4974446ac9f3911f9b27e91/">scp</a></li>  <li class="file"><a href="/2023/02/02/372ae469bfff43328cc696cd3b8243d2/">which</a></li>  <li class="file"><a href="/2023/02/02/5bbf81dd30b64aafaa5f5565992b6349/">who</a></li>  <li class="file"><a href="/2023/02/02/7bb4b5c41da44269a6c70f4633d0917e/">whereis</a></li>  <li class="file"><a href="/2023/02/02/809b6b7eb42c403f8e1b0211e44409e0/">wc</a></li>  <li class="file"><a href="/2023/02/02/a07cab80bd4c47789ae6242c402ada05/">w</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            deleted
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f5f6eb42d7684fe989265596e9306f01/">stdio</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/">archiving</a></li>  <li class="file"><a href="/2023/02/02/82a5e084940844de91c02625e19ad744/">async</a></li>  <li class="file"><a href="/2023/02/02/8a206bc871634efdbbffd067c656673b/">command</a></li>  <li class="file"><a href="/2023/02/02/933495d6b7fe4de99eefa41cd63865b8/">file</a></li>  <li class="file"><a href="/2023/02/02/e1466852223e4f6bb5dc8a46a6104e76/">file-operation</a></li>  <li class="file"><a href="/2023/02/02/0cd5e142ec7a4f2abaa5cc522dbfa62d/">user</a></li>  <li class="file"><a href="/2023/02/02/154ccd75c486446aac1353805e3f901a/">host</a></li>  <li class="file"><a href="/2023/02/02/5fdd36fee51d4c49833a3a9b35303088/">system</a></li>  <li class="file"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/">text</a></li>  <li class="file"><a href="/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/">hardware</a></li>  <li class="file"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/">named-pipe</a></li>  <li class="file"><a href="/2023/02/02/d08fc4409e6e4bb1abc3bc66097589de/">process</a></li>  <li class="file"><a href="/2023/02/02/e6cc1bf092814f148a6c9a72e5615e73/">time</a></li>  <li class="file"><a href="/2023/02/02/ea57261da8fe46bdbdad1471dfe28140/">regex</a></li>  <li class="file"><a href="/2023/02/02/eca6d9d98e874548a12942d08e09bed4/">redirection</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/253ec4deec8c4beda7dd99a6f419b404/">arithmetic</a></li>  <li class="file"><a href="/2023/02/02/307a6025886648d98d3ee4d27c48ac00/">array</a></li>  <li class="file"><a href="/2023/02/02/42867f9a3d9f4e5c99a0d6ce517b903e/">condition</a></li>  <li class="file"><a href="/2023/02/02/e23e7e4f49ac4a77a19f9cedc6bb7393/">expansion</a></li>  <li class="file"><a href="/2023/02/02/e66fbc86e05a4521882246e9dc4d3adc/">function</a></li>  <li class="file"><a href="/2023/02/02/0888cfb07af44e419d21c7d3d9f7348b/">prompt</a></li>  <li class="file"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/">quotation</a></li>  <li class="file"><a href="/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/">mktemp</a></li>  <li class="file"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/">read</a></li>  <li class="file"><a href="/2023/02/02/61f4af2f28f34d6c83a93732a217826a/">intro</a></li>  <li class="file"><a href="/2023/02/02/68774db840cb4ba9975a4b9b5b27d531/">grammar</a></li>  <li class="file"><a href="/2023/02/02/b894fd5ea7ce4f5f83bd345deeb191c7/">loop</a></li>  <li class="file"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/">script</a></li>  <li class="file"><a href="/2023/02/02/36a498d21f274b8698386927095852e5/">string</a></li>  <li class="file"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/">variable</a></li>  <li class="file"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/">readline</a></li>  <li class="file"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/">startup</a></li>  <li class="file"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/">set</a></li>  <li class="file"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/">stack</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">06 【实操篇-时间日期类 用户和用户组管理】</a></li>  <li class="file"><a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/">03 【基础篇-系统管理】</a></li>  <li class="file"><a href="/2023/02/02/622750bc961b42b79daeb6a4cc15161d/">05【实操篇-文件目录类命令】</a></li>  <li class="file"><a href="/2023/02/02/976629fb7bd241958fbac447af492905/">10 【实操篇-进程管理类】</a></li>  <li class="file"><a href="/2023/02/02/3e5ebad9a8e34aeab1791403f375e9cf/">04 【实操篇-帮助命令 文件目录管理基础知识】</a></li>  <li class="file"><a href="/2023/02/02/0994e211c03c4ca5a71ebfaddd83a5b4/">02 【基础篇-vim编辑器 网络配置 远程登录】</a></li>  <li class="file"><a href="/2023/02/02/ae308f099ff843e4974f7a3fa0ab67ff/">07 【实操篇-文件权限和搜索查找类命令】</a></li>  <li class="file"><a href="/2023/02/02/9d51515086d54d9da60959402195a54e/">08 【实操篇-压缩和解压类】</a></li>  <li class="file"><a href="/2023/02/02/b4f31671b35f4b879ac18de3fa565b44/">09 【实操篇-磁盘查看和分区类】</a></li>  <li class="file"><a href="/2023/02/02/4f43f36734ff4b7fbb862ab41b32afda/">11 【实操篇-定时任务 软件安装 克隆虚拟机】</a></li>  <li class="file"><a href="/2023/02/02/594959a1b8b0475493968c2559ce6895/">01 【入门篇-介绍和安装】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Nginx
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/d7b325aae2594d32ad44c26d7d441ae0/">02 【Nginx的目录介绍】</a></li>  <li class="file"><a href="/2023/02/02/6b1fb70d0a4441949a907556d92c32f8/">03 【Nginx虚拟主机和域名解析】</a></li>  <li class="file"><a href="/2023/02/02/ac4d35d0ad0a454381e46471c91f723d/">01 【Nginx的安装和启动】</a></li>  <li class="file"><a href="/2023/02/02/5860918f92bb4edaaf5d8aed17697c0f/">04 【Nginx反向代理和负载均衡】</a></li>  <li class="file"><a href="/2023/02/02/601b78d0331e4a25b26de4819fec9d1c/">06 【防盗链】</a></li>  <li class="file"><a href="/2023/02/02/05ca312f1aad4b1198b58405d038fc40/">05 【动静分离和URLRewrite】</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/20/85a4024620e141f4b16389b65a2ce85e/">Linux SCP指令</a></li>  <li class="file"><a href="/2023/01/25/c701f1c34bb44b30a2fa83eafe2f97b5/">Linux 同步时间</a></li>  <li class="file"><a href="/2023/01/25/6555fe10b1904e6f8ad9e999d5bb8c09/">Linux压缩和解压缩</a></li>  <li class="file"><a href="/2023/01/25/e2660f8d01d24bafbcab08e0a21766ae/">Linux用户管理</a></li>  <li class="file"><a href="/2023/01/25/76440ac4b9d649d0923e1dc7808d6d9e/">Linux 目录结构</a></li>  <li class="file"><a href="/2023/01/25/761fa1243125429eb927901f3014a91b/">Debian修改国内原</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ajax
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f4a82199df954988886f793eb07bea6e/">01 【AJAX概述 HTTP相关问题】</a></li>  <li class="file"><a href="/2023/02/02/a4bdac42f33042a09a9d5ff13bf5effe/">02 【axios fetch 跨域】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            css预处理语言
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Sass
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ff4b2c9dbf641d08213e2278205e32a/">10 【Sass语法介绍-继承】</a></li>  <li class="file"><a href="/2023/02/02/d1b7676560c64fbb81882453865edebc/">04 【Sass语法介绍-运算】</a></li>  <li class="file"><a href="/2023/02/02/b6aa35c8f62d46e499d2847e3b0c0ba0/">03 【Sass语法介绍-嵌套】</a></li>  <li class="file"><a href="/2023/02/02/720abd9ef54447e6b45f4f690ae7f1b7/">07 【Sass语法介绍-控制指令】</a></li>  <li class="file"><a href="/2023/02/02/cc4f543711a54ccd9a05d4bf128898f5/">02 【Sass语法介绍-变量】</a></li>  <li class="file"><a href="/2023/02/02/d40a67d9f9f841059a8a689603793673/">05 【Sass语法介绍-插值】</a></li>  <li class="file"><a href="/2023/02/02/8fd4499649a940418f3222e3d09ee2aa/">09 【Sass语法介绍-函数指令】</a></li>  <li class="file"><a href="/2023/02/02/c147cb6550934f58904823a45536056c/">01 【Sass的安装使用】</a></li>  <li class="file"><a href="/2023/02/02/424c4e271557488ca5b2c1b775754008/">06 【Sass语法介绍-函数】</a></li>  <li class="file"><a href="/2023/02/02/2d8afd58354f4270b36e307161cf351a/">08 【Sass语法介绍-混合指令】</a></li>  <li class="file"><a href="/2023/02/02/5c17818f7da844169c13e53e58c59fb7/">11【Sass语法介绍-导入】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            less
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7750b9ec9e19421a805fe45697c0dc2d/">01 【less学习笔记】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/d3a6f3f0a7314b8c96148565dead839f/">CSS-position位置-绝对定位和相对定位</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Canvas
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/1b03369a713343afa2a193408cc8b22f/">02 【canvas绘制基本图形】</a></li>  <li class="file"><a href="/2023/02/02/faa9ad753f834bb181309f4257b09b37/">07 【canvas图像处理】</a></li>  <li class="file"><a href="/2023/02/02/e96f125a9a854c8eb2ce8b05244ba275/">05 【canvas图像变换】</a></li>  <li class="file"><a href="/2023/02/02/815ddf95af0048f2ac2ab12ffb2ca36d/">06 【canvas图像合成】</a></li>  <li class="file"><a href="/2023/02/02/48f96f2e7faf49ce94282d5e4da0145e/">04 【canvas绘制文字】</a></li>  <li class="file"><a href="/2023/02/02/54f4c804683649cc9eb20b1f7b33d7a4/">03 【canvas样式控制】</a></li>  <li class="file"><a href="/2023/02/02/fc62e5cc497a4fc8ae6b4c6a93bf4830/">01 【认识canvas】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/732ec77199574e42aa8a3ef00df24d8d/">Javascript 面向对象(OOP)</a></li>  <li class="file"><a href="/2023/01/25/4f2d10c3153e4c7c89f2ecf584fbc453/">Javascript-三种包装对象</a></li>  <li class="file"><a href="/2023/01/25/acf1e9f487974ce1853395619e12e44d/">ES6闭包</a></li>  <li class="file"><a href="/2023/01/25/2601a78cd4fb449e90738af73cc0370d/">Javascript-展开语法</a></li>  <li class="file"><a href="/2023/01/25/5b879117bcd14d1f8a9850b134549a71/">javascript-克隆节点&&删除节点</a></li>  <li class="file"><a href="/2023/01/25/bf50528806834aada4bf812a6e5cb4d7/">javascript-变量提升</a></li>  <li class="file"><a href="/2023/01/25/3eb18b717005473285e60b95a1783d27/">javascript- 节点增加创建与追加-</a></li>  <li class="file"><a href="/2023/01/25/97466e0ebd1f48c8836d82a772e97d39/">javascript-DOM-分时问候案例</a></li>  <li class="file"><a href="/2023/01/25/6d5690c11c9c40d9ab1e41f85c32ea0d/">javascript-事件流</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Node.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/ac95840c294b45909b8a32b5a3c7b1f7/">Node-包管理工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            es6
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/08ed7d14c0b74fd9a8e849fdf55e8a80/">04 【函数的扩展】</a></li>  <li class="file"><a href="/2023/02/02/6bfa93761a9348309ee45e5c8d39d60f/">14 【Class extends】</a></li>  <li class="file"><a href="/2023/02/02/4d05e596059f482899f63dadecc42521/">06【对象的扩展】</a></li>  <li class="file"><a href="/2023/02/02/e3c46bd0c64943f4967d81b8b78cacd4/">07【字符串的扩展】</a></li>  <li class="file"><a href="/2023/02/02/2fc965f3cd9f4ebfae565e4a72ebd00b/">05【数组的扩展】</a></li>  <li class="file"><a href="/2023/02/02/ba336fd9e8f942889f5a76b31f239ff5/">01 【ES6 介绍】</a></li>  <li class="file"><a href="/2023/02/02/1a48072db3f149f1b7909da3eb852945/">13【Class的语法】</a></li>  <li class="file"><a href="/2023/02/02/d125a45575e841bfa140266dbe46daea/">12【es6模块化】</a></li>  <li class="file"><a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/">03【解构赋值】</a></li>  <li class="file active"><a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">10【Promise对象】</a></li>  <li class="file"><a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/">02 【let和const】</a></li>  <li class="file"><a href="/2023/02/02/73a1c792b2754bf4bef4d5c9b9819b0a/">08【运算符的扩展】</a></li>  <li class="file"><a href="/2023/02/02/706e1bd0fa5f495fafc420ac1b96f259/">09【Set 和 Map 数据结构】</a></li>  <li class="file"><a href="/2023/02/02/1274b7d6c86142c0bb25d906aebc593a/">11【async 函数】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nodejs
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/a209b664c3ca4578a9eb3cb91ba512ba/">18 【Koa基本使用】</a></li>  <li class="file"><a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/">14 【接口规范和业务分层】</a></li>  <li class="file"><a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">05 【nodejs内置模块（上）】</a></li>  <li class="file"><a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/">02 【nodejs开发环境安装】</a></li>  <li class="file"><a href="/2023/02/02/3b68d412870a445a8d87cfd22ac39d87/">03 【npm的使用】</a></li>  <li class="file"><a href="/2023/02/02/2de266d3a093495fa8a805a1ff7696b7/">10 【Express基本使用】</a></li>  <li class="file"><a href="/2023/02/02/c280122bb3b54525b2f9dd2c3a136016/">15 【登录鉴权】</a></li>  <li class="file"><a href="/2023/02/02/e2c3e6468ad84a1dba70d04460347ed3/">04 【nodejs模块化规范：CommonJS】</a></li>  <li class="file"><a href="/2023/02/02/9ec6f6652fd94d8fbd140127c68af01e/">11 【Express服务端渲染】</a></li>  <li class="file"><a href="/2023/02/02/a81505b065c245b088a3012c1712bcdd/">08 【爬虫】</a></li>  <li class="file"><a href="/2023/02/02/b26c2cc0675b49cbac6cc6cbce060205/">12 【操作mongodb数据库】</a></li>  <li class="file"><a href="/2023/02/02/eab31b38c19844429c0475c74bdd9991/">06 【nodejs内置模块（中）】</a></li>  <li class="file"><a href="/2023/02/02/865661190f8f4ac79861ce7df6db4beb/">07 【nodejs内置模块（下）】</a></li>  <li class="file"><a href="/2023/02/02/901210553dfa45d3afe4457d57c3de3d/">09 【原生nodejs路由、获取参数、静态目录】</a></li>  <li class="file"><a href="/2023/02/02/4515be56c20449919855a7506716b2cf/">16 【跨域】</a></li>  <li class="file"><a href="/2023/02/02/888cb674f6fb4d0bb80e8bbf63a5047f/">13 【操作mysql数据库】</a></li>  <li class="file"><a href="/2023/02/02/1d20f98f527b465096fcec6bd4c2a604/">17 【文件上传】</a></li>  <li class="file"><a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/">01 【nodejs简介】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            react
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ddb53a019f342579b13f34eddaaf39c/">11 【react-router 5】</a></li>  <li class="file"><a href="/2023/02/02/d3e37d3926734fd9b08b23b8d1cf4a76/">02 【面向组件编程】</a></li>  <li class="file"><a href="/2023/02/02/f09c9109b77c40b5bc7ece5b36c57fa4/">14【react-Hook （上）】</a></li>  <li class="file"><a href="/2023/02/02/49cd82fe5a0843eeb7d20dce85205767/">07 【收集表单数据】</a></li>  <li class="file"><a href="/2023/02/02/fc925383cd634fc384c0149bb81440d7/">10 【初始化脚手架】</a></li>  <li class="file"><a href="/2023/02/02/eff28d3f98a44083b80b2d779a742937/">13【react高级指引（下）】</a></li>  <li class="file"><a href="/2023/02/02/d47733b473484eff8245e2a785c161e0/">21 【styled-components的使用】</a></li>  <li class="file"><a href="/2023/02/02/b273e59e62894b4da1bb45adbdee98b1/">03 【事件处理】</a></li>  <li class="file"><a href="/2023/02/02/c78ad7d58e00468290b8bf9b1bbdf35f/">05 【条件渲染】</a></li>  <li class="file"><a href="/2023/02/02/f1602a4566b64671bc65486a7041308f/">18 【Redux Toolkit】</a></li>  <li class="file"><a href="/2023/02/02/ff2d1e21a86541918b1aa6230f9c765d/">16 【react-router 6】</a></li>  <li class="file"><a href="/2023/02/02/0432db33aca24dd6aaa0cd981d8f3a9c/">12 【react高级指引（上）】</a></li>  <li class="file"><a href="/2023/02/02/ced58ed76774454a929bef6b403e57cb/">08 【状态提升】</a></li>  <li class="file"><a href="/2023/02/02/125ea617daa24bafb8ee8e8bc80f67a1/">17【redux】</a></li>  <li class="file"><a href="/2023/02/02/e10e4b26d2bf44378e8037d640849094/">01 【react入门】</a></li>  <li class="file"><a href="/2023/02/02/269c3589e4be4b75a6c862285f2814ec/">15【react-Hook （下）】</a></li>  <li class="file"><a href="/2023/02/02/eaeb4b81181e44c88b5ea739de867f61/">04 【生命周期】</a></li>  <li class="file"><a href="/2023/02/02/1b30544e4df4423597f839fcf8c37fba/">20 【react中使用ts】</a></li>  <li class="file"><a href="/2023/02/02/0e6479990fed4ea2a64f5e78935f308b/">09 【组合组件】</a></li>  <li class="file"><a href="/2023/02/02/c0bcdc567e0b44ab8a74c8f6af0cb309/">19 【RTK Query】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/0b43e486feca40e7b50ea25602885b96/">01 【TypeScript简介 初体验】</a></li>  <li class="file"><a href="/2023/02/02/c6556a99f0a542d0894002af7851a206/">05 【接口  interface VS type】</a></li>  <li class="file"><a href="/2023/02/02/f11ed972e4a5429d8e24c713cba8ad6e/">03 【常用类型（下）】</a></li>  <li class="file"><a href="/2023/02/02/566f4f3d44794728b106bb3d508278e8/">06 【泛型】</a></li>  <li class="file"><a href="/2023/02/02/9ae5591e9bd243bdac816b4dbba0a626/">04【编译选项 webpack配置】</a></li>  <li class="file"><a href="/2023/02/02/b3639a6ae3334e6caa0f58c95deb58db/">第二章：面向对象</a></li>  <li class="file"><a href="/2023/02/02/9325308d90134c2d89042d5118c8aac9/">02 【常用类型（上）】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础三剑客
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7880448dad2345f6ad10793267396c06/">24 【键盘事件】</a></li>  <li class="file"><a href="/2023/02/02/3df9b05587534928ad52b2bab8daede5/">29【定时器和延时器】</a></li>  <li class="file"><a href="/2023/02/02/d17418a26029492e8d26142599edb639/">17 【Document 节点】</a></li>  <li class="file"><a href="/2023/02/02/42ec8243b3584ce9949b0d8a167f7f8f/">31【window 对象】</a></li>  <li class="file"><a href="/2023/02/02/3a1cee3416f44e0a9bcce9c7a4190cea/">05 【函数（上）】</a></li>  <li class="file"><a href="/2023/02/02/6dfad1b9f2a747b78ddac1382be9a5e0/">08 【标准库之Date对象】</a></li>  <li class="file"><a href="/2023/02/02/840362a4d9f041caaf0e1ed6a33eaaec/">33 【History对象和Location对象】</a></li>  <li class="file"><a href="/2023/02/02/d44bb868777147b8b283ea41e73ce4b1/">14 【语法之console 对象与控制台】</a></li>  <li class="file"><a href="/2023/02/02/19848e9f214542ecb0edd74a862cd652/">23 【事件对象与鼠标事件】</a></li>  <li class="file"><a href="/2023/02/02/4a5546755a7c4fd695274767efe8fe5f/">35【Storage接口】</a></li>  <li class="file"><a href="/2023/02/02/e3707da0f0c74cbaad841455d51a8912/">30【BOM和浏览器环境概述】</a></li>  <li class="file"><a href="/2023/02/02/16ff10afc67647a19e96ced945267d1a/">25 【进度事件和表单事件】</a></li>  <li class="file"><a href="/2023/02/02/35b7e41b399341619c9fc855fbc3ffb5/">09 【标准库之Math对象和String对象】</a></li>  <li class="file"><a href="/2023/02/02/9c1da8c2638049b6aa8bc77c365bee48/">03 【流程控制语句】</a></li>  <li class="file"><a href="/2023/02/02/12edce39ff004cba8e7d204ec89253f8/">21【节点的属性】</a></li>  <li class="file"><a href="/2023/02/02/e5abe46191f446439970f94b9b0d3ba6/">10 【标准库之RegExp对象】</a></li>  <li class="file"><a href="/2023/02/02/2f850099dd994cd49f47a9fba9f3cf6b/">11 【标准库之JSON对象 JSON5】</a></li>  <li class="file"><a href="/2023/02/02/98088e10e9394c50b60ecff18690bb98/">36 【节流和防抖】</a></li>  <li class="file"><a href="/2023/02/02/0bd96d59f698491eae334ca1acb77194/">13 【语法之编程风格】</a></li>  <li class="file"><a href="/2023/02/02/e7518bf293bd48ffb053673c07982b2a/">19 【节点的增删改查】</a></li>  <li class="file"><a href="/2023/02/02/d07f06774f8c4d22b87460e592ed8865/">26 【触摸事件和其它常见事件】</a></li>  <li class="file"><a href="/2023/02/02/7a23018a60814bceba65798c147b332b/">01 【基础语法与基本数据类型】</a></li>  <li class="file"><a href="/2023/02/02/47ecc198b851461bb2a56b1118f0bf4b/">20 【节点的集合】</a></li>  <li class="file"><a href="/2023/02/02/62aad3c089ed4aa9b4f1bc99ded57008/">02 【JS表达式与操作符】</a></li>  <li class="file"><a href="/2023/02/02/e18409b1902f4104a522af41137a6bbd/">15 【严格模式】</a></li>  <li class="file"><a href="/2023/02/02/3d4ce9313a0640cf8230defbe18858e1/">04 【对象】</a></li>  <li class="file"><a href="/2023/02/02/8283ef6acb05410db22d90d8d837d454/">06 【函数（下）】</a></li>  <li class="file"><a href="/2023/02/02/9225703b95ce4608bb1cfc5e5edb9e48/">22 【事件监听】</a></li>  <li class="file"><a href="/2023/02/02/ecf66e051ad24a4bb78aafce7e3466d0/">07 【数组及常用方法】</a></li>  <li class="file"><a href="/2023/02/02/2f50015bcdd3481782e878f1a86da20b/">27 【三大家族scroll、offset、client】</a></li>  <li class="file"><a href="/2023/02/02/5d433175f200488f8ff66fa6331fd2aa/">16 【DOM概述】</a></li>  <li class="file"><a href="/2023/02/02/7dbd11b2638e487b88a3024d6e6f9682/">28 【事件传播】</a></li>  <li class="file"><a href="/2023/02/02/6a031ac5c5d647d082ee19856d0fc2bc/">18 【节点的关系和内部操作】</a></li>  <li class="file"><a href="/2023/02/02/4cf03139b6ea43d8a5642bc9286ba774/">12 【语法之错误处理机制】</a></li>  <li class="file"><a href="/2023/02/02/a28dc6634bb4456c8fc30e9d225b6eb3/">34 【表单和FormData 对象】</a></li>  <li class="file"><a href="/2023/02/02/a7b4cba18cdf4e45ae01e87a990ca1fe/">32 【Navigator 对象和Screen 对象】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            html+css
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/eb673a07916a497c827dd80b72017dc6/">09 【浮动 常见网页布局】</a></li>  <li class="file"><a href="/2023/02/02/6b1c3b3c007b4ffbb737ced5fa931d4d/">16 【过渡 动画】</a></li>  <li class="file"><a href="/2023/02/02/3a2b4fa5dfc7400aa7038b017420c521/">08 【盒模型(上) 盒模型(下)】</a></li>  <li class="file"><a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">19 【flex布局】</a></li>  <li class="file"><a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/">21 【vw布局】</a></li>  <li class="file"><a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/">13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】</a></li>  <li class="file"><a href="/2023/02/02/04aa04fcb2fc4c1386acf05fab99bece/">04 【CSS选择器 】</a></li>  <li class="file"><a href="/2023/02/02/1cbd87e2a3df47e7a142782b47821cdb/">03 【语义标签(下) CSS简介】</a></li>  <li class="file"><a href="/2023/02/02/5c5a21a8362549d5bacd900b41379c26/">18 【移动端基础 流式布局】</a></li>  <li class="file"><a href="/2023/02/02/7a7112271245402292a058135d68bb8d/">07 【Emmet语法 三大特性及单位】</a></li>  <li class="file"><a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">06 【CSS字体属性 CSS文本属性】</a></li>  <li class="file"><a href="/2023/02/02/8cfe33e063e14ed29ae060f119d43177/">12 【网页布局总结 元素的显示与隐藏】</a></li>  <li class="file"><a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/">22 【响应式布局】</a></li>  <li class="file"><a href="/2023/02/02/5c06def72fec4285bb849d30528e0303/">20 【rem适配布局】</a></li>  <li class="file"><a href="/2023/02/02/3deb7901e74d4e9aa9095df3da7305cf/">05 【CSS引入方式 CSS的元素显示模式】</a></li>  <li class="file"><a href="/2023/02/02/af297262b66348929acf86f09c99809c/">01 【HTML简介】</a></li>  <li class="file"><a href="/2023/02/02/394f3f21624a42298f8bd0cc0a8cf034/">15【背景 渐变色】</a></li>  <li class="file"><a href="/2023/02/02/3ba1ad7172b74c9f888fb5577a4f1143/">11 【定位】</a></li>  <li class="file"><a href="/2023/02/02/26011a9163a6486990089e0a074d5690/">02 【字符实体与语义标签(上)】</a></li>  <li class="file"><a href="/2023/02/02/a336b8d65382447abc8b9db0742c76df/">10 【高度塌陷与BFC】</a></li>  <li class="file"><a href="/2023/02/02/03f7d5a3ec6b484f99dcd540e3a0c800/">17 【2D转换 3D转换 浏览器私有前缀】</a></li>  <li class="file"><a href="/2023/02/02/0279e5f2fa4c42e5a595c1c80949701f/">14 【margin负值 文字围绕浮动 行内快 CSS三角 CSS初始化】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/227a7e051a0440e69890ea45ac4bf5e5/">数据结构与算法（二）</a></li>  <li class="file"><a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">数据结构与算法（三）</a></li>  <li class="file"><a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/">数据结构与算法（五）</a></li>  <li class="file"><a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">数据结构与算法（四）</a></li>  <li class="file"><a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/">数据结构与算法（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            搜索与图论
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/21/b74bc4b803df4e7b99cf906cd5177da6/">DFS算法</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站收藏
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/c64a51c38c9542fe9a5c1d7e2dc93dba/">小火柴的前端小站</a></li>  <li class="file"><a href="/2023/01/22/e18feca3c0ce43cd96468b8ad72fbc36/">被删的前端游乐场</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编辑器
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/9f99a098f001487da297656e466dcb3b/">VSCode 是什么|极客教程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            镜像站
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/ae79cc4392384967b905c952b720f392/">腾讯软件源</a></li>  <li class="file"><a href="/2023/01/22/6be31fe5f1cd44e7a52b7602603705ac/">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-c425906829ba4b5cbc58fb07c533496e" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/es6/">es6</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">
+            <time datetime="2023-02-02T05:18:15.603Z" itemprop="datePublished">2023-02-02</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/c425906829ba4b5cbc58fb07c533496e.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/c425906829ba4b5cbc58fb07c533496e.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/c425906829ba4b5cbc58fb07c533496e.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            10【Promise对象】
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="10【Promise对象】"><a href="#10【Promise对象】" class="headerlink" title="10【Promise对象】"></a>10【Promise对象】</h1><h2 id="1-同步异步的介绍"><a href="#1-同步异步的介绍" class="headerlink" title="1.同步异步的介绍"></a>1.同步异步的介绍</h2><p>Promise 是异步操作的一种解决方案。</p>
+<blockquote>
+<h4 id="异步的概念"><a href="#异步的概念" class="headerlink" title="异步的概念"></a>异步的概念</h4><p>异步（Asynchronous, async）是与同步（Synchronous, sync）相对的概念。</p>
+<p>在我们学习的传统单线程编程中，程序的运行是同步的（同步不意味着所有步骤同时运行，而是指步骤在一个控制流序列中按顺序执行）。而异步的概念则是不保证同步的概念，也就是说，一个异步过程的执行将不再与原有的序列有顺序关系。</p>
+<p>简单来理解就是：同步按你的代码顺序执行，异步不按照代码顺序执行，异步的执行效率更高。</p>
+<p>以上是关于异步的概念的解释，接下来我们通俗地解释一下异步：异步就是从主线程发射一个子线程来完成任务。</p>
+<p><img src="https://i0.hdslb.com/bfs/album/d1cc4d26fc4056acf3f704bddb4bfecdf3b3ddd0.png" alt="img"></p>
+<h4 id="什么时候用异步编程"><a href="#什么时候用异步编程" class="headerlink" title="什么时候用异步编程"></a>什么时候用异步编程</h4><p>在前端编程中（甚至后端有时也是这样），我们在处理一些简短、快速的操作时，例如计算 1 + 1 的结果，往往在主线程中就可以完成。主线程作为一个线程，不能够同时接受多方面的请求。所以，当一个事件没有结束时，界面将无法处理其他请求。</p>
+<p>现在有一个按钮，如果我们设置它的 onclick 事件为一个死循环，那么当这个按钮按下，整个网页将失去响应。</p>
+<p>为了避免这种情况的发生，我们常常用子线程来完成一些可能消耗时间足够长以至于被用户察觉的事情（或者是一些需要等待某个时机在背后自动执行的任务，比如：事件监听），比如读取一个大文件或者发出一个网络请求。因为子线程独立于主线程，所以即使出现阻塞也不会影响主线程的运行。但是子线程有一个局限：一旦发射了以后就会与主线程失去同步，我们无法确定它的结束，如果结束之后需要处理一些事情，比如处理来自服务器的信息，我们是无法将它合并到主线程中去的。</p>
+<p>JavaScript 是单线程语言，为了解决多线程问题，JavaScript 中的异步操作函数往往通过<strong>回调函数</strong>来实现异步任务的结果处理。</p>
+<h4 id="回调函数（callback-function）"><a href="#回调函数（callback-function）" class="headerlink" title="回调函数（callback function）"></a>回调函数（callback function）</h4><blockquote>
+<p>在 JavaScript 中，回调函数具体的定义为：函数A 作为参数（函数引用）传递到另一个 函数B 中，并且这个 函数B 执行函数A。我们就说 函数A 叫做回调函数。如果没有名称（函数表达式），就叫做匿名回调函数。</p>
+</blockquote>
+<p>回调函数就是一个作为参数的函数，它是在我们启动一个异步任务的时候就告诉它：等你完成了这个任务之后要干什么。这样一来主线程几乎不用关心异步任务的状态了，他自己会善始善终。</p>
+<blockquote>
+<p>注意：回调和异步不是同一个东西，许多人误认为 js 中每个回调函数都是异步处理的，实际上并不是，可以同步回调，也可以异步回调。只不过说：<strong>回调可以是同步也可以是异步，异步必须放在回调里执行，也就是对于一个异步任务只有回调函数里的才是异步的部分。</strong></p>
+<p>回调同步的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> test = <span class="keyword">function</span> (<span class="params">func</span>) &#123;</span><br><span class="line"> <span class="title function_">func</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;func&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>回调异步的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line"> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;one&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;two&#x27;</span>);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p><code>setInterval()</code> 和 <code>setTimeout()</code> 是两个异步语句。</p>
+<p>异步（asynchronous）：不会阻塞 CPU 继续执行其他语句，当异步完成时（包含回调函数的主函数的正常语句完成时），会执行 “回调函数”（callback）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>菜鸟教程(runoob.com)<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>回调函数等待 3 秒后执行。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>异步方式，不影响后续执行。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">print</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;demo&quot;</span>).<span class="property">innerHTML</span> = <span class="string">&quot;RUNOOB!&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="built_in">setTimeout</span>(print, <span class="number">3000</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/365c74378381a0e69761dfe542d2de267c1b3828.gif" alt="1"></p>
+<p>这段程序中的 setTimeout 就是一个消耗时间较长（3 秒）的过程，它的第一个参数是个回调函数，第二个参数是毫秒数，这个函数执行之后会产生一个子线程，子线程会等待 3 秒，然后执行回调函数 “print”，在命令行输出 “RUNOOB!”。</p>
+<p>当然，JavaScript 语法十分友好，我们不必单独定义一个函数 print ，我们常常将上面的程序写成：</p>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>菜鸟教程(runoob.com)<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>回调函数等待 3 秒后执行。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>异步方式，不影响后续执行。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;demo&quot;</span>).<span class="property">innerHTML</span> = <span class="string">&quot;RUNOOB!&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;, <span class="number">3000</span>);</span></span><br><span class="line"><span class="language-javascript">  <span class="comment">/* ES6 箭头函数写法</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">  setTimeout(() =&gt; &#123;</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">      document.getElementById(&quot;demo&quot;).innerHTML = &quot;RUNOOB!&quot;;</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">  &#125;, 3000);</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">  */</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>**注意：**既然 setTimeout 会在子线程中等待 3 秒，在 setTimeout 函数执行之后主线程并没有停止，所以：</p>
+<h3 id="实例-2"><a href="#实例-2" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>菜鸟教程(runoob.com)<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>回调函数等待 3 秒后执行。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;demo1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;demo2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;demo1&quot;</span>).<span class="property">innerHTML</span> = <span class="string">&quot;RUNOOB-1!&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">  &#125;, <span class="number">3000</span>);</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;demo2&quot;</span>).<span class="property">innerHTML</span> = <span class="string">&quot;RUNOOB-2!&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这段程序的执行结果是：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/ad3300e4fccf3861082bcb9633584d5aad190b98.gif" alt="2"></p>
+</blockquote>
+<p>（之前常用的异步操作解决方案是：回调函数）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(</span><br><span class="line">    <span class="string">&#x27;click&#x27;</span>,</span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;这里是异步的&#x27;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="literal">false</span></span><br><span class="line">);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;这里是同步的&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>什么时候使用 Promise 呢？</p>
+<p>Promise 一般用来解决层层嵌套的回调函数（回调地狱 callback hell）的问题。</p>
+<p>例如下面展示两个回调地狱的例子：</p>
+<p>例子1：分别间隔一秒打印省市县</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>回调举例<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">/*</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    // 此种方式，省市县都会在一秒后同时打印，没有实现要求</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    setTimeout(() =&gt; &#123;</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">        console.log(&quot;云南省&quot;);</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    &#125;, 1000);</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    setTimeout(() =&gt; &#123;</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">        console.log(&quot;玉溪市&quot;);</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    &#125;, 1000);</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    setTimeout(() =&gt; &#123;</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">        console.log(&quot;峨山县&quot;);</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    &#125;, 1000);</span></span></span><br><span class="line"><span class="comment"><span class="language-javascript">    */</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 通过回调函数的方式，实现异步</span></span></span><br><span class="line"><span class="language-javascript">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;云南省&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> str01 = <span class="string">&quot;云南省&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(str01 + <span class="string">&quot;玉溪市&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> str02 = <span class="string">&quot;云南省玉溪市&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">log</span>(str02 + <span class="string">&quot;峨山县&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;, <span class="number">1000</span>, str02);</span></span><br><span class="line"><span class="language-javascript">        &#125;, <span class="number">1000</span>, str01);</span></span><br><span class="line"><span class="language-javascript">    &#125;, <span class="number">1000</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;通过回调函数的方式，实现异步&quot;</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/a45ebe3c65367ca98ec1e4932a40f978cae5e818.gif" alt="555"></p>
+<p>例子2：当我们点击窗口后，盒子依次 “右——&gt;下——&gt;左” 移动</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Promise<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        * &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-id">#box</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: red;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">transition</span>: all <span class="number">0.5s</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 运动函数</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">move</span> = (<span class="params">el, &#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125; = &#123;&#125;, end = () =&gt; &#123;&#125;</span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">        el.<span class="property">style</span>.<span class="property">transform</span> = <span class="string">`translate3d(<span class="subst">$&#123;x&#125;</span>px, <span class="subst">$&#123;y&#125;</span>px, 0)`</span>;</span></span><br><span class="line"><span class="language-javascript">        el.<span class="title function_">addEventListener</span>(</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// transitionend 事件在 CSS 完成过渡后触发。</span></span></span><br><span class="line"><span class="language-javascript">            <span class="string">&#x27;transitionend&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">end</span>();</span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">            <span class="literal">false</span></span></span><br><span class="line"><span class="language-javascript">        );</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> boxEl = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 形成回调地狱</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(</span></span><br><span class="line"><span class="language-javascript">        <span class="string">&#x27;click&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">move</span>(boxEl, &#123;<span class="attr">x</span>: <span class="number">150</span>&#125;, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">move</span>(boxEl, &#123;<span class="attr">x</span>: <span class="number">150</span>, <span class="attr">y</span>: <span class="number">150</span>&#125;, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="title function_">move</span>(boxEl, &#123;<span class="attr">y</span>: <span class="number">150</span>&#125;, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="title function_">move</span>(boxEl, &#123;<span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>&#125;);</span></span><br><span class="line"><span class="language-javascript">                    &#125;);</span></span><br><span class="line"><span class="language-javascript">                &#125;);</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">        <span class="literal">false</span></span></span><br><span class="line"><span class="language-javascript">    );</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://i0.hdslb.com/bfs/album/97e97a5e20c5634615ea020b9840ef838d9c0718.gif" style="zoom:25%;" />
+
+<h2 id="2-Promise-的含义"><a href="#2-Promise-的含义" class="headerlink" title="2.Promise 的含义"></a>2.Promise 的含义</h2><p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了<code>Promise</code>对象。</p>
+<p>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
+<p>Promise 有三个状态：pending（等待）、fulfilled 或 resolved（成功）、rejected（失败）。</p>
+<p>并且 Promise 必须接收一个回调函数，这个回调函数有两个参数，这两个参数也是两个函数，<code>(resolve, reject) =&gt; &#123;&#125;</code>。</p>
+<ul>
+<li><p>实例化 Promise 后，默认是等待状态。</p>
+</li>
+<li><p>当执行 <code>resolve()</code> 函数时，Promise 从等待状态——&gt;成功状态。</p>
+</li>
+<li><p>当执行 <code>reject()</code> 函数时，Promise 从等待状态——&gt;失败状态。</p>
+</li>
+</ul>
+<p>注意：当 Promise 的状态一但从等待转变为某一个状态后，后续的转变就自动忽略了，比如：先调用 resolve() 再调用 reject()，那么 Promise 的最终结果是成功状态。</p>
+<blockquote>
+<p>注意：这里的 resolve reject 只是一个形参，可以取任意名字，但是我们约定直接使用 resolve reject。</p>
+</blockquote>
+<p>注意，为了行文方便，本章后面的<code>resolved</code>统一只指<code>fulfilled</code>状态，不包含<code>rejected</code>状态。</p>
+<p>有了<code>Promise</code>对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，<code>Promise</code>对象提供统一的接口，使得控制异步操作更加容易。</p>
+<p><code>Promise</code>也有一些缺点。首先，无法取消<code>Promise</code>，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，<code>Promise</code>内部抛出的错误，不会反应到外部。第三，当处于<code>pending</code>状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
+<h2 id="3-Promise-的基本用法"><a href="#3-Promise-的基本用法" class="headerlink" title="3.Promise 的基本用法"></a>3.Promise 的基本用法</h2><p>ES6 规定，<code>Promise</code>对象是一个构造函数，用来生成<code>Promise</code>实例。</p>
+<p>下面代码创造了一个<code>Promise</code>实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    <span class="title function_">resolve</span>(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>Promise</code>构造函数接受一个函数作为参数，该函数的两个参数分别是<code>resolve</code>和<code>reject</code>。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。</p>
+<p><code>resolve</code>函数的作用是，将<code>Promise</code>对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；<code>reject</code>函数的作用是，将<code>Promise</code>对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
+<p><code>Promise</code>实例生成以后，可以用<code>then</code>方法分别指定<code>resolved</code>状态和<code>rejected</code>状态的回调函数。</p>
+<p><code>resolve()</code> 和 <code>reject()</code> 函数是可以接收参数的。</p>
+<ul>
+<li><code>resolve()</code> 接收的参数会传递给 then 方法的第一个回调函数</li>
+<li><code>reject()</code> 接收的参数会传递给 then 方法的第二个回调函数</li>
+</ul>
+<p>注意：通常我们不仅仅会传递一个基本数据类型的值，我们还常常传递对象，比如再 reject 中传递一个错误对象：</p>
+<p><code>reject(new Error(&quot;出错了！&quot;));</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promise.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125;, <span class="keyword">function</span>(<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>then</code>方法可以接受两个回调函数作为参数。第一个回调函数是<code>Promise</code>对象的状态变为<code>resolved</code>时调用，第二个回调函数是<code>Promise</code>对象的状态变为<code>rejected</code>时调用。这两个函数都是可选的，不一定要提供。它们都接受<code>Promise</code>对象传出的值作为参数。</p>
+<p>下面是一个<code>Promise</code>对象的简单例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">timeout</span>(<span class="params">ms</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(resolve, ms, <span class="string">&#x27;done&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">timeout</span>(<span class="number">100</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>timeout</code>方法返回一个<code>Promise</code>实例，表示一段时间以后才会发生的结果。过了指定的时间（<code>ms</code>参数）以后，<code>Promise</code>实例的状态变为<code>resolved</code>，就会触发<code>then</code>方法绑定的回调函数。</p>
+<p>Promise 新建后就会立即执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Promise&#x27;</span>);</span><br><span class="line">  <span class="title function_">resolve</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;resolved.&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hi!&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Promise</span></span><br><span class="line"><span class="comment">// Hi!</span></span><br><span class="line"><span class="comment">// resolved</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，Promise 新建后立即执行，所以首先输出的是<code>Promise</code>。然后，<code>then</code>方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以<code>resolved</code>最后输出。</p>
+<p>下面是异步加载图片的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">loadImageAsync</span>(<span class="params">url</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> image = <span class="keyword">new</span> <span class="title class_">Image</span>();</span><br><span class="line"></span><br><span class="line">    image.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(image);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    image.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Could not load image at &#x27;</span> + url));</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    image.<span class="property">src</span> = url;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，使用<code>Promise</code>包装了一个图片加载的异步操作。如果加载成功，就调用<code>resolve</code>方法，否则就调用<code>reject</code>方法。</p>
+<p>如果调用<code>resolve</code>函数和<code>reject</code>函数时带有参数，那么它们的参数会被传递给回调函数。<code>reject</code>函数的参数通常是<code>Error</code>对象的实例，表示抛出的错误；<code>resolve</code>函数的参数除了正常的值以外，还可能是另一个 Promise 实例，比如像下面这样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="title function_">resolve</span>(p1);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>p1</code>和<code>p2</code>都是 Promise 的实例，但是<code>p2</code>的<code>resolve</code>方法将<code>p1</code>作为参数，即一个异步操作的结果是返回另一个异步操作。</p>
+<p>注意，这时<code>p1</code>的状态就会传递给<code>p2</code>，也就是说，<code>p1</code>的状态决定了<code>p2</code>的状态。如果<code>p1</code>的状态是<code>pending</code>，那么<code>p2</code>的回调函数就会等待<code>p1</code>的状态改变；如果<code>p1</code>的状态已经是<code>resolved</code>或者<code>rejected</code>，那么<code>p2</code>的回调函数将会立刻执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;fail&#x27;</span>)), <span class="number">3000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(p1), <span class="number">1000</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">p2</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(result))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(error))</span><br><span class="line"><span class="comment">// Error: fail</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>p1</code>是一个 Promise，3 秒之后变为<code>rejected</code>。<code>p2</code>的状态在 1 秒之后改变，<code>resolve</code>方法返回的是<code>p1</code>。由于<code>p2</code>返回的是另一个 Promise，导致<code>p2</code>自己的状态无效了，由<code>p1</code>的状态决定<code>p2</code>的状态。所以，后面的<code>then</code>语句都变成针对后者（<code>p1</code>）。又过了 2 秒，<code>p1</code>变为<code>rejected</code>，导致触发<code>catch</code>方法指定的回调函数。</p>
+<p>注意，调用<code>resolve</code>或<code>reject</code>并不会终结 Promise 的参数函数的执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">r</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(r);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，调用<code>resolve(1)</code>以后，后面的<code>console.log(2)</code>还是会执行，并且会首先打印出来。这是因为立即 resolved 的 Promise 是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务。</p>
+<p>一般来说，调用<code>resolve</code>或<code>reject</code>以后，Promise 的使命就完成了，后继操作应该放到<code>then</code>方法里面，而不应该直接写在<code>resolve</code>或<code>reject</code>的后面。所以，最好在它们前面加上<code>return</code>语句，这样就不会有意外。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">resolve</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="comment">// 后面的语句不会执行</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Promise-prototype-then"><a href="#4-Promise-prototype-then" class="headerlink" title="4.Promise.prototype.then()"></a>4.Promise.prototype.then()</h2><ol>
+<li><p>then 方法的两个回调函数什么时候执行</p>
+<ul>
+<li>pending——&gt;resolved时，执行 then 的第一个回调函数</li>
+<li>pending——&gt;rejected 时，执行 then 的第二个回调函数</li>
+</ul>
+</li>
+<li><p>then 方法执行后的返回值</p>
+<ul>
+<li>then 方法执行后默认自动返回一个新的 Promise 对象</li>
+</ul>
+</li>
+<li><p>then 方法返回的 Promise 对象的状态改变</p>
+<ul>
+<li><p>then 方法其实默认返回的是 undefined，即：<code>return undefined</code>，但是 ES6 的机制规定：当 then 返回 undefined 时，那么会将这个 undefined 包装成一个 Promise，并且这个 Promise 默认调用了 <code>resilve()</code> 方法（成功态），并且把 undefined 作为了 resilve() 的参数，相当于：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>();</span><br><span class="line">&#125;);</span><br><span class="line">p.<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 默认会执行这一条</span></span><br><span class="line">    <span class="comment">// return undefined;</span></span><br><span class="line">&#125;, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实际上，return 会包装为一个 Promise 对象，同时默认执行 resolve()，并把 return 的值作为 resolve() 的参数</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">return new Promise(resolve =&gt; &#123;</span></span><br><span class="line"><span class="comment">    resolve(undefined);</span></span><br><span class="line"><span class="comment">&#125;);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -----------------------------</span></span><br><span class="line"><span class="comment">// 如果我们在这个返回的 Promise 上继续调用 then 方法，并接收参数的话，可以发现 then 中成功接收到了被 Promise 包装后的参数</span></span><br><span class="line"><span class="keyword">const</span> p2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>();</span><br><span class="line">&#125;);</span><br><span class="line">p2.<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 默认会执行这一条</span></span><br><span class="line">    <span class="comment">// return undefined;</span></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);  <span class="comment">// 打印 undefined</span></span><br><span class="line">    <span class="comment">// 手动 return 一个值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">24</span>;</span><br><span class="line">    <span class="comment">// 相当于：return new Promise(resolve =&gt; &#123;resolve(24);&#125;);</span></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);	<span class="comment">// 打印 24</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果我们要让 then 返回一个失败状态的 Promise，那么我们可以手动 return 一个 Promise 并执行 reject() 方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p3 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>();</span><br><span class="line">&#125;);</span><br><span class="line">p3.<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 手动返回一个调用了 reject 的 Promise</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">reject</span>(<span class="string">&quot;失败&quot;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;&#125;, <span class="function"><span class="params">errData</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(errData);	<span class="comment">// 失败</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>总结</strong>：Promise 是一个构造函数，需要 new 才能使用。在 new Promise() 的时候需要传递一个匿名回调函数作为 Promise() 唯一的参数，这个回调函数有两个参数 resolve reject，这两个参数也是函数，当回调函数执行第一个 resolve 函数后 Promise 便变为了成功状态，反之回调函数执行了 reject 后 Promise 便变为了失败状态，且每个 Promise 只能要么执行 resolve，要么执行 reject，不能同时执行！当 Promise 被 new 之后就会有一个 then 方法，该方法默认接收两个匿名回调函数作为参数，其中第一个回调函数是在 Promise 为成功状态时自动调用的，反之第二个回调函数是在 Promise 为失败状态时自动调用的，并且这两个回调函数是可以接收参数的，参数就来自于 resolve 或 reject 调用时传递的实参！在 then 方法执行后会默认返回 undefined（在没有指定返回值的情况下），ES6 会将其包装为一个新的成功态的 Promise，该 Promise 会自动执行 resolve 函数，该函数的参数来自于 then 方法的返回值（如果没有返回值那么默认就返回 undefined）。如果需要返回一个失败态的 Promise，那么需要在 then 中手动指定返回值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="title function_">reject</span>(参数);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>案例：分别间隔一秒打印省市县。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line">&lt;html lang=&quot;zh&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Promise&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // 通过 Promise 的方式，解决回调地狱</span><br><span class="line">    new Promise((resolve) =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(&quot;云南省&quot;);</span><br><span class="line">            resolve(&quot;云南省&quot;);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">    &#125;).then(res =&gt; &#123;</span><br><span class="line">        return new Promise((resolve) =&gt; &#123;</span><br><span class="line">            setTimeout(() =&gt; &#123;</span><br><span class="line">                console.log(res + &quot;玉溪市&quot;);</span><br><span class="line">                resolve(res + &quot;玉溪市&quot;);</span><br><span class="line">            &#125;, 1000);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;).then(res =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123;</span><br><span class="line">            console.log(res + &quot;峨山县&quot;);</span><br><span class="line">        &#125;, 1000);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    console.log(&quot;通过 Promise 的方式，实现异步&quot;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/1891f1c10ba44350cb747b01463178deb806c8bf.gif" alt="2"></p>
+<h2 id="5-Promise-prototype-catch"><a href="#5-Promise-prototype-catch" class="headerlink" title="5.Promise.prototype.catch()"></a>5.Promise.prototype.catch()</h2><p>由之前的例子可以看出，我们在使用 Promise 的时候，大部分情况下，我们只用 resolve() 方法（成功态），所以在 Promise 回调函数中我们常常省略 reject 函数参数，在 then 中我们常常省略第二个回调函数。</p>
+<p>但是我们还是需要处理异步中的异常，所以 ES6 中提供了我们一个 <code>catch()</code> 方法专门用来处理 Promise 的异常部分（失败态）。</p>
+<ul>
+<li><p>catch 专门用来处理 rejected 状态</p>
+</li>
+<li><p>catch 本质上是 then 的特例</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="string">&quot;失败&quot;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);   <span class="comment">// 失败</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------------------------------</span></span><br><span class="line"><span class="comment">// 上面的代码本质上等同于</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="string">&quot;失败&quot;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="literal">null</span>, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);	<span class="comment">// 失败</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在 Promise 中，一但出现了错误状态，那么这个错误是不会消失的，会一直向下传递，直到遇到可以处理错误的函数。</p>
+</blockquote>
+<p>由于 catch 是 then 的特例，所以 catch 依旧返回的是一个 Promise 对象，我们可以在 catch 后继续调用 then。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>(<span class="string">&quot;失败&quot;</span>);</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err);   <span class="comment">// 失败</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(res);	<span class="comment">// 测试 </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一般总是建议，Promise 对象后面要跟一个或多个 catch 方法，这样可以处理 Promise 内部发生的错误！</p>
+</blockquote>
+<h2 id="6-Promise-prototype-finally"><a href="#6-Promise-prototype-finally" class="headerlink" title="6.Promise.prototype.finally()"></a>6.Promise.prototype.finally()</h2><p>当 Promise 状态发生变化时，不论如何变化都会执行，不变化不执行。</p>
+<ul>
+<li><p>finally() 不能接收参数。</p>
+</li>
+<li><p>finally 也是 then 的特例。</p>
+</li>
+</ul>
+<p><code>finally()</code>方法用于指定不管 Promise 对象最后状态如何，都会执行的操作。该方法是 ES2018 引入标准的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">.<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;···&#125;)</span><br><span class="line">.<span class="title function_">catch</span>(<span class="function"><span class="params">error</span> =&gt;</span> &#123;···&#125;)</span><br><span class="line">.<span class="title function_">finally</span>(<span class="function">() =&gt;</span> &#123;···&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，不管<code>promise</code>最后的状态，在执行完<code>then</code>或<code>catch</code>指定的回调函数以后，都会执行<code>finally</code>方法指定的回调函数。</p>
+<p>下面是一个例子，服务器使用 Promise 处理请求，然后使用<code>finally</code>方法关掉服务器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server.<span class="title function_">listen</span>(port)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">finally</span>(server.<span class="property">stop</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>finally</code>方法的回调函数不接受任何参数，这意味着没有办法知道，前面的 Promise 状态到底是<code>fulfilled</code>还是<code>rejected</code>。这表明，<code>finally</code>方法里面的操作，应该是与状态无关的，不依赖于 Promise 的执行结果。</p>
+<p>上面代码中，如果不使用<code>finally</code>方法，同样的语句需要为成功和失败两种情况各写一次。有了<code>finally</code>方法，则只需要写一次。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="string">&quot;测试01&quot;</span>);</span><br><span class="line">&#125;).<span class="title function_">finally</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data + <span class="string">&quot; finally01&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">reject</span>(<span class="string">&quot;测试02&quot;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).<span class="title function_">finally</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data + <span class="string">&quot; finally02&quot;</span>)</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;catch: &quot;</span> + err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">undefined finally01</span></span><br><span class="line"><span class="comment">undefined finally02</span></span><br><span class="line"><span class="comment">catch: 测试02</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从以上示例可以看出：finally 可以接收正确状态或错误状态，但是不能接收参数。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------------------------------</span></span><br><span class="line"><span class="comment">// finally 也是 then 的特例</span></span><br><span class="line"><span class="comment">// finally 等同于：</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">reject</span>(err);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>finally</code>：主要是用来处理一些必做操作，比如在操作数据库之后（无论成功与否）都要关闭数据库连接。</p>
+<h2 id="7-Promise-all"><a href="#7-Promise-all" class="headerlink" title="7.Promise.all()"></a>7.Promise.all()</h2><p><code>Promise.all()</code>方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">all</span>([p1, p2, p3]);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>Promise.all()</code>方法接受一个数组作为参数，<code>p1</code>、<code>p2</code>、<code>p3</code>都是 Promise 实例，如果不是，就会先调用下面讲到的<code>Promise.resolve</code>方法，将参数转为 Promise 实例，再进一步处理。另外，<code>Promise.all()</code>方法的参数可以不是数组，但必须具有 Iterator 接口，且返回的每个成员都是 Promise 实例。</p>
+<p><code>p</code>的状态由<code>p1</code>、<code>p2</code>、<code>p3</code>决定，分成两种情况。</p>
+<p>（1）只有<code>p1</code>、<code>p2</code>、<code>p3</code>的状态都变成<code>fulfilled</code>，<code>p</code>的状态才会变成<code>fulfilled</code>，此时<code>p1</code>、<code>p2</code>、<code>p3</code>的返回值组成一个数组，传递给<code>p</code>的回调函数。</p>
+<p>（2）只要<code>p1</code>、<code>p2</code>、<code>p3</code>之中有一个被<code>rejected</code>，<code>p</code>的状态就变成<code>rejected</code>，此时第一个被<code>reject</code>的实例的返回值，会传递给<code>p</code>的回调函数。</p>
+<p>下面是一个具体的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成一个Promise对象的数组</span></span><br><span class="line"><span class="keyword">const</span> promises = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>].<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">id</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">getJSON</span>(<span class="string">&#x27;/post/&#x27;</span> + id + <span class="string">&quot;.json&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>(promises).<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">posts</span>) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="keyword">function</span>(<span class="params">reason</span>)&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>promises</code>是包含 6 个 Promise 实例的数组，只有这 6 个实例的状态都变成<code>fulfilled</code>，或者其中有一个变为<code>rejected</code>，才会调用<code>Promise.all</code>方法后面的回调函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Promise.all() 的状态变化与所有传入的 Promise 实例对象状态有关</span></span><br><span class="line"><span class="comment">用途举例：在用 Ajax 从后端接口获取数据的时候，如果全部获取到了，那么才处理，否则不处理。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">delay</span> = ms =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(resolve, ms);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例一：所有状态都变为 resolved</span></span><br><span class="line"><span class="keyword">const</span> p1 = <span class="title function_">delay</span>(<span class="number">1000</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p1 完成了&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;p1&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p2 = <span class="title function_">delay</span>(<span class="number">2000</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p2 完成了&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;p2&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">all</span>([p1, p2]);</span><br><span class="line">p.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res + <span class="string">&quot; 成功&quot;</span>);</span><br><span class="line">&#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err + <span class="string">&quot; 失败&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">p1 完成了</span></span><br><span class="line"><span class="comment">p2 完成了</span></span><br><span class="line"><span class="comment">p1,p2 成功</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">解释：</span></span><br><span class="line"><span class="comment">1、Promise.all() 直接执行两个 Promise 实例</span></span><br><span class="line"><span class="comment">2、执行 p1，输出 p1 完成了</span></span><br><span class="line"><span class="comment">3、检测到 resolved，Promise.all() 继续执行</span></span><br><span class="line"><span class="comment">4、执行 p2，输出 p2 完成了</span></span><br><span class="line"><span class="comment">5、检测到 resolved，由于 Promise 已经全部执行完，所以执行 then 第一个回调输出 p1,p2 成功，Promise.all() 终止。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例二：出现一个 rejected 状态</span></span><br><span class="line"><span class="keyword">const</span> p1 = <span class="title function_">delay</span>(<span class="number">1000</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p1 完成了&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="string">&#x27;p1&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p2 = <span class="title function_">delay</span>(<span class="number">2000</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;p2 完成了&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;p2&#x27;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">all</span>([p1, p2]);</span><br><span class="line">p.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res + <span class="string">&quot; 成功&quot;</span>);</span><br><span class="line">&#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(err + <span class="string">&quot; 失败&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">p1 完成了</span></span><br><span class="line"><span class="comment">p1 失败</span></span><br><span class="line"><span class="comment">p2 完成了</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">解释：</span></span><br><span class="line"><span class="comment">1、Promise.all() 直接执行两个 Promise 实例</span></span><br><span class="line"><span class="comment">2、执行 p1，输出 p1 完成了</span></span><br><span class="line"><span class="comment">3、检测到 rejected，Promise.all() 直接变为 rejected，执行 then 第二个回调输出 p1 失败，至此 Promise.all() 已经执行完毕。</span></span><br><span class="line"><span class="comment">4、由于 p2 延迟了两秒执行所以在后面输出（如果 p2 延时小于 p1，那么应该先输出 p2 完成了，然后在是 p1 完成了，p1 失败）</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-Promise-resolve-和Promise-reject"><a href="#8-Promise-resolve-和Promise-reject" class="headerlink" title="8.Promise.resolve()和Promise.reject()"></a>8.Promise.resolve()和Promise.reject()</h2><p>以上两者都是 Promise 构造函数的方法。</p>
+<blockquote>
+<p>下面我们以 Promise.resolve() 举例，Promise.reject() 同理。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise.resolve() 可以理解为普通成功状态的一种简写形式</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&#x27;foo&#x27;</span>));</span><br><span class="line"><span class="comment">// 简写</span></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Promise.resolve() 与 Promise.reject() 的参数问题：</p>
+<p>1、一般参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;foo&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;)	<span class="comment">// foo</span></span><br></pre></td></tr></table></figure>
+
+<p>2、特殊参数：Promise 作为参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(resolve, <span class="number">1000</span>, <span class="string">&#x27;我执行了&#x27;</span>);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    上述延时器写法相当于：</span></span><br><span class="line"><span class="comment">    setTimeout(()=&gt;&#123;</span></span><br><span class="line"><span class="comment">        resolve(&#x27;我执行了&#x27;);</span></span><br><span class="line"><span class="comment">    &#125;, 1000);</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>(p1).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);	<span class="comment">// 等待一秒后，输出 &#x27;我执行了&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">当 Promise.resolve() 接收的是 Promise 对象时，直接返回这个 Promise 对象，什么都不做</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 所以，以上代码等同于：</span></span><br><span class="line">p1.<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(data); <span class="comment">// 等待一秒后，输出 &#x27;我执行了&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 验证</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Promise</span>.<span class="title function_">resolve</span>(p1) === p1);	<span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于 Promise.resolve() 可以理解为普通成功状态的一种简写形式，所以：</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> <span class="title function_">resolve</span>(p1)).<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(data); <span class="comment">// 等待一秒后，输出 &#x27;我执行了&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>3、特殊参数：具有 then 方法的对象（了解即可）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> thenable = &#123;</span><br><span class="line">    <span class="title function_">then</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;then&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>(thenable).<span class="title function_">then</span>(</span><br><span class="line">    <span class="function"><span class="params">res</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;res &quot;</span> + res),</span><br><span class="line">    <span class="function"><span class="params">err</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;err &quot;</span> + err)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">then</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当接收一个含 then 方法的对象时，Promise.resolve() 会直接调用 then 方法。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 为什么不会执行 then 中的两个回调函数呢？</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Promise</span>.<span class="title function_">resolve</span>(thenable));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Promise &#123; &lt;pending&gt; &#125;</span></span><br><span class="line"><span class="comment">then</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 可见，当接收一个含 then 方法的对象时，默认返回一个 Promise 并且是等待状态的，没有状态的变化，那么就不可能会执行 then 的回调函数</span></span><br><span class="line"><span class="comment">// 如果我们要改变这个返回的 Promise 对象的状态，并让 then 的回调对应处理的话，ES6 规定了以下写法：</span></span><br><span class="line"><span class="keyword">const</span> thenable02 = &#123;</span><br><span class="line">    <span class="title function_">then</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;then&#x27;</span>);</span><br><span class="line">        <span class="title function_">resolve</span>(<span class="string">&#x27;then&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">resolve</span>(thenable02).<span class="title function_">then</span>(</span><br><span class="line">    <span class="function"><span class="params">res</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;res &quot;</span> + res),</span><br><span class="line">    <span class="function"><span class="params">err</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;err &quot;</span> + err)</span><br><span class="line">);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">then</span></span><br><span class="line"><span class="comment">res then</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>与 Promise.resolve() 不同，Promise.reject() 无论接收什么类型的参数，都会原封不动的向后传递！</p>
+</blockquote>
+<h2 id="9-Promise-race"><a href="#9-Promise-race" class="headerlink" title="9.Promise.race()"></a>9.Promise.race()</h2><p><code>Promise.race()</code>方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">race</span>([p1, p2, p3]);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，只要<code>p1</code>、<code>p2</code>、<code>p3</code>之中有一个实例率先改变状态，<code>p</code>的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给<code>p</code>的回调函数。</p>
+<p><code>Promise.race()</code>方法的参数与<code>Promise.all()</code>方法一样，如果不是 Promise 实例，就会先调用<code>Promise.resolve()</code>方法，将参数转为 Promise 实例，再进一步处理。</p>
+<p>下面是一个例子，如果指定时间内没有获得结果，就将 Promise 的状态变为<code>reject</code>，否则变为<code>resolve</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">Promise</span>.<span class="title function_">race</span>([</span><br><span class="line">  <span class="title function_">fetch</span>(<span class="string">&#x27;/resource-that-may-take-a-while&#x27;</span>),</span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;request timeout&#x27;</span>)), <span class="number">5000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">p</span><br><span class="line">.<span class="title function_">then</span>(<span class="variable language_">console</span>.<span class="property">log</span>)</span><br><span class="line">.<span class="title function_">catch</span>(<span class="variable language_">console</span>.<span class="property">error</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，如果 5 秒之内<code>fetch</code>方法无法返回结果，变量<code>p</code>的状态就会变为<code>rejected</code>，从而触发<code>catch</code>方法指定的回调函数。</p>
+<h2 id="10-Promise-allSettled"><a href="#10-Promise-allSettled" class="headerlink" title="10.Promise.allSettled()"></a>10.Promise.allSettled()</h2><p>有时候，我们希望等到一组异步操作都结束了，不管每一个操作是成功还是失败，再进行下一步操作。但是，现有的 Promise 方法很难实现这个要求。</p>
+<p><code>Promise.all()</code>方法只适合所有异步操作都成功的情况，如果有一个操作失败，就无法满足要求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> urls = [url_1, url_2, url_3];</span><br><span class="line"><span class="keyword">const</span> requests = urls.<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> <span class="title function_">fetch</span>(x));</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(requests);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;所有请求都成功。&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;至少一个请求失败，其他请求可能还没结束。&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>Promise.all()</code>可以确定所有请求都成功了，但是只要有一个请求失败，它就会报错，而不管另外的请求是否结束。</p>
+<p>为了解决这个问题，ES2020引入了<code>Promise.allSettled()</code>方法，用来确定一组异步操作是否都结束了（不管成功或失败）。所以，它的名字叫做”Settled“，包含了”fulfilled“和”rejected“两种情况。</p>
+<p><code>Promise.allSettled()</code>方法接受一个数组作为参数，数组的每个成员都是一个 Promise 对象，并返回一个新的 Promise 对象。只有等到参数数组的所有 Promise 对象都发生状态变更（不管是<code>fulfilled</code>还是<code>rejected</code>），返回的 Promise 对象才会发生状态变更。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promises = [</span><br><span class="line">  <span class="title function_">fetch</span>(<span class="string">&#x27;/api-1&#x27;</span>),</span><br><span class="line">  <span class="title function_">fetch</span>(<span class="string">&#x27;/api-2&#x27;</span>),</span><br><span class="line">  <span class="title function_">fetch</span>(<span class="string">&#x27;/api-3&#x27;</span>),</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">allSettled</span>(promises);</span><br><span class="line"><span class="title function_">removeLoadingIndicator</span>();</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，数组<code>promises</code>包含了三个请求，只有等到这三个请求都结束了（不管请求成功还是失败），<code>removeLoadingIndicator()</code>才会执行。</p>
+<p>该方法返回的新的 Promise 实例，一旦发生状态变更，状态总是<code>fulfilled</code>，不会变成<code>rejected</code>。状态变成<code>fulfilled</code>后，它的回调函数会接收到一个数组作为参数，该数组的每个成员对应前面数组的每个 Promise 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> resolved = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">42</span>);</span><br><span class="line"><span class="keyword">const</span> rejected = <span class="title class_">Promise</span>.<span class="title function_">reject</span>(-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> allSettledPromise = <span class="title class_">Promise</span>.<span class="title function_">allSettled</span>([resolved, rejected]);</span><br><span class="line"></span><br><span class="line">allSettledPromise.<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">results</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(results);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//    &#123; status: &#x27;fulfilled&#x27;, value: 42 &#125;,</span></span><br><span class="line"><span class="comment">//    &#123; status: &#x27;rejected&#x27;, reason: -1 &#125;</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>Promise.allSettled()</code>的返回值<code>allSettledPromise</code>，状态只可能变成<code>fulfilled</code>。它的回调函数接收到的参数是数组<code>results</code>。该数组的每个成员都是一个对象，对应传入<code>Promise.allSettled()</code>的数组里面的两个 Promise 对象。</p>
+<p><code>results</code>的每个成员是一个对象，对象的格式是固定的，对应异步操作的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异步操作成功时</span></span><br><span class="line">&#123;<span class="attr">status</span>: <span class="string">&#x27;fulfilled&#x27;</span>, <span class="attr">value</span>: value&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步操作失败时</span></span><br><span class="line">&#123;<span class="attr">status</span>: <span class="string">&#x27;rejected&#x27;</span>, <span class="attr">reason</span>: reason&#125;</span><br></pre></td></tr></table></figure>
+
+<p>成员对象的<code>status</code>属性的值只可能是字符串<code>fulfilled</code>或字符串<code>rejected</code>，用来区分异步操作是成功还是失败。如果是成功（<code>fulfilled</code>），对象会有<code>value</code>属性，如果是失败（<code>rejected</code>），会有<code>reason</code>属性，对应两种状态时前面异步操作的返回值。</p>
+<p>下面是返回值的用法例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promises = [ <span class="title function_">fetch</span>(<span class="string">&#x27;index.html&#x27;</span>), <span class="title function_">fetch</span>(<span class="string">&#x27;https://does-not-exist/&#x27;</span>) ];</span><br><span class="line"><span class="keyword">const</span> results = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">allSettled</span>(promises);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 过滤出成功的请求</span></span><br><span class="line"><span class="keyword">const</span> successfulPromises = results.<span class="title function_">filter</span>(<span class="function"><span class="params">p</span> =&gt;</span> p.<span class="property">status</span> === <span class="string">&#x27;fulfilled&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 过滤出失败的请求，并输出原因</span></span><br><span class="line"><span class="keyword">const</span> errors = results</span><br><span class="line">  .<span class="title function_">filter</span>(<span class="function"><span class="params">p</span> =&gt;</span> p.<span class="property">status</span> === <span class="string">&#x27;rejected&#x27;</span>)</span><br><span class="line">  .<span class="title function_">map</span>(<span class="function"><span class="params">p</span> =&gt;</span> p.<span class="property">reason</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-Promise的应用"><a href="#11-Promise的应用" class="headerlink" title="11.Promise的应用"></a>11.Promise的应用</h2><p>【异步加载图片】</p>
+<p>异步加载：也称为图片的预加载。利用 js 代码提前加载图片，用户需要时可以直接从本地缓存获取，但是会增加服务器前端的压力。这样做可以提高用户的体验，因为同步加载大图片的时候，图片会一层一层的显示处理，但是经过预加载后，直接显示出整张图片。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Promise 的应用<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-id">#img</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">width</span>: <span class="number">24%</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">padding</span>: <span class="number">24px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 一般加载图片方式 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;img src=&quot;https://scpic.chinaz.net/files/pic/pic9/202009/apic27858.jpg&quot; alt=&quot;&quot;/&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;img&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 异步加载图片</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 异步加载图片函数（参数：图片路径）</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> <span class="title function_">loadImgAsync</span> = url =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// Promise 实现异步</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 创建一个图片对象</span></span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">const</span> img = <span class="keyword">new</span> <span class="title class_">Image</span>();</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 图片成功加载触发事件</span></span></span><br><span class="line"><span class="language-javascript">            img.<span class="property">onload</span> = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">resolve</span>(img);</span></span><br><span class="line"><span class="language-javascript">            &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 图片加载失败触发事件</span></span></span><br><span class="line"><span class="language-javascript">            img.<span class="property">onerror</span> = <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`Could not load image at <span class="subst">$&#123;url&#125;</span>`</span>));</span></span><br><span class="line"><span class="language-javascript">            &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 这个放在 onload 与 onerror 之后</span></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 一但给 img.src 赋值，那么便立马开始发送请求加载图片（在后台加载，页面上不会显示）</span></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 注意：这里的 src 是 img 对象的属性，与 html 中 img 的 src 无关</span></span></span><br><span class="line"><span class="language-javascript">            img.<span class="property">src</span> = url;</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> imgDOM = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;img&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">loadImgAsync</span>(<span class="string">&#x27;https://scpic.chinaz.net/files/pic/pic9/202009/apic27858.jpg&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function"><span class="params">img</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">// 如果加载成功，那么把后台缓存的图片显示到页面上</span></span></span><br><span class="line"><span class="language-javascript">            imgDOM.<span class="property">src</span> = img.<span class="property">src</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/3d95f9d84019bfe212e1abec0eb135f92636a8ef.png" alt="image-20220528144323405"></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    02 【let和const】
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">03【解构赋值】</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Public &copy; 2023 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

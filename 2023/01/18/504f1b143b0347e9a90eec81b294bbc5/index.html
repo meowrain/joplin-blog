@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>数据结构与算法（三） | 知识库</title>
+    
+    
+        <meta name="keywords" content="数据结构与算法（三）" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="散列表篇在之前，我们已经学习了多种查找数据的方式，比如最简单的，如果数据量不大的情况下，我们可以直接通过顺序查找的方式在集合中搜索我们想要的元素；当数据量较大时，我们可以使用二分搜索来快速找到我们想要的数据，不过需要要求数据按照顺序排列，并且不允许中途对集合进行修改。 在学习完树形结构篇之后，我们可以利用二叉查找树来建立一个便于我们查找的树形结构，甚至可以将其优化为平衡二叉树或是红黑树来进一步提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法（三）">
+<meta property="og:url" content="http://example.com/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="散列表篇在之前，我们已经学习了多种查找数据的方式，比如最简单的，如果数据量不大的情况下，我们可以直接通过顺序查找的方式在集合中搜索我们想要的元素；当数据量较大时，我们可以使用二分搜索来快速找到我们想要的数据，不过需要要求数据按照顺序排列，并且不允许中途对集合进行修改。 在学习完树形结构篇之后，我们可以利用二叉查找树来建立一个便于我们查找的树形结构，甚至可以将其优化为平衡二叉树或是红黑树来进一步提">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/08/18/xqdTA4wa9QEG5yU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/18/Tcj6Spy2Pt5ZIuW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/18/tD8AjiGwvJkdahE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/18/M2o1vE7hHasN8DP.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/19/CAPhlJnQeLjMHfd.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/19/ovieRjrzlXhKMC2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/19/pisuSAIZyf5JE7B.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/19/H1hAvQPjNui2RYt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/19/XqpZd1YP5ulEJRy.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/20/p5Qdni31eqFgzZ7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/20/Ay6zkgivEFLthM8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/20/PJIVAUnhT6OwB9d.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/20/am6WHpejxtyU842.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/20/hIBUbKvDjAfYruL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/21/CTEFJVNmf47B3yq.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/21/QmiDsrnZjX8YUb6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/21/Wj9wYLPovF6pAOs.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/21/pGF2hZo5ArbLyfB.png">
+<meta property="article:published_time" content="2023-01-18T02:24:32.000Z">
+<meta property="article:modified_time" content="2023-02-02T05:29:19.583Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/08/18/xqdTA4wa9QEG5yU.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知识库" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C/C++
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C语言程序设计笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0b556fd3fac3446ab962debd1d7d0d3d/">C语言（三）</a></li>  <li class="file"><a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/">C语言（二）</a></li>  <li class="file"><a href="/2023/01/18/47f2147369be440d89c32f4ac310c6a7/">C语言（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-c
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            lib
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/">assert.h</a></li>  <li class="file"><a href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/">ctype.h</a></li>  <li class="file"><a href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/">float.h</a></li>  <li class="file"><a href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/">errno.h</a></li>  <li class="file"><a href="/2023/02/02/03a886d85a6e423a9dea00ed1979a294/">stdarg.h</a></li>  <li class="file"><a href="/2023/02/02/174190d1271c441296fe6161dbe1e3b0/">inttypes.h</a></li>  <li class="file"><a href="/2023/02/02/3c0028c132394bf49855502500823843/">signal.h</a></li>  <li class="file"><a href="/2023/02/02/3c2477856e494e289da69d3223ba7674/">math.h</a></li>  <li class="file"><a href="/2023/02/02/3ec857ad74414dfa9785db229745cff4/">stdint.h</a></li>  <li class="file"><a href="/2023/02/02/4709412c44ae4a488075c134135a0c7d/">limits.h</a></li>  <li class="file"><a href="/2023/02/02/63a6e5300615432c802b5fad1526b013/">iso646.h</a></li>  <li class="file"><a href="/2023/02/02/74ea4d343a0a466dafd2938741af9b82/">stdio.h</a></li>  <li class="file"><a href="/2023/02/02/7c6a577e51b44a30896461029a72e0d9/">stddef.h</a></li>  <li class="file"><a href="/2023/02/02/f15fbe0430cd4183b0fce6d942edec61/">stdbool.h</a></li>  <li class="file"><a href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/">locale.h</a></li>  <li class="file"><a href="/2023/02/02/30aaa7981bcb41ecb2cab759dc8d61d9/">string.h</a></li>  <li class="file"><a href="/2023/02/02/43c955dbbcff4f31b6b395baf15b3643/">time.h</a></li>  <li class="file"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/">stdlib.h</a></li>  <li class="file"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/">wchar.h</a></li>  <li class="file"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/">wctype.h</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/">array</a></li>  <li class="file"><a href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/">enum</a></li>  <li class="file"><a href="/2023/02/02/88026f8bed5a4692a3eb48abb8cc2c47/">cli</a></li>  <li class="file"><a href="/2023/02/02/9e03d1990b4c477c8e5ecd52164183d1/">flow-control</a></li>  <li class="file"><a href="/2023/02/02/a57d1c9278214ad49c0c94d45a92af2b/">file</a></li>  <li class="file"><a href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/">io</a></li>  <li class="file"><a href="/2023/02/02/83858a169b23461eadc882914abf4bd1/">function</a></li>  <li class="file"><a href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/">intro</a></li>  <li class="file"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/">memory</a></li>  <li class="file"><a href="/2023/02/02/ec65e72324264fbb8acf7006f6ced494/">multibyte</a></li>  <li class="file"><a href="/2023/02/02/635718a1db8b4ccebbfd9a4f8a55de47/">preprocessor</a></li>  <li class="file"><a href="/2023/02/02/bb7bba4594234ae5832af49f8d3e56ee/">pointer</a></li>  <li class="file"><a href="/2023/02/02/cf8653eb740a49b7a58a852bbbed00a4/">string</a></li>  <li class="file"><a href="/2023/02/02/e1cb8d47ae9c459eb5ac11818a7c6e27/">operator</a></li>  <li class="file"><a href="/2023/02/02/ecce61b4548c4e45ba73284c9ba7f0cc/">specifier</a></li>  <li class="file"><a href="/2023/02/02/41797336ff734560a26025353b233d54/">types</a></li>  <li class="file"><a href="/2023/02/02/5f8eaecb5f1f414d9106a33847f193a9/">variable</a></li>  <li class="file"><a href="/2023/02/02/a86312379ebb44c39fbda22a6eecf977/">struct</a></li>  <li class="file"><a href="/2023/02/02/bf7f6d8e12f54a7c8802abcbdc18e689/">union</a></li>  <li class="file"><a href="/2023/02/02/c19ba4705d5142bf98d9207eece2ef79/">typedef</a></li>  <li class="file"><a href="/2023/02/02/cb86948a24cf470ea1c847f85f8b8349/">syntax</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/a2acb1e85c084003b09433633a27ec8f/">C++求和的多种方式</a></li>  <li class="file"><a href="/2023/01/25/dd59a1b3ef8343efb5e60f2fd43084a8/">水仙花题解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/20/b4a4813646324eab97b039cacf031705/">Docker容器技术</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/00429dd58f6c4ce6a2b03b9aeeb9d521/">git-log</a></li>  <li class="file"><a href="/2023/02/02/02fdd75f9f2a47489decf6f32d0b3c7a/">git-rebase</a></li>  <li class="file"><a href="/2023/02/02/0b2ea073a1c14893b3dd7098546e0655/">git-add</a></li>  <li class="file"><a href="/2023/02/02/13f9c3847de9456f9a8078f072da7eab/">git-init</a></li>  <li class="file"><a href="/2023/02/02/22d2d3f830f145289393d0f82e740cb9/">git-diff</a></li>  <li class="file"><a href="/2023/02/02/4781f042463f4f40b1bbad14879d0ac7/">git-clone</a></li>  <li class="file"><a href="/2023/02/02/58789f766a6c4768be5f19a121c6fd61/">git-checkout</a></li>  <li class="file"><a href="/2023/02/02/587e496a180048d98ac872605ced2d67/">git-cherry-pick</a></li>  <li class="file"><a href="/2023/02/02/63225ea3537e44c4bd42c553358e0a14/">git-cat-file</a></li>  <li class="file"><a href="/2023/02/02/6c452a5f156c43cfa90eb618191dcda7/">git-commit-tree</a></li>  <li class="file"><a href="/2023/02/02/6d6d53b08a474a0d938c0711dae464b1/">git-commit</a></li>  <li class="file"><a href="/2023/02/02/88a36c4e06f04c1c90ee2d93d231fcf0/">git-remote</a></li>  <li class="file"><a href="/2023/02/02/a4f4a7cf1b5446f58b3403e34b90adcb/">git-ls-files</a></li>  <li class="file"><a href="/2023/02/02/bbc2b9d3586f4c05946853201ac0e103/">git-hash-object</a></li>  <li class="file"><a href="/2023/02/02/cfc661f62c4f473fb166b17ef54c5d37/">git-merge</a></li>  <li class="file"><a href="/2023/02/02/e69a3fc86aad49f2a7e9b61b6377403e/">git-pull</a></li>  <li class="file"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/">git-branch</a></li>  <li class="file"><a href="/2023/02/02/0215eb43a3cd48af8db8b7826c738ae9/">git-show</a></li>  <li class="file"><a href="/2023/02/02/01c2ed5c17c944e4b3dede0de2616c27/">git-rm</a></li>  <li class="file"><a href="/2023/02/02/1ee03873808d4c469cfa0998032e4936/">git-write-tree</a></li>  <li class="file"><a href="/2023/02/02/2f3fcea5172b40dc8e12f9ef817fb413/">git-update-ref</a></li>  <li class="file"><a href="/2023/02/02/4027c7dfd0a849658d350c9374793484/">git-restore</a></li>  <li class="file"><a href="/2023/02/02/446de5db36bf4d5a858dc7d949a7da12/">git-update-index</a></li>  <li class="file"><a href="/2023/02/02/59d93e8c48164f0190417df6f9a1f573/">git-rev-parse</a></li>  <li class="file"><a href="/2023/02/02/69ebd17fb555427285f272241105d5cd/">git-reset</a></li>  <li class="file"><a href="/2023/02/02/861b301a7bce4dad8bb92d273cd75daf/">git-switch</a></li>  <li class="file"><a href="/2023/02/02/a4bb2f6830624e38bccbc32c93085d32/">git-stash</a></li>  <li class="file"><a href="/2023/02/02/bb8b63b8991b414d92411977cc87bbbe/">git-revert</a></li>  <li class="file"><a href="/2023/02/02/e6a606da62da484dbf52fce543abb094/">git-tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/">basic</a></li>  <li class="file"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/">branch</a></li>  <li class="file"><a href="/2023/02/02/1459cfd798b842b4a80ce78e41d4155d/">operations</a></li>  <li class="file"><a href="/2023/02/02/31b7e45e02f54e149fea5d1d8cda26fe/">internal</a></li>  <li class="file"><a href="/2023/02/02/26cbe9e22b164aeaabf617d844abc440/">reference</a></li>  <li class="file"><a href="/2023/02/02/90fb796e66734920ae724f9fa66ce763/">tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/c77ab20583d64ba9a3dc6f8d6ea89f55/">04 【忽略某些文件】</a></li>  <li class="file"><a href="/2023/02/02/2b8f3ce0fed44813a0919553cb304e64/">03 【远程库操作】</a></li>  <li class="file"><a href="/2023/02/02/aeb16e6138444c83ae3bd8886ba906bc/">01 【版本控制和Git的安装介绍】</a></li>  <li class="file"><a href="/2023/02/02/52d9a2a8683a42eb966022415a93058a/">02 【版本控制命令】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JAVASE
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/49756fe6e6cc44f88ee3cc213ec4bd67/">Java泛型</a></li>  <li class="file"><a href="/2023/01/19/338f5f76a1914f72822772ea3026f220/">Java 集合</a></li>  <li class="file"><a href="/2023/01/19/929bd134ed01499c92d8e177925950ef/">Java面向对象基础(初级)</a></li>  <li class="file"><a href="/2023/01/19/274b1dfaf07945e7ab77710afad502a3/">Java面向对象基础（中级）</a></li>  <li class="file"><a href="/2023/01/19/9a52b66178b746debfe7111574e464a2/">Java面向对象(高级)</a></li>  <li class="file"><a href="/2023/01/25/47c9d6ac38214463ae1ca07fd5b85614/">Java-Math类</a></li>  <li class="file"><a href="/2023/01/25/65905cb7c01348b0b1ac5264ecc87ab0/">Java Object类详解</a></li>  <li class="file"><a href="/2023/01/25/0b0365b51c0644958b204ed11719a88a/">Java 访问修饰符</a></li>  <li class="file"><a href="/2023/01/25/e7838ce563844f3a9811936eaa09cb09/">Java数据结构-栈</a></li>  <li class="file"><a href="/2023/01/25/cefb06ca6f8049a99703cf1b3bc1fa3d/">Java异常处理</a></li>  <li class="file"><a href="/2023/01/25/d8cc29145a834e3aaa2a43b7d88c9ce1/">java选择排序</a></li>  <li class="file"><a href="/2023/01/25/abec654a37ad4a498798cdf019a2e61e/">Java-枚举</a></li>  <li class="file"><a href="/2023/01/25/d5d66a7ebad94d6483e19407faf46cc5/">Java-包装类</a></li>  <li class="file"><a href="/2023/01/25/b3ada79e6ff745f0acd8edcf57c95acc/">Java-递归执行机制</a></li>  <li class="file"><a href="/2023/01/25/03f3dd343d094bd6baf6772f4a6a2aed/">Java-冒泡排序</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JUC笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/83aef7425d394df3901ca188c1afc6d5/">JUC笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/b41b5f3eb08f41cbbbf454a8c9922051/">JUC笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/1d97f5daca284471abd5c2a42c140143/">JUC笔记（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/f4f7756d2f6644d4b0e098cb3789a9c6/">JVM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/3222fc6cde8442a89eda4e5e0808952a/">JVM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/8e58362eaa734ad292f357536ef1b05e/">JVM笔记（三）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java-GUi
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/f7310f53495a4e258159180b2ce529db/">Java-GUI-窗口配置</a></li>  <li class="file"><a href="/2023/01/19/f172572c7d114592aaa804efa121761e/">Java-GUI-监听器</a></li>  <li class="file"><a href="/2023/01/19/2c969cb92c56489ab91482067305ab42/">Java-GUI-常用组件</a></li>  <li class="file"><a href="/2023/01/19/a8eb012039114ca6a601a1c34622ba93/">Java-GUI 布局</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记 2023重制版
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/09da4fbf346f4f459ef48c64c61f6cc1/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/30140692c4144c2cbc65ba707a7b0c89/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/aea1e8a802bd45ebbe33970dab1bad21/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/df26e1c8129b412a8284a955dbe26b3c/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/31ca9cc5ea8a4795b75b49ec9680cca7/">JavaSE笔记（一）重制版</a></li>  <li class="file"><a href="/2023/01/18/7ecb50884e214c28abe6a905186f2051/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/cae1499c7dd54b5f9729e77e75f9e92f/">JavaSE笔记（四）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记（含新特性介绍）
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0e413f24b04d46babc26b48035844a34/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/4781c8feb884488d93fcbc64d83998eb/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/6561c4991b054522a438ae9c3573bf7b/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/e9b900b310774688844b4e31729afc40/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/4616dce1a1c745fb84672ffed7bf43ed/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/5aef6240910849d4b69b36b03baf7d2c/">JavaSE笔记（四）重制版</a></li>  <li class="file"><a href="/2023/01/18/d7d20c40f1044de59760363f8b9d8c4b/">JavaSE笔记（一）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSSM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0dbb54c3201b45ec9eb61b3e76209382/">Java SSM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/13fdccb2f789426fb795cdb23e8cb0c0/">JavaSSM笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/86717e97bcd34af2ab62ade51eddc019/">JavaSSM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/9dfd598003ab43828c77f2676dd6cf8f/">JavaSSM笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/088fcec4e8a846479c3cfcf5a6a52da7/">JavaWeb笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/5756fdcc799c4064be4e4a84d7ab5244/">JavaWeb笔记（五）</a></li>  <li class="file"><a href="/2023/01/18/b79318accafa44dfaabad60dbbe8de4c/">JavaWeb笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/f795be55936d42ddafd17995abae6aa8/">JavaWeb笔记（三）</a></li>  <li class="file"><a href="/2023/01/23/65909752ee164b2c877f1f77097d6358/">使用Socket传输文件</a></li>  <li class="file"><a href="/2023/01/24/1c60970a20864932bc3ef0807b9fda67/">JavaWeb笔记（四）</a></li>  <li class="file"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/">SQL事务（非常详细）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java设计模式笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/022f64208f254fbea3a8fb31b281a85b/">Java设计模式（一）</a></li>  <li class="file"><a href="/2023/01/18/3e0642cd3b254fb2b80bf2932ac4b9be/">Java设计模式（三）</a></li>  <li class="file"><a href="/2023/01/18/407c5b3cecb14dfaa0649e6f89d0ec2b/">Java设计模式（四）</a></li>  <li class="file"><a href="/2023/01/18/7acbd5ac3c754f2287c448b72010bac1/">Java设计模式（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NIO笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/93e61e24ebe54aacb046d8fb7e524ec8/">Java NIO笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/cdec76bf6ea84248809947e5c365c26e/">Java NIO笔记（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringCloud笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/89a3686366ac4733a117121766e12109/">SpringCould笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/f828affac4f64da487d581f2cb0a7ddb/">SpringCloud笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/3156ff5edada4090a2470abcafcc1ace/">SpringCloud笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/af85cc65b701415f8bf1a97873320570/">SpringCloud笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Springboot笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/">SpringBoot笔记（一）</a></li>  <li class="file"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/">SpringBoot笔记（二）</a></li>  <li class="file"><a href="/2023/01/24/99650712d4104d00a2c4a5ccfc3f525e/">SpringBoot笔记（三）</a></li>  <li class="file"><a href="/2023/01/24/3636e46047924c11b7ec162ffc9f9271/">SprintBoot笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境配置
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/06a5ebd1d51442d58ba9f7b02612a94b/">Linux下JAVA环境配置</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Bash
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            archives
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/">cp</a></li>  <li class="file"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/">awk</a></li>  <li class="file"><a href="/2023/02/02/5e2e0bec39da4147b3fa493d53c38fcf/">clear</a></li>  <li class="file"><a href="/2023/02/02/6c931bc223d04f6ea0004ce2e60ed0a9/">cal</a></li>  <li class="file"><a href="/2023/02/02/e371d141f5e04b83985097a365e488f3/">alias</a></li>  <li class="file"><a href="/2023/02/02/eb9fd5a58ed4424db318906b45b3a2c1/">cat</a></li>  <li class="file"><a href="/2023/02/02/298cc2ee3f30471c95ffe20b7fd68de7/">find</a></li>  <li class="file"><a href="/2023/02/02/3262b0fe7c3c405693a43c3b00fd31a2/">cut</a></li>  <li class="file"><a href="/2023/02/02/4a44a9b960604e14b21acd79b661370d/">gunzip</a></li>  <li class="file"><a href="/2023/02/02/4e6e8b622ad94bc7b9beaac8b4db5e9b/">df</a></li>  <li class="file"><a href="/2023/02/02/57a4373ff3994387ba06b86756caa443/">dd</a></li>  <li class="file"><a href="/2023/02/02/66f0d5d37af44909b7a1826752bb25f8/">fmt</a></li>  <li class="file"><a href="/2023/02/02/6a731d9df2e2418b906e03243a37fe5a/">egrep</a></li>  <li class="file"><a href="/2023/02/02/7e8da3da77434aa3b080c04619bd6f6c/">export</a></li>  <li class="file"><a href="/2023/02/02/825b8a01e7684bf5817ef4aa18e1dcea/">file</a></li>  <li class="file"><a href="/2023/02/02/8a29743a5dd34506a48aed9f8f23e68e/">du</a></li>  <li class="file"><a href="/2023/02/02/96af26754cb14ae88ba85f62f34485e2/">gzcat</a></li>  <li class="file"><a href="/2023/02/02/af40050b4bbb4296a2359591e5267652/">date</a></li>  <li class="file"><a href="/2023/02/02/cd9720c1fa0e4e02a5fde942d26acace/">grep</a></li>  <li class="file"><a href="/2023/02/02/031200e492574917bc61ee527a9dbec2/">sort</a></li>  <li class="file"><a href="/2023/02/02/1a711a5945444415a8a3dd969f8ecd2e/">tr</a></li>  <li class="file"><a href="/2023/02/02/1ba049a64f9a46e983332666e7e82f90/">killall</a></li>  <li class="file"><a href="/2023/02/02/265f581f57e742a990d88f8e3b81e332/">lpr</a></li>  <li class="file"><a href="/2023/02/02/50ee6471baf0464380f10b8cdcf1ace7/">gzip</a></li>  <li class="file"><a href="/2023/02/02/58e2782991a046f9b090a30000ad263f/">ps</a></li>  <li class="file"><a href="/2023/02/02/5d789ba3d1df439fae3342ddab2e8936/">uptime</a></li>  <li class="file"><a href="/2023/02/02/89e04320d7f744c089eacbb3e0e119f9/">ls</a></li>  <li class="file"><a href="/2023/02/02/8e7aba35b4a2409aa2163e101ca9c459/">uniq</a></li>  <li class="file"><a href="/2023/02/02/92ca2811477044ad84363b2a0830bf8b/">last</a></li>  <li class="file"><a href="/2023/02/02/a548ef6cd0a047a59f705a4d72e69e79/">lpq</a></li>  <li class="file"><a href="/2023/02/02/bd5a94df51574676a7fb3cf91798129b/">kill</a></li>  <li class="file"><a href="/2023/02/02/c4dace09d06a4255ada3235e13622e84/">nl</a></li>  <li class="file"><a href="/2023/02/02/d39d39701de24c9e8fc1ee2a957df430/">sed</a></li>  <li class="file"><a href="/2023/02/02/d999bd8656094f66b6dd34cd212085d7/">uname</a></li>  <li class="file"><a href="/2023/02/02/ebc4924fe4974446ac9f3911f9b27e91/">scp</a></li>  <li class="file"><a href="/2023/02/02/372ae469bfff43328cc696cd3b8243d2/">which</a></li>  <li class="file"><a href="/2023/02/02/5bbf81dd30b64aafaa5f5565992b6349/">who</a></li>  <li class="file"><a href="/2023/02/02/7bb4b5c41da44269a6c70f4633d0917e/">whereis</a></li>  <li class="file"><a href="/2023/02/02/809b6b7eb42c403f8e1b0211e44409e0/">wc</a></li>  <li class="file"><a href="/2023/02/02/a07cab80bd4c47789ae6242c402ada05/">w</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            deleted
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f5f6eb42d7684fe989265596e9306f01/">stdio</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/">archiving</a></li>  <li class="file"><a href="/2023/02/02/82a5e084940844de91c02625e19ad744/">async</a></li>  <li class="file"><a href="/2023/02/02/8a206bc871634efdbbffd067c656673b/">command</a></li>  <li class="file"><a href="/2023/02/02/933495d6b7fe4de99eefa41cd63865b8/">file</a></li>  <li class="file"><a href="/2023/02/02/e1466852223e4f6bb5dc8a46a6104e76/">file-operation</a></li>  <li class="file"><a href="/2023/02/02/0cd5e142ec7a4f2abaa5cc522dbfa62d/">user</a></li>  <li class="file"><a href="/2023/02/02/154ccd75c486446aac1353805e3f901a/">host</a></li>  <li class="file"><a href="/2023/02/02/5fdd36fee51d4c49833a3a9b35303088/">system</a></li>  <li class="file"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/">text</a></li>  <li class="file"><a href="/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/">hardware</a></li>  <li class="file"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/">named-pipe</a></li>  <li class="file"><a href="/2023/02/02/d08fc4409e6e4bb1abc3bc66097589de/">process</a></li>  <li class="file"><a href="/2023/02/02/e6cc1bf092814f148a6c9a72e5615e73/">time</a></li>  <li class="file"><a href="/2023/02/02/ea57261da8fe46bdbdad1471dfe28140/">regex</a></li>  <li class="file"><a href="/2023/02/02/eca6d9d98e874548a12942d08e09bed4/">redirection</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/253ec4deec8c4beda7dd99a6f419b404/">arithmetic</a></li>  <li class="file"><a href="/2023/02/02/307a6025886648d98d3ee4d27c48ac00/">array</a></li>  <li class="file"><a href="/2023/02/02/42867f9a3d9f4e5c99a0d6ce517b903e/">condition</a></li>  <li class="file"><a href="/2023/02/02/e23e7e4f49ac4a77a19f9cedc6bb7393/">expansion</a></li>  <li class="file"><a href="/2023/02/02/e66fbc86e05a4521882246e9dc4d3adc/">function</a></li>  <li class="file"><a href="/2023/02/02/0888cfb07af44e419d21c7d3d9f7348b/">prompt</a></li>  <li class="file"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/">quotation</a></li>  <li class="file"><a href="/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/">mktemp</a></li>  <li class="file"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/">read</a></li>  <li class="file"><a href="/2023/02/02/61f4af2f28f34d6c83a93732a217826a/">intro</a></li>  <li class="file"><a href="/2023/02/02/68774db840cb4ba9975a4b9b5b27d531/">grammar</a></li>  <li class="file"><a href="/2023/02/02/b894fd5ea7ce4f5f83bd345deeb191c7/">loop</a></li>  <li class="file"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/">script</a></li>  <li class="file"><a href="/2023/02/02/36a498d21f274b8698386927095852e5/">string</a></li>  <li class="file"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/">variable</a></li>  <li class="file"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/">readline</a></li>  <li class="file"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/">startup</a></li>  <li class="file"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/">set</a></li>  <li class="file"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/">stack</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">06 【实操篇-时间日期类 用户和用户组管理】</a></li>  <li class="file"><a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/">03 【基础篇-系统管理】</a></li>  <li class="file"><a href="/2023/02/02/622750bc961b42b79daeb6a4cc15161d/">05【实操篇-文件目录类命令】</a></li>  <li class="file"><a href="/2023/02/02/976629fb7bd241958fbac447af492905/">10 【实操篇-进程管理类】</a></li>  <li class="file"><a href="/2023/02/02/3e5ebad9a8e34aeab1791403f375e9cf/">04 【实操篇-帮助命令 文件目录管理基础知识】</a></li>  <li class="file"><a href="/2023/02/02/0994e211c03c4ca5a71ebfaddd83a5b4/">02 【基础篇-vim编辑器 网络配置 远程登录】</a></li>  <li class="file"><a href="/2023/02/02/ae308f099ff843e4974f7a3fa0ab67ff/">07 【实操篇-文件权限和搜索查找类命令】</a></li>  <li class="file"><a href="/2023/02/02/9d51515086d54d9da60959402195a54e/">08 【实操篇-压缩和解压类】</a></li>  <li class="file"><a href="/2023/02/02/b4f31671b35f4b879ac18de3fa565b44/">09 【实操篇-磁盘查看和分区类】</a></li>  <li class="file"><a href="/2023/02/02/4f43f36734ff4b7fbb862ab41b32afda/">11 【实操篇-定时任务 软件安装 克隆虚拟机】</a></li>  <li class="file"><a href="/2023/02/02/594959a1b8b0475493968c2559ce6895/">01 【入门篇-介绍和安装】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Nginx
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/d7b325aae2594d32ad44c26d7d441ae0/">02 【Nginx的目录介绍】</a></li>  <li class="file"><a href="/2023/02/02/6b1fb70d0a4441949a907556d92c32f8/">03 【Nginx虚拟主机和域名解析】</a></li>  <li class="file"><a href="/2023/02/02/ac4d35d0ad0a454381e46471c91f723d/">01 【Nginx的安装和启动】</a></li>  <li class="file"><a href="/2023/02/02/5860918f92bb4edaaf5d8aed17697c0f/">04 【Nginx反向代理和负载均衡】</a></li>  <li class="file"><a href="/2023/02/02/601b78d0331e4a25b26de4819fec9d1c/">06 【防盗链】</a></li>  <li class="file"><a href="/2023/02/02/05ca312f1aad4b1198b58405d038fc40/">05 【动静分离和URLRewrite】</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/20/85a4024620e141f4b16389b65a2ce85e/">Linux SCP指令</a></li>  <li class="file"><a href="/2023/01/25/c701f1c34bb44b30a2fa83eafe2f97b5/">Linux 同步时间</a></li>  <li class="file"><a href="/2023/01/25/6555fe10b1904e6f8ad9e999d5bb8c09/">Linux压缩和解压缩</a></li>  <li class="file"><a href="/2023/01/25/e2660f8d01d24bafbcab08e0a21766ae/">Linux用户管理</a></li>  <li class="file"><a href="/2023/01/25/76440ac4b9d649d0923e1dc7808d6d9e/">Linux 目录结构</a></li>  <li class="file"><a href="/2023/01/25/761fa1243125429eb927901f3014a91b/">Debian修改国内原</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ajax
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f4a82199df954988886f793eb07bea6e/">01 【AJAX概述 HTTP相关问题】</a></li>  <li class="file"><a href="/2023/02/02/a4bdac42f33042a09a9d5ff13bf5effe/">02 【axios fetch 跨域】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            css预处理语言
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Sass
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ff4b2c9dbf641d08213e2278205e32a/">10 【Sass语法介绍-继承】</a></li>  <li class="file"><a href="/2023/02/02/d1b7676560c64fbb81882453865edebc/">04 【Sass语法介绍-运算】</a></li>  <li class="file"><a href="/2023/02/02/b6aa35c8f62d46e499d2847e3b0c0ba0/">03 【Sass语法介绍-嵌套】</a></li>  <li class="file"><a href="/2023/02/02/720abd9ef54447e6b45f4f690ae7f1b7/">07 【Sass语法介绍-控制指令】</a></li>  <li class="file"><a href="/2023/02/02/cc4f543711a54ccd9a05d4bf128898f5/">02 【Sass语法介绍-变量】</a></li>  <li class="file"><a href="/2023/02/02/d40a67d9f9f841059a8a689603793673/">05 【Sass语法介绍-插值】</a></li>  <li class="file"><a href="/2023/02/02/8fd4499649a940418f3222e3d09ee2aa/">09 【Sass语法介绍-函数指令】</a></li>  <li class="file"><a href="/2023/02/02/c147cb6550934f58904823a45536056c/">01 【Sass的安装使用】</a></li>  <li class="file"><a href="/2023/02/02/424c4e271557488ca5b2c1b775754008/">06 【Sass语法介绍-函数】</a></li>  <li class="file"><a href="/2023/02/02/2d8afd58354f4270b36e307161cf351a/">08 【Sass语法介绍-混合指令】</a></li>  <li class="file"><a href="/2023/02/02/5c17818f7da844169c13e53e58c59fb7/">11【Sass语法介绍-导入】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            less
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7750b9ec9e19421a805fe45697c0dc2d/">01 【less学习笔记】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/d3a6f3f0a7314b8c96148565dead839f/">CSS-position位置-绝对定位和相对定位</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Canvas
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/1b03369a713343afa2a193408cc8b22f/">02 【canvas绘制基本图形】</a></li>  <li class="file"><a href="/2023/02/02/faa9ad753f834bb181309f4257b09b37/">07 【canvas图像处理】</a></li>  <li class="file"><a href="/2023/02/02/e96f125a9a854c8eb2ce8b05244ba275/">05 【canvas图像变换】</a></li>  <li class="file"><a href="/2023/02/02/815ddf95af0048f2ac2ab12ffb2ca36d/">06 【canvas图像合成】</a></li>  <li class="file"><a href="/2023/02/02/48f96f2e7faf49ce94282d5e4da0145e/">04 【canvas绘制文字】</a></li>  <li class="file"><a href="/2023/02/02/54f4c804683649cc9eb20b1f7b33d7a4/">03 【canvas样式控制】</a></li>  <li class="file"><a href="/2023/02/02/fc62e5cc497a4fc8ae6b4c6a93bf4830/">01 【认识canvas】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/732ec77199574e42aa8a3ef00df24d8d/">Javascript 面向对象(OOP)</a></li>  <li class="file"><a href="/2023/01/25/4f2d10c3153e4c7c89f2ecf584fbc453/">Javascript-三种包装对象</a></li>  <li class="file"><a href="/2023/01/25/acf1e9f487974ce1853395619e12e44d/">ES6闭包</a></li>  <li class="file"><a href="/2023/01/25/2601a78cd4fb449e90738af73cc0370d/">Javascript-展开语法</a></li>  <li class="file"><a href="/2023/01/25/5b879117bcd14d1f8a9850b134549a71/">javascript-克隆节点&&删除节点</a></li>  <li class="file"><a href="/2023/01/25/bf50528806834aada4bf812a6e5cb4d7/">javascript-变量提升</a></li>  <li class="file"><a href="/2023/01/25/3eb18b717005473285e60b95a1783d27/">javascript- 节点增加创建与追加-</a></li>  <li class="file"><a href="/2023/01/25/97466e0ebd1f48c8836d82a772e97d39/">javascript-DOM-分时问候案例</a></li>  <li class="file"><a href="/2023/01/25/6d5690c11c9c40d9ab1e41f85c32ea0d/">javascript-事件流</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Node.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/ac95840c294b45909b8a32b5a3c7b1f7/">Node-包管理工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            es6
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/08ed7d14c0b74fd9a8e849fdf55e8a80/">04 【函数的扩展】</a></li>  <li class="file"><a href="/2023/02/02/6bfa93761a9348309ee45e5c8d39d60f/">14 【Class extends】</a></li>  <li class="file"><a href="/2023/02/02/4d05e596059f482899f63dadecc42521/">06【对象的扩展】</a></li>  <li class="file"><a href="/2023/02/02/e3c46bd0c64943f4967d81b8b78cacd4/">07【字符串的扩展】</a></li>  <li class="file"><a href="/2023/02/02/2fc965f3cd9f4ebfae565e4a72ebd00b/">05【数组的扩展】</a></li>  <li class="file"><a href="/2023/02/02/ba336fd9e8f942889f5a76b31f239ff5/">01 【ES6 介绍】</a></li>  <li class="file"><a href="/2023/02/02/1a48072db3f149f1b7909da3eb852945/">13【Class的语法】</a></li>  <li class="file"><a href="/2023/02/02/d125a45575e841bfa140266dbe46daea/">12【es6模块化】</a></li>  <li class="file"><a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/">03【解构赋值】</a></li>  <li class="file"><a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">10【Promise对象】</a></li>  <li class="file"><a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/">02 【let和const】</a></li>  <li class="file"><a href="/2023/02/02/73a1c792b2754bf4bef4d5c9b9819b0a/">08【运算符的扩展】</a></li>  <li class="file"><a href="/2023/02/02/706e1bd0fa5f495fafc420ac1b96f259/">09【Set 和 Map 数据结构】</a></li>  <li class="file"><a href="/2023/02/02/1274b7d6c86142c0bb25d906aebc593a/">11【async 函数】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nodejs
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/a209b664c3ca4578a9eb3cb91ba512ba/">18 【Koa基本使用】</a></li>  <li class="file"><a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/">14 【接口规范和业务分层】</a></li>  <li class="file"><a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">05 【nodejs内置模块（上）】</a></li>  <li class="file"><a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/">02 【nodejs开发环境安装】</a></li>  <li class="file"><a href="/2023/02/02/3b68d412870a445a8d87cfd22ac39d87/">03 【npm的使用】</a></li>  <li class="file"><a href="/2023/02/02/2de266d3a093495fa8a805a1ff7696b7/">10 【Express基本使用】</a></li>  <li class="file"><a href="/2023/02/02/c280122bb3b54525b2f9dd2c3a136016/">15 【登录鉴权】</a></li>  <li class="file"><a href="/2023/02/02/e2c3e6468ad84a1dba70d04460347ed3/">04 【nodejs模块化规范：CommonJS】</a></li>  <li class="file"><a href="/2023/02/02/9ec6f6652fd94d8fbd140127c68af01e/">11 【Express服务端渲染】</a></li>  <li class="file"><a href="/2023/02/02/a81505b065c245b088a3012c1712bcdd/">08 【爬虫】</a></li>  <li class="file"><a href="/2023/02/02/b26c2cc0675b49cbac6cc6cbce060205/">12 【操作mongodb数据库】</a></li>  <li class="file"><a href="/2023/02/02/eab31b38c19844429c0475c74bdd9991/">06 【nodejs内置模块（中）】</a></li>  <li class="file"><a href="/2023/02/02/865661190f8f4ac79861ce7df6db4beb/">07 【nodejs内置模块（下）】</a></li>  <li class="file"><a href="/2023/02/02/901210553dfa45d3afe4457d57c3de3d/">09 【原生nodejs路由、获取参数、静态目录】</a></li>  <li class="file"><a href="/2023/02/02/4515be56c20449919855a7506716b2cf/">16 【跨域】</a></li>  <li class="file"><a href="/2023/02/02/888cb674f6fb4d0bb80e8bbf63a5047f/">13 【操作mysql数据库】</a></li>  <li class="file"><a href="/2023/02/02/1d20f98f527b465096fcec6bd4c2a604/">17 【文件上传】</a></li>  <li class="file"><a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/">01 【nodejs简介】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            react
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ddb53a019f342579b13f34eddaaf39c/">11 【react-router 5】</a></li>  <li class="file"><a href="/2023/02/02/d3e37d3926734fd9b08b23b8d1cf4a76/">02 【面向组件编程】</a></li>  <li class="file"><a href="/2023/02/02/f09c9109b77c40b5bc7ece5b36c57fa4/">14【react-Hook （上）】</a></li>  <li class="file"><a href="/2023/02/02/49cd82fe5a0843eeb7d20dce85205767/">07 【收集表单数据】</a></li>  <li class="file"><a href="/2023/02/02/fc925383cd634fc384c0149bb81440d7/">10 【初始化脚手架】</a></li>  <li class="file"><a href="/2023/02/02/eff28d3f98a44083b80b2d779a742937/">13【react高级指引（下）】</a></li>  <li class="file"><a href="/2023/02/02/d47733b473484eff8245e2a785c161e0/">21 【styled-components的使用】</a></li>  <li class="file"><a href="/2023/02/02/b273e59e62894b4da1bb45adbdee98b1/">03 【事件处理】</a></li>  <li class="file"><a href="/2023/02/02/c78ad7d58e00468290b8bf9b1bbdf35f/">05 【条件渲染】</a></li>  <li class="file"><a href="/2023/02/02/f1602a4566b64671bc65486a7041308f/">18 【Redux Toolkit】</a></li>  <li class="file"><a href="/2023/02/02/ff2d1e21a86541918b1aa6230f9c765d/">16 【react-router 6】</a></li>  <li class="file"><a href="/2023/02/02/0432db33aca24dd6aaa0cd981d8f3a9c/">12 【react高级指引（上）】</a></li>  <li class="file"><a href="/2023/02/02/ced58ed76774454a929bef6b403e57cb/">08 【状态提升】</a></li>  <li class="file"><a href="/2023/02/02/125ea617daa24bafb8ee8e8bc80f67a1/">17【redux】</a></li>  <li class="file"><a href="/2023/02/02/e10e4b26d2bf44378e8037d640849094/">01 【react入门】</a></li>  <li class="file"><a href="/2023/02/02/269c3589e4be4b75a6c862285f2814ec/">15【react-Hook （下）】</a></li>  <li class="file"><a href="/2023/02/02/eaeb4b81181e44c88b5ea739de867f61/">04 【生命周期】</a></li>  <li class="file"><a href="/2023/02/02/1b30544e4df4423597f839fcf8c37fba/">20 【react中使用ts】</a></li>  <li class="file"><a href="/2023/02/02/0e6479990fed4ea2a64f5e78935f308b/">09 【组合组件】</a></li>  <li class="file"><a href="/2023/02/02/c0bcdc567e0b44ab8a74c8f6af0cb309/">19 【RTK Query】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/0b43e486feca40e7b50ea25602885b96/">01 【TypeScript简介 初体验】</a></li>  <li class="file"><a href="/2023/02/02/c6556a99f0a542d0894002af7851a206/">05 【接口  interface VS type】</a></li>  <li class="file"><a href="/2023/02/02/f11ed972e4a5429d8e24c713cba8ad6e/">03 【常用类型（下）】</a></li>  <li class="file"><a href="/2023/02/02/566f4f3d44794728b106bb3d508278e8/">06 【泛型】</a></li>  <li class="file"><a href="/2023/02/02/9ae5591e9bd243bdac816b4dbba0a626/">04【编译选项 webpack配置】</a></li>  <li class="file"><a href="/2023/02/02/b3639a6ae3334e6caa0f58c95deb58db/">第二章：面向对象</a></li>  <li class="file"><a href="/2023/02/02/9325308d90134c2d89042d5118c8aac9/">02 【常用类型（上）】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础三剑客
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7880448dad2345f6ad10793267396c06/">24 【键盘事件】</a></li>  <li class="file"><a href="/2023/02/02/3df9b05587534928ad52b2bab8daede5/">29【定时器和延时器】</a></li>  <li class="file"><a href="/2023/02/02/d17418a26029492e8d26142599edb639/">17 【Document 节点】</a></li>  <li class="file"><a href="/2023/02/02/42ec8243b3584ce9949b0d8a167f7f8f/">31【window 对象】</a></li>  <li class="file"><a href="/2023/02/02/3a1cee3416f44e0a9bcce9c7a4190cea/">05 【函数（上）】</a></li>  <li class="file"><a href="/2023/02/02/6dfad1b9f2a747b78ddac1382be9a5e0/">08 【标准库之Date对象】</a></li>  <li class="file"><a href="/2023/02/02/840362a4d9f041caaf0e1ed6a33eaaec/">33 【History对象和Location对象】</a></li>  <li class="file"><a href="/2023/02/02/d44bb868777147b8b283ea41e73ce4b1/">14 【语法之console 对象与控制台】</a></li>  <li class="file"><a href="/2023/02/02/19848e9f214542ecb0edd74a862cd652/">23 【事件对象与鼠标事件】</a></li>  <li class="file"><a href="/2023/02/02/4a5546755a7c4fd695274767efe8fe5f/">35【Storage接口】</a></li>  <li class="file"><a href="/2023/02/02/e3707da0f0c74cbaad841455d51a8912/">30【BOM和浏览器环境概述】</a></li>  <li class="file"><a href="/2023/02/02/16ff10afc67647a19e96ced945267d1a/">25 【进度事件和表单事件】</a></li>  <li class="file"><a href="/2023/02/02/35b7e41b399341619c9fc855fbc3ffb5/">09 【标准库之Math对象和String对象】</a></li>  <li class="file"><a href="/2023/02/02/9c1da8c2638049b6aa8bc77c365bee48/">03 【流程控制语句】</a></li>  <li class="file"><a href="/2023/02/02/12edce39ff004cba8e7d204ec89253f8/">21【节点的属性】</a></li>  <li class="file"><a href="/2023/02/02/e5abe46191f446439970f94b9b0d3ba6/">10 【标准库之RegExp对象】</a></li>  <li class="file"><a href="/2023/02/02/2f850099dd994cd49f47a9fba9f3cf6b/">11 【标准库之JSON对象 JSON5】</a></li>  <li class="file"><a href="/2023/02/02/98088e10e9394c50b60ecff18690bb98/">36 【节流和防抖】</a></li>  <li class="file"><a href="/2023/02/02/0bd96d59f698491eae334ca1acb77194/">13 【语法之编程风格】</a></li>  <li class="file"><a href="/2023/02/02/e7518bf293bd48ffb053673c07982b2a/">19 【节点的增删改查】</a></li>  <li class="file"><a href="/2023/02/02/d07f06774f8c4d22b87460e592ed8865/">26 【触摸事件和其它常见事件】</a></li>  <li class="file"><a href="/2023/02/02/7a23018a60814bceba65798c147b332b/">01 【基础语法与基本数据类型】</a></li>  <li class="file"><a href="/2023/02/02/47ecc198b851461bb2a56b1118f0bf4b/">20 【节点的集合】</a></li>  <li class="file"><a href="/2023/02/02/62aad3c089ed4aa9b4f1bc99ded57008/">02 【JS表达式与操作符】</a></li>  <li class="file"><a href="/2023/02/02/e18409b1902f4104a522af41137a6bbd/">15 【严格模式】</a></li>  <li class="file"><a href="/2023/02/02/3d4ce9313a0640cf8230defbe18858e1/">04 【对象】</a></li>  <li class="file"><a href="/2023/02/02/8283ef6acb05410db22d90d8d837d454/">06 【函数（下）】</a></li>  <li class="file"><a href="/2023/02/02/9225703b95ce4608bb1cfc5e5edb9e48/">22 【事件监听】</a></li>  <li class="file"><a href="/2023/02/02/ecf66e051ad24a4bb78aafce7e3466d0/">07 【数组及常用方法】</a></li>  <li class="file"><a href="/2023/02/02/2f50015bcdd3481782e878f1a86da20b/">27 【三大家族scroll、offset、client】</a></li>  <li class="file"><a href="/2023/02/02/5d433175f200488f8ff66fa6331fd2aa/">16 【DOM概述】</a></li>  <li class="file"><a href="/2023/02/02/7dbd11b2638e487b88a3024d6e6f9682/">28 【事件传播】</a></li>  <li class="file"><a href="/2023/02/02/6a031ac5c5d647d082ee19856d0fc2bc/">18 【节点的关系和内部操作】</a></li>  <li class="file"><a href="/2023/02/02/4cf03139b6ea43d8a5642bc9286ba774/">12 【语法之错误处理机制】</a></li>  <li class="file"><a href="/2023/02/02/a28dc6634bb4456c8fc30e9d225b6eb3/">34 【表单和FormData 对象】</a></li>  <li class="file"><a href="/2023/02/02/a7b4cba18cdf4e45ae01e87a990ca1fe/">32 【Navigator 对象和Screen 对象】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            html+css
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/eb673a07916a497c827dd80b72017dc6/">09 【浮动 常见网页布局】</a></li>  <li class="file"><a href="/2023/02/02/6b1c3b3c007b4ffbb737ced5fa931d4d/">16 【过渡 动画】</a></li>  <li class="file"><a href="/2023/02/02/3a2b4fa5dfc7400aa7038b017420c521/">08 【盒模型(上) 盒模型(下)】</a></li>  <li class="file"><a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">19 【flex布局】</a></li>  <li class="file"><a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/">21 【vw布局】</a></li>  <li class="file"><a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/">13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】</a></li>  <li class="file"><a href="/2023/02/02/04aa04fcb2fc4c1386acf05fab99bece/">04 【CSS选择器 】</a></li>  <li class="file"><a href="/2023/02/02/1cbd87e2a3df47e7a142782b47821cdb/">03 【语义标签(下) CSS简介】</a></li>  <li class="file"><a href="/2023/02/02/5c5a21a8362549d5bacd900b41379c26/">18 【移动端基础 流式布局】</a></li>  <li class="file"><a href="/2023/02/02/7a7112271245402292a058135d68bb8d/">07 【Emmet语法 三大特性及单位】</a></li>  <li class="file"><a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">06 【CSS字体属性 CSS文本属性】</a></li>  <li class="file"><a href="/2023/02/02/8cfe33e063e14ed29ae060f119d43177/">12 【网页布局总结 元素的显示与隐藏】</a></li>  <li class="file"><a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/">22 【响应式布局】</a></li>  <li class="file"><a href="/2023/02/02/5c06def72fec4285bb849d30528e0303/">20 【rem适配布局】</a></li>  <li class="file"><a href="/2023/02/02/3deb7901e74d4e9aa9095df3da7305cf/">05 【CSS引入方式 CSS的元素显示模式】</a></li>  <li class="file"><a href="/2023/02/02/af297262b66348929acf86f09c99809c/">01 【HTML简介】</a></li>  <li class="file"><a href="/2023/02/02/394f3f21624a42298f8bd0cc0a8cf034/">15【背景 渐变色】</a></li>  <li class="file"><a href="/2023/02/02/3ba1ad7172b74c9f888fb5577a4f1143/">11 【定位】</a></li>  <li class="file"><a href="/2023/02/02/26011a9163a6486990089e0a074d5690/">02 【字符实体与语义标签(上)】</a></li>  <li class="file"><a href="/2023/02/02/a336b8d65382447abc8b9db0742c76df/">10 【高度塌陷与BFC】</a></li>  <li class="file"><a href="/2023/02/02/03f7d5a3ec6b484f99dcd540e3a0c800/">17 【2D转换 3D转换 浏览器私有前缀】</a></li>  <li class="file"><a href="/2023/02/02/0279e5f2fa4c42e5a595c1c80949701f/">14 【margin负值 文字围绕浮动 行内快 CSS三角 CSS初始化】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/227a7e051a0440e69890ea45ac4bf5e5/">数据结构与算法（二）</a></li>  <li class="file active"><a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">数据结构与算法（三）</a></li>  <li class="file"><a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/">数据结构与算法（五）</a></li>  <li class="file"><a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">数据结构与算法（四）</a></li>  <li class="file"><a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/">数据结构与算法（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            搜索与图论
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/21/b74bc4b803df4e7b99cf906cd5177da6/">DFS算法</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站收藏
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/c64a51c38c9542fe9a5c1d7e2dc93dba/">小火柴的前端小站</a></li>  <li class="file"><a href="/2023/01/22/e18feca3c0ce43cd96468b8ad72fbc36/">被删的前端游乐场</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编辑器
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/9f99a098f001487da297656e466dcb3b/">VSCode 是什么|极客教程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            镜像站
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/ae79cc4392384967b905c952b720f392/">腾讯软件源</a></li>  <li class="file"><a href="/2023/01/22/6be31fe5f1cd44e7a52b7602603705ac/">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-504f1b143b0347e9a90eec81b294bbc5" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">
+            <time datetime="2023-01-18T02:24:32.000Z" itemprop="datePublished">2023-01-18</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/504f1b143b0347e9a90eec81b294bbc5.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/504f1b143b0347e9a90eec81b294bbc5.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/504f1b143b0347e9a90eec81b294bbc5.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            数据结构与算法（三）
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <p><img src="https://s2.loli.net/2022/08/18/xqdTA4wa9QEG5yU.png" alt="image-20220818205734584"></p>
+<h1 id="散列表篇"><a href="#散列表篇" class="headerlink" title="散列表篇"></a>散列表篇</h1><p>在之前，我们已经学习了多种查找数据的方式，比如最简单的，如果数据量不大的情况下，我们可以直接通过顺序查找的方式在集合中搜索我们想要的元素；当数据量较大时，我们可以使用二分搜索来快速找到我们想要的数据，不过需要要求数据按照顺序排列，并且不允许中途对集合进行修改。</p>
+<p>在学习完树形结构篇之后，我们可以利用二叉查找树来建立一个便于我们查找的树形结构，甚至可以将其优化为平衡二叉树或是红黑树来进一步提升稳定性。在最后我们还了解了B树和B+树，得益于它们的巧妙设计，我们可以以尽可能少的时间快速找到我们需要的元素，大大提升程序的运行效率。</p>
+<p>这些都能够极大地帮助我们查找数据，而散列表，则是我们查找系列内容的最后一块重要知识。</p>
+<h2 id="散列查找"><a href="#散列查找" class="headerlink" title="散列查找"></a>散列查找</h2><p>我们之前认识的查找算法，最快可以达到对数阶 $O(logN)$，那么我们能否追求极致，让查找性能突破到常数阶呢？这里就要介绍到我们的<strong>散列</strong>（也可以叫哈希 Hash）它采用直接寻址的方式，在理想情况下，查找的时间复杂度可以达到常数阶 $O(1)$。</p>
+<p>散列（Hashing）通过散列函数（哈希函数）将要参与检索的数据与散列值（哈希值）关联起来，生成一种便于搜索的数据结构，我们称其为散列表（哈希表），也就是说，现在我们需要将一堆数据保存起来，这些数据会通过哈希函数进行计算，得到与其对应的哈希值，当我们下次需要查找这些数据时，只需要再次计算哈希值就能快速找到对应的元素了：</p>
+<p><img src="https://s2.loli.net/2022/08/18/Tcj6Spy2Pt5ZIuW.png" alt="image-20220818214145347"></p>
+<p>当然，如果一脸懵逼没关系，我们从哈希函数开始慢慢介绍。</p>
+<h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><p>散列函数也叫哈希函数，哈希函数可以对一个目标计算出其对应的哈希值，并且，只要是同一个目标，无论计算多少次，得到的哈希值都是一样的结果，不同的目标计算出的结果介乎都不同。哈希函数在现实生活中应用十分广泛，比如很多下载网站都提供下载文件的MD5码校验，可以用来判别文件是否完整，哈希函数多种多样，目前应用最为广泛的是SHA-1和MD5，比如我们在下载IDEA之后，会看到有一个验证文件SHA-256校验和的选项，我们可以点进去看看：</p>
+<p><img src="https://s2.loli.net/2022/08/18/tD8AjiGwvJkdahE.png" alt="image-20220818214908458"></p>
+<p>点进去之后，得到：</p>
+<pre><code>e54a026da11d05d9bb0172f4ef936ba2366f985b5424e7eecf9e9341804d65bf *ideaIU-2022.2.1.dmg
+</code></pre>
+<p>这一串由数字和小写字母随意组合的一个字符串，就是安装包文件通过哈希算法计算得到的结果，那么这个东西有什么用呢？我们的网络可能有时候会出现卡顿的情况，导致我们下载的文件可能会出现不完整的情况，因为哈希函数对同一个文件计算得到的结果是一样的，我们可以在本地使用同样的哈希函数去计算下载文件的哈希值，如果与官方一致，那么就说明是同一个文件，如果不一致，那么说明文件在传输过程中出现了损坏。</p>
+<p>可见，哈希函数在这些地方就显得非常实用，在我们的生活中起了很大的作用，它也可以用于布隆过滤器和负载均衡等场景，这里不多做介绍了。</p>
+<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p>前面我们介绍了散列函数，我们知道可以通过散列函数计算一个目标的哈希值，那么这个哈希值计算出来有什么用呢，对我们的程序设计有什么意义呢？我们可以利用哈希值的特性，设计一张全新的表结构，这种表结构是专为哈希设立的，我们称其为哈希表（散列表）</p>
+<p><img src="https://s2.loli.net/2022/08/18/M2o1vE7hHasN8DP.png" alt="image-20220818220944783"></p>
+<p>我们可以将这些元素保存到哈希表中，而保存的位置则与其对应的哈希值有关，哈希值是通过哈希函数计算得到的，我们只需要将对应元素的关键字（一般是整数）提供给哈希函数就可以进行计算了，一般比较简单的哈希函数就是取模操作，哈希表长度是多少（长度最好是一个素数），模就是多少：</p>
+<p><img src="https://s2.loli.net/2022/08/19/CAPhlJnQeLjMHfd.png" alt="image-20220819170355221"></p>
+<p>比如现在我们需要插入一个新的元素（关键字为17）到哈希表中：</p>
+<p><img src="https://s2.loli.net/2022/08/19/ovieRjrzlXhKMC2.png" alt="image-20220819171430332"></p>
+<p>插入的位置为计算出来的哈希值，比如上面是8，那么就在下标位置8插入元素，同样的，我们继续插入27：</p>
+<p><img src="https://s2.loli.net/2022/08/19/pisuSAIZyf5JE7B.png" alt="image-20220819210336314"></p>
+<p>这样，我们就可以将多种多样的数据保存到哈希表中了，注意保存的数据是无序的，因为我们也不清楚计算完哈希值最后会放到哪个位置。那么如果现在我们想要从哈希表中查找数据呢？比如我们现在需要查找哈希表中是否有14这个元素：</p>
+<p><img src="https://s2.loli.net/2022/08/19/H1hAvQPjNui2RYt.png" alt="image-20220819211656628"></p>
+<p>同样的，直接去看哈希值对应位置上看看有没有这个元素，如果没有，那么就说明哈希表中没有这个元素。可以看到，哈希表在查找时只需要进行一次哈希函数计算就能直接找到对应元素的存储位置，效率极高。</p>
+<p>我们可以通过代码来实现一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SIZE 9</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Element</span> &#123;</span>   <span class="comment">//这里用一个Element将值包装一下</span></span><br><span class="line">    <span class="type">int</span> key;    <span class="comment">//这里元素设定为int</span></span><br><span class="line">&#125; * E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span>&#123;</span>   <span class="comment">//这里把数组封装为一个哈希表</span></span><br><span class="line">    E * table;</span><br><span class="line">&#125; * HashTable;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">hash</span><span class="params">(<span class="type">int</span> key)</span>&#123;   <span class="comment">//哈希函数</span></span><br><span class="line">    <span class="keyword">return</span> key % SIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">(HashTable hashTable)</span>&#123;   <span class="comment">//初始化函数</span></span><br><span class="line">    hashTable-&gt;table = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Element) * SIZE);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; SIZE; ++i)</span><br><span class="line">        hashTable-&gt;table[i] = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">insert</span><span class="params">(HashTable hashTable, E element)</span>&#123;   <span class="comment">//插入操作，为了方便就不考虑装满的情况了</span></span><br><span class="line">    <span class="type">int</span> hashCode = hash(element-&gt;key);   <span class="comment">//首先计算元素的哈希值</span></span><br><span class="line">    hashTable-&gt;table[hashCode] = element;   <span class="comment">//对号入座</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">find</span><span class="params">(HashTable hashTable, <span class="type">int</span> key)</span>&#123;</span><br><span class="line">    <span class="type">int</span> hashCode = hash(key);   <span class="comment">//首先计算元素的哈希值</span></span><br><span class="line">    <span class="keyword">if</span>(!hashTable-&gt;table[hashCode]) <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">//如果为NULL那就说明没有</span></span><br><span class="line">    <span class="keyword">return</span> hashTable-&gt;table[hashCode]-&gt;key == key;  <span class="comment">//如果有，直接看是不是就完事</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">E <span class="title function_">create</span><span class="params">(<span class="type">int</span> key)</span>&#123;    <span class="comment">//创建一个新的元素</span></span><br><span class="line">    E e = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Element));</span><br><span class="line">    e-&gt;key = key;</span><br><span class="line">    <span class="keyword">return</span> e;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span> <span class="title">hashTable</span>;</span></span><br><span class="line">    init(&amp;hashTable);</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">10</span>));</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">7</span>));</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">13</span>));</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">29</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, find(&amp;hashTable, <span class="number">1</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, find(&amp;hashTable, <span class="number">13</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就实现了一个简单的哈希表和哈希函数，通过哈希表，我们可以将数据的查找时间复杂度提升到常数阶。</p>
+<h2 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a>哈希冲突</h2><p>前面我介绍了哈希函数，通过哈希函数计算得到一个目标的哈希值，但是在某些情况下，哈希值可能会出现相同的情况：</p>
+<p><img src="https://s2.loli.net/2022/08/19/XqpZd1YP5ulEJRy.png" alt="image-20220819215004653"></p>
+<p>比如现在同时插入14和23这两个元素，他们两个计算出来的哈希值是一样的，都需要在5号下标位置插入，这时就出现了打架的情况，那么到底是把哪一个放进去呢？这种情况，我们称为<strong>哈希碰撞</strong>（哈希冲突）</p>
+<p>这种问题是很严重的，因为哈希函数的设计不同，难免会出现这种情况，这种情况是不可避免的，我们只能通过使用更加高级的哈希函数来尽可能避免这种情况，但是无法完全避免。当然，如果要完全解决这种问题，我们还需要去寻找更好的方法。</p>
+<h3 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h3><p>既然有可能出现哈希值重复的情况，那么我们可以选择退让，不去进行争抢（忍一时风平浪静，退一步海阔天空）我们可以去找找哈希表中相邻的位置上有没有为空的，只要哈希表没装满，那么我们肯定是可以找到位置装下这个元素的，这种类型的解决方案我们统称为<strong>线性探测法</strong>，开放定址法包含，线性探测法、平方探测法、双散列法等，这里我们以线性探测法为例。</p>
+<p>既然第一次发生了哈希冲突，那么我们就继续去找下一个空位：<br>$$<br>h_i(key) &#x3D; (h(key) + d_i)\space % \space TableSize<br>$$<br>其中 $d_i$ 是随着哈希冲突次数增加随之增加的量，比如上面出现了一次哈希冲突，那么我就将其变成<code>1</code>表示发生了一次哈希冲突，然后我们可以继续去寻找下一个位置：</p>
+<p><img src="https://s2.loli.net/2022/08/20/p5Qdni31eqFgzZ7.png" alt="image-20220820112822005"></p>
+<p>出现哈希冲突时，$d_i$自增，继续寻找下一个空位：</p>
+<p><img src="https://s2.loli.net/2022/08/20/Ay6zkgivEFLthM8.png" alt="image-20220820113020326"></p>
+<p>再次计算哈希值，成功得到对应的位置，注意 $d_i$ 默认为0，这样我们就可以解决冲突的情况了。</p>
+<p>我们来通过代码实际使用一下，这里需要调整一下插入和查找操作的逻辑：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">insert</span><span class="params">(HashTable hashTable, E element)</span>&#123;   <span class="comment">//插入操作，注意没考虑满的情况，各位小伙伴可以自己实现一下</span></span><br><span class="line">    <span class="type">int</span> hashCode = hash(element-&gt;key), count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (hashTable-&gt;table[hashCode]) &#123;   <span class="comment">//如果发现哈希冲突，那么需要继续寻找</span></span><br><span class="line">        hashCode = hash(element-&gt;key + ++count);</span><br><span class="line">    &#125;</span><br><span class="line">    hashTable-&gt;table[hashCode] = element;   <span class="comment">//对号入座</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">find</span><span class="params">(HashTable hashTable, <span class="type">int</span> key)</span>&#123;</span><br><span class="line">    <span class="type">int</span> hashCode = hash(key), count = <span class="number">0</span>;   <span class="comment">//首先计算元素的哈希值</span></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> startIndex = hashCode;   <span class="comment">//记录一下起始位置，要是转一圈回来了得停</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(hashTable-&gt;table[hashCode]-&gt;key == key) <span class="keyword">return</span> <span class="number">1</span>;  <span class="comment">//如果找到就返回1</span></span><br><span class="line">        hashCode = hash(key + ++count);</span><br><span class="line">    &#125; <span class="keyword">while</span> (startIndex != hashCode &amp;&amp; hashTable-&gt;table[hashCode]);  <span class="comment">//没找到继续找</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样当出现哈希冲突时，会自动寻找补位插入：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span> <span class="title">hashTable</span>;</span></span><br><span class="line">    init(&amp;hashTable);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; ++i) &#123;</span><br><span class="line">        insert(&amp;hashTable, create(i * <span class="number">9</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, hashTable.table[i]-&gt;key);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然，如果采用这种方案删除会比较麻烦，因为有些元素可能是通过线性探测补到其他位置上的，如果删除元素，那么很有可能会影响到前面的查找操作：</p>
+<p><img src="https://s2.loli.net/2022/08/20/PJIVAUnhT6OwB9d.png" alt="image-20220820211324957"></p>
+<p>此时删除关键字为45的元素，会出现截断的情况，当下次查找时，会出现严重问题：</p>
+<p><img src="https://s2.loli.net/2022/08/20/am6WHpejxtyU842.png" alt="image-20220820214945139"></p>
+<p>可以看到，删除一个元素可能会导致原有的结构意外截断，无法正确找到对应的元素，所以，我们在删除元素时，为了防止出现这种截断的情况，我们需要对这个位置进行标记，表示之前有过元素，但是被删除了，当我们在查找时，如果发现曾经有过元素，依然需要继续向后寻找：</p>
+<p><img src="https://s2.loli.net/2022/08/20/hIBUbKvDjAfYruL.png" alt="image-20220820215613368"></p>
+<p>代码实现有点麻烦，这里就不编写代码了。</p>
+<p>当然除了直接向后进行探测之外，我们也可以采用<strong>二次探测再散列法</strong>处理哈希冲突，因为有些时候可能刚好后面没有空位了，但是前面有，如果按照之前的方法，我们得转一圈回来才能找到对应的位置，实在是有点浪费时间，所以说我们可以左右开弓，同时向两个方向去寻找。</p>
+<p>它的查找增量序列为：$1^2$、$-1^2$、$2^2$、$-2^2$、…、$q^2$、$-q^2$，其中$q &lt;&#x3D; \lfloor {TableSize\div2} \rfloor$，比如现在我们要向下面的哈希表中插入数据，现在插入关键字为24的元素，发现冲突了：</p>
+<p><img src="https://s2.loli.net/2022/08/21/CTEFJVNmf47B3yq.png" alt="image-20220821214600725"></p>
+<p>那么此时就需要进行处理了，这里我们采用上面的方式，先去寻找 $1^2$ 位置：</p>
+<p><img src="https://s2.loli.net/2022/08/21/QmiDsrnZjX8YUb6.png" alt="image-20220821214751809"></p>
+<p>我们接着来插入：</p>
+<p><img src="https://s2.loli.net/2022/08/21/Wj9wYLPovF6pAOs.png" alt="image-20220821215445041"></p>
+<p>实际上我们发现和之前是一样的，只要冲突就一直往下找就完事，只不过现在是左右横跳着找，这样可以进一步提升利用率。</p>
+<h3 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h3><p>实际上常见的哈希冲突解决方案是<strong>链地址法</strong>，当出现哈希冲突时，我们依然将其保存在对应的位置上，我们可以将其连接为一个链表的形式：</p>
+<p>![image-20220820220237535](&#x2F;Users&#x2F;nagocoler&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220820220237535.png)</p>
+<p>当表中元素变多时，差不多就变成了这样，我们一般将其横过来看：</p>
+<p>![image-20220820221104298](&#x2F;Users&#x2F;nagocoler&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220820221104298.png)</p>
+<p>通过结合链表的形式，哈希冲突问题就可以得到解决了，但是同时也会出现一定的查找开销，因为现在有了链表，我们得挨个往后看才能找到，当链表变得很长时，查找效率也会变低，此时我们可以考虑结合其他的数据结构来提升效率。比如当链表长度达到8时，自动转换为一棵平衡二叉树或是红黑树，这样就可以在一定程度上缓解查找的压力了。</p>
+<p>我们来编写代码尝试一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SIZE 9</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> &#123;</span>   <span class="comment">//结点定义</span></span><br><span class="line">    <span class="type">int</span> key;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> * <span class="title">next</span>;</span></span><br><span class="line">&#125; * Node;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span>&#123;</span>   <span class="comment">//哈希表</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> * <span class="title">table</span>;</span>   <span class="comment">//这个数组专门保存头结点</span></span><br><span class="line">&#125; * HashTable;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">(HashTable hashTable)</span>&#123;</span><br><span class="line">    hashTable-&gt;table = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> ListNode) * SIZE);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; SIZE; ++i) &#123;</span><br><span class="line">        hashTable-&gt;table[i].key = <span class="number">-1</span>;   <span class="comment">//将头结点key置为-1，next指向NULL</span></span><br><span class="line">        hashTable-&gt;table[i].next = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span> <span class="title">table</span>;</span>    <span class="comment">//创建哈希表</span></span><br><span class="line">    init(&amp;table);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接着是编写对应的插入操作，插入后直接往链表后面丢就完事了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">hash</span><span class="params">(<span class="type">int</span> key)</span>&#123;   <span class="comment">//哈希函数</span></span><br><span class="line">    <span class="keyword">return</span> key % SIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">createNode</span><span class="params">(<span class="type">int</span> key)</span>&#123;   <span class="comment">//创建结点专用函数</span></span><br><span class="line">    Node node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> ListNode));</span><br><span class="line">    node-&gt;key = key;</span><br><span class="line">    node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">insert</span><span class="params">(HashTable hashTable, <span class="type">int</span> key)</span>&#123;</span><br><span class="line">    <span class="type">int</span> hashCode = hash(key);</span><br><span class="line">    Node head = hashTable-&gt;table + hashCode;   <span class="comment">//先计算哈希值，找到位置后直接往链表后面插入结点就完事了</span></span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next) head = head-&gt;next;</span><br><span class="line">    head-&gt;next = createNode(key);   <span class="comment">//插入新的结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样的，查找的话也是直接找到对应位置，看看链表里面有没有就行：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">_Bool</span> <span class="title function_">find</span><span class="params">(HashTable hashTable, <span class="type">int</span> key)</span>&#123;</span><br><span class="line">    <span class="type">int</span> hashCode = hash(key);</span><br><span class="line">    Node head = hashTable-&gt;table + hashCode;</span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next &amp;&amp; head-&gt;key != key)   <span class="comment">//直到最后或是找到为止</span></span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">    <span class="keyword">return</span> head-&gt;key == key;   <span class="comment">//直接返回是否找到</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来测试一下吧：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span> <span class="title">table</span>;</span></span><br><span class="line">    init(&amp;table);</span><br><span class="line"></span><br><span class="line">    insert(&amp;table, <span class="number">10</span>);</span><br><span class="line">    insert(&amp;table, <span class="number">19</span>);</span><br><span class="line">    insert(&amp;table, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, find(&amp;table, <span class="number">20</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, find(&amp;table, <span class="number">17</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, find(&amp;table, <span class="number">19</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上这种方案代码写起来也会更简单，使用也更方便一些。</p>
+<p><strong>散列表习题：</strong></p>
+<ol>
+<li><p>下面关于哈希查找的说法，正确的是（ ）</p>
+<p>A 哈希函数构造的越复杂越好，因为这样随机性好，冲突小</p>
+<p>B 除留余数法是所有哈希函数中最好的</p>
+<p>C 不存在特别好与坏的哈希函数，要视情况而定</p>
+<p>D 越简单的哈希函数越容易出现冲突，是最坏的</p>
+<p><em>首先，衡量哈希函数好坏并没有一个确切的标准，而是需要根据具体情况而定，并不一定复杂的哈希函数就好，因为会带来时间上的损失。其实我们的生活中很多东西都像这样，没有好坏之分，只有适不适合的说法，所以说选择C选项</em></p>
+</li>
+<li><p>设有一组记录的关键字为{19，14，23，1，68，20，84，27，55，11，10，79}，用链地址法构造散列表，散列函数为H（key）&#x3D;key MOD 13,散列地址为1的链中有（ ）个记录。</p>
+<p>A 1             B 2               C 3                 D 4</p>
+<p><em>这种咱们得画图才知道了，答案是D</em></p>
+</li>
+<li><p>设哈希表长为14，哈希函数是H(key)&#x3D;key%11，表中已有数据的关键字为15，38，61，84共四个，现要将关键字为49的元素加到表中，用二次探测再散列解决冲突，则放入的位置是（ ）</p>
+<p>A 8             B 3               C 5                 D 9</p>
+<p><em>咱们先把这个表给画出来吧，答案是D</em></p>
+</li>
+<li><p>选取哈希函数 H(key)&#x3D;(key x 3)%11 用线性探测散列法和二次探测再散列法分别处理冲突。试在0~10的散列地址空间中，对关键字序列（22,41,53,46,30,13,1,67）构建哈希表，并求等概率情况下查找成功的平均查找长度。</p>
+<p><em>其中平均查找长度（ASL）就是表中每一个元素需要查找次数之和的平均值，我们注意在插入元素时顺便记录计算次数即可，如果是链地址法，那么直接看层数就行，ASL &#x3D;（第一层结点数量+第二层结点数量+第三层结点数量）&#x2F; 非头结点总数</em></p>
+</li>
+</ol>
+<h2 id="算法实战"><a href="#算法实战" class="headerlink" title="算法实战"></a>算法实战</h2><h3 id="（简单）两数之和"><a href="#（简单）两数之和" class="headerlink" title="（简单）两数之和"></a>（简单）两数之和</h3><p>本题来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1.两数之和</a>（整个力扣的第一题）</p>
+<p>给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
+<p>你可以按任意顺序返回答案。</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：nums &#x3D; [2,7,11,15], target &#x3D; 9<br>输出：[0,1]<br>解释：因为 nums[0] + nums[1] &#x3D;&#x3D; 9 ，返回 [0, 1] 。</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：nums &#x3D; [3,2,4], target &#x3D; 6<br>输出：[1,2]</p>
+</blockquote>
+<p>示例 3：</p>
+<blockquote>
+<p>输入：nums &#x3D; [3,3], target &#x3D; 6<br>输出：[0,1]</p>
+</blockquote>
+<p>这道题很简单，实际上使用暴力枚举是可以完成的，我们只需要让每个数去寻找一个与其匹配的数即可，所以说直接循环就完事：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> * <span class="title function_">result</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j, <span class="type">int</span> * returnSize)</span>&#123;</span><br><span class="line">    *returnSize = <span class="number">2</span>;</span><br><span class="line">    <span class="type">int</span> * result = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">2</span>);</span><br><span class="line">    result[<span class="number">0</span>] = i;</span><br><span class="line">    result[<span class="number">1</span>] = j;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>* <span class="title function_">twoSum</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span> target, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; numsSize; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j == i) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] + nums[j] == target) </span><br><span class="line">                <span class="keyword">return</span> result(i, j, returnSize);   <span class="comment">//找到匹配就直接返回完事</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;   <span class="comment">//无视即可，因为不可能</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样效率实在是太低了，可以看到我们的程序运行时间都好几百毫秒了，能不能优化一下呢？我们正好学习了散列表，是否可以利用一下散列表来帮助我们完成？</p>
+<p>因为每当我们遍历一个数时，实际上就是去寻找与其匹配的数是否存在，我们可以每遍历一个数都将其存放到散列表中，当下次遇到与其相匹配的数时，只要能够从散列表中找到这个数，那么就可以直接完成匹配了，这样就只需要遍历一次即可完成。比如：</p>
+<blockquote>
+<p>[2,7,11,15] ，targert &#x3D; 9</p>
+<p>第一次先将2放入散列表，接着往后看7，现在目标值时9，那么只需要去寻找 9 - 7 这个数，看看散列表中有没有即可，此时散列表中正好有2，所以说直接返回即可。</p>
+</blockquote>
+<p>我们来尝试编写一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SIZE 128</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> K;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> V;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> &#123;</span>   <span class="comment">//结点定义需要稍微修改一下，因为除了存关键字还需要存一下下标</span></span><br><span class="line">    K key;</span><br><span class="line">    V value;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> * <span class="title">next</span>;</span></span><br><span class="line">&#125; * Node;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span>&#123;</span>   <span class="comment">//哈希表</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> * <span class="title">table</span>;</span>   <span class="comment">//这个数组专门保存头结点</span></span><br><span class="line">&#125; * HashTable;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">(HashTable hashTable)</span>&#123;</span><br><span class="line">    hashTable-&gt;table = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> LNode) * SIZE);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; SIZE; ++i) &#123;</span><br><span class="line">        hashTable-&gt;table[i].key = <span class="number">-1</span>;   <span class="comment">//将头结点key置为-1，value也变成-1，next指向NULL</span></span><br><span class="line">        hashTable-&gt;table[i].value = <span class="number">-1</span>;</span><br><span class="line">        hashTable-&gt;table[i].next = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">hash</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> key)</span>&#123;  <span class="comment">//因为哈希表用的数组，要是遇到负数的key，肯定不行，咱先给它把符号扬了再算</span></span><br><span class="line">    <span class="keyword">return</span> key % SIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">create</span><span class="params">(K key, V value)</span>&#123;   <span class="comment">//创建结点，跟之前差不多</span></span><br><span class="line">    Node node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> LNode));</span><br><span class="line">    node-&gt;key = key;</span><br><span class="line">    node-&gt;value = value;</span><br><span class="line">    node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">insert</span><span class="params">(HashTable hashTable, K key, V value)</span>&#123;</span><br><span class="line">    <span class="type">int</span> hashCode = hash(key);</span><br><span class="line">    Node head = hashTable-&gt;table + hashCode;</span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next) head = head-&gt;next;</span><br><span class="line">    head-&gt;next = create(key, value);   <span class="comment">//这里同时保存关键字和对应的下标</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">find</span><span class="params">(HashTable hashTable, K key)</span>&#123;</span><br><span class="line">    <span class="type">int</span> hashCode = hash(key);</span><br><span class="line">    Node head = hashTable-&gt;table + hashCode;     <span class="comment">//直接定位到对应位置</span></span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next &amp;&amp; head-&gt;next-&gt;key != key)   <span class="comment">//直接看有没有下一个结点，并且下一个结点不是key</span></span><br><span class="line">        head = head-&gt;next;  <span class="comment">//继续往后找</span></span><br><span class="line">    <span class="keyword">return</span> head-&gt;next;   <span class="comment">//出来之后要么到头了下一个是NULL，要么就是找到了，直接返回</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>哈希表编写完成后，我们就可以使用了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> * <span class="title function_">result</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j, <span class="type">int</span> * returnSize)</span>&#123;   <span class="comment">//跟上面一样</span></span><br><span class="line">    *returnSize = <span class="number">2</span>;</span><br><span class="line">    <span class="type">int</span> * result = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">2</span>);</span><br><span class="line">    result[<span class="number">0</span>] = i;</span><br><span class="line">    result[<span class="number">1</span>] = j;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>* <span class="title function_">twoSum</span><span class="params">(<span class="type">int</span>* nums, <span class="type">int</span> numsSize, <span class="type">int</span> target, <span class="type">int</span>* returnSize)</span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span> <span class="title">table</span>;</span>    <span class="comment">//初始化哈希表</span></span><br><span class="line">    init(&amp;table);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; numsSize; ++i) &#123;   <span class="comment">//挨个遍历</span></span><br><span class="line">        Node node = find(&amp;table, target - nums[i]);  <span class="comment">//直接去哈希表里面寻找匹配的，如果有直接结束，没有就丢把当前的key丢进哈希表，之后如果遇到与其匹配的另一半，那么就直接成功了</span></span><br><span class="line">        <span class="keyword">if</span>(node != <span class="literal">NULL</span>) <span class="keyword">return</span> result(i, node-&gt;value, returnSize);</span><br><span class="line">        insert(&amp;table, nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;   <span class="comment">//无视就好</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们再次提交代码，时间直接来到了个位数：</p>
+<p><img src="https://s2.loli.net/2022/08/21/pGF2hZo5ArbLyfB.png" alt="image-20220821122010425"></p>
+<p>采用哈希表，就是一种空间换时间的策略，在大多数情况下，我们也更推荐使用这种方案。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    C语言（二）
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">数据结构与算法（五）</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Public &copy; 2023 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

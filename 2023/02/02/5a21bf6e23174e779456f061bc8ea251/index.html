@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>06 【实操篇-时间日期类 用户和用户组管理】 | 知识库</title>
+    
+    
+        <meta name="keywords" content="06 【实操篇-时间日期类 用户和用户组管理】" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="06 【实操篇-时间日期类 用户和用户组管理】1.时间日期类1.1 显示当前日期 基本语法   date (功能描述:显示当前时间) date +%Y(功能描述:显示当前年份) date +%m(功能描述:显示当前月份) date +%d (功能描述:显示当前是哪一天) date &quot;+%Y-%m-%d %H:%M:%S&quot; (功能描述:显示年月日时分秒) date +%s (功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06 【实操篇-时间日期类 用户和用户组管理】">
+<meta property="og:url" content="http://example.com/2023/02/02/5a21bf6e23174e779456f061bc8ea251/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="06 【实操篇-时间日期类 用户和用户组管理】1.时间日期类1.1 显示当前日期 基本语法   date (功能描述:显示当前时间) date +%Y(功能描述:显示当前年份) date +%m(功能描述:显示当前月份) date +%d (功能描述:显示当前是哪一天) date &quot;+%Y-%m-%d %H:%M:%S&quot; (功能描述:显示年月日时分秒) date +%s (功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/c12b70d022270de4da3dd92c92ad478e9ccbf628.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/6e6836c747446e0666f3cfcf3f3b2f2eb1a2391b.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/833a2ada5703f9de72428fe59e2b9933604f2e61.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/e68b0f52518e68a272c4ebe53135aac2a336aef0.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d069209b86a00489f29d83e4b33e7a72ed8e3c72.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/912a27281aafd43d039ca6c3e3f82d593d58be04.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/5eb7555ab9ab251c75a5256b8aba9b794ca2acec.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/72fabc90a9dff974f9e2a4abeae34f4e3fb6bf63.png">
+<meta property="article:published_time" content="2023-02-02T05:18:15.640Z">
+<meta property="article:modified_time" content="2023-02-02T05:21:59.658Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/c12b70d022270de4da3dd92c92ad478e9ccbf628.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知识库" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C/C++
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C语言程序设计笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0b556fd3fac3446ab962debd1d7d0d3d/">C语言（三）</a></li>  <li class="file"><a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/">C语言（二）</a></li>  <li class="file"><a href="/2023/01/18/47f2147369be440d89c32f4ac310c6a7/">C语言（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-c
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            lib
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/">assert.h</a></li>  <li class="file"><a href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/">ctype.h</a></li>  <li class="file"><a href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/">float.h</a></li>  <li class="file"><a href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/">errno.h</a></li>  <li class="file"><a href="/2023/02/02/03a886d85a6e423a9dea00ed1979a294/">stdarg.h</a></li>  <li class="file"><a href="/2023/02/02/174190d1271c441296fe6161dbe1e3b0/">inttypes.h</a></li>  <li class="file"><a href="/2023/02/02/3c0028c132394bf49855502500823843/">signal.h</a></li>  <li class="file"><a href="/2023/02/02/3c2477856e494e289da69d3223ba7674/">math.h</a></li>  <li class="file"><a href="/2023/02/02/3ec857ad74414dfa9785db229745cff4/">stdint.h</a></li>  <li class="file"><a href="/2023/02/02/4709412c44ae4a488075c134135a0c7d/">limits.h</a></li>  <li class="file"><a href="/2023/02/02/63a6e5300615432c802b5fad1526b013/">iso646.h</a></li>  <li class="file"><a href="/2023/02/02/74ea4d343a0a466dafd2938741af9b82/">stdio.h</a></li>  <li class="file"><a href="/2023/02/02/7c6a577e51b44a30896461029a72e0d9/">stddef.h</a></li>  <li class="file"><a href="/2023/02/02/f15fbe0430cd4183b0fce6d942edec61/">stdbool.h</a></li>  <li class="file"><a href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/">locale.h</a></li>  <li class="file"><a href="/2023/02/02/30aaa7981bcb41ecb2cab759dc8d61d9/">string.h</a></li>  <li class="file"><a href="/2023/02/02/43c955dbbcff4f31b6b395baf15b3643/">time.h</a></li>  <li class="file"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/">stdlib.h</a></li>  <li class="file"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/">wchar.h</a></li>  <li class="file"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/">wctype.h</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/">array</a></li>  <li class="file"><a href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/">enum</a></li>  <li class="file"><a href="/2023/02/02/88026f8bed5a4692a3eb48abb8cc2c47/">cli</a></li>  <li class="file"><a href="/2023/02/02/9e03d1990b4c477c8e5ecd52164183d1/">flow-control</a></li>  <li class="file"><a href="/2023/02/02/a57d1c9278214ad49c0c94d45a92af2b/">file</a></li>  <li class="file"><a href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/">io</a></li>  <li class="file"><a href="/2023/02/02/83858a169b23461eadc882914abf4bd1/">function</a></li>  <li class="file"><a href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/">intro</a></li>  <li class="file"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/">memory</a></li>  <li class="file"><a href="/2023/02/02/ec65e72324264fbb8acf7006f6ced494/">multibyte</a></li>  <li class="file"><a href="/2023/02/02/635718a1db8b4ccebbfd9a4f8a55de47/">preprocessor</a></li>  <li class="file"><a href="/2023/02/02/bb7bba4594234ae5832af49f8d3e56ee/">pointer</a></li>  <li class="file"><a href="/2023/02/02/cf8653eb740a49b7a58a852bbbed00a4/">string</a></li>  <li class="file"><a href="/2023/02/02/e1cb8d47ae9c459eb5ac11818a7c6e27/">operator</a></li>  <li class="file"><a href="/2023/02/02/ecce61b4548c4e45ba73284c9ba7f0cc/">specifier</a></li>  <li class="file"><a href="/2023/02/02/41797336ff734560a26025353b233d54/">types</a></li>  <li class="file"><a href="/2023/02/02/5f8eaecb5f1f414d9106a33847f193a9/">variable</a></li>  <li class="file"><a href="/2023/02/02/a86312379ebb44c39fbda22a6eecf977/">struct</a></li>  <li class="file"><a href="/2023/02/02/bf7f6d8e12f54a7c8802abcbdc18e689/">union</a></li>  <li class="file"><a href="/2023/02/02/c19ba4705d5142bf98d9207eece2ef79/">typedef</a></li>  <li class="file"><a href="/2023/02/02/cb86948a24cf470ea1c847f85f8b8349/">syntax</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/a2acb1e85c084003b09433633a27ec8f/">C++求和的多种方式</a></li>  <li class="file"><a href="/2023/01/25/dd59a1b3ef8343efb5e60f2fd43084a8/">水仙花题解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/20/b4a4813646324eab97b039cacf031705/">Docker容器技术</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/00429dd58f6c4ce6a2b03b9aeeb9d521/">git-log</a></li>  <li class="file"><a href="/2023/02/02/02fdd75f9f2a47489decf6f32d0b3c7a/">git-rebase</a></li>  <li class="file"><a href="/2023/02/02/0b2ea073a1c14893b3dd7098546e0655/">git-add</a></li>  <li class="file"><a href="/2023/02/02/13f9c3847de9456f9a8078f072da7eab/">git-init</a></li>  <li class="file"><a href="/2023/02/02/22d2d3f830f145289393d0f82e740cb9/">git-diff</a></li>  <li class="file"><a href="/2023/02/02/4781f042463f4f40b1bbad14879d0ac7/">git-clone</a></li>  <li class="file"><a href="/2023/02/02/58789f766a6c4768be5f19a121c6fd61/">git-checkout</a></li>  <li class="file"><a href="/2023/02/02/587e496a180048d98ac872605ced2d67/">git-cherry-pick</a></li>  <li class="file"><a href="/2023/02/02/63225ea3537e44c4bd42c553358e0a14/">git-cat-file</a></li>  <li class="file"><a href="/2023/02/02/6c452a5f156c43cfa90eb618191dcda7/">git-commit-tree</a></li>  <li class="file"><a href="/2023/02/02/6d6d53b08a474a0d938c0711dae464b1/">git-commit</a></li>  <li class="file"><a href="/2023/02/02/88a36c4e06f04c1c90ee2d93d231fcf0/">git-remote</a></li>  <li class="file"><a href="/2023/02/02/a4f4a7cf1b5446f58b3403e34b90adcb/">git-ls-files</a></li>  <li class="file"><a href="/2023/02/02/bbc2b9d3586f4c05946853201ac0e103/">git-hash-object</a></li>  <li class="file"><a href="/2023/02/02/cfc661f62c4f473fb166b17ef54c5d37/">git-merge</a></li>  <li class="file"><a href="/2023/02/02/e69a3fc86aad49f2a7e9b61b6377403e/">git-pull</a></li>  <li class="file"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/">git-branch</a></li>  <li class="file"><a href="/2023/02/02/0215eb43a3cd48af8db8b7826c738ae9/">git-show</a></li>  <li class="file"><a href="/2023/02/02/01c2ed5c17c944e4b3dede0de2616c27/">git-rm</a></li>  <li class="file"><a href="/2023/02/02/1ee03873808d4c469cfa0998032e4936/">git-write-tree</a></li>  <li class="file"><a href="/2023/02/02/2f3fcea5172b40dc8e12f9ef817fb413/">git-update-ref</a></li>  <li class="file"><a href="/2023/02/02/4027c7dfd0a849658d350c9374793484/">git-restore</a></li>  <li class="file"><a href="/2023/02/02/446de5db36bf4d5a858dc7d949a7da12/">git-update-index</a></li>  <li class="file"><a href="/2023/02/02/59d93e8c48164f0190417df6f9a1f573/">git-rev-parse</a></li>  <li class="file"><a href="/2023/02/02/69ebd17fb555427285f272241105d5cd/">git-reset</a></li>  <li class="file"><a href="/2023/02/02/861b301a7bce4dad8bb92d273cd75daf/">git-switch</a></li>  <li class="file"><a href="/2023/02/02/a4bb2f6830624e38bccbc32c93085d32/">git-stash</a></li>  <li class="file"><a href="/2023/02/02/bb8b63b8991b414d92411977cc87bbbe/">git-revert</a></li>  <li class="file"><a href="/2023/02/02/e6a606da62da484dbf52fce543abb094/">git-tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/">basic</a></li>  <li class="file"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/">branch</a></li>  <li class="file"><a href="/2023/02/02/1459cfd798b842b4a80ce78e41d4155d/">operations</a></li>  <li class="file"><a href="/2023/02/02/31b7e45e02f54e149fea5d1d8cda26fe/">internal</a></li>  <li class="file"><a href="/2023/02/02/26cbe9e22b164aeaabf617d844abc440/">reference</a></li>  <li class="file"><a href="/2023/02/02/90fb796e66734920ae724f9fa66ce763/">tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/c77ab20583d64ba9a3dc6f8d6ea89f55/">04 【忽略某些文件】</a></li>  <li class="file"><a href="/2023/02/02/2b8f3ce0fed44813a0919553cb304e64/">03 【远程库操作】</a></li>  <li class="file"><a href="/2023/02/02/aeb16e6138444c83ae3bd8886ba906bc/">01 【版本控制和Git的安装介绍】</a></li>  <li class="file"><a href="/2023/02/02/52d9a2a8683a42eb966022415a93058a/">02 【版本控制命令】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JAVASE
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/49756fe6e6cc44f88ee3cc213ec4bd67/">Java泛型</a></li>  <li class="file"><a href="/2023/01/19/338f5f76a1914f72822772ea3026f220/">Java 集合</a></li>  <li class="file"><a href="/2023/01/19/929bd134ed01499c92d8e177925950ef/">Java面向对象基础(初级)</a></li>  <li class="file"><a href="/2023/01/19/274b1dfaf07945e7ab77710afad502a3/">Java面向对象基础（中级）</a></li>  <li class="file"><a href="/2023/01/19/9a52b66178b746debfe7111574e464a2/">Java面向对象(高级)</a></li>  <li class="file"><a href="/2023/01/25/47c9d6ac38214463ae1ca07fd5b85614/">Java-Math类</a></li>  <li class="file"><a href="/2023/01/25/65905cb7c01348b0b1ac5264ecc87ab0/">Java Object类详解</a></li>  <li class="file"><a href="/2023/01/25/0b0365b51c0644958b204ed11719a88a/">Java 访问修饰符</a></li>  <li class="file"><a href="/2023/01/25/e7838ce563844f3a9811936eaa09cb09/">Java数据结构-栈</a></li>  <li class="file"><a href="/2023/01/25/cefb06ca6f8049a99703cf1b3bc1fa3d/">Java异常处理</a></li>  <li class="file"><a href="/2023/01/25/d8cc29145a834e3aaa2a43b7d88c9ce1/">java选择排序</a></li>  <li class="file"><a href="/2023/01/25/abec654a37ad4a498798cdf019a2e61e/">Java-枚举</a></li>  <li class="file"><a href="/2023/01/25/d5d66a7ebad94d6483e19407faf46cc5/">Java-包装类</a></li>  <li class="file"><a href="/2023/01/25/b3ada79e6ff745f0acd8edcf57c95acc/">Java-递归执行机制</a></li>  <li class="file"><a href="/2023/01/25/03f3dd343d094bd6baf6772f4a6a2aed/">Java-冒泡排序</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JUC笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/83aef7425d394df3901ca188c1afc6d5/">JUC笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/b41b5f3eb08f41cbbbf454a8c9922051/">JUC笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/1d97f5daca284471abd5c2a42c140143/">JUC笔记（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/f4f7756d2f6644d4b0e098cb3789a9c6/">JVM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/3222fc6cde8442a89eda4e5e0808952a/">JVM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/8e58362eaa734ad292f357536ef1b05e/">JVM笔记（三）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java-GUi
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/f7310f53495a4e258159180b2ce529db/">Java-GUI-窗口配置</a></li>  <li class="file"><a href="/2023/01/19/f172572c7d114592aaa804efa121761e/">Java-GUI-监听器</a></li>  <li class="file"><a href="/2023/01/19/2c969cb92c56489ab91482067305ab42/">Java-GUI-常用组件</a></li>  <li class="file"><a href="/2023/01/19/a8eb012039114ca6a601a1c34622ba93/">Java-GUI 布局</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记 2023重制版
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/09da4fbf346f4f459ef48c64c61f6cc1/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/30140692c4144c2cbc65ba707a7b0c89/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/aea1e8a802bd45ebbe33970dab1bad21/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/df26e1c8129b412a8284a955dbe26b3c/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/31ca9cc5ea8a4795b75b49ec9680cca7/">JavaSE笔记（一）重制版</a></li>  <li class="file"><a href="/2023/01/18/7ecb50884e214c28abe6a905186f2051/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/cae1499c7dd54b5f9729e77e75f9e92f/">JavaSE笔记（四）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记（含新特性介绍）
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0e413f24b04d46babc26b48035844a34/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/4781c8feb884488d93fcbc64d83998eb/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/6561c4991b054522a438ae9c3573bf7b/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/e9b900b310774688844b4e31729afc40/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/4616dce1a1c745fb84672ffed7bf43ed/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/5aef6240910849d4b69b36b03baf7d2c/">JavaSE笔记（四）重制版</a></li>  <li class="file"><a href="/2023/01/18/d7d20c40f1044de59760363f8b9d8c4b/">JavaSE笔记（一）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSSM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0dbb54c3201b45ec9eb61b3e76209382/">Java SSM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/13fdccb2f789426fb795cdb23e8cb0c0/">JavaSSM笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/86717e97bcd34af2ab62ade51eddc019/">JavaSSM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/9dfd598003ab43828c77f2676dd6cf8f/">JavaSSM笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/088fcec4e8a846479c3cfcf5a6a52da7/">JavaWeb笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/5756fdcc799c4064be4e4a84d7ab5244/">JavaWeb笔记（五）</a></li>  <li class="file"><a href="/2023/01/18/b79318accafa44dfaabad60dbbe8de4c/">JavaWeb笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/f795be55936d42ddafd17995abae6aa8/">JavaWeb笔记（三）</a></li>  <li class="file"><a href="/2023/01/23/65909752ee164b2c877f1f77097d6358/">使用Socket传输文件</a></li>  <li class="file"><a href="/2023/01/24/1c60970a20864932bc3ef0807b9fda67/">JavaWeb笔记（四）</a></li>  <li class="file"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/">SQL事务（非常详细）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java设计模式笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/022f64208f254fbea3a8fb31b281a85b/">Java设计模式（一）</a></li>  <li class="file"><a href="/2023/01/18/3e0642cd3b254fb2b80bf2932ac4b9be/">Java设计模式（三）</a></li>  <li class="file"><a href="/2023/01/18/407c5b3cecb14dfaa0649e6f89d0ec2b/">Java设计模式（四）</a></li>  <li class="file"><a href="/2023/01/18/7acbd5ac3c754f2287c448b72010bac1/">Java设计模式（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NIO笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/93e61e24ebe54aacb046d8fb7e524ec8/">Java NIO笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/cdec76bf6ea84248809947e5c365c26e/">Java NIO笔记（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringCloud笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/89a3686366ac4733a117121766e12109/">SpringCould笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/f828affac4f64da487d581f2cb0a7ddb/">SpringCloud笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/3156ff5edada4090a2470abcafcc1ace/">SpringCloud笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/af85cc65b701415f8bf1a97873320570/">SpringCloud笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Springboot笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/">SpringBoot笔记（一）</a></li>  <li class="file"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/">SpringBoot笔记（二）</a></li>  <li class="file"><a href="/2023/01/24/99650712d4104d00a2c4a5ccfc3f525e/">SpringBoot笔记（三）</a></li>  <li class="file"><a href="/2023/01/24/3636e46047924c11b7ec162ffc9f9271/">SprintBoot笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境配置
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/06a5ebd1d51442d58ba9f7b02612a94b/">Linux下JAVA环境配置</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Bash
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            archives
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/">cp</a></li>  <li class="file"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/">awk</a></li>  <li class="file"><a href="/2023/02/02/5e2e0bec39da4147b3fa493d53c38fcf/">clear</a></li>  <li class="file"><a href="/2023/02/02/6c931bc223d04f6ea0004ce2e60ed0a9/">cal</a></li>  <li class="file"><a href="/2023/02/02/e371d141f5e04b83985097a365e488f3/">alias</a></li>  <li class="file"><a href="/2023/02/02/eb9fd5a58ed4424db318906b45b3a2c1/">cat</a></li>  <li class="file"><a href="/2023/02/02/298cc2ee3f30471c95ffe20b7fd68de7/">find</a></li>  <li class="file"><a href="/2023/02/02/3262b0fe7c3c405693a43c3b00fd31a2/">cut</a></li>  <li class="file"><a href="/2023/02/02/4a44a9b960604e14b21acd79b661370d/">gunzip</a></li>  <li class="file"><a href="/2023/02/02/4e6e8b622ad94bc7b9beaac8b4db5e9b/">df</a></li>  <li class="file"><a href="/2023/02/02/57a4373ff3994387ba06b86756caa443/">dd</a></li>  <li class="file"><a href="/2023/02/02/66f0d5d37af44909b7a1826752bb25f8/">fmt</a></li>  <li class="file"><a href="/2023/02/02/6a731d9df2e2418b906e03243a37fe5a/">egrep</a></li>  <li class="file"><a href="/2023/02/02/7e8da3da77434aa3b080c04619bd6f6c/">export</a></li>  <li class="file"><a href="/2023/02/02/825b8a01e7684bf5817ef4aa18e1dcea/">file</a></li>  <li class="file"><a href="/2023/02/02/8a29743a5dd34506a48aed9f8f23e68e/">du</a></li>  <li class="file"><a href="/2023/02/02/96af26754cb14ae88ba85f62f34485e2/">gzcat</a></li>  <li class="file"><a href="/2023/02/02/af40050b4bbb4296a2359591e5267652/">date</a></li>  <li class="file"><a href="/2023/02/02/cd9720c1fa0e4e02a5fde942d26acace/">grep</a></li>  <li class="file"><a href="/2023/02/02/031200e492574917bc61ee527a9dbec2/">sort</a></li>  <li class="file"><a href="/2023/02/02/1a711a5945444415a8a3dd969f8ecd2e/">tr</a></li>  <li class="file"><a href="/2023/02/02/1ba049a64f9a46e983332666e7e82f90/">killall</a></li>  <li class="file"><a href="/2023/02/02/265f581f57e742a990d88f8e3b81e332/">lpr</a></li>  <li class="file"><a href="/2023/02/02/50ee6471baf0464380f10b8cdcf1ace7/">gzip</a></li>  <li class="file"><a href="/2023/02/02/58e2782991a046f9b090a30000ad263f/">ps</a></li>  <li class="file"><a href="/2023/02/02/5d789ba3d1df439fae3342ddab2e8936/">uptime</a></li>  <li class="file"><a href="/2023/02/02/89e04320d7f744c089eacbb3e0e119f9/">ls</a></li>  <li class="file"><a href="/2023/02/02/8e7aba35b4a2409aa2163e101ca9c459/">uniq</a></li>  <li class="file"><a href="/2023/02/02/92ca2811477044ad84363b2a0830bf8b/">last</a></li>  <li class="file"><a href="/2023/02/02/a548ef6cd0a047a59f705a4d72e69e79/">lpq</a></li>  <li class="file"><a href="/2023/02/02/bd5a94df51574676a7fb3cf91798129b/">kill</a></li>  <li class="file"><a href="/2023/02/02/c4dace09d06a4255ada3235e13622e84/">nl</a></li>  <li class="file"><a href="/2023/02/02/d39d39701de24c9e8fc1ee2a957df430/">sed</a></li>  <li class="file"><a href="/2023/02/02/d999bd8656094f66b6dd34cd212085d7/">uname</a></li>  <li class="file"><a href="/2023/02/02/ebc4924fe4974446ac9f3911f9b27e91/">scp</a></li>  <li class="file"><a href="/2023/02/02/372ae469bfff43328cc696cd3b8243d2/">which</a></li>  <li class="file"><a href="/2023/02/02/5bbf81dd30b64aafaa5f5565992b6349/">who</a></li>  <li class="file"><a href="/2023/02/02/7bb4b5c41da44269a6c70f4633d0917e/">whereis</a></li>  <li class="file"><a href="/2023/02/02/809b6b7eb42c403f8e1b0211e44409e0/">wc</a></li>  <li class="file"><a href="/2023/02/02/a07cab80bd4c47789ae6242c402ada05/">w</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            deleted
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f5f6eb42d7684fe989265596e9306f01/">stdio</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/">archiving</a></li>  <li class="file"><a href="/2023/02/02/82a5e084940844de91c02625e19ad744/">async</a></li>  <li class="file"><a href="/2023/02/02/8a206bc871634efdbbffd067c656673b/">command</a></li>  <li class="file"><a href="/2023/02/02/933495d6b7fe4de99eefa41cd63865b8/">file</a></li>  <li class="file"><a href="/2023/02/02/e1466852223e4f6bb5dc8a46a6104e76/">file-operation</a></li>  <li class="file"><a href="/2023/02/02/0cd5e142ec7a4f2abaa5cc522dbfa62d/">user</a></li>  <li class="file"><a href="/2023/02/02/154ccd75c486446aac1353805e3f901a/">host</a></li>  <li class="file"><a href="/2023/02/02/5fdd36fee51d4c49833a3a9b35303088/">system</a></li>  <li class="file"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/">text</a></li>  <li class="file"><a href="/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/">hardware</a></li>  <li class="file"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/">named-pipe</a></li>  <li class="file"><a href="/2023/02/02/d08fc4409e6e4bb1abc3bc66097589de/">process</a></li>  <li class="file"><a href="/2023/02/02/e6cc1bf092814f148a6c9a72e5615e73/">time</a></li>  <li class="file"><a href="/2023/02/02/ea57261da8fe46bdbdad1471dfe28140/">regex</a></li>  <li class="file"><a href="/2023/02/02/eca6d9d98e874548a12942d08e09bed4/">redirection</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/253ec4deec8c4beda7dd99a6f419b404/">arithmetic</a></li>  <li class="file"><a href="/2023/02/02/307a6025886648d98d3ee4d27c48ac00/">array</a></li>  <li class="file"><a href="/2023/02/02/42867f9a3d9f4e5c99a0d6ce517b903e/">condition</a></li>  <li class="file"><a href="/2023/02/02/e23e7e4f49ac4a77a19f9cedc6bb7393/">expansion</a></li>  <li class="file"><a href="/2023/02/02/e66fbc86e05a4521882246e9dc4d3adc/">function</a></li>  <li class="file"><a href="/2023/02/02/0888cfb07af44e419d21c7d3d9f7348b/">prompt</a></li>  <li class="file"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/">quotation</a></li>  <li class="file"><a href="/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/">mktemp</a></li>  <li class="file"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/">read</a></li>  <li class="file"><a href="/2023/02/02/61f4af2f28f34d6c83a93732a217826a/">intro</a></li>  <li class="file"><a href="/2023/02/02/68774db840cb4ba9975a4b9b5b27d531/">grammar</a></li>  <li class="file"><a href="/2023/02/02/b894fd5ea7ce4f5f83bd345deeb191c7/">loop</a></li>  <li class="file"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/">script</a></li>  <li class="file"><a href="/2023/02/02/36a498d21f274b8698386927095852e5/">string</a></li>  <li class="file"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/">variable</a></li>  <li class="file"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/">readline</a></li>  <li class="file"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/">startup</a></li>  <li class="file"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/">set</a></li>  <li class="file"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/">stack</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Linux (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">06 【实操篇-时间日期类 用户和用户组管理】</a></li>  <li class="file"><a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/">03 【基础篇-系统管理】</a></li>  <li class="file"><a href="/2023/02/02/622750bc961b42b79daeb6a4cc15161d/">05【实操篇-文件目录类命令】</a></li>  <li class="file"><a href="/2023/02/02/976629fb7bd241958fbac447af492905/">10 【实操篇-进程管理类】</a></li>  <li class="file"><a href="/2023/02/02/3e5ebad9a8e34aeab1791403f375e9cf/">04 【实操篇-帮助命令 文件目录管理基础知识】</a></li>  <li class="file"><a href="/2023/02/02/0994e211c03c4ca5a71ebfaddd83a5b4/">02 【基础篇-vim编辑器 网络配置 远程登录】</a></li>  <li class="file"><a href="/2023/02/02/ae308f099ff843e4974f7a3fa0ab67ff/">07 【实操篇-文件权限和搜索查找类命令】</a></li>  <li class="file"><a href="/2023/02/02/9d51515086d54d9da60959402195a54e/">08 【实操篇-压缩和解压类】</a></li>  <li class="file"><a href="/2023/02/02/b4f31671b35f4b879ac18de3fa565b44/">09 【实操篇-磁盘查看和分区类】</a></li>  <li class="file"><a href="/2023/02/02/4f43f36734ff4b7fbb862ab41b32afda/">11 【实操篇-定时任务 软件安装 克隆虚拟机】</a></li>  <li class="file"><a href="/2023/02/02/594959a1b8b0475493968c2559ce6895/">01 【入门篇-介绍和安装】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Nginx
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/d7b325aae2594d32ad44c26d7d441ae0/">02 【Nginx的目录介绍】</a></li>  <li class="file"><a href="/2023/02/02/6b1fb70d0a4441949a907556d92c32f8/">03 【Nginx虚拟主机和域名解析】</a></li>  <li class="file"><a href="/2023/02/02/ac4d35d0ad0a454381e46471c91f723d/">01 【Nginx的安装和启动】</a></li>  <li class="file"><a href="/2023/02/02/5860918f92bb4edaaf5d8aed17697c0f/">04 【Nginx反向代理和负载均衡】</a></li>  <li class="file"><a href="/2023/02/02/601b78d0331e4a25b26de4819fec9d1c/">06 【防盗链】</a></li>  <li class="file"><a href="/2023/02/02/05ca312f1aad4b1198b58405d038fc40/">05 【动静分离和URLRewrite】</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/20/85a4024620e141f4b16389b65a2ce85e/">Linux SCP指令</a></li>  <li class="file"><a href="/2023/01/25/c701f1c34bb44b30a2fa83eafe2f97b5/">Linux 同步时间</a></li>  <li class="file"><a href="/2023/01/25/6555fe10b1904e6f8ad9e999d5bb8c09/">Linux压缩和解压缩</a></li>  <li class="file"><a href="/2023/01/25/e2660f8d01d24bafbcab08e0a21766ae/">Linux用户管理</a></li>  <li class="file"><a href="/2023/01/25/76440ac4b9d649d0923e1dc7808d6d9e/">Linux 目录结构</a></li>  <li class="file"><a href="/2023/01/25/761fa1243125429eb927901f3014a91b/">Debian修改国内原</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ajax
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f4a82199df954988886f793eb07bea6e/">01 【AJAX概述 HTTP相关问题】</a></li>  <li class="file"><a href="/2023/02/02/a4bdac42f33042a09a9d5ff13bf5effe/">02 【axios fetch 跨域】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            css预处理语言
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Sass
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ff4b2c9dbf641d08213e2278205e32a/">10 【Sass语法介绍-继承】</a></li>  <li class="file"><a href="/2023/02/02/d1b7676560c64fbb81882453865edebc/">04 【Sass语法介绍-运算】</a></li>  <li class="file"><a href="/2023/02/02/b6aa35c8f62d46e499d2847e3b0c0ba0/">03 【Sass语法介绍-嵌套】</a></li>  <li class="file"><a href="/2023/02/02/720abd9ef54447e6b45f4f690ae7f1b7/">07 【Sass语法介绍-控制指令】</a></li>  <li class="file"><a href="/2023/02/02/cc4f543711a54ccd9a05d4bf128898f5/">02 【Sass语法介绍-变量】</a></li>  <li class="file"><a href="/2023/02/02/d40a67d9f9f841059a8a689603793673/">05 【Sass语法介绍-插值】</a></li>  <li class="file"><a href="/2023/02/02/8fd4499649a940418f3222e3d09ee2aa/">09 【Sass语法介绍-函数指令】</a></li>  <li class="file"><a href="/2023/02/02/c147cb6550934f58904823a45536056c/">01 【Sass的安装使用】</a></li>  <li class="file"><a href="/2023/02/02/424c4e271557488ca5b2c1b775754008/">06 【Sass语法介绍-函数】</a></li>  <li class="file"><a href="/2023/02/02/2d8afd58354f4270b36e307161cf351a/">08 【Sass语法介绍-混合指令】</a></li>  <li class="file"><a href="/2023/02/02/5c17818f7da844169c13e53e58c59fb7/">11【Sass语法介绍-导入】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            less
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7750b9ec9e19421a805fe45697c0dc2d/">01 【less学习笔记】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/d3a6f3f0a7314b8c96148565dead839f/">CSS-position位置-绝对定位和相对定位</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Canvas
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/1b03369a713343afa2a193408cc8b22f/">02 【canvas绘制基本图形】</a></li>  <li class="file"><a href="/2023/02/02/faa9ad753f834bb181309f4257b09b37/">07 【canvas图像处理】</a></li>  <li class="file"><a href="/2023/02/02/e96f125a9a854c8eb2ce8b05244ba275/">05 【canvas图像变换】</a></li>  <li class="file"><a href="/2023/02/02/815ddf95af0048f2ac2ab12ffb2ca36d/">06 【canvas图像合成】</a></li>  <li class="file"><a href="/2023/02/02/48f96f2e7faf49ce94282d5e4da0145e/">04 【canvas绘制文字】</a></li>  <li class="file"><a href="/2023/02/02/54f4c804683649cc9eb20b1f7b33d7a4/">03 【canvas样式控制】</a></li>  <li class="file"><a href="/2023/02/02/fc62e5cc497a4fc8ae6b4c6a93bf4830/">01 【认识canvas】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/732ec77199574e42aa8a3ef00df24d8d/">Javascript 面向对象(OOP)</a></li>  <li class="file"><a href="/2023/01/25/4f2d10c3153e4c7c89f2ecf584fbc453/">Javascript-三种包装对象</a></li>  <li class="file"><a href="/2023/01/25/acf1e9f487974ce1853395619e12e44d/">ES6闭包</a></li>  <li class="file"><a href="/2023/01/25/2601a78cd4fb449e90738af73cc0370d/">Javascript-展开语法</a></li>  <li class="file"><a href="/2023/01/25/5b879117bcd14d1f8a9850b134549a71/">javascript-克隆节点&&删除节点</a></li>  <li class="file"><a href="/2023/01/25/bf50528806834aada4bf812a6e5cb4d7/">javascript-变量提升</a></li>  <li class="file"><a href="/2023/01/25/3eb18b717005473285e60b95a1783d27/">javascript- 节点增加创建与追加-</a></li>  <li class="file"><a href="/2023/01/25/97466e0ebd1f48c8836d82a772e97d39/">javascript-DOM-分时问候案例</a></li>  <li class="file"><a href="/2023/01/25/6d5690c11c9c40d9ab1e41f85c32ea0d/">javascript-事件流</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Node.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/ac95840c294b45909b8a32b5a3c7b1f7/">Node-包管理工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            es6
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/08ed7d14c0b74fd9a8e849fdf55e8a80/">04 【函数的扩展】</a></li>  <li class="file"><a href="/2023/02/02/6bfa93761a9348309ee45e5c8d39d60f/">14 【Class extends】</a></li>  <li class="file"><a href="/2023/02/02/4d05e596059f482899f63dadecc42521/">06【对象的扩展】</a></li>  <li class="file"><a href="/2023/02/02/e3c46bd0c64943f4967d81b8b78cacd4/">07【字符串的扩展】</a></li>  <li class="file"><a href="/2023/02/02/2fc965f3cd9f4ebfae565e4a72ebd00b/">05【数组的扩展】</a></li>  <li class="file"><a href="/2023/02/02/ba336fd9e8f942889f5a76b31f239ff5/">01 【ES6 介绍】</a></li>  <li class="file"><a href="/2023/02/02/1a48072db3f149f1b7909da3eb852945/">13【Class的语法】</a></li>  <li class="file"><a href="/2023/02/02/d125a45575e841bfa140266dbe46daea/">12【es6模块化】</a></li>  <li class="file"><a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/">03【解构赋值】</a></li>  <li class="file"><a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">10【Promise对象】</a></li>  <li class="file"><a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/">02 【let和const】</a></li>  <li class="file"><a href="/2023/02/02/73a1c792b2754bf4bef4d5c9b9819b0a/">08【运算符的扩展】</a></li>  <li class="file"><a href="/2023/02/02/706e1bd0fa5f495fafc420ac1b96f259/">09【Set 和 Map 数据结构】</a></li>  <li class="file"><a href="/2023/02/02/1274b7d6c86142c0bb25d906aebc593a/">11【async 函数】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nodejs
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/a209b664c3ca4578a9eb3cb91ba512ba/">18 【Koa基本使用】</a></li>  <li class="file"><a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/">14 【接口规范和业务分层】</a></li>  <li class="file"><a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">05 【nodejs内置模块（上）】</a></li>  <li class="file"><a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/">02 【nodejs开发环境安装】</a></li>  <li class="file"><a href="/2023/02/02/3b68d412870a445a8d87cfd22ac39d87/">03 【npm的使用】</a></li>  <li class="file"><a href="/2023/02/02/2de266d3a093495fa8a805a1ff7696b7/">10 【Express基本使用】</a></li>  <li class="file"><a href="/2023/02/02/c280122bb3b54525b2f9dd2c3a136016/">15 【登录鉴权】</a></li>  <li class="file"><a href="/2023/02/02/e2c3e6468ad84a1dba70d04460347ed3/">04 【nodejs模块化规范：CommonJS】</a></li>  <li class="file"><a href="/2023/02/02/9ec6f6652fd94d8fbd140127c68af01e/">11 【Express服务端渲染】</a></li>  <li class="file"><a href="/2023/02/02/a81505b065c245b088a3012c1712bcdd/">08 【爬虫】</a></li>  <li class="file"><a href="/2023/02/02/b26c2cc0675b49cbac6cc6cbce060205/">12 【操作mongodb数据库】</a></li>  <li class="file"><a href="/2023/02/02/eab31b38c19844429c0475c74bdd9991/">06 【nodejs内置模块（中）】</a></li>  <li class="file"><a href="/2023/02/02/865661190f8f4ac79861ce7df6db4beb/">07 【nodejs内置模块（下）】</a></li>  <li class="file"><a href="/2023/02/02/901210553dfa45d3afe4457d57c3de3d/">09 【原生nodejs路由、获取参数、静态目录】</a></li>  <li class="file"><a href="/2023/02/02/4515be56c20449919855a7506716b2cf/">16 【跨域】</a></li>  <li class="file"><a href="/2023/02/02/888cb674f6fb4d0bb80e8bbf63a5047f/">13 【操作mysql数据库】</a></li>  <li class="file"><a href="/2023/02/02/1d20f98f527b465096fcec6bd4c2a604/">17 【文件上传】</a></li>  <li class="file"><a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/">01 【nodejs简介】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            react
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ddb53a019f342579b13f34eddaaf39c/">11 【react-router 5】</a></li>  <li class="file"><a href="/2023/02/02/d3e37d3926734fd9b08b23b8d1cf4a76/">02 【面向组件编程】</a></li>  <li class="file"><a href="/2023/02/02/f09c9109b77c40b5bc7ece5b36c57fa4/">14【react-Hook （上）】</a></li>  <li class="file"><a href="/2023/02/02/49cd82fe5a0843eeb7d20dce85205767/">07 【收集表单数据】</a></li>  <li class="file"><a href="/2023/02/02/fc925383cd634fc384c0149bb81440d7/">10 【初始化脚手架】</a></li>  <li class="file"><a href="/2023/02/02/eff28d3f98a44083b80b2d779a742937/">13【react高级指引（下）】</a></li>  <li class="file"><a href="/2023/02/02/d47733b473484eff8245e2a785c161e0/">21 【styled-components的使用】</a></li>  <li class="file"><a href="/2023/02/02/b273e59e62894b4da1bb45adbdee98b1/">03 【事件处理】</a></li>  <li class="file"><a href="/2023/02/02/c78ad7d58e00468290b8bf9b1bbdf35f/">05 【条件渲染】</a></li>  <li class="file"><a href="/2023/02/02/f1602a4566b64671bc65486a7041308f/">18 【Redux Toolkit】</a></li>  <li class="file"><a href="/2023/02/02/ff2d1e21a86541918b1aa6230f9c765d/">16 【react-router 6】</a></li>  <li class="file"><a href="/2023/02/02/0432db33aca24dd6aaa0cd981d8f3a9c/">12 【react高级指引（上）】</a></li>  <li class="file"><a href="/2023/02/02/ced58ed76774454a929bef6b403e57cb/">08 【状态提升】</a></li>  <li class="file"><a href="/2023/02/02/125ea617daa24bafb8ee8e8bc80f67a1/">17【redux】</a></li>  <li class="file"><a href="/2023/02/02/e10e4b26d2bf44378e8037d640849094/">01 【react入门】</a></li>  <li class="file"><a href="/2023/02/02/269c3589e4be4b75a6c862285f2814ec/">15【react-Hook （下）】</a></li>  <li class="file"><a href="/2023/02/02/eaeb4b81181e44c88b5ea739de867f61/">04 【生命周期】</a></li>  <li class="file"><a href="/2023/02/02/1b30544e4df4423597f839fcf8c37fba/">20 【react中使用ts】</a></li>  <li class="file"><a href="/2023/02/02/0e6479990fed4ea2a64f5e78935f308b/">09 【组合组件】</a></li>  <li class="file"><a href="/2023/02/02/c0bcdc567e0b44ab8a74c8f6af0cb309/">19 【RTK Query】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/0b43e486feca40e7b50ea25602885b96/">01 【TypeScript简介 初体验】</a></li>  <li class="file"><a href="/2023/02/02/c6556a99f0a542d0894002af7851a206/">05 【接口  interface VS type】</a></li>  <li class="file"><a href="/2023/02/02/f11ed972e4a5429d8e24c713cba8ad6e/">03 【常用类型（下）】</a></li>  <li class="file"><a href="/2023/02/02/566f4f3d44794728b106bb3d508278e8/">06 【泛型】</a></li>  <li class="file"><a href="/2023/02/02/9ae5591e9bd243bdac816b4dbba0a626/">04【编译选项 webpack配置】</a></li>  <li class="file"><a href="/2023/02/02/b3639a6ae3334e6caa0f58c95deb58db/">第二章：面向对象</a></li>  <li class="file"><a href="/2023/02/02/9325308d90134c2d89042d5118c8aac9/">02 【常用类型（上）】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础三剑客
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7880448dad2345f6ad10793267396c06/">24 【键盘事件】</a></li>  <li class="file"><a href="/2023/02/02/3df9b05587534928ad52b2bab8daede5/">29【定时器和延时器】</a></li>  <li class="file"><a href="/2023/02/02/d17418a26029492e8d26142599edb639/">17 【Document 节点】</a></li>  <li class="file"><a href="/2023/02/02/42ec8243b3584ce9949b0d8a167f7f8f/">31【window 对象】</a></li>  <li class="file"><a href="/2023/02/02/3a1cee3416f44e0a9bcce9c7a4190cea/">05 【函数（上）】</a></li>  <li class="file"><a href="/2023/02/02/6dfad1b9f2a747b78ddac1382be9a5e0/">08 【标准库之Date对象】</a></li>  <li class="file"><a href="/2023/02/02/840362a4d9f041caaf0e1ed6a33eaaec/">33 【History对象和Location对象】</a></li>  <li class="file"><a href="/2023/02/02/d44bb868777147b8b283ea41e73ce4b1/">14 【语法之console 对象与控制台】</a></li>  <li class="file"><a href="/2023/02/02/19848e9f214542ecb0edd74a862cd652/">23 【事件对象与鼠标事件】</a></li>  <li class="file"><a href="/2023/02/02/4a5546755a7c4fd695274767efe8fe5f/">35【Storage接口】</a></li>  <li class="file"><a href="/2023/02/02/e3707da0f0c74cbaad841455d51a8912/">30【BOM和浏览器环境概述】</a></li>  <li class="file"><a href="/2023/02/02/16ff10afc67647a19e96ced945267d1a/">25 【进度事件和表单事件】</a></li>  <li class="file"><a href="/2023/02/02/35b7e41b399341619c9fc855fbc3ffb5/">09 【标准库之Math对象和String对象】</a></li>  <li class="file"><a href="/2023/02/02/9c1da8c2638049b6aa8bc77c365bee48/">03 【流程控制语句】</a></li>  <li class="file"><a href="/2023/02/02/12edce39ff004cba8e7d204ec89253f8/">21【节点的属性】</a></li>  <li class="file"><a href="/2023/02/02/e5abe46191f446439970f94b9b0d3ba6/">10 【标准库之RegExp对象】</a></li>  <li class="file"><a href="/2023/02/02/2f850099dd994cd49f47a9fba9f3cf6b/">11 【标准库之JSON对象 JSON5】</a></li>  <li class="file"><a href="/2023/02/02/98088e10e9394c50b60ecff18690bb98/">36 【节流和防抖】</a></li>  <li class="file"><a href="/2023/02/02/0bd96d59f698491eae334ca1acb77194/">13 【语法之编程风格】</a></li>  <li class="file"><a href="/2023/02/02/e7518bf293bd48ffb053673c07982b2a/">19 【节点的增删改查】</a></li>  <li class="file"><a href="/2023/02/02/d07f06774f8c4d22b87460e592ed8865/">26 【触摸事件和其它常见事件】</a></li>  <li class="file"><a href="/2023/02/02/7a23018a60814bceba65798c147b332b/">01 【基础语法与基本数据类型】</a></li>  <li class="file"><a href="/2023/02/02/47ecc198b851461bb2a56b1118f0bf4b/">20 【节点的集合】</a></li>  <li class="file"><a href="/2023/02/02/62aad3c089ed4aa9b4f1bc99ded57008/">02 【JS表达式与操作符】</a></li>  <li class="file"><a href="/2023/02/02/e18409b1902f4104a522af41137a6bbd/">15 【严格模式】</a></li>  <li class="file"><a href="/2023/02/02/3d4ce9313a0640cf8230defbe18858e1/">04 【对象】</a></li>  <li class="file"><a href="/2023/02/02/8283ef6acb05410db22d90d8d837d454/">06 【函数（下）】</a></li>  <li class="file"><a href="/2023/02/02/9225703b95ce4608bb1cfc5e5edb9e48/">22 【事件监听】</a></li>  <li class="file"><a href="/2023/02/02/ecf66e051ad24a4bb78aafce7e3466d0/">07 【数组及常用方法】</a></li>  <li class="file"><a href="/2023/02/02/2f50015bcdd3481782e878f1a86da20b/">27 【三大家族scroll、offset、client】</a></li>  <li class="file"><a href="/2023/02/02/5d433175f200488f8ff66fa6331fd2aa/">16 【DOM概述】</a></li>  <li class="file"><a href="/2023/02/02/7dbd11b2638e487b88a3024d6e6f9682/">28 【事件传播】</a></li>  <li class="file"><a href="/2023/02/02/6a031ac5c5d647d082ee19856d0fc2bc/">18 【节点的关系和内部操作】</a></li>  <li class="file"><a href="/2023/02/02/4cf03139b6ea43d8a5642bc9286ba774/">12 【语法之错误处理机制】</a></li>  <li class="file"><a href="/2023/02/02/a28dc6634bb4456c8fc30e9d225b6eb3/">34 【表单和FormData 对象】</a></li>  <li class="file"><a href="/2023/02/02/a7b4cba18cdf4e45ae01e87a990ca1fe/">32 【Navigator 对象和Screen 对象】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            html+css
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/eb673a07916a497c827dd80b72017dc6/">09 【浮动 常见网页布局】</a></li>  <li class="file"><a href="/2023/02/02/6b1c3b3c007b4ffbb737ced5fa931d4d/">16 【过渡 动画】</a></li>  <li class="file"><a href="/2023/02/02/3a2b4fa5dfc7400aa7038b017420c521/">08 【盒模型(上) 盒模型(下)】</a></li>  <li class="file"><a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">19 【flex布局】</a></li>  <li class="file"><a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/">21 【vw布局】</a></li>  <li class="file"><a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/">13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】</a></li>  <li class="file"><a href="/2023/02/02/04aa04fcb2fc4c1386acf05fab99bece/">04 【CSS选择器 】</a></li>  <li class="file"><a href="/2023/02/02/1cbd87e2a3df47e7a142782b47821cdb/">03 【语义标签(下) CSS简介】</a></li>  <li class="file"><a href="/2023/02/02/5c5a21a8362549d5bacd900b41379c26/">18 【移动端基础 流式布局】</a></li>  <li class="file"><a href="/2023/02/02/7a7112271245402292a058135d68bb8d/">07 【Emmet语法 三大特性及单位】</a></li>  <li class="file"><a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">06 【CSS字体属性 CSS文本属性】</a></li>  <li class="file"><a href="/2023/02/02/8cfe33e063e14ed29ae060f119d43177/">12 【网页布局总结 元素的显示与隐藏】</a></li>  <li class="file"><a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/">22 【响应式布局】</a></li>  <li class="file"><a href="/2023/02/02/5c06def72fec4285bb849d30528e0303/">20 【rem适配布局】</a></li>  <li class="file"><a href="/2023/02/02/3deb7901e74d4e9aa9095df3da7305cf/">05 【CSS引入方式 CSS的元素显示模式】</a></li>  <li class="file"><a href="/2023/02/02/af297262b66348929acf86f09c99809c/">01 【HTML简介】</a></li>  <li class="file"><a href="/2023/02/02/394f3f21624a42298f8bd0cc0a8cf034/">15【背景 渐变色】</a></li>  <li class="file"><a href="/2023/02/02/3ba1ad7172b74c9f888fb5577a4f1143/">11 【定位】</a></li>  <li class="file"><a href="/2023/02/02/26011a9163a6486990089e0a074d5690/">02 【字符实体与语义标签(上)】</a></li>  <li class="file"><a href="/2023/02/02/a336b8d65382447abc8b9db0742c76df/">10 【高度塌陷与BFC】</a></li>  <li class="file"><a href="/2023/02/02/03f7d5a3ec6b484f99dcd540e3a0c800/">17 【2D转换 3D转换 浏览器私有前缀】</a></li>  <li class="file"><a href="/2023/02/02/0279e5f2fa4c42e5a595c1c80949701f/">14 【margin负值 文字围绕浮动 行内快 CSS三角 CSS初始化】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/227a7e051a0440e69890ea45ac4bf5e5/">数据结构与算法（二）</a></li>  <li class="file"><a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">数据结构与算法（三）</a></li>  <li class="file"><a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/">数据结构与算法（五）</a></li>  <li class="file"><a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">数据结构与算法（四）</a></li>  <li class="file"><a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/">数据结构与算法（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            搜索与图论
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/21/b74bc4b803df4e7b99cf906cd5177da6/">DFS算法</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站收藏
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/c64a51c38c9542fe9a5c1d7e2dc93dba/">小火柴的前端小站</a></li>  <li class="file"><a href="/2023/01/22/e18feca3c0ce43cd96468b8ad72fbc36/">被删的前端游乐场</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编辑器
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/9f99a098f001487da297656e466dcb3b/">VSCode 是什么|极客教程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            镜像站
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/ae79cc4392384967b905c952b720f392/">腾讯软件源</a></li>  <li class="file"><a href="/2023/01/22/6be31fe5f1cd44e7a52b7602603705ac/">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-5a21bf6e23174e779456f061bc8ea251" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Linux/">Linux</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Linux/Linux-1/">Linux (1)</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">
+            <time datetime="2023-02-02T05:18:15.640Z" itemprop="datePublished">2023-02-02</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/5a21bf6e23174e779456f061bc8ea251.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/5a21bf6e23174e779456f061bc8ea251.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/5a21bf6e23174e779456f061bc8ea251.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            06 【实操篇-时间日期类 用户和用户组管理】
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="06-【实操篇-时间日期类-用户和用户组管理】"><a href="#06-【实操篇-时间日期类-用户和用户组管理】" class="headerlink" title="06 【实操篇-时间日期类 用户和用户组管理】"></a>06 【实操篇-时间日期类 用户和用户组管理】</h1><h2 id="1-时间日期类"><a href="#1-时间日期类" class="headerlink" title="1.时间日期类"></a>1.时间日期类</h2><h3 id="1-1-显示当前日期"><a href="#1-1-显示当前日期" class="headerlink" title="1.1 显示当前日期"></a>1.1 显示当前日期</h3><ul>
+<li>基本语法</li>
+</ul>
+<ol>
+<li><code>date</code> (功能描述:显示当前时间)</li>
+<li><code>date +%Y</code>(功能描述:显示当前年份)</li>
+<li><code>date +%m</code>(功能描述:显示当前月份)</li>
+<li><code>date +%d</code> (功能描述:显示当前是哪一天)</li>
+<li><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code> (功能描述:显示年月日时分秒)</li>
+<li><code>date +%s</code> (功能描述:显示当前日期时间戳)</li>
+</ol>
+<ul>
+<li>应用实例</li>
+</ul>
+<ol>
+<li><p>案例1:显示当前时间信息 <code>date</code><br><img src="https://i0.hdslb.com/bfs/album/c12b70d022270de4da3dd92c92ad478e9ccbf628.png" alt="image-20220818183300193"></p>
+</li>
+<li><p>案例2:显示当前时间年月日 <code>date &quot;+%Y-%m-%d&quot;</code></p>
+<p><img src="https://i0.hdslb.com/bfs/album/6e6836c747446e0666f3cfcf3f3b2f2eb1a2391b.png" alt="image-20220818183319080"></p>
+</li>
+<li><p>案例3:显示当前时间年月日时分秒 <code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code><br><img src="https://i0.hdslb.com/bfs/album/833a2ada5703f9de72428fe59e2b9933604f2e61.png" alt="image-20220818183341393"></p>
+</li>
+<li><p>案例3:显示当前时间戳 <code>date &quot;+%s&quot;</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># date +%s</span></span><br><span class="line">1660892982</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="1-2-显示非当前时间"><a href="#1-2-显示非当前时间" class="headerlink" title="1.2 显示非当前时间"></a>1.2 显示非当前时间</h3><p><strong>1）基本语法</strong></p>
+<p>​	（1）date -d ‘1 days ago’ （功能描述：显示前一天时间）</p>
+<p>​	（2）date -d ‘-1 days ago’ （功能描述：显示明天时间）</p>
+<p><strong>2）案例实操</strong></p>
+<p>​	（1）显示前一天</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># date -d &#x27;1 days ago&#x27;</span></span><br><span class="line">2021 年 06 月 18 日 星期日 21:07:22 CST</span><br></pre></td></tr></table></figure>
+
+<p>​	（2）显示明天时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#date -d &#x27;-1 days ago&#x27;</span></span><br><span class="line">2017 年 06 月 20 日 星期日 21:07:22 CST</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-设置日期"><a href="#1-3-设置日期" class="headerlink" title="1.3 设置日期"></a>1.3 设置日期</h3><ul>
+<li>基本语法</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span> -s 字符串时间</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>应用实例</li>
+</ul>
+<ol>
+<li>案例1:设置系统当前时间，比如设置成 <code>2030-1-01 20:00:10</code></li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date <span class="literal">-s</span> <span class="string">&quot;2030-1-01 20:00:10&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-cal-指令"><a href="#1-4-cal-指令" class="headerlink" title="1.4 cal 指令"></a>1.4 cal 指令</h3><ul>
+<li>查看日历指令 <code>cal</code></li>
+<li>基本语法<br><code>cal [选项]</code>(功能描述:不加选项，显示本月日历)</li>
+<li>应用实例</li>
+</ul>
+<ol>
+<li><p>案例1:显示当前日历<code>cal</code><br><img src="https://i0.hdslb.com/bfs/album/e68b0f52518e68a272c4ebe53135aac2a336aef0.png" alt="image-20220818183422730"></p>
+</li>
+<li><p>案例2:显示2021年日历: <code>cal 2021</code></p>
+<p><img src="https://i0.hdslb.com/bfs/album/d069209b86a00489f29d83e4b33e7a72ed8e3c72.png" alt="image-20220818183444685"></p>
+</li>
+</ol>
+<h2 id="2-用户管理命令"><a href="#2-用户管理命令" class="headerlink" title="2.用户管理命令"></a>2.用户管理命令</h2><h3 id="2-1-useradd-添加新用户"><a href="#2-1-useradd-添加新用户" class="headerlink" title="2.1 useradd 添加新用户"></a>2.1 useradd 添加新用户</h3><p>Linux 系统中，可以使用 useradd 命令新建用户</p>
+<p><strong>1）基本语法</strong></p>
+<p>useradd 用户名 （功能描述：添加新用户）</p>
+<p>useradd -g 组名 用户名 （功能描述：添加新用户到某个组）</p>
+<p><strong>2）案例实操</strong></p>
+<p>（1）添加一个用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># useradd lamp  [root@localhost ~]#ll /home/ </span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/912a27281aafd43d039ca6c3e3f82d593d58be04.png" alt="image-20220819151225564"></p>
+<h3 id="2-2-passwd-设置用户密码"><a href="#2-2-passwd-设置用户密码" class="headerlink" title="2.2 passwd 设置用户密码"></a>2.2 passwd 设置用户密码</h3><p>学习 useradd 命令我们知道，使用此命令创建新用户时，并没有设定用户密码，因此还无法用来登陆系统，本节就来学习 passwd 密码配置命令 。</p>
+<p><strong>1）基本语法</strong></p>
+<p>passwd 用户名 （功能描述：设置用户密码)</p>
+<p><strong>2）案例实操</strong></p>
+<p>例如，我们使用 root 账户修改 lamp 普通用户的密码，可以使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#passwd lamp</span></span><br><span class="line">Changing password <span class="keyword">for</span> user lamp.</span><br><span class="line">New password: &lt;直接输入新的口令，但屏幕不会有任何反应</span><br><span class="line">BAD PASSWORD: it is WAY too short &lt;口令太简单或过短的错误！这里只是警告信息，输入的密码依旧能用</span><br><span class="line">Retype new password: &lt;再次验证输入的密码，再输入一次即可</span><br><span class="line">passwd: all authentication tokens updated successfully. &lt;提示修改密码成功</span><br></pre></td></tr></table></figure>
+
+<p>当然，也可以使用 passwd 命令修改当前系统已登录用户的密码，但要注意的是，需省略掉 “选项” 和 “用户名”。例如，我们登陆 lamp 用户，并使用 passwd 命令修改 lamp 的登陆密码，执行过程如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#passwd</span></span><br><span class="line"><span class="comment">#passwd直接回车代表修改当前用户的密码</span></span><br><span class="line">Changing password <span class="keyword">for</span> user vbird2.</span><br><span class="line">Changing password <span class="keyword">for</span> vbird2</span><br><span class="line">(current) UNIX password: &lt;这里输入『原有的旧口令』</span><br><span class="line">New password: &lt;这里输入新口令</span><br><span class="line">BAD PASSWORD: it is WAY too short &lt;口令检验不通过，请再想个新口令</span><br><span class="line">New password: &lt;这里再想个来输入吧</span><br><span class="line">Retype new password: &lt;通过口令验证！所以重复这个口令的输入</span><br><span class="line">passwd: all authentication tokens updated successfully. &lt;成功修改用户密码</span><br></pre></td></tr></table></figure>
+
+<p>注意，普通用户只能使用 passwd 命令修改自己的密码，而不能修改其他用户的密码。</p>
+<p>可以看到，与使用 root 账户修改普通用户的密码不同，普通用户修改自己的密码需要先输入自己的旧密码，只有旧密码输入正确才能输入新密码。不仅如此，此种修改方式对密码的复杂度有严格的要求，新密码太短、太简单，都会被系统检测出来并禁止用户使用。</p>
+<blockquote>
+<p>很多Linux 发行版为了系统安装，都使用了 PAM 模块进行密码的检验，设置密码太短、与用户名相同、是常见字符串等，都会被 PAM 模块检查出来，从而禁止用户使用此类密码。有关 PAM 模块，后续章节会进行详细介绍。</p>
+</blockquote>
+<p>而使用 root 用户，无论是修改普通用户的密码，还是修改自己的密码，都可以不遵守 PAM 模块设定的规则，就比如我刚刚给 lamp 用户设定的密码是 “123”，系统虽然会提示密码过短和过于简单，但依然可以设置成功。当然，在实际应用中，就算是 root 身份，在设定密码时也要严格遵守密码规范，因为只有好的密码规范才是服务器安全的基础。</p>
+<h3 id="2-3-id-查看用户是否存在"><a href="#2-3-id-查看用户是否存在" class="headerlink" title="2.3 id 查看用户是否存在"></a>2.3 id 查看用户是否存在</h3><p>id 命令可以查询用户的UID、GID 和附加组的信息。命令比较简单，格式如下：</p>
+<p><code>[root@localhost ~]# id 用户名</code><br><strong>【例 1】</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># id lamp</span></span><br><span class="line">uid=501(lamp) gid=501(lamp) <span class="built_in">groups</span>=501(lamp)</span><br><span class="line"><span class="comment">#能看到uid(用户ID)、gid(初始组ID), groups是用户所在组，这里既可以看到初始组，如果有附加组，则也能看到附加组</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>【例 2】</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># usermod -G root lamp</span></span><br><span class="line"><span class="comment">#把用户加入root组</span></span><br><span class="line">[root@localhost ~]<span class="comment"># id lamp</span></span><br><span class="line">uid=501(lamp) gid=501(lamp) <span class="built_in">groups</span>=501(lamp),0(root)</span><br><span class="line"><span class="comment">#大家发现root组中加入了lamp用户的附加组信息</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-cat-x2F-etc-x2F-passwd-查看创建了哪些用户"><a href="#2-4-cat-x2F-etc-x2F-passwd-查看创建了哪些用户" class="headerlink" title="2.4 cat &#x2F;etc&#x2F;passwd 查看创建了哪些用户"></a>2.4 cat &#x2F;etc&#x2F;passwd 查看创建了哪些用户</h3><p>Linux 系统中的 &#x2F;etc&#x2F;passwd 文件，是系统用户配置文件，存储了系统中所有用户的基本信息，并且所有用户都可以对此文件执行读操作。</p>
+<p>首先我们来打开这个文件，看看到底包含哪些内容，执行命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># vim /etc/passwd</span></span><br><span class="line"><span class="comment">#查看一下文件内容</span></span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin</span><br><span class="line">...省略部分输出...</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，&#x2F;etc&#x2F;passwd 文件中的内容非常规律，每行记录对应一个用户。</p>
+<p>读者可能会问，Linux 系统中默认怎么会有这么多的用户？这些用户中的绝大多数是系统或服务正常运行所必需的用户，这种用户通常称为系统用户或伪用户。系统用户无法用来登录系统，但也不能删除，因为一旦删除，依赖这些用户运行的服务或程序就不能正常执行，会导致系统问题。</p>
+<p>不仅如此，每行用户信息都以 “：” 作为分隔符，划分为 7 个字段，每个字段所表示的含义如下：</p>
+<p>用户名：密码：UID（用户ID）：GID（组ID）：描述性信息：主目录：默认Shell</p>
+<p>接下来，给大家逐个介绍这些字段。</p>
+<h4 id="2-4-1-用户名"><a href="#2-4-1-用户名" class="headerlink" title="2.4.1 用户名"></a>2.4.1 用户名</h4><p>用户名，就是一串代表用户身份的字符串。</p>
+<p>前面讲过，用户名仅是为了方便用户记忆，Linux 系统是通过 UID 来识别用户身份，分配用户权限的。&#x2F;etc&#x2F;passwd 文件中就定义了用户名和 UID 之间的对应关系。</p>
+<h4 id="2-4-2-密码"><a href="#2-4-2-密码" class="headerlink" title="2.4.2 密码"></a>2.4.2 密码</h4><p>“x” 表示此用户设有密码，但不是真正的密码，真正的密码保存在 &#x2F;etc&#x2F;shadow 文件中。</p>
+<p>在早期的 UNIX 中，这里保存的就是真正的加密密码串，但由于所有程序都能读取此文件，非常容易造成用户数据被窃取。</p>
+<p>虽然密码是加密的，但是采用暴力破解的方式也是能够进行破解的。</p>
+<p>因此，现在 Linux 系统把真正的加密密码串放置在 &#x2F;etc&#x2F;shadow 文件中，此文件只有 root 用户可以浏览和操作，这样就最大限度地保证了密码的安全。</p>
+<p>需要注意的是，虽然 “x” 并不表示真正的密码，但也不能删除，如果删除了 “x”，那么系统会认为这个用户没有密码，从而导致只输入用户名而不用输入密码就可以登陆（只能在使用无密码登录，远程是不可以的），除非特殊情况（如破解用户密码），这当然是不可行的。</p>
+<h4 id="2-4-3-UID"><a href="#2-4-3-UID" class="headerlink" title="2.4.3 UID"></a>2.4.3 UID</h4><p>UID，也就是用户 ID。每个用户都有唯一的一个 UID，Linux 系统通过 UID 来识别不同的用户。</p>
+<p>实际上，UID 就是一个 0~65535 之间的数，不同范围的数字表示不同的用户身份，具体如表 1 所示。</p>
+<table>
+<thead>
+<tr>
+<th>UID 范围</th>
+<th>用户身份</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>超级用户。UID 为 0 就代表这个账号是管理员账号。在 Linux 中，如何把普通用户升级成管理员呢？只需把其他用户的 UID 修改为 0 就可以了，这一点和 Windows 是不同的。不过不建议建立多个管理员账号。</td>
+</tr>
+<tr>
+<td>1~499</td>
+<td>系统用户（伪用户）。也就是说，此范围的 UID 保留给系统使用。其中，1<del>99 用于系统自行创建的账号；100</del>499 分配给有系统账号需求的用户。  其实，除了 0 之外，其他的 UID 并无不同，这里只是默认 500 以下的数字给系统作为保留账户，只是一个公认的习惯而已。</td>
+</tr>
+<tr>
+<td>500~65535</td>
+<td>普通用户。通常这些 UID 已经足够用户使用了。但不够用也没关系，2.6.x 内核之后的 Linux 系统已经可以支持 232 个 UID 了。</td>
+</tr>
+</tbody></table>
+<h4 id="2-4-4-GID"><a href="#2-4-4-GID" class="headerlink" title="2.4.4 GID"></a>2.4.4 GID</h4><p>全称“Group ID”，简称“组ID”，表示用户初始组的组 ID 号。这里需要解释一下初始组和附加组的概念。</p>
+<p>初始组，指用户登陆时就拥有这个用户组的相关权限。每个用户的初始组只能有一个，通常就是将和此用户的用户名相同的组名作为该用户的初始组。比如说，我们手工添加用户 lamp，在建立用户 lamp 的同时，就会建立 lamp 组作为 lamp 用户的初始组。</p>
+<p>附加组，指用户可以加入多个其他的用户组，并拥有这些组的权限。每个用户只能有一个初始组，除初始组外，用户再加入其他的用户组，这些用户组就是这个用户的附加组。附加组可以有多个，而且用户可以有这些附加组的权限。</p>
+<p>举例来说，刚刚的 lamp 用户除属于初始组 lamp 外，我又把它加入了 users 组，那么 lamp 用户同时属于 lamp 组和 users 组，其中 lamp 是初始组，users 是附加组。</p>
+<p>当然，初始组和附加组的身份是可以修改的，但是我们在工作中不修改初始组，只修改附加组，因为修改了初始组有时会让管理员逻辑混乱。</p>
+<p>需要注意的是，在 &#x2F;etc&#x2F;passwd 文件的第四个字段中看到的 ID 是这个用户的初始组。</p>
+<h4 id="2-4-5-描述性信息"><a href="#2-4-5-描述性信息" class="headerlink" title="2.4.5 描述性信息"></a>2.4.5 描述性信息</h4><p>这个字段并没有什么重要的用途，只是用来解释这个用户的意义而已。</p>
+<h4 id="2-4-6-主目录"><a href="#2-4-6-主目录" class="headerlink" title="2.4.6 主目录"></a>2.4.6 主目录</h4><p>也就是用户登录后有操作权限的访问目录，通常称为用户的主目录。</p>
+<p>例如，root 超级管理员账户的主目录为 &#x2F;root，普通用户的主目录为 &#x2F;home&#x2F;yourIDname，即在 &#x2F;home&#x2F; 目录下建立和用户名相同的目录作为主目录，如 lamp 用户的主目录就是 &#x2F;home&#x2F;lamp&#x2F; 目录。</p>
+<h4 id="2-4-7-默认的Shell"><a href="#2-4-7-默认的Shell" class="headerlink" title="2.4.7 默认的Shell"></a>2.4.7 默认的Shell</h4><p>Shell 就是 Linux 的命令解释器，是用户和 Linux 内核之间沟通的桥梁。</p>
+<p>我们知道，用户登陆 Linux 系统后，通过使用 Linux 命令完成操作任务，但系统只认识类似 0101 的机器语言，这里就需要使用命令解释器。也就是说，Shell 命令解释器的功能就是将用户输入的命令转换成系统可以识别的机器语言。</p>
+<p>通常情况下，Linux 系统默认使用的命令解释器是 bash（&#x2F;bin&#x2F;bash），当然还有其他命令解释器，例如 sh、csh 等。</p>
+<p>在 &#x2F;etc&#x2F;passwd 文件中，大家可以把这个字段理解为用户登录之后所拥有的权限。如果这里使用的是 bash 命令解释器，就代表这个用户拥有权限范围内的所有权限。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># vim /etc/passwd</span></span><br><span class="line">lamp:x:502:502::/home/lamp:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>我手工添加了 lamp 用户，它使用的是 bash 命令解释器，那么这个用户就可以使用普通用户的所有权限。</p>
+<p>如果我把 lamp 用户的 Shell 命令解释器修改为 &#x2F;sbin&#x2F;nologin，那么，这个用户就不能登录了，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># vim /etc/passwd</span></span><br><span class="line">lamp:x:502:502::/home/lamp:/sbin/nologin</span><br></pre></td></tr></table></figure>
+
+<p>因为 &#x2F;sbin&#x2F;nologin 就是禁止登录的 Shell。同样，如果我在这里放入的系统命令，如 &#x2F;usr&#x2F;bin&#x2F;passwd，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#vim /etc/passwd</span></span><br><span class="line">lamp:x:502:502::/home/lamp:/usr/bin/passwd</span><br></pre></td></tr></table></figure>
+
+<p>那么这个用户可以登录，但登录之后就只能修改自己的密码。但是，这里不能随便写入和登陆没有关系的命令（如 ls），系统不会识别这些命令，同时也就意味着这个用户不能登录。</p>
+<h3 id="2-5-su-临时切换用户身份"><a href="#2-5-su-临时切换用户身份" class="headerlink" title="2.5 su 临时切换用户身份"></a>2.5 su 临时切换用户身份</h3><h4 id="2-5-1-基本使用"><a href="#2-5-1-基本使用" class="headerlink" title="2.5.1 基本使用"></a>2.5.1 基本使用</h4><p>su 是最简单的用户切换命令，通过该命令可以实现任何身份的切换，包括从普通用户切换为 root 用户、从 root 用户切换为普通用户以及普通用户之间的切换。</p>
+<p>普通用户之间切换以及普通用户切换至 root 用户，都需要知晓对方的密码，只有正确输入密码，才能实现切换；从 root 用户切换至其他用户，无需知晓对方密码，直接可切换成功。<br>su 命令的基本格式如下：</p>
+<p><code>[root@localhost ~]# su [选项] 用户名</code><br>选项：</p>
+<ul>
+<li>-：当前用户不仅切换为指定用户的身份，同时所用的工作环境也切换为此用户的环境（包括 PATH 变量、MAIL 变量等），使用 - 选项可省略用户名，默认会切换为 root 用户。</li>
+<li>-l：同 - 的使用类似，也就是在切换用户身份的同时，完整切换工作环境，但后面需要添加欲切换的使用者账号。</li>
+<li>-p：表示切换为指定用户的身份，但不改变当前的工作环境（不使用切换用户的配置文件）。</li>
+<li>-m：和 -p 一样；</li>
+<li>-c 命令：仅切换用户执行一次命令，执行后自动切换回来，该选项后通常会带有要执行的命令。</li>
+</ul>
+<p>【例 1】</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[lamp@localhost ~]$ su </span><br><span class="line">或者</span><br><span class="line">[lamp@localhost ~]$ su - root</span><br><span class="line">或者</span><br><span class="line">[lamp@localhost ~]$ su - </span><br><span class="line">密码： &lt;-- 输入 root 用户的密码</span><br><span class="line"><span class="comment">#&quot;-&quot;代表连带环境变量一起切换，不能省略</span></span><br></pre></td></tr></table></figure>
+
+<p>【例 2】</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[lamp@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">lamp</span><br><span class="line"><span class="comment">#当前我是lamp</span></span><br><span class="line">[lamp@localhost ~]$ su - -c <span class="string">&quot;useradd user1&quot;</span> root</span><br><span class="line">密码：</span><br><span class="line"><span class="comment">#不切换成root，但是执行useradd命令添加user1用户</span></span><br><span class="line">[lamp@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">lamp</span><br><span class="line"><span class="comment">#我还是lamp</span></span><br><span class="line">[lamp@localhost ~]$ grep <span class="string">&quot;user1&#x27; /etc/passwd</span></span><br><span class="line"><span class="string">userl:x:502:504::/home/user1:/bin/bash</span></span><br><span class="line"><span class="string">#user用户已经添加了</span></span><br></pre></td></tr></table></figure>
+
+<p>除了像例 2 这样，执行一条命令后用户身份会随即自动切换回来，其他切换用户的方式不会自动切换，只能使用 exit 命令进行手动切换，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[lamp@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">lamp</span><br><span class="line"><span class="comment">#当前我是lamp</span></span><br><span class="line">[lamp@localhost ~]$ su - lamp1</span><br><span class="line">Password:  &lt;--输入lamp1用户的密码</span><br><span class="line"><span class="comment">#切换至 lamp1 用户的工作环境</span></span><br><span class="line">[lamp@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">lamp1</span><br><span class="line"><span class="comment">#什么也不做，立即退出切换环境</span></span><br><span class="line">[lamp1@localhost ~]$ <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">logout</span></span><br><span class="line">[lamp@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">lamp</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-2-su-和-su-的区别"><a href="#2-5-2-su-和-su-的区别" class="headerlink" title="2.5.2 su 和 su - 的区别"></a>2.5.2 su 和 su - 的区别</h4><p>注意，使用 su 命令时，有 - 和没有 - 是完全不同的，- 选项表示在切换用户身份的同时，连当前使用的环境变量也切换成指定用户的。我们知道，环境变量是用来定义操作系统环境的，因此如果系统环境没有随用户身份切换，很多命令无法正确执行。</p>
+<p>举个例子，普通用户 lamp 通过 su 命令切换成 root 用户，但没有使用 - 选项，这样情况下，虽然看似是 root 用户，但系统中的 $PATH 环境变量依然是 lamp 的（而不是 root 的），因此当前工作环境中，并不包含 &#x2F;sbin、&#x2F;usr&#x2F;sbin等超级用户命令的保存路径，这就导致很多管理员命令根本无法使用。不仅如此，当 root 用户接受邮件时，会发现收到的是 lamp 用户的邮件，因为环境变量 $MAIL 也没有切换。</p>
+<p>初学者可以这样理解它们之间的区别，即有 - 选项，切换用户身份更彻底；反之，只切换了一部分，这会导致某些命令运行出现问题或错误（例如无法使用 service 命令）。</p>
+<p>通过下面这个例子，可直观的看到 su 和 su - 的区别：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[lamp@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">lamp</span><br><span class="line"><span class="comment">#查询用户身份，我是lamp</span></span><br><span class="line">[lamp@localhost ~]$ su root</span><br><span class="line">密码：</span><br><span class="line">&lt;-输入root密码</span><br><span class="line"><span class="comment">#切换到root，但是没有切换环境变量。注意：普通用户切换到root需要密码</span></span><br><span class="line">[root@localhost ~]<span class="comment"># env | grep lamp</span></span><br><span class="line"><span class="comment">#查看环境变量，提取包含lamp的行</span></span><br><span class="line">USER=lamp</span><br><span class="line"><span class="comment">#用户名还是lamp，而不是root</span></span><br><span class="line">PATH=/usr/lib/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/lamp/bin</span><br><span class="line"><span class="comment">#命令査找的路径不包含超级用户路径</span></span><br><span class="line">MAIL=/var/spool/mail/lamp</span><br><span class="line">PWD=/home/lamp</span><br><span class="line">LOGNAME=lamp</span><br><span class="line"><span class="comment">#邮箱、主目录、目前用户名还是lamp</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，在不使用 su - 的情况下，虽然用户身份成功切换，但环境变量依旧用的是原用户的，切换并不完整。</p>
+<h3 id="2-6-userdel-删除用户"><a href="#2-6-userdel-删除用户" class="headerlink" title="2.6 userdel  删除用户"></a>2.6 userdel  删除用户</h3><p>userdel 命令功能很简单，就是删除用户的相关数据。此命令只有 root 用户才能使用。</p>
+<p>通过前面的学习我们知道，用户的相关数据包含如下几项：</p>
+<ul>
+<li>用户基本信息：存储在 &#x2F;etc&#x2F;passwd 文件中；</li>
+<li>用户个人文件：主目录默认位于 &#x2F;home&#x2F;用户名</li>
+</ul>
+<p>其实，userdel 命令的作用就是从以上文件中，删除与指定用户有关的数据信息。</p>
+<p>userdel 命令的语法很简单，基本格式如下：</p>
+<p><code>[root@localhost ~]# userdel -r 用户名</code></p>
+<p>-r 选项表示在删除用户的同时删除用户的家目录。</p>
+<p>注意，在删除用户的同时如果不删除用户的家目录，那么家目录就会变成没有属主和属组的目录，也就是垃圾文件。</p>
+<p>例如，删除前面章节中创建的 lamp 用户，只需执行如下命令：</p>
+<p><code>[root@localhost ~]# userdel -r lamp</code></p>
+<p>除了使用 userdel 命令删除用户，还可以手动方式删除，毕竟通过前面的学习，我们已经知道与用户相关信息的存储位置。虽然这样做没有实际意义，但对于初学者来说，可以加深对 userdel 命令的理解。</p>
+<p>手动删除用户，仅是为了让读者对 userdel 命令理解地更透彻，实际使用中，使用 userdel 删除用户更方便。</p>
+<p>（1）删除用户但保存用户主目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#userdel tangseng</span></span><br><span class="line">[root@localhost ~]<span class="comment">#ll /home/</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）删除用户和用户主目录，都删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#useradd zhubajie [root@localhost ~]#ll /home/ [root@localhost ~]#userdel -r zhubajie [root@localhost ~]#ll /home/</span></span><br></pre></td></tr></table></figure>
+
+<p>最后需要大家注意的是，如果要删除的用户已经使用过系统一段时间，那么此用户可能在系统中留有其他文件，因此，如果我们想要从系统中彻底的删除某个用户，最好在使用 userdel 命令之前，先通过 <code>find -user 用户名</code> 命令查出系统中属于该用户的文件，然后在加以删除。</p>
+<h3 id="2-7-who-查看登录用户信息"><a href="#2-7-who-查看登录用户信息" class="headerlink" title="2.7 who 查看登录用户信息"></a>2.7 who 查看登录用户信息</h3><p><strong>基本语法</strong></p>
+<p>（1）whoami （功能描述：显示自身用户名称）</p>
+<p>（2）who am i （功能描述：显示登录用户的用户名以及登陆时间）</p>
+<p>whoami 命令和 who am i 命令是不同的 2 个命令，前者用来打印当前执行操作的用户名，后者则用来打印登陆当前 Linux 系统的用户名。</p>
+<p>为了能够更好地区分这 2 个命令的功能，给大家举个例子，我们首先使用用户名为“lamp”登陆 Linux 系统，然后执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[lamp@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">lamp</span><br><span class="line">[lamp@localhost ~]$ <span class="built_in">who</span> am i</span><br><span class="line">lamp  pts/0  2021-10-09 15:30 (:0.0)</span><br></pre></td></tr></table></figure>
+
+<p>在此基础上，使用 su 命令切换到 root 用户下，再执行一遍上面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[lamp@localhost ~] su - root</span><br><span class="line">[root@localhost ~]$ <span class="built_in">whoami</span></span><br><span class="line">root</span><br><span class="line">[root@localhost ~]$ <span class="built_in">who</span> am i</span><br><span class="line">lamp  pts/0  2017-10-09 15:30 (:0.0)</span><br></pre></td></tr></table></figure>
+
+<p>看到了吗？在未切换用户身份之前，whoami 和 who am i 命令的输出是一样的，但使用 su 命令切换用户身份后，使用 whoami 命令打印的是切换后的用户名，而 who am i 命令打印的仍旧是登陆系统时所用的用户名。</p>
+<blockquote>
+<p>执行 whoami 命令，等同于执行 id -un 命令；执行 who am i 命令，等同于执行 who -m 命令。</p>
+</blockquote>
+<p>也就是说，使用 su 或者 sudo 命令切换用户身份，骗得过 whoami，但骗不过 who am i。要解释这背后的运行机制，需要搞清楚什么是实际用户（UID）和有效用户（EUID，即 Effective UID）。</p>
+<p>所谓实际用户，指的是登陆 Linux 系统时所使用的用户，因此在整个登陆会话过程中，实际用户是不会发生变化的；而有效用户，指的是当前执行操作的用户，也就是说真正决定权限高低的用户，这个是能够利用 su 或者 sudo 命令进行任意切换的。</p>
+<p>一般情况下，实际用户和有效用户是相同的，如果出现用户身份切换的情况，它们会出现差异。需要注意的是，实际用户和有效用户出现差异，切换用户并不是唯一的触发机制，至于其他的触发条件，后续章节会做详细介绍。</p>
+<p>那么，whoami 和 who am i通常应用在哪些场景中呢？通常，对那些经常需要切换用户的系统管理员来说，经常需要明确当前使用的是什么身份；另外，对于某些 shell 脚本，或者需要特别的用户才能执行，这时就需要利用 whoami 命令来搞清楚执行它的用户是谁；甚至还有一些 shell 脚本，一定要某个特别用户才能执行，即便使用 su 或者 sudo 命令切换到此身份都不行，此时就需要利用 who am i 来确认。</p>
+<h3 id="2-8-sudo-设置普通用户具有-root-权限"><a href="#2-8-sudo-设置普通用户具有-root-权限" class="headerlink" title="2.8 sudo 设置普通用户具有 root 权限"></a>2.8 sudo 设置普通用户具有 root 权限</h3><p>我们知道，使用 su 命令可以让普通用户切换到 root 身份去执行某些特权命令，但存在一些问题，比如说：</p>
+<ul>
+<li>仅仅为了一个特权操作就直接赋予普通用户控制系统的完整权限；</li>
+<li>当多人使用同一台主机时，如果大家都要使用 su 命令切换到 root 身份，那势必就需要 root 的密码，这就导致很多人都知道 root 的密码；</li>
+</ul>
+<p>考虑到使用 su 命令可能对系统安装造成的隐患，最常见的解决方法是使用 sudo 命令，此命令也可以让你切换至其他用户的身份去执行命令。</p>
+<p>相对于使用 su 命令还需要新切换用户的密码，sudo 命令的运行只需要知道自己的密码即可，甚至于，我们可以通过手动修改 sudo 的配置文件，使其无需任何密码即可运行。</p>
+<p>sudo 命令默认只有 root 用户可以运行。</p>
+<p><strong>例1</strong></p>
+<p><strong>1）添加 lamp 用户，并对其设置密码。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#useradd lamp</span></span><br><span class="line">[root@localhost ~]<span class="comment">#passwd lamp</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2）修改配置文件</strong></p>
+<p>前面说过，默认情况下 sudo 命令只有 root 身份可以使用，那么，如何让普通用户也能使用它呢？</p>
+<p>解决这个问题之前，先给大家分析一下 sudo 命令的执行过程。sudo命令的运行，需经历如下几步：</p>
+<ul>
+<li>当用户运行 sudo 命令时，系统会先通过 &#x2F;etc&#x2F;sudoers 文件，验证该用户是否有运行 sudo 的权限；</li>
+<li>确定用户具有使用 sudo 命令的权限后，还要让用户输入自己的密码进行确认。出于对系统安全性的考虑，如果用户在默认时间内（默认是 5 分钟）不使用 sudo 命令，此后使用时需要再次输入密码；</li>
+<li>密码输入成功后，才会执行 sudo 命令后接的命令。</li>
+</ul>
+<p>显然，能否使用 sudo 命令，取决于对 &#x2F;etc&#x2F;sudoers 文件的配置（默认情况下，此文件中只配置有 root 用户）。所以接下来，我们学习对 &#x2F;etc&#x2F;sudoers 文件进行合理的修改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#vim /etc/sudoers </span></span><br></pre></td></tr></table></figure>
+
+<p>修改 &#x2F;etc&#x2F;sudoers 文件，找到下面一行(91 行)，在 root 下面添加一行，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Allow root to run any commands anywhere</span></span><br><span class="line">root ALL=(ALL) ALL</span><br><span class="line">lamp ALL=(ALL) ALL</span><br><span class="line"><span class="comment">#用户名 被管理主机的地址=(可使用的身份) 授权命令(绝对路径)</span></span><br><span class="line"><span class="comment">#%wheel ALL=(ALL) ALL</span></span><br><span class="line"><span class="comment">#%组名 被管理主机的地址=(可使用的身份) 授权命令(绝对路径)</span></span><br></pre></td></tr></table></figure>
+
+<p>或者配置成采用 sudo 命令时，不需要输入密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Allow root to run any commands anywhere</span></span><br><span class="line">root ALL=(ALL) ALL</span><br><span class="line">lamp ALL=(ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
+
+<p>修改完毕，现在可以用 lamp 帐号登录，然后用命令 sudo ，即可获得 root 权限进行操作。</p>
+<p>对以上 2 个模板的各部分进行详细的说明。</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户名或群组名</td>
+<td>表示系统中的那个用户或群组，可以使用 sudo 这个命令。</td>
+</tr>
+<tr>
+<td>被管理主机的地址</td>
+<td>用户可以管理指定 IP 地址的服务器。这里如果写 ALL，则代表用户可以管理任何主机；如果写固定 IP，则代表用户可以管理指定的服务器。如果我们在这里写本机的 IP 地址，不代表只允许本机的用户使用指定命令，而是代表指定的用户可以从任何 IP 地址来管理当前服务器。</td>
+</tr>
+<tr>
+<td>可使用的身份</td>
+<td>就是把来源用户切换成什么身份使用，（ALL）代表可以切换成任意身份。这个字段可以省略。</td>
+</tr>
+<tr>
+<td>授权命令</td>
+<td>表示 root 把什么命令命令授权给用户，换句话说，可以用切换的身份执行什么命令。需要注意的是，此命令必须使用绝对路径写。默认值是 ALL，表示可以执行任何命令。</td>
+</tr>
+</tbody></table>
+<p><strong>3）案例实操</strong></p>
+<p>用普通用户在&#x2F;opt 目录下创建一个文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[lamp@localhost opt]$ sudo <span class="built_in">mkdir</span> module</span><br><span class="line">[root@localhost opt]<span class="comment"># chown lamp:lamp module/</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>例2</strong></p>
+<p>假设现在有 pro1，pro2，pro3 这 3 个用户，还有一个 group 群组，我们可以通过在 &#x2F;etc&#x2F;sudoers 文件配置 wheel 群组信息，令这 3 个用户同时拥有管理系统的权限。</p>
+<p>首先，向 &#x2F;etc&#x2F;sudoers 文件中添加群组配置信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">....(前面省略)....</span><br><span class="line">%group     ALL=(ALL)    ALL</span><br><span class="line"><span class="comment">#在 84 行#wheel这一行后面写入</span></span><br></pre></td></tr></table></figure>
+
+<p>此配置信息表示，group 这个群组中的所有用户都能够使用 sudo 切换任何身份，执行任何命令。接下来，我们使用 usermod 命令将 pro1 加入 group 群组，看看有什么效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># usermod -a -G group pro1</span></span><br><span class="line">[pro1@localhost ~]<span class="comment"># sudo tail -n 1 /etc/shadow &lt;==注意身份是 pro1</span></span><br><span class="line">....(前面省略)....</span><br><span class="line">Password:  &lt;==输入 pro1 的口令喔！</span><br><span class="line">pro3:$1$GfinyJgZ<span class="variable">$9J8IdrBXXMwZIauANg7tW0</span>:14302:0:99999:7:::</span><br><span class="line">[pro2@localhost ~]<span class="comment"># sudo tail -n 1 /etc/shadow &lt;==注意身份是 pro2</span></span><br><span class="line">Password:</span><br><span class="line">pro2 is not <span class="keyword">in</span> the sudoers file.  This incident will be reported.</span><br><span class="line"><span class="comment">#此错误信息表示 pro2 不在 /etc/sudoers 的配置中。</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，由于 pro1 加入到了 group 群组，因此 pro1 就可以使用 sudo 命令，而 pro2 不行。同样的道理，如果我们想让 pro3 也可以使用 sudo 命令，不用再修改 &#x2F;etc&#x2F;sudoers 文件，只需要将 pro3 加入 group 群组即可。</p>
+<h3 id="2-9-usermod-修改用户"><a href="#2-9-usermod-修改用户" class="headerlink" title="2.9 usermod 修改用户"></a>2.9 usermod 修改用户</h3><p>前面章节介绍了如何利用 useradd 命令添加用户，但如果不小心添错用户信息，后期如何修改呢？</p>
+<p><strong>1）基本语法</strong></p>
+<p>usermod -g 用户组 用户</p>
+<p><strong>2）选项说明</strong></p>
+<p><code>-g</code> 修改用户的初始登录组，给定的组必须存在。默认组 id 是 1。</p>
+<p><strong>3）案例实操</strong></p>
+<p>将用户加入到用户组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@dselegent-study /]<span class="comment"># groupadd group</span></span><br><span class="line">[root@dselegent-study lamp]<span class="comment"># usermod -g group lamp</span></span><br><span class="line">[root@dselegent-study lamp]<span class="comment"># id lamp</span></span><br><span class="line">uid=1001(lamp) gid=1002(group) 组=1002(group)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-用户组管理命令"><a href="#3-用户组管理命令" class="headerlink" title="3.用户组管理命令"></a>3.用户组管理命令</h2><h3 id="3-1-用户和用户组"><a href="#3-1-用户和用户组" class="headerlink" title="3.1 用户和用户组"></a>3.1 用户和用户组</h3><p>Linux 是多用户多任务操作系统，换句话说，Linux 系统支持多个用户在同一时间内登陆，不同用户可以执行不同的任务，并且互不影响。</p>
+<p>例如，某台 Linux 服务器上有 4 个用户，分别是 root、www、ftp 和 mysql，在同一时间内，root 用户可能在查看系统日志、管理维护系统；www 用户可能在修改自己的网页程序；ftp 用户可能在上传软件到服务器；mysql 用户可能在执行自己的 SQL 查询，每个用户互不干扰，有条不紊地进行着自己的工作。与此同时，每个用户之间不能越权访问，比如 www 用户不能执行 mysql 用户的 SQL 查询操作，ftp 用户也不能修改 www 用户的网页程序。</p>
+<p>不同用户具有不问的权限，毎个用户在权限允许的范围内完成不间的任务，Linux 正是通过这种权限的划分与管理，实现了多用户多任务的运行机制。</p>
+<p>因此，如果要使用 Linux 系统的资源，就必须向系统管理员申请一个账户，然后通过这个账户进入系统（账户和用户是一个概念）。通过建立不同属性的用户，一方面可以合理地利用和控制系统资源，另一方面也可以帮助用户组织文件，提供对用户文件的安全性保护。</p>
+<p>每个用户都有唯一的用户名和密码。在登录系统时，只有正确输入用户名和密码，才能进入系统和自己的主目录。</p>
+<p>用户组是具有相同特征用户的逻辑集合。简单的理解，有时我们需要让多个用户具有相同的权限，比如查看、修改某一个文件的权限，一种方法是分别对多个用户进行文件访问授权，如果有 10 个用户的话，就需要授权 10 次，那如果有 100、1000 甚至更多的用户呢？</p>
+<p>显然，这种方法不太合理。最好的方式是建立一个组，让这个组具有查看、修改此文件的权限，然后将所有需要访问此文件的用户放入这个组中。那么，所有用户就具有了和组一样的权限，这就是用户组。</p>
+<p>将用户分组是 Linux 系统中对用户进行管理及控制访问权限的一种手段，通过定义用户组，很多程序上简化了对用户的管理工作。</p>
+<p><strong>Linux用户和组的关系</strong></p>
+<p>用户和用户组的对应关系有以下 4 种：</p>
+<ol>
+<li>一对一：一个用户可以存在一个组中，是组中的唯一成员；</li>
+<li>一对多：一个用户可以存在多个用户组中，此用户具有这多个组的共同权限；</li>
+<li>多对一：多个用户可以存在一个组中，这些用户具有和组相同的权限；</li>
+<li>多对多：多个用户可以存在多个组中，也就是以上 3 种关系的扩展。</li>
+</ol>
+<p>用户和组之间的关系可以用图来表示：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/5eb7555ab9ab251c75a5256b8aba9b794ca2acec.png" alt="image-20220818202321858"></p>
+<h3 id="3-2-UID和GID（用户ID和组ID）"><a href="#3-2-UID和GID（用户ID和组ID）" class="headerlink" title="3.2 UID和GID（用户ID和组ID）"></a>3.2 UID和GID（用户ID和组ID）</h3><p>登陆 Linux 系统时，虽然输入的是自己的用户名和密码，但其实 Linux 并不认识你的用户名称，它只认识用户名对应的 ID 号（也就是一串数字）。Linux 系统将所有用户的名称与 ID 的对应关系都存储在 &#x2F;etc&#x2F;passwd 文件中。</p>
+<blockquote>
+<p>说白了，用户名并无实际作用，仅是为了方便用户的记忆而已。</p>
+</blockquote>
+<p>要论证 “Linux系统不认识用户名” 也很简单，在前面章节，我们曾经在网络上下载过 “.tar.gz” 或 “.tar.bz2” 格式的文件，在解压缩之后的文件中，你会发现文件拥有者的属性显示的是一串数字，这很正常，就是因为系统只认识代表你身份的 ID，这串数字就是用户的 ID（UID）号。</p>
+<p>Linux 系统中，每个用户的 ID 细分为 2 种，分别是用户 ID（User ID，简称 UID）和组 ID（Group ID，简称 GID），这与文件有拥有者和拥有群组两种属性相对应。</p>
+<p><img src="https://i0.hdslb.com/bfs/album/72fabc90a9dff974f9e2a4abeae34f4e3fb6bf63.png" alt="image-20220818202415800"></p>
+<p>从图中可以看到，该文件的拥有者是超级管理员 root，拥有群组也是 root。读者可能会问，既然 Linux 系统不认识用户名，文件是如何判别它的拥有者名称和群组名称的呢？</p>
+<p>每个文件都有自己的拥有者 ID 和群组 ID，当显示文件属性时，系统会根据 &#x2F;etc&#x2F;passwd 和 &#x2F;etc&#x2F;group 文件中的内容，分别找到 UID 和 GID 对应的用户名和群组名，然后显示出来。</p>
+<p>&#x2F;etc&#x2F;passwd 文件和 &#x2F;etc&#x2F;group 文件，后续文章会做详细讲解，这里只需要知道，在 &#x2F;etc&#x2F;passwd 文件中，利用 UID 可以找到对应的用户名；在 &#x2F;etc&#x2F;group 文件中，利用 GID 可以找到对应的群组名。</p>
+<h3 id="3-3-groupadd-新增组"><a href="#3-3-groupadd-新增组" class="headerlink" title="3.3 groupadd 新增组"></a>3.3 groupadd 新增组</h3><p>添加用户组的命令是 groupadd，命令格式如下:</p>
+<p><code>[root@localhost ~]# groupadd [选项] 组名</code></p>
+<p>选项：</p>
+<ul>
+<li>-g GID：指定组 ID；</li>
+<li>-r：创建系统群组。</li>
+</ul>
+<p>使用 groupadd 命令创建新群组非常简单，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># groupadd group1</span></span><br><span class="line"><span class="comment">#添加group1组</span></span><br><span class="line">[root@localhost ~]<span class="comment"># grep &quot;group1&quot; /etc/group</span></span><br><span class="line">/etc/group:group1:x:502:</span><br><span class="line">/etc/gshadow:group1:!::</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-groupdel-删除组"><a href="#3-4-groupdel-删除组" class="headerlink" title="3.4 groupdel 删除组"></a>3.4 groupdel 删除组</h3><p>groupdel 命令用于删除用户组（群组），此命令基本格式为：</p>
+<p><code>[root@localhost ~]#groupdel 组名</code></p>
+<p>通过前面的学习不难猜测出，使用 groupdel 命令删除群组，其实就是删除 &#x2F;etc&#x2F;gourp 文件和 &#x2F;etc&#x2F;gshadow 文件中有关目标群组的数据信息。</p>
+<p>例如，删除前面章节中用 groupadd 命令创建的群组 group1，执行命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#grep &quot;group1&quot; /etc/group /etc/gshadow</span></span><br><span class="line">/etc/group:group1:x:505:</span><br><span class="line">/etc/gshadow:group1:!::</span><br><span class="line">[root@localhost ~]<span class="comment">#groupdel group1</span></span><br><span class="line">[root@localhost ~]<span class="comment">#grep &quot;group1&quot; /etc/group /etc/gshadow</span></span><br><span class="line">[root@localhost ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，不能使用 groupdel 命令随意删除群组。此命令仅适用于删除那些 “不是任何用户初始组” 的群组，换句话说，如果有群组还是某用户的初始群组，则无法使用 groupdel 命令成功删除。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># useradd temp</span></span><br><span class="line"><span class="comment">#运行如下命令，可以看到 temp 用户建立的同时，还创建了 temp 群组，且将其作为 temp用户的初始组（组ID都是 505）</span></span><br><span class="line">[root@localhost ~]<span class="comment"># grep &quot;temp&quot; /etc/passwd /etc/group /etc/gshadow</span></span><br><span class="line">/etc/passwd:temp:x:505:505::/home/temp:/bin/bash</span><br><span class="line">/etc/group:temp:x:505:</span><br><span class="line">/etc/gshadow:temp:!::</span><br><span class="line"><span class="comment">#下面尝试删除 temp 群组</span></span><br><span class="line">[root@localhost ~]<span class="comment"># groupdel temp</span></span><br><span class="line">groupdel:cannot remove the primary group of user <span class="string">&#x27;temp&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，groupdel 命令删除 temp 群组失败，且提示“不能删除 temp 用户的初始组”。如果一定要删除 temp 群组，要么修改 temp 用户的 GID，也就是将其初始组改为其他群组，要么先删除 temp 用户。</p>
+<p>切记，虽然我们已经学了如何手动删除群组数据，但胡乱地删除群组可能会给其他用户造成不小的麻烦，因此更改文件数据要格外慎重。</p>
+<h3 id="3-5-groupmod-修改"><a href="#3-5-groupmod-修改" class="headerlink" title="3.5 groupmod 修改"></a>3.5 groupmod 修改</h3><p>groupmod 命令用于修改用户组的相关信息，命令格式如下：</p>
+<p><code>[root@localhost ~]# groupmod [选现] 新组名 旧组名</code></p>
+<p>选项：</p>
+<ul>
+<li>-g GID：修改组 ID；</li>
+<li>-n 新组名：修改组名；</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># groupmod -n testgrp group1</span></span><br><span class="line"><span class="comment">#把组名group1修改为testgrp</span></span><br><span class="line">[root@localhost ~]<span class="comment"># grep &quot;testgrp&quot; /etc/group</span></span><br><span class="line">testgrp:x:502:</span><br><span class="line"><span class="comment">#注意GID还是502，但是组名已经改变</span></span><br></pre></td></tr></table></figure>
+
+<p>不过大家还是要注意，用户名不要随意修改，组名和 GID 也不要随意修改，因为非常容易导致管理员逻辑混乱。如果非要修改用户名或组名，则建议大家先删除旧的，再建立新的。</p>
+<h3 id="3-6-cat-x2F-etc-x2F-group-查看创建了哪些组"><a href="#3-6-cat-x2F-etc-x2F-group-查看创建了哪些组" class="headerlink" title="3.6 cat &#x2F;etc&#x2F;group 查看创建了哪些组"></a>3.6 cat &#x2F;etc&#x2F;group 查看创建了哪些组</h3><p>&#x2F;ect&#x2F;group 文件是用户组配置文件，即用户组的所有信息都存放在此文件中。</p>
+<p>此文件是记录组 ID（GID）和组名相对应的文件。前面讲过，etc&#x2F;passwd 文件中每行用户信息的第四个字段记录的是用户的初始组 ID，那么，此 GID 的组名到底是什么呢？就要从 &#x2F;etc&#x2F;group 文件中查找。</p>
+<p>&#x2F;etc&#x2F;group 文件的内容可以通过 Vim 看到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#vim /etc/group</span></span><br><span class="line">root:x:0:</span><br><span class="line">bin:x:1:bin,daemon</span><br><span class="line">daemon:x:2:bin,daemon</span><br><span class="line">…省略部分输出…</span><br><span class="line">lamp:x:502:</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，此文件中每一行各代表一个用户组。在前面章节中，我们曾创建 lamp 用户，系统默认生成一个 lamp 用户组，在此可以看到，此用户组的 GID 为 502，目前它仅作为 lamp 用户的初始组。</p>
+<p>各用户组中，还是以 “：” 作为字段之间的分隔符，分为 4 个字段，每个字段对应的含义为：</p>
+<p>组名：密码：GID：该用户组中的用户列表</p>
+<p>接下来，分别介绍各个字段具体的含义。</p>
+<h4 id="3-6-1-组名"><a href="#3-6-1-组名" class="headerlink" title="3.6.1 组名"></a>3.6.1 组名</h4><p>也就是是用户组的名称，有字母或数字构成。同 &#x2F;etc&#x2F;passwd 中的用户名一样，组名也不能重复。</p>
+<h4 id="3-6-2-组密码"><a href="#3-6-2-组密码" class="headerlink" title="3.6.2 组密码"></a>3.6.2 组密码</h4><p>和 &#x2F;etc&#x2F;passwd 文件一样，这里的 “x” 仅仅是密码标识，真正加密后的组密码默认保存在 &#x2F;etc&#x2F;gshadow 文件中。</p>
+<p>不过，用户设置密码是为了验证用户的身份，那用户组设置密码是用来做什么的呢？用户组密码主要是用来指定组管理员的，由于系统中的账号可能会非常多，root 用户可能没有时间进行用户的组调整，这时可以给用户组指定组管理员，如果有用户需要加入或退出某用户组，可以由该组的组管理员替代 root 进行管理。但是这项功能目前很少使用，我们也很少设置组密码。如果需要赋予某用户调整某个用户组的权限，则可以使用 sudo 命令代替。</p>
+<h4 id="3-6-3-组ID-GID"><a href="#3-6-3-组ID-GID" class="headerlink" title="3.6.3 组ID (GID)"></a>3.6.3 组ID (GID)</h4><p>就是群组的 ID 号，Linux 系统就是通过 GID 来区分用户组的，同用户名一样，组名也只是为了便于管理员记忆。</p>
+<p>这里的组 GID 与 &#x2F;etc&#x2F;passwd 文件中第 4 个字段的 GID 相对应，实际上，&#x2F;etc&#x2F;passwd 文件中使用 GID 对应的群组名，就是通过此文件对应得到的。</p>
+<h4 id="3-6-4-组中的用户"><a href="#3-6-4-组中的用户" class="headerlink" title="3.6.4 组中的用户"></a>3.6.4 组中的用户</h4><p>此字段列出每个群组包含的所有用户。需要注意的是，如果该用户组是这个用户的初始组，则该用户不会写入这个字段，可以这么理解，该字段显示的用户都是这个用户组的附加用户。</p>
+<p>举个例子，lamp 组的组信息为 <code>&quot;lamp:x:502:&quot;</code>，可以看到，第四个字段没有写入 lamp 用户，因为 lamp 组是 lamp 用户的初始组。如果要查询这些用户的初始组，则需要先到 &#x2F;etc&#x2F;passwd 文件中查看 GID（第四个字段），然后到 &#x2F;etc&#x2F;group 文件中比对组名。</p>
+<p>每个用户都可以加入多个附加组，但是只能属于一个初始组。所以我们在实际工作中，如果需要把用户加入其他组，则需要以附加组的形式添加。例如，我们想让 lamp 也加入 root 这个群组，那么只需要在第一行的最后一个字段加入 lamp，即 <code>root:x:0:lamp</code> 就可以了。</p>
+<p>一般情况下，用户的初始组就是在建立用户的同时建立的和用户名相同的组。</p>
+<p>到此，我们已经学习了&#x2F;etc&#x2F;passwd、&#x2F;etc&#x2F;shadow、&#x2F;etc&#x2F;group，它们之间的关系可以这样理解，即先在 &#x2F;etc&#x2F;group 文件中查询用户组的 GID 和组名；然后在 &#x2F;etc&#x2F;passwd 文件中查找该 GID 是哪个用户的初始组，同时提取这个用户的用户名和 UID；最后通过 UID 到 &#x2F;etc&#x2F;shadow 文件中提取和这个用户相匹配的密码。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    03 【基础篇-系统管理】
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">01 【nodejs简介】</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Public &copy; 2023 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

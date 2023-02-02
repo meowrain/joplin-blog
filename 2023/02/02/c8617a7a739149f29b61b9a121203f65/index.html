@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>06 【CSS字体属性 CSS文本属性】 | 知识库</title>
+    
+    
+        <meta name="keywords" content="06 【CSS字体属性 CSS文本属性】" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="8.CSS字体属性CSS Fonts（字体）属性用于定义：字体系列、大小、粗细、和 文字样式（如：斜体）。 8.1字体族font-family 字体族（字体的格式） CSS 使用 font-family 属性定义文本的字体系列。 1234567p &amp;#123;	font-family: &quot;Microsoft YaHei&quot;;&amp;#125;div &amp;#123;	font-family">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06 【CSS字体属性 CSS文本属性】">
+<meta property="og:url" content="http://example.com/2023/02/02/c8617a7a739149f29b61b9a121203f65/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="8.CSS字体属性CSS Fonts（字体）属性用于定义：字体系列、大小、粗细、和 文字样式（如：斜体）。 8.1字体族font-family 字体族（字体的格式） CSS 使用 font-family 属性定义文本的字体系列。 1234567p &amp;#123;	font-family: &quot;Microsoft YaHei&quot;;&amp;#125;div &amp;#123;	font-family">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/5f03dd94746cd5cd3ab8e83085285e0266970972.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/76feb37f71523392d38cf2831d3a4883d3c370e8.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/649fca9067a424d9c001a6ad21b3ceede3c635f6.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/3119c389e75a9fce3a1bb3ebcf4020a05a78988e.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/4186c08a19128b7defef002d01a1318bd60a97cb.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/815ff72cc128d29857a398e6e594d7c061ad39e0.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/a15f03a8d4997f1687002f5feef545f876ac11a5.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/e0e9e6968c8f56f79d8c327775086a74acb7ff35.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/387d03287291ce9e55996fb2af1c0e444130e755.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/41124e11ffecc1affe2dae42bb3e06d585bc2dd7.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/44cf8c6070fc767fc6d2fb03a2a954bbd751f3ae.jpg">
+<meta property="article:published_time" content="2023-02-02T05:18:15.658Z">
+<meta property="article:modified_time" content="2023-02-02T05:30:57.674Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/5f03dd94746cd5cd3ab8e83085285e0266970972.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知识库" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C/C++
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C语言程序设计笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0b556fd3fac3446ab962debd1d7d0d3d/">C语言（三）</a></li>  <li class="file"><a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/">C语言（二）</a></li>  <li class="file"><a href="/2023/01/18/47f2147369be440d89c32f4ac310c6a7/">C语言（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-c
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            lib
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/">assert.h</a></li>  <li class="file"><a href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/">ctype.h</a></li>  <li class="file"><a href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/">float.h</a></li>  <li class="file"><a href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/">errno.h</a></li>  <li class="file"><a href="/2023/02/02/03a886d85a6e423a9dea00ed1979a294/">stdarg.h</a></li>  <li class="file"><a href="/2023/02/02/174190d1271c441296fe6161dbe1e3b0/">inttypes.h</a></li>  <li class="file"><a href="/2023/02/02/3c0028c132394bf49855502500823843/">signal.h</a></li>  <li class="file"><a href="/2023/02/02/3c2477856e494e289da69d3223ba7674/">math.h</a></li>  <li class="file"><a href="/2023/02/02/3ec857ad74414dfa9785db229745cff4/">stdint.h</a></li>  <li class="file"><a href="/2023/02/02/4709412c44ae4a488075c134135a0c7d/">limits.h</a></li>  <li class="file"><a href="/2023/02/02/63a6e5300615432c802b5fad1526b013/">iso646.h</a></li>  <li class="file"><a href="/2023/02/02/74ea4d343a0a466dafd2938741af9b82/">stdio.h</a></li>  <li class="file"><a href="/2023/02/02/7c6a577e51b44a30896461029a72e0d9/">stddef.h</a></li>  <li class="file"><a href="/2023/02/02/f15fbe0430cd4183b0fce6d942edec61/">stdbool.h</a></li>  <li class="file"><a href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/">locale.h</a></li>  <li class="file"><a href="/2023/02/02/30aaa7981bcb41ecb2cab759dc8d61d9/">string.h</a></li>  <li class="file"><a href="/2023/02/02/43c955dbbcff4f31b6b395baf15b3643/">time.h</a></li>  <li class="file"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/">stdlib.h</a></li>  <li class="file"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/">wchar.h</a></li>  <li class="file"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/">wctype.h</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/">array</a></li>  <li class="file"><a href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/">enum</a></li>  <li class="file"><a href="/2023/02/02/88026f8bed5a4692a3eb48abb8cc2c47/">cli</a></li>  <li class="file"><a href="/2023/02/02/9e03d1990b4c477c8e5ecd52164183d1/">flow-control</a></li>  <li class="file"><a href="/2023/02/02/a57d1c9278214ad49c0c94d45a92af2b/">file</a></li>  <li class="file"><a href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/">io</a></li>  <li class="file"><a href="/2023/02/02/83858a169b23461eadc882914abf4bd1/">function</a></li>  <li class="file"><a href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/">intro</a></li>  <li class="file"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/">memory</a></li>  <li class="file"><a href="/2023/02/02/ec65e72324264fbb8acf7006f6ced494/">multibyte</a></li>  <li class="file"><a href="/2023/02/02/635718a1db8b4ccebbfd9a4f8a55de47/">preprocessor</a></li>  <li class="file"><a href="/2023/02/02/bb7bba4594234ae5832af49f8d3e56ee/">pointer</a></li>  <li class="file"><a href="/2023/02/02/cf8653eb740a49b7a58a852bbbed00a4/">string</a></li>  <li class="file"><a href="/2023/02/02/e1cb8d47ae9c459eb5ac11818a7c6e27/">operator</a></li>  <li class="file"><a href="/2023/02/02/ecce61b4548c4e45ba73284c9ba7f0cc/">specifier</a></li>  <li class="file"><a href="/2023/02/02/41797336ff734560a26025353b233d54/">types</a></li>  <li class="file"><a href="/2023/02/02/5f8eaecb5f1f414d9106a33847f193a9/">variable</a></li>  <li class="file"><a href="/2023/02/02/a86312379ebb44c39fbda22a6eecf977/">struct</a></li>  <li class="file"><a href="/2023/02/02/bf7f6d8e12f54a7c8802abcbdc18e689/">union</a></li>  <li class="file"><a href="/2023/02/02/c19ba4705d5142bf98d9207eece2ef79/">typedef</a></li>  <li class="file"><a href="/2023/02/02/cb86948a24cf470ea1c847f85f8b8349/">syntax</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/a2acb1e85c084003b09433633a27ec8f/">C++求和的多种方式</a></li>  <li class="file"><a href="/2023/01/25/dd59a1b3ef8343efb5e60f2fd43084a8/">水仙花题解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/20/b4a4813646324eab97b039cacf031705/">Docker容器技术</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/00429dd58f6c4ce6a2b03b9aeeb9d521/">git-log</a></li>  <li class="file"><a href="/2023/02/02/02fdd75f9f2a47489decf6f32d0b3c7a/">git-rebase</a></li>  <li class="file"><a href="/2023/02/02/0b2ea073a1c14893b3dd7098546e0655/">git-add</a></li>  <li class="file"><a href="/2023/02/02/13f9c3847de9456f9a8078f072da7eab/">git-init</a></li>  <li class="file"><a href="/2023/02/02/22d2d3f830f145289393d0f82e740cb9/">git-diff</a></li>  <li class="file"><a href="/2023/02/02/4781f042463f4f40b1bbad14879d0ac7/">git-clone</a></li>  <li class="file"><a href="/2023/02/02/58789f766a6c4768be5f19a121c6fd61/">git-checkout</a></li>  <li class="file"><a href="/2023/02/02/587e496a180048d98ac872605ced2d67/">git-cherry-pick</a></li>  <li class="file"><a href="/2023/02/02/63225ea3537e44c4bd42c553358e0a14/">git-cat-file</a></li>  <li class="file"><a href="/2023/02/02/6c452a5f156c43cfa90eb618191dcda7/">git-commit-tree</a></li>  <li class="file"><a href="/2023/02/02/6d6d53b08a474a0d938c0711dae464b1/">git-commit</a></li>  <li class="file"><a href="/2023/02/02/88a36c4e06f04c1c90ee2d93d231fcf0/">git-remote</a></li>  <li class="file"><a href="/2023/02/02/a4f4a7cf1b5446f58b3403e34b90adcb/">git-ls-files</a></li>  <li class="file"><a href="/2023/02/02/bbc2b9d3586f4c05946853201ac0e103/">git-hash-object</a></li>  <li class="file"><a href="/2023/02/02/cfc661f62c4f473fb166b17ef54c5d37/">git-merge</a></li>  <li class="file"><a href="/2023/02/02/e69a3fc86aad49f2a7e9b61b6377403e/">git-pull</a></li>  <li class="file"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/">git-branch</a></li>  <li class="file"><a href="/2023/02/02/0215eb43a3cd48af8db8b7826c738ae9/">git-show</a></li>  <li class="file"><a href="/2023/02/02/01c2ed5c17c944e4b3dede0de2616c27/">git-rm</a></li>  <li class="file"><a href="/2023/02/02/1ee03873808d4c469cfa0998032e4936/">git-write-tree</a></li>  <li class="file"><a href="/2023/02/02/2f3fcea5172b40dc8e12f9ef817fb413/">git-update-ref</a></li>  <li class="file"><a href="/2023/02/02/4027c7dfd0a849658d350c9374793484/">git-restore</a></li>  <li class="file"><a href="/2023/02/02/446de5db36bf4d5a858dc7d949a7da12/">git-update-index</a></li>  <li class="file"><a href="/2023/02/02/59d93e8c48164f0190417df6f9a1f573/">git-rev-parse</a></li>  <li class="file"><a href="/2023/02/02/69ebd17fb555427285f272241105d5cd/">git-reset</a></li>  <li class="file"><a href="/2023/02/02/861b301a7bce4dad8bb92d273cd75daf/">git-switch</a></li>  <li class="file"><a href="/2023/02/02/a4bb2f6830624e38bccbc32c93085d32/">git-stash</a></li>  <li class="file"><a href="/2023/02/02/bb8b63b8991b414d92411977cc87bbbe/">git-revert</a></li>  <li class="file"><a href="/2023/02/02/e6a606da62da484dbf52fce543abb094/">git-tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/">basic</a></li>  <li class="file"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/">branch</a></li>  <li class="file"><a href="/2023/02/02/1459cfd798b842b4a80ce78e41d4155d/">operations</a></li>  <li class="file"><a href="/2023/02/02/31b7e45e02f54e149fea5d1d8cda26fe/">internal</a></li>  <li class="file"><a href="/2023/02/02/26cbe9e22b164aeaabf617d844abc440/">reference</a></li>  <li class="file"><a href="/2023/02/02/90fb796e66734920ae724f9fa66ce763/">tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/c77ab20583d64ba9a3dc6f8d6ea89f55/">04 【忽略某些文件】</a></li>  <li class="file"><a href="/2023/02/02/2b8f3ce0fed44813a0919553cb304e64/">03 【远程库操作】</a></li>  <li class="file"><a href="/2023/02/02/aeb16e6138444c83ae3bd8886ba906bc/">01 【版本控制和Git的安装介绍】</a></li>  <li class="file"><a href="/2023/02/02/52d9a2a8683a42eb966022415a93058a/">02 【版本控制命令】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JAVASE
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/49756fe6e6cc44f88ee3cc213ec4bd67/">Java泛型</a></li>  <li class="file"><a href="/2023/01/19/338f5f76a1914f72822772ea3026f220/">Java 集合</a></li>  <li class="file"><a href="/2023/01/19/929bd134ed01499c92d8e177925950ef/">Java面向对象基础(初级)</a></li>  <li class="file"><a href="/2023/01/19/274b1dfaf07945e7ab77710afad502a3/">Java面向对象基础（中级）</a></li>  <li class="file"><a href="/2023/01/19/9a52b66178b746debfe7111574e464a2/">Java面向对象(高级)</a></li>  <li class="file"><a href="/2023/01/25/47c9d6ac38214463ae1ca07fd5b85614/">Java-Math类</a></li>  <li class="file"><a href="/2023/01/25/65905cb7c01348b0b1ac5264ecc87ab0/">Java Object类详解</a></li>  <li class="file"><a href="/2023/01/25/0b0365b51c0644958b204ed11719a88a/">Java 访问修饰符</a></li>  <li class="file"><a href="/2023/01/25/e7838ce563844f3a9811936eaa09cb09/">Java数据结构-栈</a></li>  <li class="file"><a href="/2023/01/25/cefb06ca6f8049a99703cf1b3bc1fa3d/">Java异常处理</a></li>  <li class="file"><a href="/2023/01/25/d8cc29145a834e3aaa2a43b7d88c9ce1/">java选择排序</a></li>  <li class="file"><a href="/2023/01/25/abec654a37ad4a498798cdf019a2e61e/">Java-枚举</a></li>  <li class="file"><a href="/2023/01/25/d5d66a7ebad94d6483e19407faf46cc5/">Java-包装类</a></li>  <li class="file"><a href="/2023/01/25/b3ada79e6ff745f0acd8edcf57c95acc/">Java-递归执行机制</a></li>  <li class="file"><a href="/2023/01/25/03f3dd343d094bd6baf6772f4a6a2aed/">Java-冒泡排序</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JUC笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/83aef7425d394df3901ca188c1afc6d5/">JUC笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/b41b5f3eb08f41cbbbf454a8c9922051/">JUC笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/1d97f5daca284471abd5c2a42c140143/">JUC笔记（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/f4f7756d2f6644d4b0e098cb3789a9c6/">JVM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/3222fc6cde8442a89eda4e5e0808952a/">JVM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/8e58362eaa734ad292f357536ef1b05e/">JVM笔记（三）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java-GUi
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/f7310f53495a4e258159180b2ce529db/">Java-GUI-窗口配置</a></li>  <li class="file"><a href="/2023/01/19/f172572c7d114592aaa804efa121761e/">Java-GUI-监听器</a></li>  <li class="file"><a href="/2023/01/19/2c969cb92c56489ab91482067305ab42/">Java-GUI-常用组件</a></li>  <li class="file"><a href="/2023/01/19/a8eb012039114ca6a601a1c34622ba93/">Java-GUI 布局</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记 2023重制版
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/09da4fbf346f4f459ef48c64c61f6cc1/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/30140692c4144c2cbc65ba707a7b0c89/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/aea1e8a802bd45ebbe33970dab1bad21/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/df26e1c8129b412a8284a955dbe26b3c/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/31ca9cc5ea8a4795b75b49ec9680cca7/">JavaSE笔记（一）重制版</a></li>  <li class="file"><a href="/2023/01/18/7ecb50884e214c28abe6a905186f2051/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/cae1499c7dd54b5f9729e77e75f9e92f/">JavaSE笔记（四）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记（含新特性介绍）
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0e413f24b04d46babc26b48035844a34/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/4781c8feb884488d93fcbc64d83998eb/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/6561c4991b054522a438ae9c3573bf7b/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/e9b900b310774688844b4e31729afc40/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/4616dce1a1c745fb84672ffed7bf43ed/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/5aef6240910849d4b69b36b03baf7d2c/">JavaSE笔记（四）重制版</a></li>  <li class="file"><a href="/2023/01/18/d7d20c40f1044de59760363f8b9d8c4b/">JavaSE笔记（一）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSSM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0dbb54c3201b45ec9eb61b3e76209382/">Java SSM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/13fdccb2f789426fb795cdb23e8cb0c0/">JavaSSM笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/86717e97bcd34af2ab62ade51eddc019/">JavaSSM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/9dfd598003ab43828c77f2676dd6cf8f/">JavaSSM笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/088fcec4e8a846479c3cfcf5a6a52da7/">JavaWeb笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/5756fdcc799c4064be4e4a84d7ab5244/">JavaWeb笔记（五）</a></li>  <li class="file"><a href="/2023/01/18/b79318accafa44dfaabad60dbbe8de4c/">JavaWeb笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/f795be55936d42ddafd17995abae6aa8/">JavaWeb笔记（三）</a></li>  <li class="file"><a href="/2023/01/23/65909752ee164b2c877f1f77097d6358/">使用Socket传输文件</a></li>  <li class="file"><a href="/2023/01/24/1c60970a20864932bc3ef0807b9fda67/">JavaWeb笔记（四）</a></li>  <li class="file"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/">SQL事务（非常详细）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java设计模式笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/022f64208f254fbea3a8fb31b281a85b/">Java设计模式（一）</a></li>  <li class="file"><a href="/2023/01/18/3e0642cd3b254fb2b80bf2932ac4b9be/">Java设计模式（三）</a></li>  <li class="file"><a href="/2023/01/18/407c5b3cecb14dfaa0649e6f89d0ec2b/">Java设计模式（四）</a></li>  <li class="file"><a href="/2023/01/18/7acbd5ac3c754f2287c448b72010bac1/">Java设计模式（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NIO笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/93e61e24ebe54aacb046d8fb7e524ec8/">Java NIO笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/cdec76bf6ea84248809947e5c365c26e/">Java NIO笔记（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringCloud笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/89a3686366ac4733a117121766e12109/">SpringCould笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/f828affac4f64da487d581f2cb0a7ddb/">SpringCloud笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/3156ff5edada4090a2470abcafcc1ace/">SpringCloud笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/af85cc65b701415f8bf1a97873320570/">SpringCloud笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Springboot笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/">SpringBoot笔记（一）</a></li>  <li class="file"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/">SpringBoot笔记（二）</a></li>  <li class="file"><a href="/2023/01/24/99650712d4104d00a2c4a5ccfc3f525e/">SpringBoot笔记（三）</a></li>  <li class="file"><a href="/2023/01/24/3636e46047924c11b7ec162ffc9f9271/">SprintBoot笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境配置
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/06a5ebd1d51442d58ba9f7b02612a94b/">Linux下JAVA环境配置</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Bash
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            archives
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/">cp</a></li>  <li class="file"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/">awk</a></li>  <li class="file"><a href="/2023/02/02/5e2e0bec39da4147b3fa493d53c38fcf/">clear</a></li>  <li class="file"><a href="/2023/02/02/6c931bc223d04f6ea0004ce2e60ed0a9/">cal</a></li>  <li class="file"><a href="/2023/02/02/e371d141f5e04b83985097a365e488f3/">alias</a></li>  <li class="file"><a href="/2023/02/02/eb9fd5a58ed4424db318906b45b3a2c1/">cat</a></li>  <li class="file"><a href="/2023/02/02/298cc2ee3f30471c95ffe20b7fd68de7/">find</a></li>  <li class="file"><a href="/2023/02/02/3262b0fe7c3c405693a43c3b00fd31a2/">cut</a></li>  <li class="file"><a href="/2023/02/02/4a44a9b960604e14b21acd79b661370d/">gunzip</a></li>  <li class="file"><a href="/2023/02/02/4e6e8b622ad94bc7b9beaac8b4db5e9b/">df</a></li>  <li class="file"><a href="/2023/02/02/57a4373ff3994387ba06b86756caa443/">dd</a></li>  <li class="file"><a href="/2023/02/02/66f0d5d37af44909b7a1826752bb25f8/">fmt</a></li>  <li class="file"><a href="/2023/02/02/6a731d9df2e2418b906e03243a37fe5a/">egrep</a></li>  <li class="file"><a href="/2023/02/02/7e8da3da77434aa3b080c04619bd6f6c/">export</a></li>  <li class="file"><a href="/2023/02/02/825b8a01e7684bf5817ef4aa18e1dcea/">file</a></li>  <li class="file"><a href="/2023/02/02/8a29743a5dd34506a48aed9f8f23e68e/">du</a></li>  <li class="file"><a href="/2023/02/02/96af26754cb14ae88ba85f62f34485e2/">gzcat</a></li>  <li class="file"><a href="/2023/02/02/af40050b4bbb4296a2359591e5267652/">date</a></li>  <li class="file"><a href="/2023/02/02/cd9720c1fa0e4e02a5fde942d26acace/">grep</a></li>  <li class="file"><a href="/2023/02/02/031200e492574917bc61ee527a9dbec2/">sort</a></li>  <li class="file"><a href="/2023/02/02/1a711a5945444415a8a3dd969f8ecd2e/">tr</a></li>  <li class="file"><a href="/2023/02/02/1ba049a64f9a46e983332666e7e82f90/">killall</a></li>  <li class="file"><a href="/2023/02/02/265f581f57e742a990d88f8e3b81e332/">lpr</a></li>  <li class="file"><a href="/2023/02/02/50ee6471baf0464380f10b8cdcf1ace7/">gzip</a></li>  <li class="file"><a href="/2023/02/02/58e2782991a046f9b090a30000ad263f/">ps</a></li>  <li class="file"><a href="/2023/02/02/5d789ba3d1df439fae3342ddab2e8936/">uptime</a></li>  <li class="file"><a href="/2023/02/02/89e04320d7f744c089eacbb3e0e119f9/">ls</a></li>  <li class="file"><a href="/2023/02/02/8e7aba35b4a2409aa2163e101ca9c459/">uniq</a></li>  <li class="file"><a href="/2023/02/02/92ca2811477044ad84363b2a0830bf8b/">last</a></li>  <li class="file"><a href="/2023/02/02/a548ef6cd0a047a59f705a4d72e69e79/">lpq</a></li>  <li class="file"><a href="/2023/02/02/bd5a94df51574676a7fb3cf91798129b/">kill</a></li>  <li class="file"><a href="/2023/02/02/c4dace09d06a4255ada3235e13622e84/">nl</a></li>  <li class="file"><a href="/2023/02/02/d39d39701de24c9e8fc1ee2a957df430/">sed</a></li>  <li class="file"><a href="/2023/02/02/d999bd8656094f66b6dd34cd212085d7/">uname</a></li>  <li class="file"><a href="/2023/02/02/ebc4924fe4974446ac9f3911f9b27e91/">scp</a></li>  <li class="file"><a href="/2023/02/02/372ae469bfff43328cc696cd3b8243d2/">which</a></li>  <li class="file"><a href="/2023/02/02/5bbf81dd30b64aafaa5f5565992b6349/">who</a></li>  <li class="file"><a href="/2023/02/02/7bb4b5c41da44269a6c70f4633d0917e/">whereis</a></li>  <li class="file"><a href="/2023/02/02/809b6b7eb42c403f8e1b0211e44409e0/">wc</a></li>  <li class="file"><a href="/2023/02/02/a07cab80bd4c47789ae6242c402ada05/">w</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            deleted
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f5f6eb42d7684fe989265596e9306f01/">stdio</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/">archiving</a></li>  <li class="file"><a href="/2023/02/02/82a5e084940844de91c02625e19ad744/">async</a></li>  <li class="file"><a href="/2023/02/02/8a206bc871634efdbbffd067c656673b/">command</a></li>  <li class="file"><a href="/2023/02/02/933495d6b7fe4de99eefa41cd63865b8/">file</a></li>  <li class="file"><a href="/2023/02/02/e1466852223e4f6bb5dc8a46a6104e76/">file-operation</a></li>  <li class="file"><a href="/2023/02/02/0cd5e142ec7a4f2abaa5cc522dbfa62d/">user</a></li>  <li class="file"><a href="/2023/02/02/154ccd75c486446aac1353805e3f901a/">host</a></li>  <li class="file"><a href="/2023/02/02/5fdd36fee51d4c49833a3a9b35303088/">system</a></li>  <li class="file"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/">text</a></li>  <li class="file"><a href="/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/">hardware</a></li>  <li class="file"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/">named-pipe</a></li>  <li class="file"><a href="/2023/02/02/d08fc4409e6e4bb1abc3bc66097589de/">process</a></li>  <li class="file"><a href="/2023/02/02/e6cc1bf092814f148a6c9a72e5615e73/">time</a></li>  <li class="file"><a href="/2023/02/02/ea57261da8fe46bdbdad1471dfe28140/">regex</a></li>  <li class="file"><a href="/2023/02/02/eca6d9d98e874548a12942d08e09bed4/">redirection</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/253ec4deec8c4beda7dd99a6f419b404/">arithmetic</a></li>  <li class="file"><a href="/2023/02/02/307a6025886648d98d3ee4d27c48ac00/">array</a></li>  <li class="file"><a href="/2023/02/02/42867f9a3d9f4e5c99a0d6ce517b903e/">condition</a></li>  <li class="file"><a href="/2023/02/02/e23e7e4f49ac4a77a19f9cedc6bb7393/">expansion</a></li>  <li class="file"><a href="/2023/02/02/e66fbc86e05a4521882246e9dc4d3adc/">function</a></li>  <li class="file"><a href="/2023/02/02/0888cfb07af44e419d21c7d3d9f7348b/">prompt</a></li>  <li class="file"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/">quotation</a></li>  <li class="file"><a href="/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/">mktemp</a></li>  <li class="file"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/">read</a></li>  <li class="file"><a href="/2023/02/02/61f4af2f28f34d6c83a93732a217826a/">intro</a></li>  <li class="file"><a href="/2023/02/02/68774db840cb4ba9975a4b9b5b27d531/">grammar</a></li>  <li class="file"><a href="/2023/02/02/b894fd5ea7ce4f5f83bd345deeb191c7/">loop</a></li>  <li class="file"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/">script</a></li>  <li class="file"><a href="/2023/02/02/36a498d21f274b8698386927095852e5/">string</a></li>  <li class="file"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/">variable</a></li>  <li class="file"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/">readline</a></li>  <li class="file"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/">startup</a></li>  <li class="file"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/">set</a></li>  <li class="file"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/">stack</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">06 【实操篇-时间日期类 用户和用户组管理】</a></li>  <li class="file"><a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/">03 【基础篇-系统管理】</a></li>  <li class="file"><a href="/2023/02/02/622750bc961b42b79daeb6a4cc15161d/">05【实操篇-文件目录类命令】</a></li>  <li class="file"><a href="/2023/02/02/976629fb7bd241958fbac447af492905/">10 【实操篇-进程管理类】</a></li>  <li class="file"><a href="/2023/02/02/3e5ebad9a8e34aeab1791403f375e9cf/">04 【实操篇-帮助命令 文件目录管理基础知识】</a></li>  <li class="file"><a href="/2023/02/02/0994e211c03c4ca5a71ebfaddd83a5b4/">02 【基础篇-vim编辑器 网络配置 远程登录】</a></li>  <li class="file"><a href="/2023/02/02/ae308f099ff843e4974f7a3fa0ab67ff/">07 【实操篇-文件权限和搜索查找类命令】</a></li>  <li class="file"><a href="/2023/02/02/9d51515086d54d9da60959402195a54e/">08 【实操篇-压缩和解压类】</a></li>  <li class="file"><a href="/2023/02/02/b4f31671b35f4b879ac18de3fa565b44/">09 【实操篇-磁盘查看和分区类】</a></li>  <li class="file"><a href="/2023/02/02/4f43f36734ff4b7fbb862ab41b32afda/">11 【实操篇-定时任务 软件安装 克隆虚拟机】</a></li>  <li class="file"><a href="/2023/02/02/594959a1b8b0475493968c2559ce6895/">01 【入门篇-介绍和安装】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Nginx
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/d7b325aae2594d32ad44c26d7d441ae0/">02 【Nginx的目录介绍】</a></li>  <li class="file"><a href="/2023/02/02/6b1fb70d0a4441949a907556d92c32f8/">03 【Nginx虚拟主机和域名解析】</a></li>  <li class="file"><a href="/2023/02/02/ac4d35d0ad0a454381e46471c91f723d/">01 【Nginx的安装和启动】</a></li>  <li class="file"><a href="/2023/02/02/5860918f92bb4edaaf5d8aed17697c0f/">04 【Nginx反向代理和负载均衡】</a></li>  <li class="file"><a href="/2023/02/02/601b78d0331e4a25b26de4819fec9d1c/">06 【防盗链】</a></li>  <li class="file"><a href="/2023/02/02/05ca312f1aad4b1198b58405d038fc40/">05 【动静分离和URLRewrite】</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/20/85a4024620e141f4b16389b65a2ce85e/">Linux SCP指令</a></li>  <li class="file"><a href="/2023/01/25/c701f1c34bb44b30a2fa83eafe2f97b5/">Linux 同步时间</a></li>  <li class="file"><a href="/2023/01/25/6555fe10b1904e6f8ad9e999d5bb8c09/">Linux压缩和解压缩</a></li>  <li class="file"><a href="/2023/01/25/e2660f8d01d24bafbcab08e0a21766ae/">Linux用户管理</a></li>  <li class="file"><a href="/2023/01/25/76440ac4b9d649d0923e1dc7808d6d9e/">Linux 目录结构</a></li>  <li class="file"><a href="/2023/01/25/761fa1243125429eb927901f3014a91b/">Debian修改国内原</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ajax
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f4a82199df954988886f793eb07bea6e/">01 【AJAX概述 HTTP相关问题】</a></li>  <li class="file"><a href="/2023/02/02/a4bdac42f33042a09a9d5ff13bf5effe/">02 【axios fetch 跨域】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            css预处理语言
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Sass
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ff4b2c9dbf641d08213e2278205e32a/">10 【Sass语法介绍-继承】</a></li>  <li class="file"><a href="/2023/02/02/d1b7676560c64fbb81882453865edebc/">04 【Sass语法介绍-运算】</a></li>  <li class="file"><a href="/2023/02/02/b6aa35c8f62d46e499d2847e3b0c0ba0/">03 【Sass语法介绍-嵌套】</a></li>  <li class="file"><a href="/2023/02/02/720abd9ef54447e6b45f4f690ae7f1b7/">07 【Sass语法介绍-控制指令】</a></li>  <li class="file"><a href="/2023/02/02/cc4f543711a54ccd9a05d4bf128898f5/">02 【Sass语法介绍-变量】</a></li>  <li class="file"><a href="/2023/02/02/d40a67d9f9f841059a8a689603793673/">05 【Sass语法介绍-插值】</a></li>  <li class="file"><a href="/2023/02/02/8fd4499649a940418f3222e3d09ee2aa/">09 【Sass语法介绍-函数指令】</a></li>  <li class="file"><a href="/2023/02/02/c147cb6550934f58904823a45536056c/">01 【Sass的安装使用】</a></li>  <li class="file"><a href="/2023/02/02/424c4e271557488ca5b2c1b775754008/">06 【Sass语法介绍-函数】</a></li>  <li class="file"><a href="/2023/02/02/2d8afd58354f4270b36e307161cf351a/">08 【Sass语法介绍-混合指令】</a></li>  <li class="file"><a href="/2023/02/02/5c17818f7da844169c13e53e58c59fb7/">11【Sass语法介绍-导入】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            less
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7750b9ec9e19421a805fe45697c0dc2d/">01 【less学习笔记】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/d3a6f3f0a7314b8c96148565dead839f/">CSS-position位置-绝对定位和相对定位</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Canvas
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/1b03369a713343afa2a193408cc8b22f/">02 【canvas绘制基本图形】</a></li>  <li class="file"><a href="/2023/02/02/faa9ad753f834bb181309f4257b09b37/">07 【canvas图像处理】</a></li>  <li class="file"><a href="/2023/02/02/e96f125a9a854c8eb2ce8b05244ba275/">05 【canvas图像变换】</a></li>  <li class="file"><a href="/2023/02/02/815ddf95af0048f2ac2ab12ffb2ca36d/">06 【canvas图像合成】</a></li>  <li class="file"><a href="/2023/02/02/48f96f2e7faf49ce94282d5e4da0145e/">04 【canvas绘制文字】</a></li>  <li class="file"><a href="/2023/02/02/54f4c804683649cc9eb20b1f7b33d7a4/">03 【canvas样式控制】</a></li>  <li class="file"><a href="/2023/02/02/fc62e5cc497a4fc8ae6b4c6a93bf4830/">01 【认识canvas】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/732ec77199574e42aa8a3ef00df24d8d/">Javascript 面向对象(OOP)</a></li>  <li class="file"><a href="/2023/01/25/4f2d10c3153e4c7c89f2ecf584fbc453/">Javascript-三种包装对象</a></li>  <li class="file"><a href="/2023/01/25/acf1e9f487974ce1853395619e12e44d/">ES6闭包</a></li>  <li class="file"><a href="/2023/01/25/2601a78cd4fb449e90738af73cc0370d/">Javascript-展开语法</a></li>  <li class="file"><a href="/2023/01/25/5b879117bcd14d1f8a9850b134549a71/">javascript-克隆节点&&删除节点</a></li>  <li class="file"><a href="/2023/01/25/bf50528806834aada4bf812a6e5cb4d7/">javascript-变量提升</a></li>  <li class="file"><a href="/2023/01/25/3eb18b717005473285e60b95a1783d27/">javascript- 节点增加创建与追加-</a></li>  <li class="file"><a href="/2023/01/25/97466e0ebd1f48c8836d82a772e97d39/">javascript-DOM-分时问候案例</a></li>  <li class="file"><a href="/2023/01/25/6d5690c11c9c40d9ab1e41f85c32ea0d/">javascript-事件流</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Node.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/ac95840c294b45909b8a32b5a3c7b1f7/">Node-包管理工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            es6
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/08ed7d14c0b74fd9a8e849fdf55e8a80/">04 【函数的扩展】</a></li>  <li class="file"><a href="/2023/02/02/6bfa93761a9348309ee45e5c8d39d60f/">14 【Class extends】</a></li>  <li class="file"><a href="/2023/02/02/4d05e596059f482899f63dadecc42521/">06【对象的扩展】</a></li>  <li class="file"><a href="/2023/02/02/e3c46bd0c64943f4967d81b8b78cacd4/">07【字符串的扩展】</a></li>  <li class="file"><a href="/2023/02/02/2fc965f3cd9f4ebfae565e4a72ebd00b/">05【数组的扩展】</a></li>  <li class="file"><a href="/2023/02/02/ba336fd9e8f942889f5a76b31f239ff5/">01 【ES6 介绍】</a></li>  <li class="file"><a href="/2023/02/02/1a48072db3f149f1b7909da3eb852945/">13【Class的语法】</a></li>  <li class="file"><a href="/2023/02/02/d125a45575e841bfa140266dbe46daea/">12【es6模块化】</a></li>  <li class="file"><a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/">03【解构赋值】</a></li>  <li class="file"><a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">10【Promise对象】</a></li>  <li class="file"><a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/">02 【let和const】</a></li>  <li class="file"><a href="/2023/02/02/73a1c792b2754bf4bef4d5c9b9819b0a/">08【运算符的扩展】</a></li>  <li class="file"><a href="/2023/02/02/706e1bd0fa5f495fafc420ac1b96f259/">09【Set 和 Map 数据结构】</a></li>  <li class="file"><a href="/2023/02/02/1274b7d6c86142c0bb25d906aebc593a/">11【async 函数】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nodejs
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/a209b664c3ca4578a9eb3cb91ba512ba/">18 【Koa基本使用】</a></li>  <li class="file"><a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/">14 【接口规范和业务分层】</a></li>  <li class="file"><a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">05 【nodejs内置模块（上）】</a></li>  <li class="file"><a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/">02 【nodejs开发环境安装】</a></li>  <li class="file"><a href="/2023/02/02/3b68d412870a445a8d87cfd22ac39d87/">03 【npm的使用】</a></li>  <li class="file"><a href="/2023/02/02/2de266d3a093495fa8a805a1ff7696b7/">10 【Express基本使用】</a></li>  <li class="file"><a href="/2023/02/02/c280122bb3b54525b2f9dd2c3a136016/">15 【登录鉴权】</a></li>  <li class="file"><a href="/2023/02/02/e2c3e6468ad84a1dba70d04460347ed3/">04 【nodejs模块化规范：CommonJS】</a></li>  <li class="file"><a href="/2023/02/02/9ec6f6652fd94d8fbd140127c68af01e/">11 【Express服务端渲染】</a></li>  <li class="file"><a href="/2023/02/02/a81505b065c245b088a3012c1712bcdd/">08 【爬虫】</a></li>  <li class="file"><a href="/2023/02/02/b26c2cc0675b49cbac6cc6cbce060205/">12 【操作mongodb数据库】</a></li>  <li class="file"><a href="/2023/02/02/eab31b38c19844429c0475c74bdd9991/">06 【nodejs内置模块（中）】</a></li>  <li class="file"><a href="/2023/02/02/865661190f8f4ac79861ce7df6db4beb/">07 【nodejs内置模块（下）】</a></li>  <li class="file"><a href="/2023/02/02/901210553dfa45d3afe4457d57c3de3d/">09 【原生nodejs路由、获取参数、静态目录】</a></li>  <li class="file"><a href="/2023/02/02/4515be56c20449919855a7506716b2cf/">16 【跨域】</a></li>  <li class="file"><a href="/2023/02/02/888cb674f6fb4d0bb80e8bbf63a5047f/">13 【操作mysql数据库】</a></li>  <li class="file"><a href="/2023/02/02/1d20f98f527b465096fcec6bd4c2a604/">17 【文件上传】</a></li>  <li class="file"><a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/">01 【nodejs简介】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            react
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ddb53a019f342579b13f34eddaaf39c/">11 【react-router 5】</a></li>  <li class="file"><a href="/2023/02/02/d3e37d3926734fd9b08b23b8d1cf4a76/">02 【面向组件编程】</a></li>  <li class="file"><a href="/2023/02/02/f09c9109b77c40b5bc7ece5b36c57fa4/">14【react-Hook （上）】</a></li>  <li class="file"><a href="/2023/02/02/49cd82fe5a0843eeb7d20dce85205767/">07 【收集表单数据】</a></li>  <li class="file"><a href="/2023/02/02/fc925383cd634fc384c0149bb81440d7/">10 【初始化脚手架】</a></li>  <li class="file"><a href="/2023/02/02/eff28d3f98a44083b80b2d779a742937/">13【react高级指引（下）】</a></li>  <li class="file"><a href="/2023/02/02/d47733b473484eff8245e2a785c161e0/">21 【styled-components的使用】</a></li>  <li class="file"><a href="/2023/02/02/b273e59e62894b4da1bb45adbdee98b1/">03 【事件处理】</a></li>  <li class="file"><a href="/2023/02/02/c78ad7d58e00468290b8bf9b1bbdf35f/">05 【条件渲染】</a></li>  <li class="file"><a href="/2023/02/02/f1602a4566b64671bc65486a7041308f/">18 【Redux Toolkit】</a></li>  <li class="file"><a href="/2023/02/02/ff2d1e21a86541918b1aa6230f9c765d/">16 【react-router 6】</a></li>  <li class="file"><a href="/2023/02/02/0432db33aca24dd6aaa0cd981d8f3a9c/">12 【react高级指引（上）】</a></li>  <li class="file"><a href="/2023/02/02/ced58ed76774454a929bef6b403e57cb/">08 【状态提升】</a></li>  <li class="file"><a href="/2023/02/02/125ea617daa24bafb8ee8e8bc80f67a1/">17【redux】</a></li>  <li class="file"><a href="/2023/02/02/e10e4b26d2bf44378e8037d640849094/">01 【react入门】</a></li>  <li class="file"><a href="/2023/02/02/269c3589e4be4b75a6c862285f2814ec/">15【react-Hook （下）】</a></li>  <li class="file"><a href="/2023/02/02/eaeb4b81181e44c88b5ea739de867f61/">04 【生命周期】</a></li>  <li class="file"><a href="/2023/02/02/1b30544e4df4423597f839fcf8c37fba/">20 【react中使用ts】</a></li>  <li class="file"><a href="/2023/02/02/0e6479990fed4ea2a64f5e78935f308b/">09 【组合组件】</a></li>  <li class="file"><a href="/2023/02/02/c0bcdc567e0b44ab8a74c8f6af0cb309/">19 【RTK Query】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/0b43e486feca40e7b50ea25602885b96/">01 【TypeScript简介 初体验】</a></li>  <li class="file"><a href="/2023/02/02/c6556a99f0a542d0894002af7851a206/">05 【接口  interface VS type】</a></li>  <li class="file"><a href="/2023/02/02/f11ed972e4a5429d8e24c713cba8ad6e/">03 【常用类型（下）】</a></li>  <li class="file"><a href="/2023/02/02/566f4f3d44794728b106bb3d508278e8/">06 【泛型】</a></li>  <li class="file"><a href="/2023/02/02/9ae5591e9bd243bdac816b4dbba0a626/">04【编译选项 webpack配置】</a></li>  <li class="file"><a href="/2023/02/02/b3639a6ae3334e6caa0f58c95deb58db/">第二章：面向对象</a></li>  <li class="file"><a href="/2023/02/02/9325308d90134c2d89042d5118c8aac9/">02 【常用类型（上）】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            基础三剑客
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7880448dad2345f6ad10793267396c06/">24 【键盘事件】</a></li>  <li class="file"><a href="/2023/02/02/3df9b05587534928ad52b2bab8daede5/">29【定时器和延时器】</a></li>  <li class="file"><a href="/2023/02/02/d17418a26029492e8d26142599edb639/">17 【Document 节点】</a></li>  <li class="file"><a href="/2023/02/02/42ec8243b3584ce9949b0d8a167f7f8f/">31【window 对象】</a></li>  <li class="file"><a href="/2023/02/02/3a1cee3416f44e0a9bcce9c7a4190cea/">05 【函数（上）】</a></li>  <li class="file"><a href="/2023/02/02/6dfad1b9f2a747b78ddac1382be9a5e0/">08 【标准库之Date对象】</a></li>  <li class="file"><a href="/2023/02/02/840362a4d9f041caaf0e1ed6a33eaaec/">33 【History对象和Location对象】</a></li>  <li class="file"><a href="/2023/02/02/d44bb868777147b8b283ea41e73ce4b1/">14 【语法之console 对象与控制台】</a></li>  <li class="file"><a href="/2023/02/02/19848e9f214542ecb0edd74a862cd652/">23 【事件对象与鼠标事件】</a></li>  <li class="file"><a href="/2023/02/02/4a5546755a7c4fd695274767efe8fe5f/">35【Storage接口】</a></li>  <li class="file"><a href="/2023/02/02/e3707da0f0c74cbaad841455d51a8912/">30【BOM和浏览器环境概述】</a></li>  <li class="file"><a href="/2023/02/02/16ff10afc67647a19e96ced945267d1a/">25 【进度事件和表单事件】</a></li>  <li class="file"><a href="/2023/02/02/35b7e41b399341619c9fc855fbc3ffb5/">09 【标准库之Math对象和String对象】</a></li>  <li class="file"><a href="/2023/02/02/9c1da8c2638049b6aa8bc77c365bee48/">03 【流程控制语句】</a></li>  <li class="file"><a href="/2023/02/02/12edce39ff004cba8e7d204ec89253f8/">21【节点的属性】</a></li>  <li class="file"><a href="/2023/02/02/e5abe46191f446439970f94b9b0d3ba6/">10 【标准库之RegExp对象】</a></li>  <li class="file"><a href="/2023/02/02/2f850099dd994cd49f47a9fba9f3cf6b/">11 【标准库之JSON对象 JSON5】</a></li>  <li class="file"><a href="/2023/02/02/98088e10e9394c50b60ecff18690bb98/">36 【节流和防抖】</a></li>  <li class="file"><a href="/2023/02/02/0bd96d59f698491eae334ca1acb77194/">13 【语法之编程风格】</a></li>  <li class="file"><a href="/2023/02/02/e7518bf293bd48ffb053673c07982b2a/">19 【节点的增删改查】</a></li>  <li class="file"><a href="/2023/02/02/d07f06774f8c4d22b87460e592ed8865/">26 【触摸事件和其它常见事件】</a></li>  <li class="file"><a href="/2023/02/02/7a23018a60814bceba65798c147b332b/">01 【基础语法与基本数据类型】</a></li>  <li class="file"><a href="/2023/02/02/47ecc198b851461bb2a56b1118f0bf4b/">20 【节点的集合】</a></li>  <li class="file"><a href="/2023/02/02/62aad3c089ed4aa9b4f1bc99ded57008/">02 【JS表达式与操作符】</a></li>  <li class="file"><a href="/2023/02/02/e18409b1902f4104a522af41137a6bbd/">15 【严格模式】</a></li>  <li class="file"><a href="/2023/02/02/3d4ce9313a0640cf8230defbe18858e1/">04 【对象】</a></li>  <li class="file"><a href="/2023/02/02/8283ef6acb05410db22d90d8d837d454/">06 【函数（下）】</a></li>  <li class="file"><a href="/2023/02/02/9225703b95ce4608bb1cfc5e5edb9e48/">22 【事件监听】</a></li>  <li class="file"><a href="/2023/02/02/ecf66e051ad24a4bb78aafce7e3466d0/">07 【数组及常用方法】</a></li>  <li class="file"><a href="/2023/02/02/2f50015bcdd3481782e878f1a86da20b/">27 【三大家族scroll、offset、client】</a></li>  <li class="file"><a href="/2023/02/02/5d433175f200488f8ff66fa6331fd2aa/">16 【DOM概述】</a></li>  <li class="file"><a href="/2023/02/02/7dbd11b2638e487b88a3024d6e6f9682/">28 【事件传播】</a></li>  <li class="file"><a href="/2023/02/02/6a031ac5c5d647d082ee19856d0fc2bc/">18 【节点的关系和内部操作】</a></li>  <li class="file"><a href="/2023/02/02/4cf03139b6ea43d8a5642bc9286ba774/">12 【语法之错误处理机制】</a></li>  <li class="file"><a href="/2023/02/02/a28dc6634bb4456c8fc30e9d225b6eb3/">34 【表单和FormData 对象】</a></li>  <li class="file"><a href="/2023/02/02/a7b4cba18cdf4e45ae01e87a990ca1fe/">32 【Navigator 对象和Screen 对象】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            html+css
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/eb673a07916a497c827dd80b72017dc6/">09 【浮动 常见网页布局】</a></li>  <li class="file"><a href="/2023/02/02/6b1c3b3c007b4ffbb737ced5fa931d4d/">16 【过渡 动画】</a></li>  <li class="file"><a href="/2023/02/02/3a2b4fa5dfc7400aa7038b017420c521/">08 【盒模型(上) 盒模型(下)】</a></li>  <li class="file"><a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">19 【flex布局】</a></li>  <li class="file"><a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/">21 【vw布局】</a></li>  <li class="file"><a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/">13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】</a></li>  <li class="file"><a href="/2023/02/02/04aa04fcb2fc4c1386acf05fab99bece/">04 【CSS选择器 】</a></li>  <li class="file"><a href="/2023/02/02/1cbd87e2a3df47e7a142782b47821cdb/">03 【语义标签(下) CSS简介】</a></li>  <li class="file"><a href="/2023/02/02/5c5a21a8362549d5bacd900b41379c26/">18 【移动端基础 流式布局】</a></li>  <li class="file"><a href="/2023/02/02/7a7112271245402292a058135d68bb8d/">07 【Emmet语法 三大特性及单位】</a></li>  <li class="file active"><a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">06 【CSS字体属性 CSS文本属性】</a></li>  <li class="file"><a href="/2023/02/02/8cfe33e063e14ed29ae060f119d43177/">12 【网页布局总结 元素的显示与隐藏】</a></li>  <li class="file"><a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/">22 【响应式布局】</a></li>  <li class="file"><a href="/2023/02/02/5c06def72fec4285bb849d30528e0303/">20 【rem适配布局】</a></li>  <li class="file"><a href="/2023/02/02/3deb7901e74d4e9aa9095df3da7305cf/">05 【CSS引入方式 CSS的元素显示模式】</a></li>  <li class="file"><a href="/2023/02/02/af297262b66348929acf86f09c99809c/">01 【HTML简介】</a></li>  <li class="file"><a href="/2023/02/02/394f3f21624a42298f8bd0cc0a8cf034/">15【背景 渐变色】</a></li>  <li class="file"><a href="/2023/02/02/3ba1ad7172b74c9f888fb5577a4f1143/">11 【定位】</a></li>  <li class="file"><a href="/2023/02/02/26011a9163a6486990089e0a074d5690/">02 【字符实体与语义标签(上)】</a></li>  <li class="file"><a href="/2023/02/02/a336b8d65382447abc8b9db0742c76df/">10 【高度塌陷与BFC】</a></li>  <li class="file"><a href="/2023/02/02/03f7d5a3ec6b484f99dcd540e3a0c800/">17 【2D转换 3D转换 浏览器私有前缀】</a></li>  <li class="file"><a href="/2023/02/02/0279e5f2fa4c42e5a595c1c80949701f/">14 【margin负值 文字围绕浮动 行内快 CSS三角 CSS初始化】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/227a7e051a0440e69890ea45ac4bf5e5/">数据结构与算法（二）</a></li>  <li class="file"><a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">数据结构与算法（三）</a></li>  <li class="file"><a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/">数据结构与算法（五）</a></li>  <li class="file"><a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">数据结构与算法（四）</a></li>  <li class="file"><a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/">数据结构与算法（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            搜索与图论
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/21/b74bc4b803df4e7b99cf906cd5177da6/">DFS算法</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站收藏
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/c64a51c38c9542fe9a5c1d7e2dc93dba/">小火柴的前端小站</a></li>  <li class="file"><a href="/2023/01/22/e18feca3c0ce43cd96468b8ad72fbc36/">被删的前端游乐场</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编辑器
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/9f99a098f001487da297656e466dcb3b/">VSCode 是什么|极客教程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            镜像站
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/ae79cc4392384967b905c952b720f392/">腾讯软件源</a></li>  <li class="file"><a href="/2023/01/22/6be31fe5f1cd44e7a52b7602603705ac/">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-c8617a7a739149f29b61b9a121203f65" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E4%B8%89%E5%89%91%E5%AE%A2/">基础三剑客</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E4%B8%89%E5%89%91%E5%AE%A2/html-css/">html+css</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">
+            <time datetime="2023-02-02T05:18:15.658Z" itemprop="datePublished">2023-02-02</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/c8617a7a739149f29b61b9a121203f65.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/c8617a7a739149f29b61b9a121203f65.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/c8617a7a739149f29b61b9a121203f65.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            06 【CSS字体属性 CSS文本属性】
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="8-CSS字体属性"><a href="#8-CSS字体属性" class="headerlink" title="8.CSS字体属性"></a>8.CSS字体属性</h1><p>CSS Fonts（字体）属性用于定义：<code>字体系列</code>、<code>大小</code>、<code>粗细</code>、和 <code>文字样式</code>（如：斜体）。</p>
+<h2 id="8-1字体族"><a href="#8-1字体族" class="headerlink" title="8.1字体族"></a>8.1字体族</h2><p><code>font-family</code> 字体族（字体的格式）</p>
+<p>CSS 使用 font-family 属性定义文本的字体系列。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">	<span class="attribute">font-family</span>: <span class="string">&quot;Microsoft YaHei&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">font-family</span>: Arial, <span class="string">&quot;Microsoft YaHei&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>各种字体之间必须使用英文状态下的逗号隔开</li>
+<li>一般情况下，如果有空格隔开的多个单词组成的字体，加引号</li>
+<li>字体生效时优先使用第一个，第一个无法使用则使用第二个，以此类推</li>
+<li>尽量使用系统默认自带字体，保证在任何用户的浏览器中都能正确显示</li>
+<li>最常用的字体：<code>body &#123;font-family: &quot;Microsoft YaHei&quot;, tahoma, arial, sans-serif, &quot;Hiragino Sans GB&quot;;&#125;</code></li>
+</ul>
+<blockquote>
+<p>Apple 官网字体：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">	<span class="attribute">font-family</span>: <span class="string">&quot;SF Pro SC&quot;</span>, <span class="string">&quot;SF Pro Text&quot;</span>, <span class="string">&quot;SF Pro Icons&quot;</span>, <span class="string">&quot;PingFang SC&quot;</span>, <span class="string">&quot;Helvetica Neue&quot;</span>, <span class="string">&quot;Helvetica&quot;</span>, <span class="string">&quot;Arial&quot;</span>, sans-serif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>Instagram 官网字体：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">	<span class="attribute">font-family</span>: -apple-system, BlinkMacSystemFont,<span class="string">&quot;Segoe UI&quot;</span>, Roboto, Helvetica, Arial, sans-serif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>知乎官网字体：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>爱奇艺官网字体：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line"><span class="attribute">font-family</span>: PingFangSC-Regular, Helvetica, Arial, Microsoft Yahei, sans-serif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 浏览器会从第一个字体开始进行适配，如果本机可以适配的话，那么就使用该字体，否则看下一个字体，</span></span></span><br><span class="line"><span class="comment"><span class="language-css">       如果都不可以，那么浏览器会使用自带的默认字体，所以实际开发中一般建议使用比较标准化的字体 */</span></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">h2</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* font-family: &#x27;微软雅黑&#x27;; 可以使用中文，但不建议 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-family</span>: <span class="string">&quot;Microsoft YaHei&quot;</span>, Arial, sans-serif;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-family</span>: <span class="string">&quot;Times New Roman&quot;</span>, Times, serif;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 一些情况下，如果要全局设置字体可以直接在 body 标签选择器中指明 */</span></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-family</span>: <span class="string">&quot;Microsoft YaHei&quot;</span>, Arial, sans-serif;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：浏览器字体是依据用户操作系统来调用的，所以这里介绍一种 Windows 系统安装字体的方法。</p>
+<blockquote>
+<p>当然实际开发中通常浏览器请求时，会把字体文件随 HTML CSS JS 等一同传送到客服端。</p>
+</blockquote>
+<p><img src="https://i0.hdslb.com/bfs/album/5f03dd94746cd5cd3ab8e83085285e0266970972.png" alt="image-20220720225059706"></p>
+<h2 id="8-2-font-face"><a href="#8-2-font-face" class="headerlink" title="8.2 @font-face"></a>8.2 @font-face</h2><p>我们除了可以使用系统自带的字体样式外，还可以在服务器端自定义字体位置</p>
+<p><code>@font-face</code>可以将服务器中的字体直接提供给用户去使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">    <span class="comment">/* 指定字体名字 */</span></span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&#x27;myFont1&#x27;</span>;</span><br><span class="line">    <span class="comment">/* 服务器中字体路径 */</span></span><br><span class="line">    <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&#x27;/font/ZCOOLKuaiLe-Regular.woff&#x27;</span>),</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">&#x27;/font/ZCOOLKuaiLe-Regular.otf&#x27;</span>),</span><br><span class="line">        <span class="built_in">url</span>(<span class="string">&#x27;/font/ZCOOLKuaiLe-Regular.ttf&#x27;</span>) <span class="built_in">format</span>(<span class="string">&#x27;truetype&#x27;</span>);<span class="comment">/* 指定字体格式，一般不写 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">color</span>: salmon;</span><br><span class="line">    <span class="attribute">font-family</span>: myFont1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/76feb37f71523392d38cf2831d3a4883d3c370e8.png"></p>
+<p><strong>问题</strong></p>
+<ol>
+<li><p>加载速度：受网络速度影响，可能会出现字体闪烁一下变成最终的字体</p>
+</li>
+<li><p>版权：有些字体是商用收费的，需要注意</p>
+</li>
+<li><p>字体格式：字体格式也有很多种（woff、otf、ttf），未必兼容，可能需要指定多个</p>
+</li>
+</ol>
+<h2 id="8-2字体大小"><a href="#8-2字体大小" class="headerlink" title="8.2字体大小"></a>8.2字体大小</h2><p>CSS 使用 font-size 属性定义字体大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>px（像素）大小是我们网页的最常用的单位</li>
+<li>谷歌浏览器默认的文字大小为：16px</li>
+<li>不同浏览器可能默认显示的字号大小不一致，我们尽量给一个明确值大小，不要默认大小</li>
+<li>可以给 body 指定整个页面文字的大小</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 全局设置时，一般在 body 标签选择器中指定文字大小，谷歌浏览器默认 16px，</span></span></span><br><span class="line"><span class="comment"><span class="language-css">       但是最好还是指定一个明确值，以保证在不同浏览器中的效果是一样的 */</span></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">24px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 标题标签比较特殊，body 中的设置对其是不生效的，需要单独指定文字大小 */</span></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">h2</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-size</span>: <span class="number">54px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-3字体粗细"><a href="#8-3字体粗细" class="headerlink" title="8.3字体粗细"></a>8.3字体粗细</h2><p>CSS 使用 font-weight 属性设置文本字体的粗细。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">	<span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>normal</code></td>
+<td>默认值（不加粗的）</td>
+</tr>
+<tr>
+<td><code>bold</code></td>
+<td>定义粗体（加粗的）</td>
+</tr>
+<tr>
+<td><code>100-900</code></td>
+<td>400 等同于 normal，而 700 等同于 bold，其它值一般不使用，注意这个数字后面不跟单位</td>
+</tr>
+</tbody></table>
+<ul>
+<li>学会让加粗标签（比如 h 和 strong 等）变为不加粗，或者让其他标签加粗</li>
+<li>实际开发时，我们更喜欢用数字表示粗细</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.bold</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* font-weight: bold; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 实际开发中，我们更提倡使用数字来表示加粗的效果 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 这个 700 的后面不要跟单位 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-weight</span>: <span class="number">700</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 使文字不加粗 */</span></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">h2</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* font-weight: normal; */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-weight</span>: <span class="number">400</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-4文字样式"><a href="#8-4文字样式" class="headerlink" title="8.4文字样式"></a>8.4文字样式</h2><p>CSS 使用 font-style 属性设置文本的风格。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">	<span class="attribute">font-style</span>: normal;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>normal</code></td>
+<td>默认值，浏览器会显示标准的字体样式 font-style: normal;</td>
+</tr>
+<tr>
+<td><code>italic</code></td>
+<td>浏览器会显示斜体的字体样式</td>
+</tr>
+</tbody></table>
+<p>**注意：**平时我们很少给文字加斜体，反而要给斜体标签 (em、i) 改为不倾斜字体。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 让不倾斜的字体倾斜 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-style</span>: italic;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">em</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 让倾斜的字体不倾斜 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">font-style</span>: normal;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>上课时候的你<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>下课时候的你<span class="tag">&lt;/<span class="name">em</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-5字体复合属性"><a href="#8-5字体复合属性" class="headerlink" title="8.5字体复合属性"></a>8.5字体复合属性</h2><p>字体属性可以把以上文字样式综合来写，这样可以更节约代码。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">	<span class="attribute">font</span>: font-style font-weight font-size/line-height font-family;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">	<span class="attribute">font</span>: normal <span class="number">400</span> font-size/line-height <span class="string">&quot;Microsoft YaHei&quot;</span>, Arial, sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 font 属性时，必须按上面语法格式中的顺序书写，不能更换顺序，并且各个属性间以空格隔开</li>
+<li>不需要设置的属性可以省略（取默认值），但必须保留 font-size 和 font-family 属性，否则 font 属性将不起作用</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 想要 div 文字变倾斜、加粗、字号设置为 16 像素，并且是微软雅黑 */</span></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* font-style: italic;</span></span></span><br><span class="line"><span class="comment"><span class="language-css">           font-weight: 700;</span></span></span><br><span class="line"><span class="comment"><span class="language-css">           font-size: 16px;</span></span></span><br><span class="line"><span class="comment"><span class="language-css">           font-family: &#x27;Microsoft YaHei&#x27;; */</span></span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 复合属性：简写的方式，里面的顺序不能打乱 以空格隔开 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* font: font-style font-weight font-size/line-height font-family; */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">font</span>: italic <span class="number">700</span> <span class="number">16px</span> <span class="string">&#x27;Microsoft YaHei&#x27;</span>;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 注意：不需要设置的属性可以省略（取默认值），但必须保留 font-size 和 font-family 属性，否则 font 属性将不起作用 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* font: 20px &#x27;Microsoft YaHei&#x27;； */</span></span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>三生三世十里桃花，一心一意百行代码<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-6字体属性总结"><a href="#8-6字体属性总结" class="headerlink" title="8.6字体属性总结"></a>8.6字体属性总结</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>表示</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>font-size</code></td>
+<td>字号</td>
+<td>我们通常用的单位是 px 像素，一定要跟上单位</td>
+</tr>
+<tr>
+<td><code>font-family</code></td>
+<td>字体</td>
+<td>实际工作中按照团队约定来写字体</td>
+</tr>
+<tr>
+<td><code>font-weight</code></td>
+<td>字体属性</td>
+<td>记住加粗是 700 或者 bold 不加粗 是 normal 或者 400 记住数字不要跟单位</td>
+</tr>
+<tr>
+<td><code>font-style</code></td>
+<td>字体样式</td>
+<td>记住倾斜是 italic 不倾斜是 normal 工作中我们最常用 normal</td>
+</tr>
+<tr>
+<td><code>font</code></td>
+<td>字体连写</td>
+<td>1、字体连写是有顺序的不能随意换位置，2、其中字号和字体必须同时出现</td>
+</tr>
+</tbody></table>
+<h1 id="9-CSS文本属性"><a href="#9-CSS文本属性" class="headerlink" title="9.CSS文本属性"></a>9.CSS文本属性</h1><p>CSS Text（文本）属性可定义文本的 <code>外观</code>，比如：<code>文本颜色</code>、<code>文本对齐</code>、<code>文本装饰</code>、<code>文本缩进</code>、<code>行间距</code> 等。</p>
+<h2 id="9-1文本颜色"><a href="#9-1文本颜色" class="headerlink" title="9.1文本颜色"></a>9.1文本颜色</h2><p><code>color</code> 属性用于定义文本的颜色。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>表示方式</th>
+<th>属性值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>预定义的颜色值</td>
+<td>red，green，blue，black，white，gray</td>
+</tr>
+<tr>
+<td>十六进制</td>
+<td>#FF0000，#FF6600，#29D794（每两位对应：#红R绿G蓝B）</td>
+</tr>
+<tr>
+<td>RGB 代码</td>
+<td>rgb(255, 0, 0) 或 rgb(100%, 0%, 0%)</td>
+</tr>
+</tbody></table>
+<p>**注意：**开发中最常用的是十六进制。</p>
+<blockquote>
+<p>熟记开发常用色：</p>
+<p>黑色：<code>black</code>、<code>#000000</code>、<code>rgb(0, 0, 0)</code>（三原色啥也没有混合就为黑）</p>
+<p>白色：<code>white</code>、<code>#FFFFFF</code>、<code>rgb(255, 255, 255)</code>（三原色全满混合就为白）</p>
+<p>灰色：<code>gray</code>、<code>#808080</code>、<code>rgb(128, 128, 128)</code>（三原色全半混合就为灰）</p>
+<p>红色：<code>red</code>、<code>#FF0000</code>、<code>rgb(255, 0, 0)</code></p>
+<p>绿色：<code>green</code>、<code>#008000</code>、<code>rgb(0, 128, 0)</code>（绿色较为特殊，green 对应的是 #008000）</p>
+<p>蓝色：<code>blue</code>、<code>#0000FF</code>、<code>rgb(0, 0, 255)</code></p>
+<p>黄色：<code>yellow</code>、<code>#FFFF00</code>、<code>rgb(255, 255, 0)</code></p>
+<p>青色：<code>#00FFFF</code>、<code>rgb(0, 255, 255)</code></p>
+<p>洋红：<code>#FF00FF</code>、<code>rgb(255, 0, 255)</code></p>
+<p>橙色：<code>orange</code></p>
+<p>粉色：<code>pink</code></p>
+<p>烈粉色：<code>hotpink</code>（浓度低）、<code>deeppink</code>（浓度高）</p>
+<p>天蓝色：<code>skyblue</code></p>
+<p>深色系：<code>dark颜色</code> 如：<code>darkgreen</code></p>
+<p>浅色系：<code>light颜色</code> 如：<code>lightgreen</code></p>
+</blockquote>
+<h2 id="9-2文本对齐"><a href="#9-2文本对齐" class="headerlink" title="9.2文本对齐"></a>9.2文本对齐</h2><h3 id="9-2-1水平对齐"><a href="#9-2-1水平对齐" class="headerlink" title="9.2.1水平对齐"></a>9.2.1水平对齐</h3><p><code>text-align</code> 属性用于设置元素内文本内容的水平对齐方式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>left</td>
+<td>左对齐（默认值）</td>
+</tr>
+<tr>
+<td>rigth</td>
+<td>右对齐</td>
+</tr>
+<tr>
+<td>center</td>
+<td>居中对齐</td>
+</tr>
+<tr>
+<td>justify</td>
+<td>两端对齐</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">h1</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 本质是让 h1 盒子里面的文字水平居中对齐 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* text-align: center; */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">text-align</span>: right;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>右对齐的标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p><code>text-align</code> 属性只能作用于 <code>块级元素</code>，并让该块级元素内的 <code>行内元素</code> 实现居中（不一定是文字）。</p>
+<p>上述例子中：h1 为块级元素，所以给 h1 设置 text-align，便会作用于里面的文本（如果里面还有行内元素的话，也会一同作用）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">     <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">         <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">     &#125;</span></span><br><span class="line"><span class="language-css"> </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">p</span>&gt;</span>dselegent<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述例子中：为 div 设置 text-align 之所以能够使其内部的块级元素 p 里的文字居中，原因是 p 会继承父元素 div 的 text-align 属性，所以相当于对 p 设置了 text-align。</p>
+<h3 id="9-2-2垂直对齐"><a href="#9-2-2垂直对齐" class="headerlink" title="9.2.2垂直对齐"></a>9.2.2垂直对齐</h3><p>CSS 的 <code>vertical-align</code> 属性使用场景：经常用于设置图片或者表单（行内块元素）与文字垂直对齐。</p>
+<p>官方解释：用于设置一个元素的垂直对齐方式，但是它只针对于行内元素或者行内块元素有效。</p>
+<p>语法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">vertical-align</span>: baseline | top | middle | bottom</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>baseline</code></td>
+<td>默认。元素放置在父元素的基线上</td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>把元素的顶端与行中最高元素的顶端对齐</td>
+</tr>
+<tr>
+<td><code>middle</code></td>
+<td>把此元素放置在父元素的中部</td>
+</tr>
+<tr>
+<td><code>bottom</code></td>
+<td>把元素的顶端与行中最低的元素的顶端对齐</td>
+</tr>
+</tbody></table>
+<p><img src="https://i0.hdslb.com/bfs/album/649fca9067a424d9c001a6ad21b3ceede3c635f6.png" alt="image-20220724114315765"></p>
+<p><code>baseline</code> <strong>基线对齐</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/album/3119c389e75a9fce3a1bb3ebcf4020a05a78988e.png"></p>
+<p><code>top</code> <strong>顶部对齐</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/album/4186c08a19128b7defef002d01a1318bd60a97cb.png"></p>
+<p><code>bottom</code> <strong>底部对齐</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/album/815ff72cc128d29857a398e6e594d7c061ad39e0.png"></p>
+<p><code>middle</code> <strong>居中对齐</strong></p>
+<p><img src="https://i0.hdslb.com/bfs/album/a15f03a8d4997f1687002f5feef545f876ac11a5.png"></p>
+<p>这里的居中对齐高度 &#x3D; 基线高度 + x的高度 &#x2F; 2</p>
+<p>这种居中对齐并非实际上的居中对齐，一般也不会用这种方式对文字进行垂直方向的对齐</p>
+<p><strong>图片、表单和文字对齐</strong></p>
+<p>图片、表单都属于行内块元素，默认的 vertical-align 是基线对齐。</p>
+<p>此时可以给图片、表单这些行内块元素的 vertical-align 属性设置为 middle 就可以让文字和图片垂直居中对齐了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>利用vertical-align实现图片文字垂直居中对齐<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">img</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="comment">/* vertical-align: bottom; */</span></span></span><br><span class="line"><span class="language-css">            <span class="comment">/* 让图片和文字垂直居中 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">vertical-align</span>: middle;</span></span><br><span class="line"><span class="language-css">            <span class="comment">/* vertical-align: top; */</span></span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">textarea</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">vertical-align</span>: middle;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;images/ldh.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span> pink老师是刘德华</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;30&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;10&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span> 请您留言</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/e0e9e6968c8f56f79d8c327775086a74acb7ff35.png"></p>
+<blockquote>
+<p>运用重点：</p>
+<p>我们知道，当对盒子设置 <code>line-height: 盒子高度;</code> 时，盒子内的 <code>文字</code> 会垂直居中，其实不只是文字可以垂直居中，盒子内的图片同样也能垂直居中，只不过图片默认是基于基线对齐的，所以要真正实现 <code>垂直居中</code> 需要在图片加上：<code>vertical-align: middle;</code></p>
+</blockquote>
+<p><strong>解决图片底部默认空白缝隙问题</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.imgDiv</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">5px</span> seagreen solid;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.imgDiv</span> <span class="selector-tag">img</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgDiv&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/assets/news.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/387d03287291ce9e55996fb2af1c0e444130e755.png"></p>
+<p>主要解决方法有两种：</p>
+<ol>
+<li>给图片添加 <code>vertical-align: middle | top | bottom</code> 等（推荐）</li>
+<li>把图片转换为块级元素 <code>display: block;</code></li>
+</ol>
+<p>明显默认情况下，图片底部有一定缝隙，我们稍作修改，给img元素添加<code>vertical-align</code>属性值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 只要不是基线对齐，就能消除底部缝隙 */</span></span><br><span class="line"><span class="attribute">vertical-align</span>: top;</span><br><span class="line"><span class="attribute">vertical-align</span>: bottom;</span><br><span class="line"><span class="attribute">vertical-align</span>: middle;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/41124e11ffecc1affe2dae42bb3e06d585bc2dd7.png"></p>
+<p><strong>Q：为什么图片会有缝隙？</strong></p>
+<p>A：图片属于替换元素，特点与文本一致，也有自己的基线，默认也是基线对齐。而基线位置不在最底部，所以会出现缝隙</p>
+<h2 id="9-3文本装饰"><a href="#9-3文本装饰" class="headerlink" title="9.3文本装饰"></a>9.3文本装饰</h2><p><code>text-decoration</code> 属性规定添加到文本的修饰，可以给文本添加 <code>下划线</code>、<code>删除线</code>、<code>上划线</code> 等。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">text-decoration</span>: underline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>none</code></td>
+<td>默认，没有装饰线（<strong>最常用</strong>）</td>
+</tr>
+<tr>
+<td><code>underline</code></td>
+<td>下划线，链接 a 自带下划线（常用）</td>
+</tr>
+<tr>
+<td><code>overline</code></td>
+<td>上划线（几乎不用）</td>
+</tr>
+<tr>
+<td><code>line-through</code></td>
+<td>删除线（不常用）</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS文本外观之文本装饰<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 默认为 none 没有装饰 */</span></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="comment">/* 上划线 几乎不用 */</span></span></span><br><span class="line"><span class="language-css">            <span class="comment">/* text-decoration: overline; */</span></span></span><br><span class="line"><span class="language-css">            <span class="comment">/* 删除线 不常用 */</span></span></span><br><span class="line"><span class="language-css">            <span class="comment">/* text-decoration: line-through; */</span></span></span><br><span class="line"><span class="language-css">            <span class="comment">/* 下划线 常用，链接 a 自带下划线 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-decoration</span>: underline;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">a</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="comment">/* 取消 a 默认的下划线 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-decoration</span>: none;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: <span class="number">#333333</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>粉红色的回忆<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>JERRY<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-4文本缩进"><a href="#9-4文本缩进" class="headerlink" title="9.4文本缩进"></a>9.4文本缩进</h2><p><code>text-indent</code> 属性用来指定文本的第一行的缩进，通常是将段落的首行缩进。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">text-indent</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过设置该属性，所有元素的第一行都可以缩进一个给定的长度，甚至该长度可以是负值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">	<span class="attribute">text-indent</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>em 是一个相对单位，就是当前元素 (font-size) 1 个文字的大小，如果当前元素没有设置大小，则会按照父元素的 1 个文字大小。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS文本外观之文本缩进<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">font-size</span>: <span class="number">24px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="comment">/* 文本的首行缩进多少距离，不仅可以为正值，还可以为负值 */</span></span></span><br><span class="line"><span class="language-css">            <span class="comment">/* text-indent: 20px; */</span></span></span><br><span class="line"><span class="language-css">            <span class="comment">/* em 为相对于当前元素的大小单位 */</span></span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-indent</span>: <span class="number">2em</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>打开北京、上海与广州的地铁地图，你会看见三张纵横交错的线路网络，</span><br><span class="line">        这代表了中国最成熟的三套城市轨道交通系统<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>可即使是这样，在北上广生活的人依然少不了对地铁的抱怨，其中谈及最多的问题便是拥挤，</span><br><span class="line">        对很多人而言，每次挤地铁的过程，都像是一场硬仗。更何况，还都是败仗居多。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>那么，当越来越多的二线甚至三线城市迎接来了自己的地铁，中国哪里的地铁是最拥挤的呢？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-5行间距（行高）"><a href="#9-5行间距（行高）" class="headerlink" title="9.5行间距（行高）"></a>9.5行间距（行高）</h2><p><code>line-height</code> 属性用于设置行间的距离（行高），可以控制文字行与行之间的距离。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">	<span class="attribute">line-height</span>: <span class="number">26px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>行间距 = 上间距 + 文本高度 + 下间距</code></p>
+</li>
+<li><p><code>上下间距 = （行间距 - 文本高度）/ 2</code></p>
+</li>
+<li><p><code>文本高度 = font-size</code></p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS文本外观之行间距<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 行间距 = 上间距 + 文本高度 + 下间距 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 行间距 = 行高 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 文本高度 = 字体像素大小 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 上下间距 = （行间距 - 文本高度）/ 2 */</span></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">line-height</span>: <span class="number">25px</span>;</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>打开北京、上海与广州的地铁地图，你会看见三张纵横交错的线路网络，</span><br><span class="line">        这代表了中国最成熟的三套城市轨道交通系统<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>可即使是这样，在北上广生活的人依然少不了对地铁的抱怨，其中谈及最多的问题便是拥挤，</span><br><span class="line">        对很多人而言，每次挤地铁的过程，都像是一场硬仗。更何况，还都是败仗居多。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>那么，当越来越多的二线甚至三线城市迎接来了自己的地铁，中国哪里的地铁是最拥挤的呢？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>补充：行间距测量技巧：上一行文字的底部与本行文字的底部之间的距离就是行间距。</p>
+<h2 id="9-6文字阴影"><a href="#9-6文字阴影" class="headerlink" title="9.6文字阴影"></a>9.6文字阴影</h2><p>CSS 3 新增了文字阴影。</p>
+<p>text-shadow 属性用于为文本添加阴影。</p>
+<p>语法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">text-shadow</span>: h-shadow v-shadow blur color;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>h-shadow</code></td>
+<td>必须。水平阴影的位置。允许负值。</td>
+</tr>
+<tr>
+<td><code>v-shadow</code></td>
+<td>必须。垂直阴影的位置。允许负值。</td>
+</tr>
+<tr>
+<td><code>blur</code></td>
+<td>可选。模糊的距离（虚实程度）。</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>可选。阴影的颜色。参阅 CSS 颜色值。</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;ie=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>文字阴影<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">font-size</span>: <span class="number">50px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>: salmon;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">font-weight</span>: <span class="number">700</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">text-shadow</span>: <span class="number">5px</span> <span class="number">5px</span> <span class="number">6px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, .<span class="number">3</span>);</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        你是阴影,我是火影</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/44cf8c6070fc767fc6d2fb03a2a954bbd751f3ae.jpg"></p>
+<h2 id="9-7文本属性总结"><a href="#9-7文本属性总结" class="headerlink" title="9.7文本属性总结"></a>9.7文本属性总结</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>表示</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>color</code></td>
+<td>文本颜色</td>
+<td>我们通常用 十六进制 而且通常是简写形式 #fff（6 个一样可以简写）</td>
+</tr>
+<tr>
+<td><code>text-align</code></td>
+<td>文本对齐</td>
+<td>可以设定文字水平的对齐方式</td>
+</tr>
+<tr>
+<td><code>text-indent</code></td>
+<td>文本缩进</td>
+<td>通常我们用于段落首行缩进2个字的距离 text-indent: 2em;</td>
+</tr>
+<tr>
+<td><code>text-decoration</code></td>
+<td>文本修饰</td>
+<td>牢记 添加下划线 underline 取消下划线 none</td>
+</tr>
+<tr>
+<td><code>line-height</code></td>
+<td>行高</td>
+<td>控制行与行之间的距离</td>
+</tr>
+</tbody></table>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    22 【响应式布局】
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2023/02/02/7a7112271245402292a058135d68bb8d/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">07 【Emmet语法 三大特性及单位】</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Public &copy; 2023 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

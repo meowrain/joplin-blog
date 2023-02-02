@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>05 【nodejs内置模块（上）】 | 知识库</title>
+    
+    
+        <meta name="keywords" content="05 【nodejs内置模块（上）】" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="05 【nodejs内置模块（上）】1.nodejs 的官方API文档 Node.js 的API文档（英文）： https:&#x2F;&#x2F;nodejs.org&#x2F;docs&#x2F;latest-v8.x&#x2F;api&#x2F;index.html Node.js 的API文档（中文）：http:&#x2F;&#x2F;nodejs.cn&#x2F;api&#x2F;  关于 Node.js 的内置模块和常见API，可以看官方文档。 查阅文档时，稳定指数如下：  红色：废">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05 【nodejs内置模块（上）】">
+<meta property="og:url" content="http://example.com/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="05 【nodejs内置模块（上）】1.nodejs 的官方API文档 Node.js 的API文档（英文）： https:&#x2F;&#x2F;nodejs.org&#x2F;docs&#x2F;latest-v8.x&#x2F;api&#x2F;index.html Node.js 的API文档（中文）：http:&#x2F;&#x2F;nodejs.cn&#x2F;api&#x2F;  关于 Node.js 的内置模块和常见API，可以看官方文档。 查阅文档时，稳定指数如下：  红色：废">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-02T05:18:15.611Z">
+<meta property="article:modified_time" content="2023-02-02T05:23:59.537Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知识库" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C/C++
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C语言程序设计笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0b556fd3fac3446ab962debd1d7d0d3d/">C语言（三）</a></li>  <li class="file"><a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/">C语言（二）</a></li>  <li class="file"><a href="/2023/01/18/47f2147369be440d89c32f4ac310c6a7/">C语言（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-c
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            lib
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/">assert.h</a></li>  <li class="file"><a href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/">ctype.h</a></li>  <li class="file"><a href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/">float.h</a></li>  <li class="file"><a href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/">errno.h</a></li>  <li class="file"><a href="/2023/02/02/03a886d85a6e423a9dea00ed1979a294/">stdarg.h</a></li>  <li class="file"><a href="/2023/02/02/174190d1271c441296fe6161dbe1e3b0/">inttypes.h</a></li>  <li class="file"><a href="/2023/02/02/3c0028c132394bf49855502500823843/">signal.h</a></li>  <li class="file"><a href="/2023/02/02/3c2477856e494e289da69d3223ba7674/">math.h</a></li>  <li class="file"><a href="/2023/02/02/3ec857ad74414dfa9785db229745cff4/">stdint.h</a></li>  <li class="file"><a href="/2023/02/02/4709412c44ae4a488075c134135a0c7d/">limits.h</a></li>  <li class="file"><a href="/2023/02/02/63a6e5300615432c802b5fad1526b013/">iso646.h</a></li>  <li class="file"><a href="/2023/02/02/74ea4d343a0a466dafd2938741af9b82/">stdio.h</a></li>  <li class="file"><a href="/2023/02/02/7c6a577e51b44a30896461029a72e0d9/">stddef.h</a></li>  <li class="file"><a href="/2023/02/02/f15fbe0430cd4183b0fce6d942edec61/">stdbool.h</a></li>  <li class="file"><a href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/">locale.h</a></li>  <li class="file"><a href="/2023/02/02/30aaa7981bcb41ecb2cab759dc8d61d9/">string.h</a></li>  <li class="file"><a href="/2023/02/02/43c955dbbcff4f31b6b395baf15b3643/">time.h</a></li>  <li class="file"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/">stdlib.h</a></li>  <li class="file"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/">wchar.h</a></li>  <li class="file"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/">wctype.h</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/">array</a></li>  <li class="file"><a href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/">enum</a></li>  <li class="file"><a href="/2023/02/02/88026f8bed5a4692a3eb48abb8cc2c47/">cli</a></li>  <li class="file"><a href="/2023/02/02/9e03d1990b4c477c8e5ecd52164183d1/">flow-control</a></li>  <li class="file"><a href="/2023/02/02/a57d1c9278214ad49c0c94d45a92af2b/">file</a></li>  <li class="file"><a href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/">io</a></li>  <li class="file"><a href="/2023/02/02/83858a169b23461eadc882914abf4bd1/">function</a></li>  <li class="file"><a href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/">intro</a></li>  <li class="file"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/">memory</a></li>  <li class="file"><a href="/2023/02/02/ec65e72324264fbb8acf7006f6ced494/">multibyte</a></li>  <li class="file"><a href="/2023/02/02/635718a1db8b4ccebbfd9a4f8a55de47/">preprocessor</a></li>  <li class="file"><a href="/2023/02/02/bb7bba4594234ae5832af49f8d3e56ee/">pointer</a></li>  <li class="file"><a href="/2023/02/02/cf8653eb740a49b7a58a852bbbed00a4/">string</a></li>  <li class="file"><a href="/2023/02/02/e1cb8d47ae9c459eb5ac11818a7c6e27/">operator</a></li>  <li class="file"><a href="/2023/02/02/ecce61b4548c4e45ba73284c9ba7f0cc/">specifier</a></li>  <li class="file"><a href="/2023/02/02/41797336ff734560a26025353b233d54/">types</a></li>  <li class="file"><a href="/2023/02/02/5f8eaecb5f1f414d9106a33847f193a9/">variable</a></li>  <li class="file"><a href="/2023/02/02/a86312379ebb44c39fbda22a6eecf977/">struct</a></li>  <li class="file"><a href="/2023/02/02/bf7f6d8e12f54a7c8802abcbdc18e689/">union</a></li>  <li class="file"><a href="/2023/02/02/c19ba4705d5142bf98d9207eece2ef79/">typedef</a></li>  <li class="file"><a href="/2023/02/02/cb86948a24cf470ea1c847f85f8b8349/">syntax</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/a2acb1e85c084003b09433633a27ec8f/">C++求和的多种方式</a></li>  <li class="file"><a href="/2023/01/25/dd59a1b3ef8343efb5e60f2fd43084a8/">水仙花题解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/20/b4a4813646324eab97b039cacf031705/">Docker容器技术</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/00429dd58f6c4ce6a2b03b9aeeb9d521/">git-log</a></li>  <li class="file"><a href="/2023/02/02/02fdd75f9f2a47489decf6f32d0b3c7a/">git-rebase</a></li>  <li class="file"><a href="/2023/02/02/0b2ea073a1c14893b3dd7098546e0655/">git-add</a></li>  <li class="file"><a href="/2023/02/02/13f9c3847de9456f9a8078f072da7eab/">git-init</a></li>  <li class="file"><a href="/2023/02/02/22d2d3f830f145289393d0f82e740cb9/">git-diff</a></li>  <li class="file"><a href="/2023/02/02/4781f042463f4f40b1bbad14879d0ac7/">git-clone</a></li>  <li class="file"><a href="/2023/02/02/58789f766a6c4768be5f19a121c6fd61/">git-checkout</a></li>  <li class="file"><a href="/2023/02/02/587e496a180048d98ac872605ced2d67/">git-cherry-pick</a></li>  <li class="file"><a href="/2023/02/02/63225ea3537e44c4bd42c553358e0a14/">git-cat-file</a></li>  <li class="file"><a href="/2023/02/02/6c452a5f156c43cfa90eb618191dcda7/">git-commit-tree</a></li>  <li class="file"><a href="/2023/02/02/6d6d53b08a474a0d938c0711dae464b1/">git-commit</a></li>  <li class="file"><a href="/2023/02/02/88a36c4e06f04c1c90ee2d93d231fcf0/">git-remote</a></li>  <li class="file"><a href="/2023/02/02/a4f4a7cf1b5446f58b3403e34b90adcb/">git-ls-files</a></li>  <li class="file"><a href="/2023/02/02/bbc2b9d3586f4c05946853201ac0e103/">git-hash-object</a></li>  <li class="file"><a href="/2023/02/02/cfc661f62c4f473fb166b17ef54c5d37/">git-merge</a></li>  <li class="file"><a href="/2023/02/02/e69a3fc86aad49f2a7e9b61b6377403e/">git-pull</a></li>  <li class="file"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/">git-branch</a></li>  <li class="file"><a href="/2023/02/02/0215eb43a3cd48af8db8b7826c738ae9/">git-show</a></li>  <li class="file"><a href="/2023/02/02/01c2ed5c17c944e4b3dede0de2616c27/">git-rm</a></li>  <li class="file"><a href="/2023/02/02/1ee03873808d4c469cfa0998032e4936/">git-write-tree</a></li>  <li class="file"><a href="/2023/02/02/2f3fcea5172b40dc8e12f9ef817fb413/">git-update-ref</a></li>  <li class="file"><a href="/2023/02/02/4027c7dfd0a849658d350c9374793484/">git-restore</a></li>  <li class="file"><a href="/2023/02/02/446de5db36bf4d5a858dc7d949a7da12/">git-update-index</a></li>  <li class="file"><a href="/2023/02/02/59d93e8c48164f0190417df6f9a1f573/">git-rev-parse</a></li>  <li class="file"><a href="/2023/02/02/69ebd17fb555427285f272241105d5cd/">git-reset</a></li>  <li class="file"><a href="/2023/02/02/861b301a7bce4dad8bb92d273cd75daf/">git-switch</a></li>  <li class="file"><a href="/2023/02/02/a4bb2f6830624e38bccbc32c93085d32/">git-stash</a></li>  <li class="file"><a href="/2023/02/02/bb8b63b8991b414d92411977cc87bbbe/">git-revert</a></li>  <li class="file"><a href="/2023/02/02/e6a606da62da484dbf52fce543abb094/">git-tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/">basic</a></li>  <li class="file"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/">branch</a></li>  <li class="file"><a href="/2023/02/02/1459cfd798b842b4a80ce78e41d4155d/">operations</a></li>  <li class="file"><a href="/2023/02/02/31b7e45e02f54e149fea5d1d8cda26fe/">internal</a></li>  <li class="file"><a href="/2023/02/02/26cbe9e22b164aeaabf617d844abc440/">reference</a></li>  <li class="file"><a href="/2023/02/02/90fb796e66734920ae724f9fa66ce763/">tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/c77ab20583d64ba9a3dc6f8d6ea89f55/">04 【忽略某些文件】</a></li>  <li class="file"><a href="/2023/02/02/2b8f3ce0fed44813a0919553cb304e64/">03 【远程库操作】</a></li>  <li class="file"><a href="/2023/02/02/aeb16e6138444c83ae3bd8886ba906bc/">01 【版本控制和Git的安装介绍】</a></li>  <li class="file"><a href="/2023/02/02/52d9a2a8683a42eb966022415a93058a/">02 【版本控制命令】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JAVASE
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/49756fe6e6cc44f88ee3cc213ec4bd67/">Java泛型</a></li>  <li class="file"><a href="/2023/01/19/338f5f76a1914f72822772ea3026f220/">Java 集合</a></li>  <li class="file"><a href="/2023/01/19/929bd134ed01499c92d8e177925950ef/">Java面向对象基础(初级)</a></li>  <li class="file"><a href="/2023/01/19/274b1dfaf07945e7ab77710afad502a3/">Java面向对象基础（中级）</a></li>  <li class="file"><a href="/2023/01/19/9a52b66178b746debfe7111574e464a2/">Java面向对象(高级)</a></li>  <li class="file"><a href="/2023/01/25/47c9d6ac38214463ae1ca07fd5b85614/">Java-Math类</a></li>  <li class="file"><a href="/2023/01/25/65905cb7c01348b0b1ac5264ecc87ab0/">Java Object类详解</a></li>  <li class="file"><a href="/2023/01/25/0b0365b51c0644958b204ed11719a88a/">Java 访问修饰符</a></li>  <li class="file"><a href="/2023/01/25/e7838ce563844f3a9811936eaa09cb09/">Java数据结构-栈</a></li>  <li class="file"><a href="/2023/01/25/cefb06ca6f8049a99703cf1b3bc1fa3d/">Java异常处理</a></li>  <li class="file"><a href="/2023/01/25/d8cc29145a834e3aaa2a43b7d88c9ce1/">java选择排序</a></li>  <li class="file"><a href="/2023/01/25/abec654a37ad4a498798cdf019a2e61e/">Java-枚举</a></li>  <li class="file"><a href="/2023/01/25/d5d66a7ebad94d6483e19407faf46cc5/">Java-包装类</a></li>  <li class="file"><a href="/2023/01/25/b3ada79e6ff745f0acd8edcf57c95acc/">Java-递归执行机制</a></li>  <li class="file"><a href="/2023/01/25/03f3dd343d094bd6baf6772f4a6a2aed/">Java-冒泡排序</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JUC笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/83aef7425d394df3901ca188c1afc6d5/">JUC笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/b41b5f3eb08f41cbbbf454a8c9922051/">JUC笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/1d97f5daca284471abd5c2a42c140143/">JUC笔记（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/f4f7756d2f6644d4b0e098cb3789a9c6/">JVM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/3222fc6cde8442a89eda4e5e0808952a/">JVM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/8e58362eaa734ad292f357536ef1b05e/">JVM笔记（三）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java-GUi
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/f7310f53495a4e258159180b2ce529db/">Java-GUI-窗口配置</a></li>  <li class="file"><a href="/2023/01/19/f172572c7d114592aaa804efa121761e/">Java-GUI-监听器</a></li>  <li class="file"><a href="/2023/01/19/2c969cb92c56489ab91482067305ab42/">Java-GUI-常用组件</a></li>  <li class="file"><a href="/2023/01/19/a8eb012039114ca6a601a1c34622ba93/">Java-GUI 布局</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记 2023重制版
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/09da4fbf346f4f459ef48c64c61f6cc1/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/30140692c4144c2cbc65ba707a7b0c89/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/aea1e8a802bd45ebbe33970dab1bad21/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/df26e1c8129b412a8284a955dbe26b3c/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/31ca9cc5ea8a4795b75b49ec9680cca7/">JavaSE笔记（一）重制版</a></li>  <li class="file"><a href="/2023/01/18/7ecb50884e214c28abe6a905186f2051/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/cae1499c7dd54b5f9729e77e75f9e92f/">JavaSE笔记（四）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记（含新特性介绍）
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0e413f24b04d46babc26b48035844a34/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/4781c8feb884488d93fcbc64d83998eb/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/6561c4991b054522a438ae9c3573bf7b/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/e9b900b310774688844b4e31729afc40/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/4616dce1a1c745fb84672ffed7bf43ed/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/5aef6240910849d4b69b36b03baf7d2c/">JavaSE笔记（四）重制版</a></li>  <li class="file"><a href="/2023/01/18/d7d20c40f1044de59760363f8b9d8c4b/">JavaSE笔记（一）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSSM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0dbb54c3201b45ec9eb61b3e76209382/">Java SSM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/13fdccb2f789426fb795cdb23e8cb0c0/">JavaSSM笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/86717e97bcd34af2ab62ade51eddc019/">JavaSSM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/9dfd598003ab43828c77f2676dd6cf8f/">JavaSSM笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/088fcec4e8a846479c3cfcf5a6a52da7/">JavaWeb笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/5756fdcc799c4064be4e4a84d7ab5244/">JavaWeb笔记（五）</a></li>  <li class="file"><a href="/2023/01/18/b79318accafa44dfaabad60dbbe8de4c/">JavaWeb笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/f795be55936d42ddafd17995abae6aa8/">JavaWeb笔记（三）</a></li>  <li class="file"><a href="/2023/01/23/65909752ee164b2c877f1f77097d6358/">使用Socket传输文件</a></li>  <li class="file"><a href="/2023/01/24/1c60970a20864932bc3ef0807b9fda67/">JavaWeb笔记（四）</a></li>  <li class="file"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/">SQL事务（非常详细）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java设计模式笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/022f64208f254fbea3a8fb31b281a85b/">Java设计模式（一）</a></li>  <li class="file"><a href="/2023/01/18/3e0642cd3b254fb2b80bf2932ac4b9be/">Java设计模式（三）</a></li>  <li class="file"><a href="/2023/01/18/407c5b3cecb14dfaa0649e6f89d0ec2b/">Java设计模式（四）</a></li>  <li class="file"><a href="/2023/01/18/7acbd5ac3c754f2287c448b72010bac1/">Java设计模式（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NIO笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/93e61e24ebe54aacb046d8fb7e524ec8/">Java NIO笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/cdec76bf6ea84248809947e5c365c26e/">Java NIO笔记（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringCloud笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/89a3686366ac4733a117121766e12109/">SpringCould笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/f828affac4f64da487d581f2cb0a7ddb/">SpringCloud笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/3156ff5edada4090a2470abcafcc1ace/">SpringCloud笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/af85cc65b701415f8bf1a97873320570/">SpringCloud笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Springboot笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/">SpringBoot笔记（一）</a></li>  <li class="file"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/">SpringBoot笔记（二）</a></li>  <li class="file"><a href="/2023/01/24/99650712d4104d00a2c4a5ccfc3f525e/">SpringBoot笔记（三）</a></li>  <li class="file"><a href="/2023/01/24/3636e46047924c11b7ec162ffc9f9271/">SprintBoot笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境配置
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/06a5ebd1d51442d58ba9f7b02612a94b/">Linux下JAVA环境配置</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Bash
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            archives
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/">cp</a></li>  <li class="file"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/">awk</a></li>  <li class="file"><a href="/2023/02/02/5e2e0bec39da4147b3fa493d53c38fcf/">clear</a></li>  <li class="file"><a href="/2023/02/02/6c931bc223d04f6ea0004ce2e60ed0a9/">cal</a></li>  <li class="file"><a href="/2023/02/02/e371d141f5e04b83985097a365e488f3/">alias</a></li>  <li class="file"><a href="/2023/02/02/eb9fd5a58ed4424db318906b45b3a2c1/">cat</a></li>  <li class="file"><a href="/2023/02/02/298cc2ee3f30471c95ffe20b7fd68de7/">find</a></li>  <li class="file"><a href="/2023/02/02/3262b0fe7c3c405693a43c3b00fd31a2/">cut</a></li>  <li class="file"><a href="/2023/02/02/4a44a9b960604e14b21acd79b661370d/">gunzip</a></li>  <li class="file"><a href="/2023/02/02/4e6e8b622ad94bc7b9beaac8b4db5e9b/">df</a></li>  <li class="file"><a href="/2023/02/02/57a4373ff3994387ba06b86756caa443/">dd</a></li>  <li class="file"><a href="/2023/02/02/66f0d5d37af44909b7a1826752bb25f8/">fmt</a></li>  <li class="file"><a href="/2023/02/02/6a731d9df2e2418b906e03243a37fe5a/">egrep</a></li>  <li class="file"><a href="/2023/02/02/7e8da3da77434aa3b080c04619bd6f6c/">export</a></li>  <li class="file"><a href="/2023/02/02/825b8a01e7684bf5817ef4aa18e1dcea/">file</a></li>  <li class="file"><a href="/2023/02/02/8a29743a5dd34506a48aed9f8f23e68e/">du</a></li>  <li class="file"><a href="/2023/02/02/96af26754cb14ae88ba85f62f34485e2/">gzcat</a></li>  <li class="file"><a href="/2023/02/02/af40050b4bbb4296a2359591e5267652/">date</a></li>  <li class="file"><a href="/2023/02/02/cd9720c1fa0e4e02a5fde942d26acace/">grep</a></li>  <li class="file"><a href="/2023/02/02/031200e492574917bc61ee527a9dbec2/">sort</a></li>  <li class="file"><a href="/2023/02/02/1a711a5945444415a8a3dd969f8ecd2e/">tr</a></li>  <li class="file"><a href="/2023/02/02/1ba049a64f9a46e983332666e7e82f90/">killall</a></li>  <li class="file"><a href="/2023/02/02/265f581f57e742a990d88f8e3b81e332/">lpr</a></li>  <li class="file"><a href="/2023/02/02/50ee6471baf0464380f10b8cdcf1ace7/">gzip</a></li>  <li class="file"><a href="/2023/02/02/58e2782991a046f9b090a30000ad263f/">ps</a></li>  <li class="file"><a href="/2023/02/02/5d789ba3d1df439fae3342ddab2e8936/">uptime</a></li>  <li class="file"><a href="/2023/02/02/89e04320d7f744c089eacbb3e0e119f9/">ls</a></li>  <li class="file"><a href="/2023/02/02/8e7aba35b4a2409aa2163e101ca9c459/">uniq</a></li>  <li class="file"><a href="/2023/02/02/92ca2811477044ad84363b2a0830bf8b/">last</a></li>  <li class="file"><a href="/2023/02/02/a548ef6cd0a047a59f705a4d72e69e79/">lpq</a></li>  <li class="file"><a href="/2023/02/02/bd5a94df51574676a7fb3cf91798129b/">kill</a></li>  <li class="file"><a href="/2023/02/02/c4dace09d06a4255ada3235e13622e84/">nl</a></li>  <li class="file"><a href="/2023/02/02/d39d39701de24c9e8fc1ee2a957df430/">sed</a></li>  <li class="file"><a href="/2023/02/02/d999bd8656094f66b6dd34cd212085d7/">uname</a></li>  <li class="file"><a href="/2023/02/02/ebc4924fe4974446ac9f3911f9b27e91/">scp</a></li>  <li class="file"><a href="/2023/02/02/372ae469bfff43328cc696cd3b8243d2/">which</a></li>  <li class="file"><a href="/2023/02/02/5bbf81dd30b64aafaa5f5565992b6349/">who</a></li>  <li class="file"><a href="/2023/02/02/7bb4b5c41da44269a6c70f4633d0917e/">whereis</a></li>  <li class="file"><a href="/2023/02/02/809b6b7eb42c403f8e1b0211e44409e0/">wc</a></li>  <li class="file"><a href="/2023/02/02/a07cab80bd4c47789ae6242c402ada05/">w</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            deleted
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f5f6eb42d7684fe989265596e9306f01/">stdio</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/">archiving</a></li>  <li class="file"><a href="/2023/02/02/82a5e084940844de91c02625e19ad744/">async</a></li>  <li class="file"><a href="/2023/02/02/8a206bc871634efdbbffd067c656673b/">command</a></li>  <li class="file"><a href="/2023/02/02/933495d6b7fe4de99eefa41cd63865b8/">file</a></li>  <li class="file"><a href="/2023/02/02/e1466852223e4f6bb5dc8a46a6104e76/">file-operation</a></li>  <li class="file"><a href="/2023/02/02/0cd5e142ec7a4f2abaa5cc522dbfa62d/">user</a></li>  <li class="file"><a href="/2023/02/02/154ccd75c486446aac1353805e3f901a/">host</a></li>  <li class="file"><a href="/2023/02/02/5fdd36fee51d4c49833a3a9b35303088/">system</a></li>  <li class="file"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/">text</a></li>  <li class="file"><a href="/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/">hardware</a></li>  <li class="file"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/">named-pipe</a></li>  <li class="file"><a href="/2023/02/02/d08fc4409e6e4bb1abc3bc66097589de/">process</a></li>  <li class="file"><a href="/2023/02/02/e6cc1bf092814f148a6c9a72e5615e73/">time</a></li>  <li class="file"><a href="/2023/02/02/ea57261da8fe46bdbdad1471dfe28140/">regex</a></li>  <li class="file"><a href="/2023/02/02/eca6d9d98e874548a12942d08e09bed4/">redirection</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/253ec4deec8c4beda7dd99a6f419b404/">arithmetic</a></li>  <li class="file"><a href="/2023/02/02/307a6025886648d98d3ee4d27c48ac00/">array</a></li>  <li class="file"><a href="/2023/02/02/42867f9a3d9f4e5c99a0d6ce517b903e/">condition</a></li>  <li class="file"><a href="/2023/02/02/e23e7e4f49ac4a77a19f9cedc6bb7393/">expansion</a></li>  <li class="file"><a href="/2023/02/02/e66fbc86e05a4521882246e9dc4d3adc/">function</a></li>  <li class="file"><a href="/2023/02/02/0888cfb07af44e419d21c7d3d9f7348b/">prompt</a></li>  <li class="file"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/">quotation</a></li>  <li class="file"><a href="/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/">mktemp</a></li>  <li class="file"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/">read</a></li>  <li class="file"><a href="/2023/02/02/61f4af2f28f34d6c83a93732a217826a/">intro</a></li>  <li class="file"><a href="/2023/02/02/68774db840cb4ba9975a4b9b5b27d531/">grammar</a></li>  <li class="file"><a href="/2023/02/02/b894fd5ea7ce4f5f83bd345deeb191c7/">loop</a></li>  <li class="file"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/">script</a></li>  <li class="file"><a href="/2023/02/02/36a498d21f274b8698386927095852e5/">string</a></li>  <li class="file"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/">variable</a></li>  <li class="file"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/">readline</a></li>  <li class="file"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/">startup</a></li>  <li class="file"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/">set</a></li>  <li class="file"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/">stack</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">06 【实操篇-时间日期类 用户和用户组管理】</a></li>  <li class="file"><a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/">03 【基础篇-系统管理】</a></li>  <li class="file"><a href="/2023/02/02/622750bc961b42b79daeb6a4cc15161d/">05【实操篇-文件目录类命令】</a></li>  <li class="file"><a href="/2023/02/02/976629fb7bd241958fbac447af492905/">10 【实操篇-进程管理类】</a></li>  <li class="file"><a href="/2023/02/02/3e5ebad9a8e34aeab1791403f375e9cf/">04 【实操篇-帮助命令 文件目录管理基础知识】</a></li>  <li class="file"><a href="/2023/02/02/0994e211c03c4ca5a71ebfaddd83a5b4/">02 【基础篇-vim编辑器 网络配置 远程登录】</a></li>  <li class="file"><a href="/2023/02/02/ae308f099ff843e4974f7a3fa0ab67ff/">07 【实操篇-文件权限和搜索查找类命令】</a></li>  <li class="file"><a href="/2023/02/02/9d51515086d54d9da60959402195a54e/">08 【实操篇-压缩和解压类】</a></li>  <li class="file"><a href="/2023/02/02/b4f31671b35f4b879ac18de3fa565b44/">09 【实操篇-磁盘查看和分区类】</a></li>  <li class="file"><a href="/2023/02/02/4f43f36734ff4b7fbb862ab41b32afda/">11 【实操篇-定时任务 软件安装 克隆虚拟机】</a></li>  <li class="file"><a href="/2023/02/02/594959a1b8b0475493968c2559ce6895/">01 【入门篇-介绍和安装】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Nginx
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/d7b325aae2594d32ad44c26d7d441ae0/">02 【Nginx的目录介绍】</a></li>  <li class="file"><a href="/2023/02/02/6b1fb70d0a4441949a907556d92c32f8/">03 【Nginx虚拟主机和域名解析】</a></li>  <li class="file"><a href="/2023/02/02/ac4d35d0ad0a454381e46471c91f723d/">01 【Nginx的安装和启动】</a></li>  <li class="file"><a href="/2023/02/02/5860918f92bb4edaaf5d8aed17697c0f/">04 【Nginx反向代理和负载均衡】</a></li>  <li class="file"><a href="/2023/02/02/601b78d0331e4a25b26de4819fec9d1c/">06 【防盗链】</a></li>  <li class="file"><a href="/2023/02/02/05ca312f1aad4b1198b58405d038fc40/">05 【动静分离和URLRewrite】</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/20/85a4024620e141f4b16389b65a2ce85e/">Linux SCP指令</a></li>  <li class="file"><a href="/2023/01/25/c701f1c34bb44b30a2fa83eafe2f97b5/">Linux 同步时间</a></li>  <li class="file"><a href="/2023/01/25/6555fe10b1904e6f8ad9e999d5bb8c09/">Linux压缩和解压缩</a></li>  <li class="file"><a href="/2023/01/25/e2660f8d01d24bafbcab08e0a21766ae/">Linux用户管理</a></li>  <li class="file"><a href="/2023/01/25/76440ac4b9d649d0923e1dc7808d6d9e/">Linux 目录结构</a></li>  <li class="file"><a href="/2023/01/25/761fa1243125429eb927901f3014a91b/">Debian修改国内原</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ajax
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f4a82199df954988886f793eb07bea6e/">01 【AJAX概述 HTTP相关问题】</a></li>  <li class="file"><a href="/2023/02/02/a4bdac42f33042a09a9d5ff13bf5effe/">02 【axios fetch 跨域】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            css预处理语言
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Sass
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ff4b2c9dbf641d08213e2278205e32a/">10 【Sass语法介绍-继承】</a></li>  <li class="file"><a href="/2023/02/02/d1b7676560c64fbb81882453865edebc/">04 【Sass语法介绍-运算】</a></li>  <li class="file"><a href="/2023/02/02/b6aa35c8f62d46e499d2847e3b0c0ba0/">03 【Sass语法介绍-嵌套】</a></li>  <li class="file"><a href="/2023/02/02/720abd9ef54447e6b45f4f690ae7f1b7/">07 【Sass语法介绍-控制指令】</a></li>  <li class="file"><a href="/2023/02/02/cc4f543711a54ccd9a05d4bf128898f5/">02 【Sass语法介绍-变量】</a></li>  <li class="file"><a href="/2023/02/02/d40a67d9f9f841059a8a689603793673/">05 【Sass语法介绍-插值】</a></li>  <li class="file"><a href="/2023/02/02/8fd4499649a940418f3222e3d09ee2aa/">09 【Sass语法介绍-函数指令】</a></li>  <li class="file"><a href="/2023/02/02/c147cb6550934f58904823a45536056c/">01 【Sass的安装使用】</a></li>  <li class="file"><a href="/2023/02/02/424c4e271557488ca5b2c1b775754008/">06 【Sass语法介绍-函数】</a></li>  <li class="file"><a href="/2023/02/02/2d8afd58354f4270b36e307161cf351a/">08 【Sass语法介绍-混合指令】</a></li>  <li class="file"><a href="/2023/02/02/5c17818f7da844169c13e53e58c59fb7/">11【Sass语法介绍-导入】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            less
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7750b9ec9e19421a805fe45697c0dc2d/">01 【less学习笔记】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/d3a6f3f0a7314b8c96148565dead839f/">CSS-position位置-绝对定位和相对定位</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Canvas
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/1b03369a713343afa2a193408cc8b22f/">02 【canvas绘制基本图形】</a></li>  <li class="file"><a href="/2023/02/02/faa9ad753f834bb181309f4257b09b37/">07 【canvas图像处理】</a></li>  <li class="file"><a href="/2023/02/02/e96f125a9a854c8eb2ce8b05244ba275/">05 【canvas图像变换】</a></li>  <li class="file"><a href="/2023/02/02/815ddf95af0048f2ac2ab12ffb2ca36d/">06 【canvas图像合成】</a></li>  <li class="file"><a href="/2023/02/02/48f96f2e7faf49ce94282d5e4da0145e/">04 【canvas绘制文字】</a></li>  <li class="file"><a href="/2023/02/02/54f4c804683649cc9eb20b1f7b33d7a4/">03 【canvas样式控制】</a></li>  <li class="file"><a href="/2023/02/02/fc62e5cc497a4fc8ae6b4c6a93bf4830/">01 【认识canvas】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/732ec77199574e42aa8a3ef00df24d8d/">Javascript 面向对象(OOP)</a></li>  <li class="file"><a href="/2023/01/25/4f2d10c3153e4c7c89f2ecf584fbc453/">Javascript-三种包装对象</a></li>  <li class="file"><a href="/2023/01/25/acf1e9f487974ce1853395619e12e44d/">ES6闭包</a></li>  <li class="file"><a href="/2023/01/25/2601a78cd4fb449e90738af73cc0370d/">Javascript-展开语法</a></li>  <li class="file"><a href="/2023/01/25/5b879117bcd14d1f8a9850b134549a71/">javascript-克隆节点&&删除节点</a></li>  <li class="file"><a href="/2023/01/25/bf50528806834aada4bf812a6e5cb4d7/">javascript-变量提升</a></li>  <li class="file"><a href="/2023/01/25/3eb18b717005473285e60b95a1783d27/">javascript- 节点增加创建与追加-</a></li>  <li class="file"><a href="/2023/01/25/97466e0ebd1f48c8836d82a772e97d39/">javascript-DOM-分时问候案例</a></li>  <li class="file"><a href="/2023/01/25/6d5690c11c9c40d9ab1e41f85c32ea0d/">javascript-事件流</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Node.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/ac95840c294b45909b8a32b5a3c7b1f7/">Node-包管理工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            es6
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/08ed7d14c0b74fd9a8e849fdf55e8a80/">04 【函数的扩展】</a></li>  <li class="file"><a href="/2023/02/02/6bfa93761a9348309ee45e5c8d39d60f/">14 【Class extends】</a></li>  <li class="file"><a href="/2023/02/02/4d05e596059f482899f63dadecc42521/">06【对象的扩展】</a></li>  <li class="file"><a href="/2023/02/02/e3c46bd0c64943f4967d81b8b78cacd4/">07【字符串的扩展】</a></li>  <li class="file"><a href="/2023/02/02/2fc965f3cd9f4ebfae565e4a72ebd00b/">05【数组的扩展】</a></li>  <li class="file"><a href="/2023/02/02/ba336fd9e8f942889f5a76b31f239ff5/">01 【ES6 介绍】</a></li>  <li class="file"><a href="/2023/02/02/1a48072db3f149f1b7909da3eb852945/">13【Class的语法】</a></li>  <li class="file"><a href="/2023/02/02/d125a45575e841bfa140266dbe46daea/">12【es6模块化】</a></li>  <li class="file"><a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/">03【解构赋值】</a></li>  <li class="file"><a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">10【Promise对象】</a></li>  <li class="file"><a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/">02 【let和const】</a></li>  <li class="file"><a href="/2023/02/02/73a1c792b2754bf4bef4d5c9b9819b0a/">08【运算符的扩展】</a></li>  <li class="file"><a href="/2023/02/02/706e1bd0fa5f495fafc420ac1b96f259/">09【Set 和 Map 数据结构】</a></li>  <li class="file"><a href="/2023/02/02/1274b7d6c86142c0bb25d906aebc593a/">11【async 函数】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            nodejs
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/a209b664c3ca4578a9eb3cb91ba512ba/">18 【Koa基本使用】</a></li>  <li class="file"><a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/">14 【接口规范和业务分层】</a></li>  <li class="file active"><a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">05 【nodejs内置模块（上）】</a></li>  <li class="file"><a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/">02 【nodejs开发环境安装】</a></li>  <li class="file"><a href="/2023/02/02/3b68d412870a445a8d87cfd22ac39d87/">03 【npm的使用】</a></li>  <li class="file"><a href="/2023/02/02/2de266d3a093495fa8a805a1ff7696b7/">10 【Express基本使用】</a></li>  <li class="file"><a href="/2023/02/02/c280122bb3b54525b2f9dd2c3a136016/">15 【登录鉴权】</a></li>  <li class="file"><a href="/2023/02/02/e2c3e6468ad84a1dba70d04460347ed3/">04 【nodejs模块化规范：CommonJS】</a></li>  <li class="file"><a href="/2023/02/02/9ec6f6652fd94d8fbd140127c68af01e/">11 【Express服务端渲染】</a></li>  <li class="file"><a href="/2023/02/02/a81505b065c245b088a3012c1712bcdd/">08 【爬虫】</a></li>  <li class="file"><a href="/2023/02/02/b26c2cc0675b49cbac6cc6cbce060205/">12 【操作mongodb数据库】</a></li>  <li class="file"><a href="/2023/02/02/eab31b38c19844429c0475c74bdd9991/">06 【nodejs内置模块（中）】</a></li>  <li class="file"><a href="/2023/02/02/865661190f8f4ac79861ce7df6db4beb/">07 【nodejs内置模块（下）】</a></li>  <li class="file"><a href="/2023/02/02/901210553dfa45d3afe4457d57c3de3d/">09 【原生nodejs路由、获取参数、静态目录】</a></li>  <li class="file"><a href="/2023/02/02/4515be56c20449919855a7506716b2cf/">16 【跨域】</a></li>  <li class="file"><a href="/2023/02/02/888cb674f6fb4d0bb80e8bbf63a5047f/">13 【操作mysql数据库】</a></li>  <li class="file"><a href="/2023/02/02/1d20f98f527b465096fcec6bd4c2a604/">17 【文件上传】</a></li>  <li class="file"><a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/">01 【nodejs简介】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            react
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ddb53a019f342579b13f34eddaaf39c/">11 【react-router 5】</a></li>  <li class="file"><a href="/2023/02/02/d3e37d3926734fd9b08b23b8d1cf4a76/">02 【面向组件编程】</a></li>  <li class="file"><a href="/2023/02/02/f09c9109b77c40b5bc7ece5b36c57fa4/">14【react-Hook （上）】</a></li>  <li class="file"><a href="/2023/02/02/49cd82fe5a0843eeb7d20dce85205767/">07 【收集表单数据】</a></li>  <li class="file"><a href="/2023/02/02/fc925383cd634fc384c0149bb81440d7/">10 【初始化脚手架】</a></li>  <li class="file"><a href="/2023/02/02/eff28d3f98a44083b80b2d779a742937/">13【react高级指引（下）】</a></li>  <li class="file"><a href="/2023/02/02/d47733b473484eff8245e2a785c161e0/">21 【styled-components的使用】</a></li>  <li class="file"><a href="/2023/02/02/b273e59e62894b4da1bb45adbdee98b1/">03 【事件处理】</a></li>  <li class="file"><a href="/2023/02/02/c78ad7d58e00468290b8bf9b1bbdf35f/">05 【条件渲染】</a></li>  <li class="file"><a href="/2023/02/02/f1602a4566b64671bc65486a7041308f/">18 【Redux Toolkit】</a></li>  <li class="file"><a href="/2023/02/02/ff2d1e21a86541918b1aa6230f9c765d/">16 【react-router 6】</a></li>  <li class="file"><a href="/2023/02/02/0432db33aca24dd6aaa0cd981d8f3a9c/">12 【react高级指引（上）】</a></li>  <li class="file"><a href="/2023/02/02/ced58ed76774454a929bef6b403e57cb/">08 【状态提升】</a></li>  <li class="file"><a href="/2023/02/02/125ea617daa24bafb8ee8e8bc80f67a1/">17【redux】</a></li>  <li class="file"><a href="/2023/02/02/e10e4b26d2bf44378e8037d640849094/">01 【react入门】</a></li>  <li class="file"><a href="/2023/02/02/269c3589e4be4b75a6c862285f2814ec/">15【react-Hook （下）】</a></li>  <li class="file"><a href="/2023/02/02/eaeb4b81181e44c88b5ea739de867f61/">04 【生命周期】</a></li>  <li class="file"><a href="/2023/02/02/1b30544e4df4423597f839fcf8c37fba/">20 【react中使用ts】</a></li>  <li class="file"><a href="/2023/02/02/0e6479990fed4ea2a64f5e78935f308b/">09 【组合组件】</a></li>  <li class="file"><a href="/2023/02/02/c0bcdc567e0b44ab8a74c8f6af0cb309/">19 【RTK Query】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/0b43e486feca40e7b50ea25602885b96/">01 【TypeScript简介 初体验】</a></li>  <li class="file"><a href="/2023/02/02/c6556a99f0a542d0894002af7851a206/">05 【接口  interface VS type】</a></li>  <li class="file"><a href="/2023/02/02/f11ed972e4a5429d8e24c713cba8ad6e/">03 【常用类型（下）】</a></li>  <li class="file"><a href="/2023/02/02/566f4f3d44794728b106bb3d508278e8/">06 【泛型】</a></li>  <li class="file"><a href="/2023/02/02/9ae5591e9bd243bdac816b4dbba0a626/">04【编译选项 webpack配置】</a></li>  <li class="file"><a href="/2023/02/02/b3639a6ae3334e6caa0f58c95deb58db/">第二章：面向对象</a></li>  <li class="file"><a href="/2023/02/02/9325308d90134c2d89042d5118c8aac9/">02 【常用类型（上）】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础三剑客
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7880448dad2345f6ad10793267396c06/">24 【键盘事件】</a></li>  <li class="file"><a href="/2023/02/02/3df9b05587534928ad52b2bab8daede5/">29【定时器和延时器】</a></li>  <li class="file"><a href="/2023/02/02/d17418a26029492e8d26142599edb639/">17 【Document 节点】</a></li>  <li class="file"><a href="/2023/02/02/42ec8243b3584ce9949b0d8a167f7f8f/">31【window 对象】</a></li>  <li class="file"><a href="/2023/02/02/3a1cee3416f44e0a9bcce9c7a4190cea/">05 【函数（上）】</a></li>  <li class="file"><a href="/2023/02/02/6dfad1b9f2a747b78ddac1382be9a5e0/">08 【标准库之Date对象】</a></li>  <li class="file"><a href="/2023/02/02/840362a4d9f041caaf0e1ed6a33eaaec/">33 【History对象和Location对象】</a></li>  <li class="file"><a href="/2023/02/02/d44bb868777147b8b283ea41e73ce4b1/">14 【语法之console 对象与控制台】</a></li>  <li class="file"><a href="/2023/02/02/19848e9f214542ecb0edd74a862cd652/">23 【事件对象与鼠标事件】</a></li>  <li class="file"><a href="/2023/02/02/4a5546755a7c4fd695274767efe8fe5f/">35【Storage接口】</a></li>  <li class="file"><a href="/2023/02/02/e3707da0f0c74cbaad841455d51a8912/">30【BOM和浏览器环境概述】</a></li>  <li class="file"><a href="/2023/02/02/16ff10afc67647a19e96ced945267d1a/">25 【进度事件和表单事件】</a></li>  <li class="file"><a href="/2023/02/02/35b7e41b399341619c9fc855fbc3ffb5/">09 【标准库之Math对象和String对象】</a></li>  <li class="file"><a href="/2023/02/02/9c1da8c2638049b6aa8bc77c365bee48/">03 【流程控制语句】</a></li>  <li class="file"><a href="/2023/02/02/12edce39ff004cba8e7d204ec89253f8/">21【节点的属性】</a></li>  <li class="file"><a href="/2023/02/02/e5abe46191f446439970f94b9b0d3ba6/">10 【标准库之RegExp对象】</a></li>  <li class="file"><a href="/2023/02/02/2f850099dd994cd49f47a9fba9f3cf6b/">11 【标准库之JSON对象 JSON5】</a></li>  <li class="file"><a href="/2023/02/02/98088e10e9394c50b60ecff18690bb98/">36 【节流和防抖】</a></li>  <li class="file"><a href="/2023/02/02/0bd96d59f698491eae334ca1acb77194/">13 【语法之编程风格】</a></li>  <li class="file"><a href="/2023/02/02/e7518bf293bd48ffb053673c07982b2a/">19 【节点的增删改查】</a></li>  <li class="file"><a href="/2023/02/02/d07f06774f8c4d22b87460e592ed8865/">26 【触摸事件和其它常见事件】</a></li>  <li class="file"><a href="/2023/02/02/7a23018a60814bceba65798c147b332b/">01 【基础语法与基本数据类型】</a></li>  <li class="file"><a href="/2023/02/02/47ecc198b851461bb2a56b1118f0bf4b/">20 【节点的集合】</a></li>  <li class="file"><a href="/2023/02/02/62aad3c089ed4aa9b4f1bc99ded57008/">02 【JS表达式与操作符】</a></li>  <li class="file"><a href="/2023/02/02/e18409b1902f4104a522af41137a6bbd/">15 【严格模式】</a></li>  <li class="file"><a href="/2023/02/02/3d4ce9313a0640cf8230defbe18858e1/">04 【对象】</a></li>  <li class="file"><a href="/2023/02/02/8283ef6acb05410db22d90d8d837d454/">06 【函数（下）】</a></li>  <li class="file"><a href="/2023/02/02/9225703b95ce4608bb1cfc5e5edb9e48/">22 【事件监听】</a></li>  <li class="file"><a href="/2023/02/02/ecf66e051ad24a4bb78aafce7e3466d0/">07 【数组及常用方法】</a></li>  <li class="file"><a href="/2023/02/02/2f50015bcdd3481782e878f1a86da20b/">27 【三大家族scroll、offset、client】</a></li>  <li class="file"><a href="/2023/02/02/5d433175f200488f8ff66fa6331fd2aa/">16 【DOM概述】</a></li>  <li class="file"><a href="/2023/02/02/7dbd11b2638e487b88a3024d6e6f9682/">28 【事件传播】</a></li>  <li class="file"><a href="/2023/02/02/6a031ac5c5d647d082ee19856d0fc2bc/">18 【节点的关系和内部操作】</a></li>  <li class="file"><a href="/2023/02/02/4cf03139b6ea43d8a5642bc9286ba774/">12 【语法之错误处理机制】</a></li>  <li class="file"><a href="/2023/02/02/a28dc6634bb4456c8fc30e9d225b6eb3/">34 【表单和FormData 对象】</a></li>  <li class="file"><a href="/2023/02/02/a7b4cba18cdf4e45ae01e87a990ca1fe/">32 【Navigator 对象和Screen 对象】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            html+css
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/eb673a07916a497c827dd80b72017dc6/">09 【浮动 常见网页布局】</a></li>  <li class="file"><a href="/2023/02/02/6b1c3b3c007b4ffbb737ced5fa931d4d/">16 【过渡 动画】</a></li>  <li class="file"><a href="/2023/02/02/3a2b4fa5dfc7400aa7038b017420c521/">08 【盒模型(上) 盒模型(下)】</a></li>  <li class="file"><a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">19 【flex布局】</a></li>  <li class="file"><a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/">21 【vw布局】</a></li>  <li class="file"><a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/">13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】</a></li>  <li class="file"><a href="/2023/02/02/04aa04fcb2fc4c1386acf05fab99bece/">04 【CSS选择器 】</a></li>  <li class="file"><a href="/2023/02/02/1cbd87e2a3df47e7a142782b47821cdb/">03 【语义标签(下) CSS简介】</a></li>  <li class="file"><a href="/2023/02/02/5c5a21a8362549d5bacd900b41379c26/">18 【移动端基础 流式布局】</a></li>  <li class="file"><a href="/2023/02/02/7a7112271245402292a058135d68bb8d/">07 【Emmet语法 三大特性及单位】</a></li>  <li class="file"><a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">06 【CSS字体属性 CSS文本属性】</a></li>  <li class="file"><a href="/2023/02/02/8cfe33e063e14ed29ae060f119d43177/">12 【网页布局总结 元素的显示与隐藏】</a></li>  <li class="file"><a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/">22 【响应式布局】</a></li>  <li class="file"><a href="/2023/02/02/5c06def72fec4285bb849d30528e0303/">20 【rem适配布局】</a></li>  <li class="file"><a href="/2023/02/02/3deb7901e74d4e9aa9095df3da7305cf/">05 【CSS引入方式 CSS的元素显示模式】</a></li>  <li class="file"><a href="/2023/02/02/af297262b66348929acf86f09c99809c/">01 【HTML简介】</a></li>  <li class="file"><a href="/2023/02/02/394f3f21624a42298f8bd0cc0a8cf034/">15【背景 渐变色】</a></li>  <li class="file"><a href="/2023/02/02/3ba1ad7172b74c9f888fb5577a4f1143/">11 【定位】</a></li>  <li class="file"><a href="/2023/02/02/26011a9163a6486990089e0a074d5690/">02 【字符实体与语义标签(上)】</a></li>  <li class="file"><a href="/2023/02/02/a336b8d65382447abc8b9db0742c76df/">10 【高度塌陷与BFC】</a></li>  <li class="file"><a href="/2023/02/02/03f7d5a3ec6b484f99dcd540e3a0c800/">17 【2D转换 3D转换 浏览器私有前缀】</a></li>  <li class="file"><a href="/2023/02/02/0279e5f2fa4c42e5a595c1c80949701f/">14 【margin负值 文字围绕浮动 行内快 CSS三角 CSS初始化】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/227a7e051a0440e69890ea45ac4bf5e5/">数据结构与算法（二）</a></li>  <li class="file"><a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">数据结构与算法（三）</a></li>  <li class="file"><a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/">数据结构与算法（五）</a></li>  <li class="file"><a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">数据结构与算法（四）</a></li>  <li class="file"><a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/">数据结构与算法（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            搜索与图论
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/21/b74bc4b803df4e7b99cf906cd5177da6/">DFS算法</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站收藏
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/c64a51c38c9542fe9a5c1d7e2dc93dba/">小火柴的前端小站</a></li>  <li class="file"><a href="/2023/01/22/e18feca3c0ce43cd96468b8ad72fbc36/">被删的前端游乐场</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编辑器
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/9f99a098f001487da297656e466dcb3b/">VSCode 是什么|极客教程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            镜像站
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/ae79cc4392384967b905c952b720f392/">腾讯软件源</a></li>  <li class="file"><a href="/2023/01/22/6be31fe5f1cd44e7a52b7602603705ac/">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-b0af28901ba147c1bad8451f46f62c0c" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/nodejs/">nodejs</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">
+            <time datetime="2023-02-02T05:18:15.611Z" itemprop="datePublished">2023-02-02</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/b0af28901ba147c1bad8451f46f62c0c.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/b0af28901ba147c1bad8451f46f62c0c.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/b0af28901ba147c1bad8451f46f62c0c.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            05 【nodejs内置模块（上）】
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="05-【nodejs内置模块（上）】"><a href="#05-【nodejs内置模块（上）】" class="headerlink" title="05 【nodejs内置模块（上）】"></a>05 【nodejs内置模块（上）】</h1><h2 id="1-nodejs-的官方API文档"><a href="#1-nodejs-的官方API文档" class="headerlink" title="1.nodejs 的官方API文档"></a>1.nodejs 的官方API文档</h2><ul>
+<li>Node.js 的API文档（英文）： <a target="_blank" rel="noopener" href="https://nodejs.org/docs/latest-v8.x/api/index.html">https://nodejs.org/docs/latest-v8.x/api/index.html</a></li>
+<li>Node.js 的API文档（中文）：<a target="_blank" rel="noopener" href="http://nodejs.cn/api/">http://nodejs.cn/api/</a></li>
+</ul>
+<p>关于 Node.js 的内置模块和常见API，可以看官方文档。</p>
+<p>查阅文档时，稳定指数如下：</p>
+<ul>
+<li>红色：废弃。</li>
+<li>橙色：实验。表示当前版本可用，其他版本不确定。也许不向下兼容，建议不要在生产环境中使用该特性。</li>
+<li>绿色：稳定。与 npm 生态系统的兼容性是最高的优先级。</li>
+</ul>
+<h2 id="2-nodejs-中模块的分类"><a href="#2-nodejs-中模块的分类" class="headerlink" title="2.nodejs 中模块的分类"></a>2.nodejs 中模块的分类</h2><p>Node.js 应用由模块组成，采用 CommonJS 模块规范。Node.js中的模块分为三种：</p>
+<ul>
+<li>内置模块</li>
+<li>第三方模块</li>
+<li>自定义模块</li>
+</ul>
+<p>下面简单介绍一下。</p>
+<h3 id="2-1-内置模块"><a href="#2-1-内置模块" class="headerlink" title="2.1 内置模块"></a>2.1 内置模块</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> process = <span class="built_in">require</span>(<span class="string">&#x27;process&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(process.<span class="property">version</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(path.<span class="title function_">resolve</span>(<span class="string">&#x27;../&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>require方法用于加载模块。</p>
+<p>常见的内置模块包括：</p>
+<ul>
+<li>FS：文件系统模块</li>
+<li>path：路径模块</li>
+<li>OS：操作系统相关</li>
+<li>net：网络相关</li>
+<li>http</li>
+<li>…</li>
+</ul>
+<p>你可能会有疑问：Node.js 这么牛吗？还能直接和操作系统做交互？</p>
+<p>带着这个疑问，我们不妨简单看看 Node.js 的源码，以 os 模块举例：</p>
+<ul>
+<li>打开os模块的源码：<a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/master/lib/os.js%EF%BC%8C%E7%BF%BB%E5%88%B0%E6%9C%80%E5%BA%95%E9%83%A8%EF%BC%8C%E6%89%BE%E5%88%B0">https://github.com/nodejs/node/blob/master/lib/os.js，翻到最底部，找到</a> <code>cpus</code>这个方法</li>
+<li>进而找到 <code>getCPUs()</code></li>
+<li>internalBinding(‘os’)：通过 internalBinding 可以调用系统底层的方法。internalBinding 主要是 JS 虚拟机在做的事情。</li>
+<li><code>internalBinding(&#39;os&#39;)</code> 的实现，在 <a target="_blank" rel="noopener" href="https://github.com/nodejs/node/blob/master/src/node_os.cc">https://github.com/nodejs/node/blob/master/src/node_os.cc</a> 里，里面都是 C++ 的代码。比如有一个<code>getCPUs</code>方法。</li>
+</ul>
+<p>现在你知道了，JS本身是没有能力获取底层系统资源的，这一切都是 JS虚拟机在和底层做交互，然后通过 JS 的表现形式，暴露给应用层。</p>
+<p>另外，还有很多库，是直接使用C&#x2F;++编写的，通过编译之后，再提供给 JS 应用层调用，或者直接提供给 Node.js层使用。</p>
+<p>**所有的编程语言底层都会回归C&#x2F;C++**，甚至是汇编语言。</p>
+<h3 id="2-2-require-加载第三方包的机制"><a href="#2-2-require-加载第三方包的机制" class="headerlink" title="2.2 require 加载第三方包的机制"></a>2.2 require 加载第三方包的机制</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>require 加载第三方包的机制：</p>
+<p>（1）第三方包安装好后，这个包一般会存放在当前项目的 node_modules 文件夹中。我们找到这个包的 package.json 文件，并且找到里面的main属性对应的入口模块，这个入口模块就是这个包的入口文件。</p>
+<p>（2）如果第三方包中没有找到package.json文件，或者package.json文件中没有main属性，则默认加载第三方包中的index.js文件。</p>
+<p>（3）如果在 node_modules 文件夹中没有找到这个包，或者以上所有情况都没有找到，则会向上一级父级目录下查找node_modules文件夹，查找规则如上一致。</p>
+<p>（4）如果一直找到该模块的磁盘根路径都没有找到，则会报错：can not find module xxx。</p>
+<h3 id="2-3-自定义模块（module）"><a href="#2-3-自定义模块（module）" class="headerlink" title="2.3 自定义模块（module）"></a>2.3 自定义模块（module）</h3><p>每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。</p>
+<p>举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> example = <span class="built_in">require</span>(<span class="string">&#x27;./example.js&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(example.<span class="property">x</span>); <span class="comment">// 5</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(example.<span class="title function_">addX</span>(<span class="number">1</span>)); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-网络服务-http"><a href="#3-网络服务-http" class="headerlink" title="3.网络服务 http"></a>3.网络服务 http</h2><h3 id="3-1-http模块概览"><a href="#3-1-http模块概览" class="headerlink" title="3.1 http模块概览"></a>3.1 http模块概览</h3><p>大多数nodejs开发者都是冲着开发web server的目的选择了nodejs。正如官网所展示的，借助http模块，可以几行代码就搞定一个超迷你的web server。</p>
+<p>在nodejs中，<code>http</code>可以说是最核心的模块，同时也是比较复杂的一个模块。上手很简单，但一旦深入学习，不少初学者就会觉得头疼，不知从何入手。</p>
+<p>本文先从一个简单的例子出发，引出<code>http</code>模块最核心的四个实例。看完本文，应该就能够对http模块有个整体的认识。</p>
+<h3 id="3-2-一个简单的例子"><a href="#3-2-一个简单的例子" class="headerlink" title="3.2 一个简单的例子"></a>3.2 一个简单的例子</h3><p>在下面的例子中，我们创建了1个web服务器、1个http客户端</p>
+<ul>
+<li>服务器server：接收来自客户端的请求，并将客户端请求的地址返回给客户端。</li>
+<li>客户端client：向服务器发起请求，并将服务器返回的内容打印到控制台。</li>
+</ul>
+<p>代码如下所示，只有几行，但包含了不少信息量。下一小节会进行简单介绍。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// http server 例子</span></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">serverReq, serverRes</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> url = serverReq.<span class="property">url</span>;</span><br><span class="line">    serverRes.<span class="title function_">end</span>( <span class="string">&#x27;您访问的地址是：&#x27;</span> + url );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// http client 例子</span></span><br><span class="line"><span class="keyword">var</span> client = http.<span class="title function_">get</span>(<span class="string">&#x27;http://127.0.0.1:3000&#x27;</span>, <span class="keyword">function</span>(<span class="params">clientRes</span>)&#123;</span><br><span class="line">    clientRes.<span class="title function_">pipe</span>(process.<span class="property">stdout</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-例子解释"><a href="#3-3-例子解释" class="headerlink" title="3.3 例子解释"></a>3.3 例子解释</h3><p>在上面这个简单的例子里，涉及了4个实例。大部分时候，serverReq、serverRes 才是主角。</p>
+<ul>
+<li>server：http.Server实例，用来提供服务，处理客户端的请求。</li>
+<li>client：http.ClientReques实例，用来向服务端发起请求。</li>
+<li>serverReq&#x2F;clientRes：其实都是 http.IncomingMessage实例。serverReq 用来获取客户端请求的相关信息，如request header；而clientRes用来获取服务端返回的相关信息，比如response header。</li>
+<li>serverRes：http.ServerResponse实例</li>
+</ul>
+<h3 id="3-4-关于http-IncomingMessage、http-ServerResponse"><a href="#3-4-关于http-IncomingMessage、http-ServerResponse" class="headerlink" title="3.4 关于http.IncomingMessage、http.ServerResponse"></a>3.4 关于http.IncomingMessage、http.ServerResponse</h3><p>先讲下 http.ServerResponse 实例。作用很明确，服务端通过http.ServerResponse 实例，来个请求方发送数据。包括发送响应表头，发送响应主体等。</p>
+<p>接下来是 http.IncomingMessage 实例，由于在 server、client 都出现了，初学者难免有点迷茫。它的作用是</p>
+<p>在server端：获取请求发送方的信息，比如请求方法、路径、传递的数据等。 在client端：获取 server 端发送过来的信息，比如请求方法、路径、传递的数据等。</p>
+<p>http.IncomingMessage实例 有三个属性需要注意：method、statusCode、statusMessage。</p>
+<ul>
+<li>method：只在 server 端的实例有（也就是 serverReq.method）</li>
+<li>statusCode&#x2F;statusMessage：只在 client 端 的实例有（也就是 clientRes.method）</li>
+</ul>
+<h2 id="4-网络服务-http-res"><a href="#4-网络服务-http-res" class="headerlink" title="4.网络服务 http res"></a>4.网络服务 http res</h2><h3 id="4-1-概览"><a href="#4-1-概览" class="headerlink" title="4.1 概览"></a>4.1 概览</h3><p>http模块四剑客之一的<code>res</code>，应该都不陌生了。一个web服务程序，接受到来自客户端的http请求后，向客户端返回正确的响应内容，这就是<code>res</code>的职责。</p>
+<p>返回的内容包括：状态代码&#x2F;状态描述信息、响应头部、响应主体。下文会举几个简单的例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-例子"><a href="#4-2-例子" class="headerlink" title="4.2 例子"></a>4.2 例子</h3><p>在下面的例子中，我们同时设置了 状态代码&#x2F;状态描述信息、响应头部、响应主体，就是这么简单。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置状态码、状态描述信息、响应主体</span></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>, <span class="string">&#x27;ok&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-设置状态代码、状态描述信息"><a href="#4-3-设置状态代码、状态描述信息" class="headerlink" title="4.3 设置状态代码、状态描述信息"></a>4.3 设置状态代码、状态描述信息</h3><p><code>res</code>提供了 res.writeHead()、res.statusCode&#x2F;res.statusMessage 来实现这个目的。</p>
+<p>举例，如果想要设置 200&#x2F;ok ，可以</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">writeHead</span>(<span class="number">200</span>, <span class="string">&#x27;ok&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>也可以</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="property">statusCode</span> = <span class="number">200</span>;</span><br><span class="line">res.<span class="property">statusMessage</span> = <span class="string">&#x27;ok&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>两者差不多，差异点在于</p>
+<ol>
+<li>res.writeHead() 可以提供额外的功能，比如设置响应头部。</li>
+<li>当响应头部发送出去后，res.statusCode&#x2F;res.statusMessage 会被设置成已发送出去的 状态代码&#x2F;状态描述信息。</li>
+</ol>
+<h3 id="4-4-设置响应头部"><a href="#4-4-设置响应头部" class="headerlink" title="4.4 设置响应头部"></a>4.4 设置响应头部</h3><p><code>res</code>提供了 res.writeHead()、response.setHeader() 来实现响应头部的设置。</p>
+<p>举例，比如想把 <code>Content-Type</code> 设置为 <code>text-plain</code>，那么可以</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法一</span></span><br><span class="line">res.<span class="title function_">writeHead</span>(<span class="number">200</span>, <span class="string">&#x27;ok&#x27;</span>, &#123;</span><br><span class="line">    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text-plain&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text-plain&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>两者的差异点在哪里呢？</p>
+<ol>
+<li>res.writeHead() 不单单是设置header。</li>
+<li>已经通过 res.setHeader() 设置了header，当通过 res.writeHead() 设置同名header，res.writeHead() 的设置会覆盖之前的设置。</li>
+</ol>
+<p>关于第2点差异，这里举个例子。下面代码，最终的 <code>Content-Type</code> 为 <code>text/plain</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html&#x27;</span>);</span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>, <span class="string">&#x27;ok&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>而下面的例子，则直接报错。报错信息为 <code>Error: Can&#39;t set headers after they are sent.</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;    </span><br><span class="line">    res.<span class="title function_">writeHead</span>(<span class="number">200</span>, <span class="string">&#x27;ok&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;text/plain&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html&#x27;</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5-其他响应头部操作"><a href="#4-5-其他响应头部操作" class="headerlink" title="4.5 其他响应头部操作"></a>4.5 其他响应头部操作</h3><p>增、删、改、查 是配套的。下面分别举例说明下，例子太简单就直接上代码了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 增</span></span><br><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/plain&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删</span></span><br><span class="line">res.<span class="title function_">removeHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 改</span></span><br><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/plain&#x27;</span>);</span><br><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/html&#x27;</span>);  <span class="comment">// 覆盖</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查</span></span><br><span class="line">res.<span class="title function_">getHeader</span>(<span class="string">&#x27;content-type&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>其中略显不同的是 res.getHeader(name)，name 用的是小写，返回值没做特殊处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;TEXT/HTML&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( res.<span class="title function_">getHeader</span>(<span class="string">&#x27;content-type&#x27;</span>) );  <span class="comment">// TEXT/HTML</span></span><br><span class="line"></span><br><span class="line">res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;text/plain&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( res.<span class="title function_">getHeader</span>(<span class="string">&#x27;content-type&#x27;</span>) );  <span class="comment">// text/plain</span></span><br></pre></td></tr></table></figure>
+
+<p>此外，还有不那么常用的：</p>
+<ul>
+<li>res.headersSent：header是否已经发送；</li>
+<li>res.sendDate：默认为true。但为true时，会在response header里自动设置Date首部。</li>
+</ul>
+<h3 id="4-6-设置响应主体"><a href="#4-6-设置响应主体" class="headerlink" title="4.6 设置响应主体"></a>4.6 设置响应主体</h3><p>主要用到 res.write() 以及 res.end() 两个方法。</p>
+<p>res.write() API的信息量略大，建议看下<a target="_blank" rel="noopener" href="https://nodejs.org/api/http.html#http_response_write_chunk_encoding_callback">官方文档</a>。</p>
+<h4 id="4-6-1-response-write-chunk-encoding-callback"><a href="#4-6-1-response-write-chunk-encoding-callback" class="headerlink" title="4.6.1 response.write(chunk[, encoding][, callback])"></a>4.6.1 response.write(chunk[, encoding][, callback])</h4><ul>
+<li>chunk：响应主体的内容，可以是string，也可以是buffer。当为string时，encoding参数用来指明编码方式。（默认是utf8）</li>
+<li>encoding：编码方式，默认是 utf8。</li>
+<li>callback：当响应体flushed时触发。（TODO 这里想下更好的解释。。。）</li>
+</ul>
+<p>使用上没什么难度，只是有些注意事项：</p>
+<ol>
+<li>如果 res.write() 被调用时， res.writeHead() 还没被调用过，那么，就会把header flush出去。</li>
+<li>res.write() 可以被调用多次。</li>
+<li>当 res.write(chunk) 第一次被调用时，node 会将 header 信息 以及 chunk 发送到客户端。第二次调用 res.write(chunk) ，node 会认为你是要streaming data（WTF，该怎么翻译）。。。</li>
+</ol>
+<blockquote>
+<p>Returns true if the entire data was flushed successfully to the kernel buffer. Returns false if all or part of the data was queued in user memory. ‘drain’ will be emitted when the buffer is free again.</p>
+</blockquote>
+<h4 id="4-6-2-response-end-data-encoding-callback"><a href="#4-6-2-response-end-data-encoding-callback" class="headerlink" title="4.6.2 response.end([data][, encoding][, callback])"></a>4.6.2 response.end([data][, encoding][, callback])</h4><p>掌握了 res.write() 的话，res.end() 就很简单了。res.end() 的用处是告诉nodejs，header、body都给你了，这次响应就到这里吧。</p>
+<p>有点像个语法糖，可以看成下面两个调用的组合。至于callback，当响应传递结束后触发。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">res.<span class="title function_">write</span>(data, encoding);</span><br><span class="line">res.<span class="title function_">end</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-7-超时处理"><a href="#4-7-超时处理" class="headerlink" title="4.7 超时处理"></a>4.7 超时处理</h3><p>接口：response.setTimeout(msecs, callback)</p>
+<p>关于 timeout 事件的说明，同样是言简意赅（WTF），话少信息量大，最好来个demo TODO</p>
+<blockquote>
+<p>If no ‘timeout’ listener is added to the request, the response, or the server, then sockets are destroyed when they time out. If you assign a handler on the request, the response, or the server’s ‘timeout’ events, then it is your responsibility to handle timed out sockets.</p>
+</blockquote>
+<h3 id="4-8-事件-close-x2F-finish"><a href="#4-8-事件-close-x2F-finish" class="headerlink" title="4.8 事件 close&#x2F;finish"></a>4.8 事件 close&#x2F;finish</h3><ul>
+<li>close：response.end() 被调用前，连接就断开了。此时会触发这个事件。</li>
+<li>finish：响应header、body都已经发送出去（交给操作系统，排队等候传输），但客户端是否实际收到数据为止。（这个事件后，res 上就不会再有其他事件触发）</li>
+</ul>
+<h3 id="4-9-其他不常用属性-x2F-方法"><a href="#4-9-其他不常用属性-x2F-方法" class="headerlink" title="4.9 其他不常用属性&#x2F;方法"></a>4.9 其他不常用属性&#x2F;方法</h3><ul>
+<li>response.finished：一开始是false，响应结束后，设置为true。</li>
+<li>response.sendDate：默认是true。是否自动设置Date头部。（按HTTP协议是必须要的，除非是调试用，不然不要设置为false）</li>
+<li>response.headersSent：只读属性。响应头部是否已发送。</li>
+<li>response.writeContinue()：发送 HTTP&#x2F;1.1 100 Continue 消息给客户端，提示说服务端愿意接受客户端的请求，请继续发送请求正文（body)。（TODO 做个demo啥的是大大的好）</li>
+</ul>
+<h2 id="5-网络服务-http-req"><a href="#5-网络服务-http-req" class="headerlink" title="5.网络服务 http req"></a>5.网络服务 http req</h2><h3 id="5-1-概览"><a href="#5-1-概览" class="headerlink" title="5.1 概览"></a>5.1 概览</h3><p>本文的重点会放在<code>req</code>这个对象上。前面已经提到，它其实是http.IncomingMessage实例，在服务端、客户端作用略微有差异</p>
+<ul>
+<li>服务端处：获取请求方的相关信息，如request header等。</li>
+<li>客户端处：获取响应方返回的相关信息，如statusCode等。</li>
+</ul>
+<p>服务端例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面的 req</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">headers</span>);</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>客户端例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面的res</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line">http.<span class="title function_">get</span>(<span class="string">&#x27;http://127.0.0.1:3000&#x27;</span>, <span class="keyword">function</span>(<span class="params">res</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">statusCode</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-属性-x2F-方法-x2F-事件-分类"><a href="#5-2-属性-x2F-方法-x2F-事件-分类" class="headerlink" title="5.2 属性&#x2F;方法&#x2F;事件 分类"></a>5.2 属性&#x2F;方法&#x2F;事件 分类</h3><p>http.IncomingMessage的属性&#x2F;方法&#x2F;事件 不是特别多，按照是否客户端&#x2F;服务端 特有的，下面进行简单归类。可以看到</p>
+<ul>
+<li>服务端处特有：url</li>
+<li>客户端处特有：statusCode、statusMessage</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="center">名称</th>
+<th align="center">服务端</th>
+<th align="center">客户端</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">事件</td>
+<td align="center">aborted</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">事件</td>
+<td align="center">close</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">属性</td>
+<td align="center">headers</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">属性</td>
+<td align="center">rawHeaders</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">属性</td>
+<td align="center">statusCode</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">属性</td>
+<td align="center">statusMessage</td>
+<td align="center">✕</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">属性</td>
+<td align="center">httpVersion</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">属性</td>
+<td align="center">url</td>
+<td align="center">✓</td>
+<td align="center">✕</td>
+</tr>
+<tr>
+<td align="left">属性</td>
+<td align="center">socket</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">方法</td>
+<td align="center">.destroy()</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+<tr>
+<td align="left">方法</td>
+<td align="center">.setTimeout()</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+</tr>
+</tbody></table>
+<h3 id="5-3-服务端的例子"><a href="#5-3-服务端的例子" class="headerlink" title="5.3 服务端的例子"></a>5.3 服务端的例子</h3><h4 id="5-3-1-例子一：获取httpVersion-x2F-method-x2F-url"><a href="#5-3-1-例子一：获取httpVersion-x2F-method-x2F-url" class="headerlink" title="5.3.1 例子一：获取httpVersion&#x2F;method&#x2F;url"></a>5.3.1 例子一：获取httpVersion&#x2F;method&#x2F;url</h4><p>下面是一个典型的HTTP请求报文，里面最重要的内容包括：HTTP版本、请求方法、请求地址、请求头部。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/hello</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>127.0.0.1:3000</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>no-cache</span><br></pre></td></tr></table></figure>
+
+<p>那么，如何获取上面提到的信息呢？很简单，直接上代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// getClientInfo.js</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;1、客户端请求url：&#x27;</span> + req.<span class="property">url</span> );</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;2、http版本：&#x27;</span> + req.<span class="property">httpVersion</span> );</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;3、http请求方法：&#x27;</span> + req.<span class="property">method</span> );</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;4、http请求头部&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(req.<span class="property">headers</span>) );</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、客户端请求url：/hello</span><br><span class="line">2、http版本：1.1</span><br><span class="line">3、http请求方法：GET</span><br><span class="line">4、http headers：&#123;<span class="string">&quot;host&quot;</span>:<span class="string">&quot;127.0.0.1:3000&quot;</span>,<span class="string">&quot;connection&quot;</span>:<span class="string">&quot;keep-alive&quot;</span>,<span class="string">&quot;cache-control&quot;</span>:<span class="string">&quot;no-cache&quot;</span>,<span class="string">&quot;user-age</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-2-例子二：获取get请求参数"><a href="#5-3-2-例子二：获取get请求参数" class="headerlink" title="5.3.2 例子二：获取get请求参数"></a>5.3.2 例子二：获取get请求参数</h4><p>服务端代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// getClientGetQuery.js</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">&#x27;url&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">&#x27;querystring&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> urlObj = url.<span class="title function_">parse</span>(req.<span class="property">url</span>);</span><br><span class="line">    <span class="keyword">var</span> query = urlObj.<span class="property">query</span>;</span><br><span class="line">    <span class="keyword">var</span> queryObj = querystring.<span class="title function_">parse</span>(query);</span><br><span class="line">    </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(queryObj) );</span><br><span class="line">    </span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>访问地址 <a target="_blank" rel="noopener" href="http://127.0.0.1:3000/hello?nick=chyingp&amp;hello=world">http://127.0.0.1:3000/hello?nick=chyingp&amp;hello=world</a></p>
+<p>服务端输出如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;nick&quot;</span>:<span class="string">&quot;chyingp&quot;</span>,<span class="string">&quot;hello&quot;</span>:<span class="string">&quot;world&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-3-例子三：获取post请求参数"><a href="#5-3-3-例子三：获取post请求参数" class="headerlink" title="5.3.3  例子三：获取post请求参数"></a>5.3.3  例子三：获取post请求参数</h4><p>服务端代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// getClientPostBody.js</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">&#x27;url&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">&#x27;querystring&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body = <span class="string">&#x27;&#x27;</span>;  </span><br><span class="line">    req.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">thunk</span>)&#123;</span><br><span class="line">        body += thunk;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    req.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;post body is: &#x27;</span> + body );</span><br><span class="line">        res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>);</span><br><span class="line">    &#125;); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过curl构造post请求：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -d <span class="string">&#x27;nick=casper&amp;hello=world&#x27;</span> http://127.0.0.1:3000</span><br></pre></td></tr></table></figure>
+
+<p>服务端打印如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post body is: nick=casper&amp;hello=world</span><br></pre></td></tr></table></figure>
+
+<p>备注：post请求中，不同的<code>Content-type</code>，post body有不小差异，感兴趣的同学可以研究下。</p>
+<p>本例中的post请求，HTTP报文大概如下</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>127.0.0.1:3000</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>no-cache</span><br><span class="line"></span><br><span class="line"><span class="language-ini"><span class="attr">nick</span>=casper&amp;hello=world</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-网络服务-https"><a href="#6-网络服务-https" class="headerlink" title="6.网络服务 https"></a>6.网络服务 https</h2><h3 id="6-1-模块概览"><a href="#6-1-模块概览" class="headerlink" title="6.1 模块概览"></a>6.1 模块概览</h3><p>这个模块的重要性，基本不用强调了。在网络安全问题日益严峻的今天，网站采用HTTPS是个必然的趋势。</p>
+<p>在nodejs中，提供了 https 这个模块来完成 HTTPS 相关功能。从官方文档来看，跟 http 模块用法非常相似。</p>
+<p>本文主要包含两部分：</p>
+<ol>
+<li>通过客户端、服务端的例子，对https模块进行入门讲解。</li>
+<li>如何访问安全证书不受信任的网站。（以 12306 为例子）</li>
+</ol>
+<p>篇幅所限，本文无法对 HTTPS协议 及 相关技术体系 做过多讲解，有问题欢迎留言交流。</p>
+<h3 id="6-2-客户端例子"><a href="#6-2-客户端例子" class="headerlink" title="6.2 客户端例子"></a>6.2 客户端例子</h3><p>跟http模块的用法非常像，只不过请求的地址是https协议的而已，代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">&#x27;https&#x27;</span>);</span><br><span class="line"></span><br><span class="line">https.<span class="title function_">get</span>(<span class="string">&#x27;https://www.baidu.com&#x27;</span>, <span class="keyword">function</span>(<span class="params">res</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;status code: &#x27;</span> + res.<span class="property">statusCode</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;headers: &#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(res.<span class="property">headers</span>));</span><br><span class="line"></span><br><span class="line">    res.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">        process.<span class="property">stdout</span>.<span class="title function_">write</span>(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;).<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-服务端例子"><a href="#6-3-服务端例子" class="headerlink" title="6.3 服务端例子"></a>6.3 服务端例子</h3><p>对外提供HTTPS服务，需要有HTTPS证书。如果你已经有了HTTPS证书，那么可以跳过证书生成的环节。如果没有，可以参考如下步骤</p>
+<h4 id="6-3-1-生成证书"><a href="#6-3-1-生成证书" class="headerlink" title="6.3.1 生成证书"></a>6.3.1 生成证书</h4><p><strong>1.创建个目录存放证书。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> cert</span><br><span class="line"><span class="built_in">cd</span> cert</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.生成私钥。</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out chyingp-key.pem 2048</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.生成证书签名请求（csr是 Certificate Signing Request的意思）。</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new \</span><br><span class="line">  -sha256</span><br><span class="line">  -key chyingp-key.key.pem \</span><br><span class="line">  -out chyingp-csr.pem \</span><br><span class="line">  -subj &quot;/C=CN/ST=Guandong/L=Shenzhen/O=YH Inc/CN=www.chyingp.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.生成证书。</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 \</span><br><span class="line">  -req -in chyingp-csr.pem \</span><br><span class="line">  -signkey chyingp-key.pem \</span><br><span class="line">  -out chyingp-cert.pem</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-3-2-HTTPS服务端"><a href="#6-3-2-HTTPS服务端" class="headerlink" title="6.3.2 HTTPS服务端"></a>6.3.2 HTTPS服务端</h4><p>代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> https = <span class="built_in">require</span>(<span class="string">&#x27;https&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">    <span class="attr">key</span>: fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;./cert/chyingp-key.pem&#x27;</span>), <span class="comment">// 私钥</span></span><br><span class="line">    <span class="attr">cert</span>: fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;./cert/chyingp-cert.pem&#x27;</span>) <span class="comment">// 证书</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = https.<span class="title function_">createServer</span>(options, <span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;这是来自HTTPS服务器的返回&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由于我并没有 <a target="_blank" rel="noopener" href="http://www.chyingp.com/">www.chyingp.com</a> 这个域名，于是先配置本地host</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 www.chyingp.com</span><br></pre></td></tr></table></figure>
+
+<p>启动服务，并在浏览器里访问 <a target="_blank" rel="noopener" href="http://www.chyingp.com:3000/">http://www.chyingp.com:3000</a>。注意，浏览器会提示你证书不可靠，点击 信任并继续访问 就行了。</p>
+<h2 id="7-URL-接口-代替内置模块url使用"><a href="#7-URL-接口-代替内置模块url使用" class="headerlink" title="7.URL 接口(代替内置模块url使用)"></a>7.URL 接口(代替内置模块url使用)</h2><blockquote>
+<p>nodejs内置模块<code>url</code>有些方法要被废弃，我们使用<code>URL类</code>代替</p>
+</blockquote>
+<p>浏览器原生提供<code>URL()</code>接口，它是一个构造函数，用来构造、解析和编码 URL。一般情况下，通过<code>window.URL</code>可以拿到这个构造函数。</p>
+<h3 id="7-1-对比url模块和URL类"><a href="#7-1-对比url模块和URL类" class="headerlink" title="7.1 对比url模块和URL类"></a>7.1 对比<code>url模块</code>和URL类</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>url模块</th>
+<th>URL类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>protocol</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>host</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>port</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>hostname</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>search</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>✅</code></td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>path</td>
+<td><code>✅</code></td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td>pathname</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>href</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>hash</td>
+<td><code>✅</code></td>
+<td><code>✅</code></td>
+</tr>
+<tr>
+<td>origin</td>
+<td>-</td>
+<td><code>✅</code></td>
+</tr>
+</tbody></table>
+<p>可以看出来，只有三个字段不同，分别是<code>query</code>,<code>path</code>,<code>origin</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">打印两个对象的输出</span><br><span class="line"></span><br><span class="line"><span class="comment">// url模块，url.parse(&#x27;link&#x27;)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">protocol</span>: <span class="string">&#x27;https:&#x27;</span>,</span><br><span class="line">  <span class="attr">slashes</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">auth</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">host</span>: <span class="string">&#x27;m.shop.com&#x27;</span>,</span><br><span class="line">  <span class="attr">port</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">hostname</span>: <span class="string">&#x27;m.shop.com&#x27;</span>,</span><br><span class="line">  <span class="attr">hash</span>: <span class="string">&#x27;#detail&#x27;</span>,</span><br><span class="line">  <span class="attr">search</span>: <span class="string">&#x27;?id=4433&amp;name=%E6%9D%8E%E5%A4%87&amp;directCompanyId=&amp;mobile=18951431099&#x27;</span>,</span><br><span class="line">  <span class="attr">query</span>: <span class="string">&#x27;id=4433&amp;name=%E6%9D%8E%E5%A4%87&amp;directCompanyId=&amp;mobile=18951431099&#x27;</span>,</span><br><span class="line">  <span class="attr">pathname</span>: <span class="string">&#x27;/home/share&#x27;</span>,</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/home/share?id=4433&amp;name=%E6%9D%8E%E5%A4%87&amp;directCompanyId=&amp;mobile=18951431099&#x27;</span>,</span><br><span class="line">  <span class="attr">href</span>: <span class="string">&#x27;https://m.shop.com/home/share?id=4433&amp;name=%E6%9D%8E%E5%A4%87&amp;directCompanyId=&amp;mobile=18951431099#detail&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// new URL()</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">href</span>: <span class="string">&#x27;https://m.shop.com/home/share?id=4433&amp;name=%E6%9D%8E%E5%A4%87&amp;directCompanyId=&amp;mobile=18951431099#detail&#x27;</span>,</span><br><span class="line">  <span class="attr">origin</span>: <span class="string">&#x27;https://m.shop.com&#x27;</span>,</span><br><span class="line">  <span class="attr">protocol</span>: <span class="string">&#x27;https:&#x27;</span>,</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">host</span>: <span class="string">&#x27;m.shop.com&#x27;</span>,</span><br><span class="line">  <span class="attr">hostname</span>: <span class="string">&#x27;m.shop.com&#x27;</span>,</span><br><span class="line">  <span class="attr">port</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="attr">pathname</span>: <span class="string">&#x27;/home/share&#x27;</span>,</span><br><span class="line">  <span class="attr">search</span>: <span class="string">&#x27;?id=4433&amp;name=%E6%9D%8E%E5%A4%87&amp;directCompanyId=&amp;mobile=18951431099&#x27;</span>,</span><br><span class="line">  <span class="attr">searchParams</span>: <span class="title class_">URLSearchParams</span> &#123;</span><br><span class="line">    <span class="string">&#x27;id&#x27;</span> =&gt; <span class="string">&#x27;4433&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;李备&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;directCompanyId&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;mobile&#x27;</span> =&gt; <span class="string">&#x27;18951431099&#x27;</span> &#125;,</span><br><span class="line">  <span class="attr">hash</span>: <span class="string">&#x27;#detail&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-构造函数"><a href="#7-2-构造函数" class="headerlink" title="7.2 构造函数"></a>7.2 构造函数</h3><p><code>URL()</code>作为构造函数，可以生成 URL 实例。它接受一个表示 URL 的字符串作为参数。如果参数不是合法的 URL，会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;http://www.example.com/index.html&#x27;</span>);</span><br><span class="line">url.<span class="property">href</span></span><br><span class="line"><span class="comment">// &quot;http://www.example.com/index.html&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面示例生成了一个 URL 实例，用来代表指定的网址。</p>
+<p>除了字符串，<code>URL()</code>的参数也可以是另一个 URL 实例。这时，<code>URL()</code>会自动读取该实例的<code>href</code>属性，作为实际参数。</p>
+<p>如果 URL 字符串是一个相对路径，那么需要表示绝对路径的第二个参数，作为计算基准。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url1 = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;index.html&#x27;</span>, <span class="string">&#x27;http://example.com&#x27;</span>);</span><br><span class="line">url1.<span class="property">href</span></span><br><span class="line"><span class="comment">// &quot;http://example.com/index.html&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url2 = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;page2.html&#x27;</span>, <span class="string">&#x27;http://example.com/page1.html&#x27;</span>);</span><br><span class="line">url2.<span class="property">href</span></span><br><span class="line"><span class="comment">// &quot;http://example.com/page2.html&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url3 = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;http://example.com/a/b.html&#x27;</span>)</span><br><span class="line">url3.<span class="property">href</span></span><br><span class="line"><span class="comment">// &quot;http://example.com/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，返回的 URL 实例的路径都是在第二个参数的基础上，切换到第一个参数得到的。最后一个例子里面，第一个参数是<code>..</code>，表示上层路径。</p>
+<h3 id="7-3-实例属性"><a href="#7-3-实例属性" class="headerlink" title="7.3 实例属性"></a>7.3 实例属性</h3><p>URL 实例的属性与<code>Location</code>对象的属性基本一致，返回当前 URL 的信息。</p>
+<ul>
+<li>URL.href：返回整个 URL</li>
+<li>URL.protocol：返回协议，以冒号<code>:</code>结尾</li>
+<li>URL.hostname：返回域名</li>
+<li>URL.host：返回域名与端口，包含<code>:</code>号，默认的80和443端口会省略</li>
+<li>URL.port：返回端口</li>
+<li>URL.origin：返回协议、域名和端口</li>
+<li>URL.pathname：返回路径，以斜杠<code>/</code>开头</li>
+<li>URL.search：返回查询字符串，以问号<code>?</code>开头</li>
+<li>URL.searchParams：返回一个<code>URLSearchParams</code>实例，该属性是<code>Location</code>对象没有的</li>
+<li>URL.hash：返回片段识别符，以井号<code>#</code>开头</li>
+<li>URL.password：返回域名前面的密码</li>
+<li>URL.username：返回域名前面的用户名</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;http://user:passwd@www.example.com:4097/path/a.html?x=111#part1&#x27;</span>);</span><br><span class="line"></span><br><span class="line">url.<span class="property">href</span></span><br><span class="line"><span class="comment">// &quot;http://user:passwd@www.example.com:4097/path/a.html?x=111#part1&quot;</span></span><br><span class="line">url.<span class="property">protocol</span></span><br><span class="line"><span class="comment">// &quot;http:&quot;</span></span><br><span class="line">url.<span class="property">hostname</span></span><br><span class="line"><span class="comment">// &quot;www.example.com&quot;</span></span><br><span class="line">url.<span class="property">host</span></span><br><span class="line"><span class="comment">// &quot;www.example.com:4097&quot;</span></span><br><span class="line">url.<span class="property">port</span></span><br><span class="line"><span class="comment">// &quot;4097&quot;</span></span><br><span class="line">url.<span class="property">origin</span></span><br><span class="line"><span class="comment">// &quot;http://www.example.com:4097&quot;</span></span><br><span class="line">url.<span class="property">pathname</span></span><br><span class="line"><span class="comment">// &quot;/path/a.html&quot;</span></span><br><span class="line">url.<span class="property">search</span></span><br><span class="line"><span class="comment">// &quot;?x=111&quot;</span></span><br><span class="line">url.<span class="property">searchParams</span></span><br><span class="line"><span class="comment">// URLSearchParams &#123;&#125;</span></span><br><span class="line">url.<span class="property">hash</span></span><br><span class="line"><span class="comment">// &quot;#part1&quot;</span></span><br><span class="line">url.<span class="property">password</span></span><br><span class="line"><span class="comment">// &quot;passwd&quot;</span></span><br><span class="line">url.<span class="property">username</span></span><br><span class="line"><span class="comment">// &quot;user&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这些属性里面，只有<code>origin</code>属性是只读的，其他属性都可写，并且会立即生效。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;http://example.com/index.html#part1&#x27;</span>);</span><br><span class="line"></span><br><span class="line">url.<span class="property">pathname</span> = <span class="string">&#x27;index2.html&#x27;</span>;</span><br><span class="line">url.<span class="property">href</span> <span class="comment">// &quot;http://example.com/index2.html#part1&quot;</span></span><br><span class="line"></span><br><span class="line">url.<span class="property">hash</span> = <span class="string">&#x27;#part2&#x27;</span>;</span><br><span class="line">url.<span class="property">href</span> <span class="comment">// &quot;http://example.com/index2.html#part2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，改变 URL 实例的<code>pathname</code>属性和<code>hash</code>属性，都会实时反映在 URL 实例当中。</p>
+<h2 id="8-URLSearchParams-对象-代替内置模块querystring使用"><a href="#8-URLSearchParams-对象-代替内置模块querystring使用" class="headerlink" title="8.URLSearchParams 对象(代替内置模块querystring使用)"></a>8.URLSearchParams 对象(代替内置模块querystring使用)</h2><blockquote>
+<ol>
+<li><p>nodejs内置模块<code>querystring</code>有些方法要被废弃，我们使用<code>URLSearchParams API </code>构造代替</p>
+</li>
+<li><p>如果你的nodejs版本大于18，可以使用<code>const querystring= require(&#39;node:querystring&#39;)</code><br>``querystring<code>比</code>URLSearchParams<code>性能更高，但不是 标准化的 API。使用</code>URLSearchParams`当性能不重要或 当需要与浏览器代码兼容时。</p>
+</li>
+<li><p>还可以安装<code>qs</code>模块，使用方式和<code>querystring</code>一样</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="8-1-概述"><a href="#8-1-概述" class="headerlink" title="8.1 概述"></a>8.1 概述</h3><p><code>URLSearchParams</code>对象是浏览器的原生对象，用来构造、解析和处理 URL 的查询字符串（即 URL 问号后面的部分）。</p>
+<p>它本身也是一个构造函数，可以生成实例。参数可以为查询字符串，起首的问号<code>?</code>有没有都行，也可以是对应查询字符串的数组或对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法一：传入字符串</span></span><br><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(<span class="string">&#x27;?foo=1&amp;bar=2&#x27;</span>);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(<span class="variable language_">document</span>.<span class="property">location</span>.<span class="property">search</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二：传入数组</span></span><br><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>([[<span class="string">&#x27;foo&#x27;</span>, <span class="number">1</span>], [<span class="string">&#x27;bar&#x27;</span>, <span class="number">2</span>]]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法三：传入对象</span></span><br><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(&#123;<span class="string">&#x27;foo&#x27;</span> : <span class="number">1</span> , <span class="string">&#x27;bar&#x27;</span> : <span class="number">2</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>URLSearchParams</code>会对查询字符串自动编码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(&#123;<span class="string">&#x27;foo&#x27;</span>: <span class="string">&#x27;你好&#x27;</span>&#125;);</span><br><span class="line">params.<span class="title function_">toString</span>() <span class="comment">// &quot;foo=%E4%BD%A0%E5%A5%BD&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>foo</code>的值是汉字，<code>URLSearchParams</code>对其自动进行 URL 编码。</p>
+<p>浏览器向服务器发送表单数据时，可以直接使用<code>URLSearchParams</code>实例作为表单数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(&#123;<span class="attr">foo</span>: <span class="number">1</span>, <span class="attr">bar</span>: <span class="number">2</span>&#125;);</span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://example.com/api&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">  <span class="attr">body</span>: params</span><br><span class="line">&#125;).<span class="title function_">then</span>(...)</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>fetch</code>命令向服务器发送命令时，可以直接使用<code>URLSearchParams</code>实例。</p>
+<p><code>URLSearchParams</code>可以与<code>URL()</code>接口结合使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="variable language_">window</span>.<span class="property">location</span>);</span><br><span class="line"><span class="keyword">var</span> foo = url.<span class="property">searchParams</span>.<span class="title function_">get</span>(<span class="string">&#x27;foo&#x27;</span>) || <span class="string">&#x27;somedefault&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，URL 实例的<code>searchParams</code>属性就是一个<code>URLSearchParams</code>实例，所以可以使用<code>URLSearchParams</code>接口的<code>get</code>方法。</p>
+<p><code>URLSearchParams</code>实例有遍历器接口，可以用<code>for...of</code>循环遍历。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(&#123;<span class="string">&#x27;foo&#x27;</span>: <span class="number">1</span> , <span class="string">&#x27;bar&#x27;</span>: <span class="number">2</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">of</span> params) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p[<span class="number">0</span>] + <span class="string">&#x27;: &#x27;</span> + p[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// foo: 1</span></span><br><span class="line"><span class="comment">// bar: 2</span></span><br></pre></td></tr></table></figure>
+
+<p><code>URLSearchParams</code>没有实例属性，只有实例方法。</p>
+<h3 id="8-2-URLSearchParams-toString"><a href="#8-2-URLSearchParams-toString" class="headerlink" title="8.2 URLSearchParams.toString()"></a>8.2 URLSearchParams.toString()</h3><p><code>toString</code>方法返回实例的字符串形式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(<span class="string">&#x27;https://example.com?foo=1&amp;bar=2&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(url.<span class="property">search</span>);</span><br><span class="line"></span><br><span class="line">params.<span class="title function_">toString</span>() <span class="comment">// &quot;foo=1&amp;bar=2&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>那么需要字符串的场合，会自动调用<code>toString</code>方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(&#123;<span class="attr">version</span>: <span class="number">2.0</span>&#125;);</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = location.<span class="property">pathname</span> + <span class="string">&#x27;?&#x27;</span> + params;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>location.href</code>赋值时，可以直接使用<code>params</code>对象。这时就会自动调用<code>toString</code>方法。</p>
+<h3 id="8-3-URLSearchParams-has"><a href="#8-3-URLSearchParams-has" class="headerlink" title="8.3 URLSearchParams.has()"></a>8.3 URLSearchParams.has()</h3><p><code>has()</code>方法返回一个布尔值，表示查询字符串是否包含指定的键名。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(&#123;<span class="string">&#x27;foo&#x27;</span>: <span class="number">1</span> , <span class="string">&#x27;bar&#x27;</span>: <span class="number">2</span>&#125;);</span><br><span class="line">params.<span class="title function_">has</span>(<span class="string">&#x27;bar&#x27;</span>) <span class="comment">// true</span></span><br><span class="line">params.<span class="title function_">has</span>(<span class="string">&#x27;baz&#x27;</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-4-URLSearchParams-get-，URLSearchParams-getAll"><a href="#8-4-URLSearchParams-get-，URLSearchParams-getAll" class="headerlink" title="8.4 URLSearchParams.get()，URLSearchParams.getAll()"></a>8.4 URLSearchParams.get()，URLSearchParams.getAll()</h3><p><code>get()</code>方法用来读取查询字符串里面的指定键。它接受键名作为参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(<span class="string">&#x27;?foo=1&#x27;</span>);</span><br><span class="line">params.<span class="title function_">get</span>(<span class="string">&#x27;foo&#x27;</span>) <span class="comment">// &quot;1&quot;</span></span><br><span class="line">params.<span class="title function_">get</span>(<span class="string">&#x27;bar&#x27;</span>) <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+
+<p>两个地方需要注意。第一，它返回的是字符串，如果原始值是数值，需要转一下类型；第二，如果指定的键名不存在，返回值是<code>null</code>。</p>
+<p>如果有多个的同名键，<code>get</code>返回位置最前面的那个键值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(<span class="string">&#x27;?foo=3&amp;foo=2&amp;foo=1&#x27;</span>);</span><br><span class="line">params.<span class="title function_">get</span>(<span class="string">&#x27;foo&#x27;</span>) <span class="comment">// &quot;3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，查询字符串有三个<code>foo</code>键，<code>get</code>方法返回最前面的键值<code>3</code>。</p>
+<p><code>getAll()</code>方法返回一个数组，成员是指定键的所有键值。它接受键名作为参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(<span class="string">&#x27;?foo=1&amp;foo=2&#x27;</span>);</span><br><span class="line">params.<span class="title function_">getAll</span>(<span class="string">&#x27;foo&#x27;</span>) <span class="comment">// [&quot;1&quot;, &quot;2&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，查询字符串有两个<code>foo</code>键，<code>getAll</code>返回的数组就有两个成员。</p>
+<h3 id="8-5-URLSearchParams-keys-，URLSearchParams-values-，URLSearchParams-entries"><a href="#8-5-URLSearchParams-keys-，URLSearchParams-values-，URLSearchParams-entries" class="headerlink" title="8.5 URLSearchParams.keys()，URLSearchParams.values()，URLSearchParams.entries()"></a>8.5 URLSearchParams.keys()，URLSearchParams.values()，URLSearchParams.entries()</h3><p>这三个方法都返回一个遍历器对象，供<code>for...of</code>循环遍历。它们的区别在于，<code>keys</code>方法返回的是键名的遍历器，<code>values</code>方法返回的是键值的遍历器，<code>entries</code>返回的是键值对的遍历器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> params = <span class="keyword">new</span> <span class="title class_">URLSearchParams</span>(<span class="string">&#x27;a=1&amp;b=2&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">of</span> params.<span class="title function_">keys</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a</span></span><br><span class="line"><span class="comment">// b</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">of</span> params.<span class="title function_">values</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">of</span> params.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// [&quot;a&quot;, &quot;1&quot;]</span></span><br><span class="line"><span class="comment">// [&quot;b&quot;, &quot;2&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p>如果直接对<code>URLSearchParams</code>进行遍历，其实内部调用的就是<code>entries</code>接口。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">of</span> params) &#123;&#125;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">of</span> params.<span class="title function_">entries</span>()) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-qs模块"><a href="#9-qs模块" class="headerlink" title="9.qs模块"></a>9.qs模块</h2><p>qs是一个npm仓库所管理的包,可通过npm install qs命令进行安装.</p>
+<ol>
+<li>qs.parse()将URL解析成对象的形式</li>
+<li>qs.stringify()将对象 序列化成URL的形式，以&amp;进行拼接</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> qs = <span class="built_in">require</span>(<span class="string">&#x27;qs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>qs.<span class="title function_">parse</span>()</span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;username=&#x27;admin&#x27;&amp;password=&#x27;123456&#x27;&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(qs.<span class="title function_">parse</span>(str)); </span><br><span class="line"><span class="comment">// Object &#123; username: &quot;admin&quot;, password: &quot;123456&quot; &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>qs.<span class="title function_">stringify</span>()</span><br><span class="line"><span class="keyword">const</span> a = qs.<span class="title function_">stringify</span>(&#123; <span class="attr">username</span>: <span class="string">&#x27;admin&#x27;</span>, <span class="attr">password</span>: <span class="string">&#x27;123456&#x27;</span> &#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); </span><br><span class="line"><span class="comment">// username=admin&amp;password=123456</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qs.<span class="title function_">stringify</span>() 和<span class="title class_">JSON</span>.<span class="title function_">stringify</span>()有什么区别?</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>:<span class="string">&#x27;hehe&#x27;</span>,<span class="attr">age</span>:<span class="number">10</span>&#125;;</span><br><span class="line">qs.<span class="property">stringify</span>序列化结果如</span><br><span class="line">name=hehe&amp;age=<span class="number">10</span></span><br><span class="line">--------------------</span><br><span class="line">而<span class="title class_">JSON</span>.<span class="property">stringify</span>序列化结果如下：</span><br><span class="line"><span class="string">&quot;&#123;&quot;</span>a<span class="string">&quot;:&quot;</span>hehe<span class="string">&quot;,&quot;</span>age<span class="string">&quot;:10&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    02 【nodejs开发环境安装】
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">14 【接口规范和业务分层】</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Public &copy; 2023 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

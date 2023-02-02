@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>数据结构与算法（四） | 知识库</title>
+    
+    
+        <meta name="keywords" content="数据结构与算法（四）" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="图结构篇图结构在我们的生活中实际上是非常常见的，其中最显著的就是我们的地图了，比如我的家乡重庆：  可以看到，地图盘根错节，错综复杂，不同的道路相互连接，我们可以自由地从这些道路通过，从一个地点到达另一个地点。当然除了地图，我们的计算机网络、你的人际关系网等等，这些都可以用图结构来表示。图结构也是整个数据结构中比较难的一部分，而这一章，我们将探讨图结构的性质与应用。 图也是由多个结点连接而成的，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法（四）">
+<meta property="og:url" content="http://example.com/2023/01/18/719f228dbc304a20955e90f38b4aa635/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="图结构篇图结构在我们的生活中实际上是非常常见的，其中最显著的就是我们的地图了，比如我的家乡重庆：  可以看到，地图盘根错节，错综复杂，不同的道路相互连接，我们可以自由地从这些道路通过，从一个地点到达另一个地点。当然除了地图，我们的计算机网络、你的人际关系网等等，这些都可以用图结构来表示。图结构也是整个数据结构中比较难的一部分，而这一章，我们将探讨图结构的性质与应用。 图也是由多个结点连接而成的，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/08/18/sMHy2Ga3bqwuDBY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/HFR6kX18NnjGx94.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/21/zGfXODMAVc7aH34.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/nqjEmh5YyJlkFZQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/JSr2lIKfZ7X9OeR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/G6tJfjZpaNsx5gE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/obs24zGhCKmS6Fu.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/1hTPvxCscLg2SKy.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/dsMRoAJiBxVCTju.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/5hLlIVNf1o4BRuM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/jlUfrcTXNPYGvOR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/PjTo236CahYf1DZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/AzuomNgXr78TFDp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/nqjEmh5YyJlkFZQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/30/1XnqfOBEHd4DPTk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/30/2H68yAbFS9GnKD4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/30/vJ65hqwpuzRLs1O.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/30/Colcf6k7hpIGTDt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/30/YlAgIUmGdP2Ej3X.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/NR1W9HQVnI5rZj8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/t7RFJSnBdu2pxcL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/WYxKZwDMtej1JXv.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/14/ZRjFywa6kWHrbJY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/XgN2k3Ce9VnUDaR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/XO93w5N6tEMIhFZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/gFIJDkKEOe4bzl5.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/NSUDtQTRZfoBnuY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/sp39cE8yhT54F1R.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/a8I7smtX6PK3NVe.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/o8MSFfkiHe1ptGV.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/v4rlfJdkaWCIcOi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/JCNUjlfpOgbkLIQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/IK1AZgGjXr3LqJm.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/3PfzdGYI6Dv745x.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/m7lHM3zQvoRs8Uw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/gS3uycojfd4GBDT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/TNwzR2d5ZGt7Sau.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/RZE9zF54cQlYAg8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/xAHsYRfzStMwvGT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/Gwf1XhDIPT3mUzv.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/luIONkfmKYPCG2V.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/hwiEoZ9OM2Fqv47.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/qm3OUZbv8XzFLiJ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/SCeXgptNDbdFkLi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/t8c2KVLZM6qx4ui.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/Y5qFPAbanH4VcuM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/3yfDGmKzLbBhcsA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/4aTCOYzlm3dLGbt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/lWyvMUbSdsELVNI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/m7lHM3zQvoRs8Uw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/31/5Mxt2czgTkoUQ9p.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/02/WZoIyVGu2n3p5hD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/02/bKRp6Qzu5vo3fEw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/lHEi8GWsIjCFg3D.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/22/jlUfrcTXNPYGvOR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/01/zCap6w2A51rEnkK.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/ldtA9jbE1JXMcWf.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/RI5Lrpt8WeOkdZX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/CrsQhon4wxOAjRm.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/k1IctqPrOA6BKgp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/UhRBnocjCL3uD9E.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/FKRSnvProHtXegi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/BWEzS1YOwDohRdU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/c4Xge3QImBdDKYt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/LZ5ho6mxtweRPMg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/zT75jqNVS4RX3bI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/nJWbov1LZNBR8lX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/OyGRMXi9K5fE3zD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/uxI21o4vnbdNLkB.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/cR2BPhbI5X9jAU3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/Lg5Tf1Y2AQ9hjNk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/sgfxIojGRUYdQHc.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/T6BoY4IXa3fKpir.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/eVyJ6o8xraRvl3d.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/qdNyC6We2cZHTog.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/tTq2NnfJPcvogFG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/MtJxvkjZoScT2KH.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/9vEVncqotmeklr7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/BXZjrOTYfow51iD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/qUd8hiGnYyAZLo5.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/hpcVj8HwRJnvaf9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/Sltei9m4GdHXQkW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/eVyJ6o8xraRvl3d.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/FuxnpoTNezYP9Aa.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/6ABvydlgPUqEYIZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/cU2s1vRGq9SJkpE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/fxAocwRZFzSYgBb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/nbhD6gKrcWHZYwF.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/wZtX2eCvWciJ7mo.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/RndcpoWkY6Oe84y.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/d8qoaxZiymTGBlv.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/uknUSC2gK5adZjL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/Ek7nhJuXtKSZgeo.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/mphBFRsLArDQHwK.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/PlHs4NE8JTiFZad.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/03/RL9XeTnAJBdUNMF.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/MdPc7Ew96Ukzxjt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/ZQ7KvWeuJ6bdThx.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/czu5FEq8gGsRC97.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/i3csRCQaxW17jV9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/TsIgShcqrdR3BaQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/dObC8f2u6SqX4eT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/tXkEVLqR5dIchWT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/b9SGVFR6xEWBtgp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/alRYcGDp8xETLn1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/Qwa2JMLXYBhnFsd.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/9fuBUwRYav4bghd.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/mDWY8ZzqSipRGFa.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/OoPBQgd9WrSJhNx.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/uMWBeLlzh9vHpdC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/7bRdsEGLMqokZCf.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/quj1yedrT69OQz3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/23gdNArusypQS84.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/wjZ4TFslOL69IBA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/gWDMYimuxjFN45O.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/uiXtEYK5aIWxNl4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/ue1dkjGcLKg3TCY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/yqDC2BFQpElfz1L.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/2Na4UxFBJV6u3eR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/uUPRtKrGBbXlNHi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/E8UqCQoylmLMuZA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/GeXishvJ5wmKUHW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/YFJonUm1x6H5AOl.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/qo1ZwWgSji45uv3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/M4UzkX9ePgtSV2c.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/EsHI4DSYjWAVfvB.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/8W2mo5D1vFN9ur6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/mTkRZXpP8necDyf.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/7YbvfGVhlwO1yJR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/oyInZ68SxJqYm5R.png">
+<meta property="article:published_time" content="2023-01-18T02:24:32.000Z">
+<meta property="article:modified_time" content="2023-02-02T05:29:23.173Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/08/18/sMHy2Ga3bqwuDBY.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知识库" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C/C++
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C语言程序设计笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0b556fd3fac3446ab962debd1d7d0d3d/">C语言（三）</a></li>  <li class="file"><a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/">C语言（二）</a></li>  <li class="file"><a href="/2023/01/18/47f2147369be440d89c32f4ac310c6a7/">C语言（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-c
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            lib
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/">assert.h</a></li>  <li class="file"><a href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/">ctype.h</a></li>  <li class="file"><a href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/">float.h</a></li>  <li class="file"><a href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/">errno.h</a></li>  <li class="file"><a href="/2023/02/02/03a886d85a6e423a9dea00ed1979a294/">stdarg.h</a></li>  <li class="file"><a href="/2023/02/02/174190d1271c441296fe6161dbe1e3b0/">inttypes.h</a></li>  <li class="file"><a href="/2023/02/02/3c0028c132394bf49855502500823843/">signal.h</a></li>  <li class="file"><a href="/2023/02/02/3c2477856e494e289da69d3223ba7674/">math.h</a></li>  <li class="file"><a href="/2023/02/02/3ec857ad74414dfa9785db229745cff4/">stdint.h</a></li>  <li class="file"><a href="/2023/02/02/4709412c44ae4a488075c134135a0c7d/">limits.h</a></li>  <li class="file"><a href="/2023/02/02/63a6e5300615432c802b5fad1526b013/">iso646.h</a></li>  <li class="file"><a href="/2023/02/02/74ea4d343a0a466dafd2938741af9b82/">stdio.h</a></li>  <li class="file"><a href="/2023/02/02/7c6a577e51b44a30896461029a72e0d9/">stddef.h</a></li>  <li class="file"><a href="/2023/02/02/f15fbe0430cd4183b0fce6d942edec61/">stdbool.h</a></li>  <li class="file"><a href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/">locale.h</a></li>  <li class="file"><a href="/2023/02/02/30aaa7981bcb41ecb2cab759dc8d61d9/">string.h</a></li>  <li class="file"><a href="/2023/02/02/43c955dbbcff4f31b6b395baf15b3643/">time.h</a></li>  <li class="file"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/">stdlib.h</a></li>  <li class="file"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/">wchar.h</a></li>  <li class="file"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/">wctype.h</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/">array</a></li>  <li class="file"><a href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/">enum</a></li>  <li class="file"><a href="/2023/02/02/88026f8bed5a4692a3eb48abb8cc2c47/">cli</a></li>  <li class="file"><a href="/2023/02/02/9e03d1990b4c477c8e5ecd52164183d1/">flow-control</a></li>  <li class="file"><a href="/2023/02/02/a57d1c9278214ad49c0c94d45a92af2b/">file</a></li>  <li class="file"><a href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/">io</a></li>  <li class="file"><a href="/2023/02/02/83858a169b23461eadc882914abf4bd1/">function</a></li>  <li class="file"><a href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/">intro</a></li>  <li class="file"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/">memory</a></li>  <li class="file"><a href="/2023/02/02/ec65e72324264fbb8acf7006f6ced494/">multibyte</a></li>  <li class="file"><a href="/2023/02/02/635718a1db8b4ccebbfd9a4f8a55de47/">preprocessor</a></li>  <li class="file"><a href="/2023/02/02/bb7bba4594234ae5832af49f8d3e56ee/">pointer</a></li>  <li class="file"><a href="/2023/02/02/cf8653eb740a49b7a58a852bbbed00a4/">string</a></li>  <li class="file"><a href="/2023/02/02/e1cb8d47ae9c459eb5ac11818a7c6e27/">operator</a></li>  <li class="file"><a href="/2023/02/02/ecce61b4548c4e45ba73284c9ba7f0cc/">specifier</a></li>  <li class="file"><a href="/2023/02/02/41797336ff734560a26025353b233d54/">types</a></li>  <li class="file"><a href="/2023/02/02/5f8eaecb5f1f414d9106a33847f193a9/">variable</a></li>  <li class="file"><a href="/2023/02/02/a86312379ebb44c39fbda22a6eecf977/">struct</a></li>  <li class="file"><a href="/2023/02/02/bf7f6d8e12f54a7c8802abcbdc18e689/">union</a></li>  <li class="file"><a href="/2023/02/02/c19ba4705d5142bf98d9207eece2ef79/">typedef</a></li>  <li class="file"><a href="/2023/02/02/cb86948a24cf470ea1c847f85f8b8349/">syntax</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/a2acb1e85c084003b09433633a27ec8f/">C++求和的多种方式</a></li>  <li class="file"><a href="/2023/01/25/dd59a1b3ef8343efb5e60f2fd43084a8/">水仙花题解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/20/b4a4813646324eab97b039cacf031705/">Docker容器技术</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/00429dd58f6c4ce6a2b03b9aeeb9d521/">git-log</a></li>  <li class="file"><a href="/2023/02/02/02fdd75f9f2a47489decf6f32d0b3c7a/">git-rebase</a></li>  <li class="file"><a href="/2023/02/02/0b2ea073a1c14893b3dd7098546e0655/">git-add</a></li>  <li class="file"><a href="/2023/02/02/13f9c3847de9456f9a8078f072da7eab/">git-init</a></li>  <li class="file"><a href="/2023/02/02/22d2d3f830f145289393d0f82e740cb9/">git-diff</a></li>  <li class="file"><a href="/2023/02/02/4781f042463f4f40b1bbad14879d0ac7/">git-clone</a></li>  <li class="file"><a href="/2023/02/02/58789f766a6c4768be5f19a121c6fd61/">git-checkout</a></li>  <li class="file"><a href="/2023/02/02/587e496a180048d98ac872605ced2d67/">git-cherry-pick</a></li>  <li class="file"><a href="/2023/02/02/63225ea3537e44c4bd42c553358e0a14/">git-cat-file</a></li>  <li class="file"><a href="/2023/02/02/6c452a5f156c43cfa90eb618191dcda7/">git-commit-tree</a></li>  <li class="file"><a href="/2023/02/02/6d6d53b08a474a0d938c0711dae464b1/">git-commit</a></li>  <li class="file"><a href="/2023/02/02/88a36c4e06f04c1c90ee2d93d231fcf0/">git-remote</a></li>  <li class="file"><a href="/2023/02/02/a4f4a7cf1b5446f58b3403e34b90adcb/">git-ls-files</a></li>  <li class="file"><a href="/2023/02/02/bbc2b9d3586f4c05946853201ac0e103/">git-hash-object</a></li>  <li class="file"><a href="/2023/02/02/cfc661f62c4f473fb166b17ef54c5d37/">git-merge</a></li>  <li class="file"><a href="/2023/02/02/e69a3fc86aad49f2a7e9b61b6377403e/">git-pull</a></li>  <li class="file"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/">git-branch</a></li>  <li class="file"><a href="/2023/02/02/0215eb43a3cd48af8db8b7826c738ae9/">git-show</a></li>  <li class="file"><a href="/2023/02/02/01c2ed5c17c944e4b3dede0de2616c27/">git-rm</a></li>  <li class="file"><a href="/2023/02/02/1ee03873808d4c469cfa0998032e4936/">git-write-tree</a></li>  <li class="file"><a href="/2023/02/02/2f3fcea5172b40dc8e12f9ef817fb413/">git-update-ref</a></li>  <li class="file"><a href="/2023/02/02/4027c7dfd0a849658d350c9374793484/">git-restore</a></li>  <li class="file"><a href="/2023/02/02/446de5db36bf4d5a858dc7d949a7da12/">git-update-index</a></li>  <li class="file"><a href="/2023/02/02/59d93e8c48164f0190417df6f9a1f573/">git-rev-parse</a></li>  <li class="file"><a href="/2023/02/02/69ebd17fb555427285f272241105d5cd/">git-reset</a></li>  <li class="file"><a href="/2023/02/02/861b301a7bce4dad8bb92d273cd75daf/">git-switch</a></li>  <li class="file"><a href="/2023/02/02/a4bb2f6830624e38bccbc32c93085d32/">git-stash</a></li>  <li class="file"><a href="/2023/02/02/bb8b63b8991b414d92411977cc87bbbe/">git-revert</a></li>  <li class="file"><a href="/2023/02/02/e6a606da62da484dbf52fce543abb094/">git-tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/">basic</a></li>  <li class="file"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/">branch</a></li>  <li class="file"><a href="/2023/02/02/1459cfd798b842b4a80ce78e41d4155d/">operations</a></li>  <li class="file"><a href="/2023/02/02/31b7e45e02f54e149fea5d1d8cda26fe/">internal</a></li>  <li class="file"><a href="/2023/02/02/26cbe9e22b164aeaabf617d844abc440/">reference</a></li>  <li class="file"><a href="/2023/02/02/90fb796e66734920ae724f9fa66ce763/">tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/c77ab20583d64ba9a3dc6f8d6ea89f55/">04 【忽略某些文件】</a></li>  <li class="file"><a href="/2023/02/02/2b8f3ce0fed44813a0919553cb304e64/">03 【远程库操作】</a></li>  <li class="file"><a href="/2023/02/02/aeb16e6138444c83ae3bd8886ba906bc/">01 【版本控制和Git的安装介绍】</a></li>  <li class="file"><a href="/2023/02/02/52d9a2a8683a42eb966022415a93058a/">02 【版本控制命令】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JAVASE
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/49756fe6e6cc44f88ee3cc213ec4bd67/">Java泛型</a></li>  <li class="file"><a href="/2023/01/19/338f5f76a1914f72822772ea3026f220/">Java 集合</a></li>  <li class="file"><a href="/2023/01/19/929bd134ed01499c92d8e177925950ef/">Java面向对象基础(初级)</a></li>  <li class="file"><a href="/2023/01/19/274b1dfaf07945e7ab77710afad502a3/">Java面向对象基础（中级）</a></li>  <li class="file"><a href="/2023/01/19/9a52b66178b746debfe7111574e464a2/">Java面向对象(高级)</a></li>  <li class="file"><a href="/2023/01/25/47c9d6ac38214463ae1ca07fd5b85614/">Java-Math类</a></li>  <li class="file"><a href="/2023/01/25/65905cb7c01348b0b1ac5264ecc87ab0/">Java Object类详解</a></li>  <li class="file"><a href="/2023/01/25/0b0365b51c0644958b204ed11719a88a/">Java 访问修饰符</a></li>  <li class="file"><a href="/2023/01/25/e7838ce563844f3a9811936eaa09cb09/">Java数据结构-栈</a></li>  <li class="file"><a href="/2023/01/25/cefb06ca6f8049a99703cf1b3bc1fa3d/">Java异常处理</a></li>  <li class="file"><a href="/2023/01/25/d8cc29145a834e3aaa2a43b7d88c9ce1/">java选择排序</a></li>  <li class="file"><a href="/2023/01/25/abec654a37ad4a498798cdf019a2e61e/">Java-枚举</a></li>  <li class="file"><a href="/2023/01/25/d5d66a7ebad94d6483e19407faf46cc5/">Java-包装类</a></li>  <li class="file"><a href="/2023/01/25/b3ada79e6ff745f0acd8edcf57c95acc/">Java-递归执行机制</a></li>  <li class="file"><a href="/2023/01/25/03f3dd343d094bd6baf6772f4a6a2aed/">Java-冒泡排序</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JUC笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/83aef7425d394df3901ca188c1afc6d5/">JUC笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/b41b5f3eb08f41cbbbf454a8c9922051/">JUC笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/1d97f5daca284471abd5c2a42c140143/">JUC笔记（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/f4f7756d2f6644d4b0e098cb3789a9c6/">JVM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/3222fc6cde8442a89eda4e5e0808952a/">JVM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/8e58362eaa734ad292f357536ef1b05e/">JVM笔记（三）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java-GUi
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/f7310f53495a4e258159180b2ce529db/">Java-GUI-窗口配置</a></li>  <li class="file"><a href="/2023/01/19/f172572c7d114592aaa804efa121761e/">Java-GUI-监听器</a></li>  <li class="file"><a href="/2023/01/19/2c969cb92c56489ab91482067305ab42/">Java-GUI-常用组件</a></li>  <li class="file"><a href="/2023/01/19/a8eb012039114ca6a601a1c34622ba93/">Java-GUI 布局</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记 2023重制版
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/09da4fbf346f4f459ef48c64c61f6cc1/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/30140692c4144c2cbc65ba707a7b0c89/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/aea1e8a802bd45ebbe33970dab1bad21/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/df26e1c8129b412a8284a955dbe26b3c/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/31ca9cc5ea8a4795b75b49ec9680cca7/">JavaSE笔记（一）重制版</a></li>  <li class="file"><a href="/2023/01/18/7ecb50884e214c28abe6a905186f2051/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/cae1499c7dd54b5f9729e77e75f9e92f/">JavaSE笔记（四）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记（含新特性介绍）
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0e413f24b04d46babc26b48035844a34/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/4781c8feb884488d93fcbc64d83998eb/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/6561c4991b054522a438ae9c3573bf7b/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/e9b900b310774688844b4e31729afc40/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/4616dce1a1c745fb84672ffed7bf43ed/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/5aef6240910849d4b69b36b03baf7d2c/">JavaSE笔记（四）重制版</a></li>  <li class="file"><a href="/2023/01/18/d7d20c40f1044de59760363f8b9d8c4b/">JavaSE笔记（一）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSSM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0dbb54c3201b45ec9eb61b3e76209382/">Java SSM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/13fdccb2f789426fb795cdb23e8cb0c0/">JavaSSM笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/86717e97bcd34af2ab62ade51eddc019/">JavaSSM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/9dfd598003ab43828c77f2676dd6cf8f/">JavaSSM笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/088fcec4e8a846479c3cfcf5a6a52da7/">JavaWeb笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/5756fdcc799c4064be4e4a84d7ab5244/">JavaWeb笔记（五）</a></li>  <li class="file"><a href="/2023/01/18/b79318accafa44dfaabad60dbbe8de4c/">JavaWeb笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/f795be55936d42ddafd17995abae6aa8/">JavaWeb笔记（三）</a></li>  <li class="file"><a href="/2023/01/23/65909752ee164b2c877f1f77097d6358/">使用Socket传输文件</a></li>  <li class="file"><a href="/2023/01/24/1c60970a20864932bc3ef0807b9fda67/">JavaWeb笔记（四）</a></li>  <li class="file"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/">SQL事务（非常详细）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java设计模式笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/022f64208f254fbea3a8fb31b281a85b/">Java设计模式（一）</a></li>  <li class="file"><a href="/2023/01/18/3e0642cd3b254fb2b80bf2932ac4b9be/">Java设计模式（三）</a></li>  <li class="file"><a href="/2023/01/18/407c5b3cecb14dfaa0649e6f89d0ec2b/">Java设计模式（四）</a></li>  <li class="file"><a href="/2023/01/18/7acbd5ac3c754f2287c448b72010bac1/">Java设计模式（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NIO笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/93e61e24ebe54aacb046d8fb7e524ec8/">Java NIO笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/cdec76bf6ea84248809947e5c365c26e/">Java NIO笔记（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringCloud笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/89a3686366ac4733a117121766e12109/">SpringCould笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/f828affac4f64da487d581f2cb0a7ddb/">SpringCloud笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/3156ff5edada4090a2470abcafcc1ace/">SpringCloud笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/af85cc65b701415f8bf1a97873320570/">SpringCloud笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Springboot笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/">SpringBoot笔记（一）</a></li>  <li class="file"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/">SpringBoot笔记（二）</a></li>  <li class="file"><a href="/2023/01/24/99650712d4104d00a2c4a5ccfc3f525e/">SpringBoot笔记（三）</a></li>  <li class="file"><a href="/2023/01/24/3636e46047924c11b7ec162ffc9f9271/">SprintBoot笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境配置
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/06a5ebd1d51442d58ba9f7b02612a94b/">Linux下JAVA环境配置</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Bash
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            archives
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/">cp</a></li>  <li class="file"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/">awk</a></li>  <li class="file"><a href="/2023/02/02/5e2e0bec39da4147b3fa493d53c38fcf/">clear</a></li>  <li class="file"><a href="/2023/02/02/6c931bc223d04f6ea0004ce2e60ed0a9/">cal</a></li>  <li class="file"><a href="/2023/02/02/e371d141f5e04b83985097a365e488f3/">alias</a></li>  <li class="file"><a href="/2023/02/02/eb9fd5a58ed4424db318906b45b3a2c1/">cat</a></li>  <li class="file"><a href="/2023/02/02/298cc2ee3f30471c95ffe20b7fd68de7/">find</a></li>  <li class="file"><a href="/2023/02/02/3262b0fe7c3c405693a43c3b00fd31a2/">cut</a></li>  <li class="file"><a href="/2023/02/02/4a44a9b960604e14b21acd79b661370d/">gunzip</a></li>  <li class="file"><a href="/2023/02/02/4e6e8b622ad94bc7b9beaac8b4db5e9b/">df</a></li>  <li class="file"><a href="/2023/02/02/57a4373ff3994387ba06b86756caa443/">dd</a></li>  <li class="file"><a href="/2023/02/02/66f0d5d37af44909b7a1826752bb25f8/">fmt</a></li>  <li class="file"><a href="/2023/02/02/6a731d9df2e2418b906e03243a37fe5a/">egrep</a></li>  <li class="file"><a href="/2023/02/02/7e8da3da77434aa3b080c04619bd6f6c/">export</a></li>  <li class="file"><a href="/2023/02/02/825b8a01e7684bf5817ef4aa18e1dcea/">file</a></li>  <li class="file"><a href="/2023/02/02/8a29743a5dd34506a48aed9f8f23e68e/">du</a></li>  <li class="file"><a href="/2023/02/02/96af26754cb14ae88ba85f62f34485e2/">gzcat</a></li>  <li class="file"><a href="/2023/02/02/af40050b4bbb4296a2359591e5267652/">date</a></li>  <li class="file"><a href="/2023/02/02/cd9720c1fa0e4e02a5fde942d26acace/">grep</a></li>  <li class="file"><a href="/2023/02/02/031200e492574917bc61ee527a9dbec2/">sort</a></li>  <li class="file"><a href="/2023/02/02/1a711a5945444415a8a3dd969f8ecd2e/">tr</a></li>  <li class="file"><a href="/2023/02/02/1ba049a64f9a46e983332666e7e82f90/">killall</a></li>  <li class="file"><a href="/2023/02/02/265f581f57e742a990d88f8e3b81e332/">lpr</a></li>  <li class="file"><a href="/2023/02/02/50ee6471baf0464380f10b8cdcf1ace7/">gzip</a></li>  <li class="file"><a href="/2023/02/02/58e2782991a046f9b090a30000ad263f/">ps</a></li>  <li class="file"><a href="/2023/02/02/5d789ba3d1df439fae3342ddab2e8936/">uptime</a></li>  <li class="file"><a href="/2023/02/02/89e04320d7f744c089eacbb3e0e119f9/">ls</a></li>  <li class="file"><a href="/2023/02/02/8e7aba35b4a2409aa2163e101ca9c459/">uniq</a></li>  <li class="file"><a href="/2023/02/02/92ca2811477044ad84363b2a0830bf8b/">last</a></li>  <li class="file"><a href="/2023/02/02/a548ef6cd0a047a59f705a4d72e69e79/">lpq</a></li>  <li class="file"><a href="/2023/02/02/bd5a94df51574676a7fb3cf91798129b/">kill</a></li>  <li class="file"><a href="/2023/02/02/c4dace09d06a4255ada3235e13622e84/">nl</a></li>  <li class="file"><a href="/2023/02/02/d39d39701de24c9e8fc1ee2a957df430/">sed</a></li>  <li class="file"><a href="/2023/02/02/d999bd8656094f66b6dd34cd212085d7/">uname</a></li>  <li class="file"><a href="/2023/02/02/ebc4924fe4974446ac9f3911f9b27e91/">scp</a></li>  <li class="file"><a href="/2023/02/02/372ae469bfff43328cc696cd3b8243d2/">which</a></li>  <li class="file"><a href="/2023/02/02/5bbf81dd30b64aafaa5f5565992b6349/">who</a></li>  <li class="file"><a href="/2023/02/02/7bb4b5c41da44269a6c70f4633d0917e/">whereis</a></li>  <li class="file"><a href="/2023/02/02/809b6b7eb42c403f8e1b0211e44409e0/">wc</a></li>  <li class="file"><a href="/2023/02/02/a07cab80bd4c47789ae6242c402ada05/">w</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            deleted
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f5f6eb42d7684fe989265596e9306f01/">stdio</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/">archiving</a></li>  <li class="file"><a href="/2023/02/02/82a5e084940844de91c02625e19ad744/">async</a></li>  <li class="file"><a href="/2023/02/02/8a206bc871634efdbbffd067c656673b/">command</a></li>  <li class="file"><a href="/2023/02/02/933495d6b7fe4de99eefa41cd63865b8/">file</a></li>  <li class="file"><a href="/2023/02/02/e1466852223e4f6bb5dc8a46a6104e76/">file-operation</a></li>  <li class="file"><a href="/2023/02/02/0cd5e142ec7a4f2abaa5cc522dbfa62d/">user</a></li>  <li class="file"><a href="/2023/02/02/154ccd75c486446aac1353805e3f901a/">host</a></li>  <li class="file"><a href="/2023/02/02/5fdd36fee51d4c49833a3a9b35303088/">system</a></li>  <li class="file"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/">text</a></li>  <li class="file"><a href="/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/">hardware</a></li>  <li class="file"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/">named-pipe</a></li>  <li class="file"><a href="/2023/02/02/d08fc4409e6e4bb1abc3bc66097589de/">process</a></li>  <li class="file"><a href="/2023/02/02/e6cc1bf092814f148a6c9a72e5615e73/">time</a></li>  <li class="file"><a href="/2023/02/02/ea57261da8fe46bdbdad1471dfe28140/">regex</a></li>  <li class="file"><a href="/2023/02/02/eca6d9d98e874548a12942d08e09bed4/">redirection</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/253ec4deec8c4beda7dd99a6f419b404/">arithmetic</a></li>  <li class="file"><a href="/2023/02/02/307a6025886648d98d3ee4d27c48ac00/">array</a></li>  <li class="file"><a href="/2023/02/02/42867f9a3d9f4e5c99a0d6ce517b903e/">condition</a></li>  <li class="file"><a href="/2023/02/02/e23e7e4f49ac4a77a19f9cedc6bb7393/">expansion</a></li>  <li class="file"><a href="/2023/02/02/e66fbc86e05a4521882246e9dc4d3adc/">function</a></li>  <li class="file"><a href="/2023/02/02/0888cfb07af44e419d21c7d3d9f7348b/">prompt</a></li>  <li class="file"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/">quotation</a></li>  <li class="file"><a href="/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/">mktemp</a></li>  <li class="file"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/">read</a></li>  <li class="file"><a href="/2023/02/02/61f4af2f28f34d6c83a93732a217826a/">intro</a></li>  <li class="file"><a href="/2023/02/02/68774db840cb4ba9975a4b9b5b27d531/">grammar</a></li>  <li class="file"><a href="/2023/02/02/b894fd5ea7ce4f5f83bd345deeb191c7/">loop</a></li>  <li class="file"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/">script</a></li>  <li class="file"><a href="/2023/02/02/36a498d21f274b8698386927095852e5/">string</a></li>  <li class="file"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/">variable</a></li>  <li class="file"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/">readline</a></li>  <li class="file"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/">startup</a></li>  <li class="file"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/">set</a></li>  <li class="file"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/">stack</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">06 【实操篇-时间日期类 用户和用户组管理】</a></li>  <li class="file"><a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/">03 【基础篇-系统管理】</a></li>  <li class="file"><a href="/2023/02/02/622750bc961b42b79daeb6a4cc15161d/">05【实操篇-文件目录类命令】</a></li>  <li class="file"><a href="/2023/02/02/976629fb7bd241958fbac447af492905/">10 【实操篇-进程管理类】</a></li>  <li class="file"><a href="/2023/02/02/3e5ebad9a8e34aeab1791403f375e9cf/">04 【实操篇-帮助命令 文件目录管理基础知识】</a></li>  <li class="file"><a href="/2023/02/02/0994e211c03c4ca5a71ebfaddd83a5b4/">02 【基础篇-vim编辑器 网络配置 远程登录】</a></li>  <li class="file"><a href="/2023/02/02/ae308f099ff843e4974f7a3fa0ab67ff/">07 【实操篇-文件权限和搜索查找类命令】</a></li>  <li class="file"><a href="/2023/02/02/9d51515086d54d9da60959402195a54e/">08 【实操篇-压缩和解压类】</a></li>  <li class="file"><a href="/2023/02/02/b4f31671b35f4b879ac18de3fa565b44/">09 【实操篇-磁盘查看和分区类】</a></li>  <li class="file"><a href="/2023/02/02/4f43f36734ff4b7fbb862ab41b32afda/">11 【实操篇-定时任务 软件安装 克隆虚拟机】</a></li>  <li class="file"><a href="/2023/02/02/594959a1b8b0475493968c2559ce6895/">01 【入门篇-介绍和安装】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Nginx
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/d7b325aae2594d32ad44c26d7d441ae0/">02 【Nginx的目录介绍】</a></li>  <li class="file"><a href="/2023/02/02/6b1fb70d0a4441949a907556d92c32f8/">03 【Nginx虚拟主机和域名解析】</a></li>  <li class="file"><a href="/2023/02/02/ac4d35d0ad0a454381e46471c91f723d/">01 【Nginx的安装和启动】</a></li>  <li class="file"><a href="/2023/02/02/5860918f92bb4edaaf5d8aed17697c0f/">04 【Nginx反向代理和负载均衡】</a></li>  <li class="file"><a href="/2023/02/02/601b78d0331e4a25b26de4819fec9d1c/">06 【防盗链】</a></li>  <li class="file"><a href="/2023/02/02/05ca312f1aad4b1198b58405d038fc40/">05 【动静分离和URLRewrite】</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/20/85a4024620e141f4b16389b65a2ce85e/">Linux SCP指令</a></li>  <li class="file"><a href="/2023/01/25/c701f1c34bb44b30a2fa83eafe2f97b5/">Linux 同步时间</a></li>  <li class="file"><a href="/2023/01/25/6555fe10b1904e6f8ad9e999d5bb8c09/">Linux压缩和解压缩</a></li>  <li class="file"><a href="/2023/01/25/e2660f8d01d24bafbcab08e0a21766ae/">Linux用户管理</a></li>  <li class="file"><a href="/2023/01/25/76440ac4b9d649d0923e1dc7808d6d9e/">Linux 目录结构</a></li>  <li class="file"><a href="/2023/01/25/761fa1243125429eb927901f3014a91b/">Debian修改国内原</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ajax
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f4a82199df954988886f793eb07bea6e/">01 【AJAX概述 HTTP相关问题】</a></li>  <li class="file"><a href="/2023/02/02/a4bdac42f33042a09a9d5ff13bf5effe/">02 【axios fetch 跨域】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            css预处理语言
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Sass
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ff4b2c9dbf641d08213e2278205e32a/">10 【Sass语法介绍-继承】</a></li>  <li class="file"><a href="/2023/02/02/d1b7676560c64fbb81882453865edebc/">04 【Sass语法介绍-运算】</a></li>  <li class="file"><a href="/2023/02/02/b6aa35c8f62d46e499d2847e3b0c0ba0/">03 【Sass语法介绍-嵌套】</a></li>  <li class="file"><a href="/2023/02/02/720abd9ef54447e6b45f4f690ae7f1b7/">07 【Sass语法介绍-控制指令】</a></li>  <li class="file"><a href="/2023/02/02/cc4f543711a54ccd9a05d4bf128898f5/">02 【Sass语法介绍-变量】</a></li>  <li class="file"><a href="/2023/02/02/d40a67d9f9f841059a8a689603793673/">05 【Sass语法介绍-插值】</a></li>  <li class="file"><a href="/2023/02/02/8fd4499649a940418f3222e3d09ee2aa/">09 【Sass语法介绍-函数指令】</a></li>  <li class="file"><a href="/2023/02/02/c147cb6550934f58904823a45536056c/">01 【Sass的安装使用】</a></li>  <li class="file"><a href="/2023/02/02/424c4e271557488ca5b2c1b775754008/">06 【Sass语法介绍-函数】</a></li>  <li class="file"><a href="/2023/02/02/2d8afd58354f4270b36e307161cf351a/">08 【Sass语法介绍-混合指令】</a></li>  <li class="file"><a href="/2023/02/02/5c17818f7da844169c13e53e58c59fb7/">11【Sass语法介绍-导入】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            less
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7750b9ec9e19421a805fe45697c0dc2d/">01 【less学习笔记】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/d3a6f3f0a7314b8c96148565dead839f/">CSS-position位置-绝对定位和相对定位</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Canvas
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/1b03369a713343afa2a193408cc8b22f/">02 【canvas绘制基本图形】</a></li>  <li class="file"><a href="/2023/02/02/faa9ad753f834bb181309f4257b09b37/">07 【canvas图像处理】</a></li>  <li class="file"><a href="/2023/02/02/e96f125a9a854c8eb2ce8b05244ba275/">05 【canvas图像变换】</a></li>  <li class="file"><a href="/2023/02/02/815ddf95af0048f2ac2ab12ffb2ca36d/">06 【canvas图像合成】</a></li>  <li class="file"><a href="/2023/02/02/48f96f2e7faf49ce94282d5e4da0145e/">04 【canvas绘制文字】</a></li>  <li class="file"><a href="/2023/02/02/54f4c804683649cc9eb20b1f7b33d7a4/">03 【canvas样式控制】</a></li>  <li class="file"><a href="/2023/02/02/fc62e5cc497a4fc8ae6b4c6a93bf4830/">01 【认识canvas】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/732ec77199574e42aa8a3ef00df24d8d/">Javascript 面向对象(OOP)</a></li>  <li class="file"><a href="/2023/01/25/4f2d10c3153e4c7c89f2ecf584fbc453/">Javascript-三种包装对象</a></li>  <li class="file"><a href="/2023/01/25/acf1e9f487974ce1853395619e12e44d/">ES6闭包</a></li>  <li class="file"><a href="/2023/01/25/2601a78cd4fb449e90738af73cc0370d/">Javascript-展开语法</a></li>  <li class="file"><a href="/2023/01/25/5b879117bcd14d1f8a9850b134549a71/">javascript-克隆节点&&删除节点</a></li>  <li class="file"><a href="/2023/01/25/bf50528806834aada4bf812a6e5cb4d7/">javascript-变量提升</a></li>  <li class="file"><a href="/2023/01/25/3eb18b717005473285e60b95a1783d27/">javascript- 节点增加创建与追加-</a></li>  <li class="file"><a href="/2023/01/25/97466e0ebd1f48c8836d82a772e97d39/">javascript-DOM-分时问候案例</a></li>  <li class="file"><a href="/2023/01/25/6d5690c11c9c40d9ab1e41f85c32ea0d/">javascript-事件流</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Node.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/ac95840c294b45909b8a32b5a3c7b1f7/">Node-包管理工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            es6
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/08ed7d14c0b74fd9a8e849fdf55e8a80/">04 【函数的扩展】</a></li>  <li class="file"><a href="/2023/02/02/6bfa93761a9348309ee45e5c8d39d60f/">14 【Class extends】</a></li>  <li class="file"><a href="/2023/02/02/4d05e596059f482899f63dadecc42521/">06【对象的扩展】</a></li>  <li class="file"><a href="/2023/02/02/e3c46bd0c64943f4967d81b8b78cacd4/">07【字符串的扩展】</a></li>  <li class="file"><a href="/2023/02/02/2fc965f3cd9f4ebfae565e4a72ebd00b/">05【数组的扩展】</a></li>  <li class="file"><a href="/2023/02/02/ba336fd9e8f942889f5a76b31f239ff5/">01 【ES6 介绍】</a></li>  <li class="file"><a href="/2023/02/02/1a48072db3f149f1b7909da3eb852945/">13【Class的语法】</a></li>  <li class="file"><a href="/2023/02/02/d125a45575e841bfa140266dbe46daea/">12【es6模块化】</a></li>  <li class="file"><a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/">03【解构赋值】</a></li>  <li class="file"><a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">10【Promise对象】</a></li>  <li class="file"><a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/">02 【let和const】</a></li>  <li class="file"><a href="/2023/02/02/73a1c792b2754bf4bef4d5c9b9819b0a/">08【运算符的扩展】</a></li>  <li class="file"><a href="/2023/02/02/706e1bd0fa5f495fafc420ac1b96f259/">09【Set 和 Map 数据结构】</a></li>  <li class="file"><a href="/2023/02/02/1274b7d6c86142c0bb25d906aebc593a/">11【async 函数】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nodejs
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/a209b664c3ca4578a9eb3cb91ba512ba/">18 【Koa基本使用】</a></li>  <li class="file"><a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/">14 【接口规范和业务分层】</a></li>  <li class="file"><a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">05 【nodejs内置模块（上）】</a></li>  <li class="file"><a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/">02 【nodejs开发环境安装】</a></li>  <li class="file"><a href="/2023/02/02/3b68d412870a445a8d87cfd22ac39d87/">03 【npm的使用】</a></li>  <li class="file"><a href="/2023/02/02/2de266d3a093495fa8a805a1ff7696b7/">10 【Express基本使用】</a></li>  <li class="file"><a href="/2023/02/02/c280122bb3b54525b2f9dd2c3a136016/">15 【登录鉴权】</a></li>  <li class="file"><a href="/2023/02/02/e2c3e6468ad84a1dba70d04460347ed3/">04 【nodejs模块化规范：CommonJS】</a></li>  <li class="file"><a href="/2023/02/02/9ec6f6652fd94d8fbd140127c68af01e/">11 【Express服务端渲染】</a></li>  <li class="file"><a href="/2023/02/02/a81505b065c245b088a3012c1712bcdd/">08 【爬虫】</a></li>  <li class="file"><a href="/2023/02/02/b26c2cc0675b49cbac6cc6cbce060205/">12 【操作mongodb数据库】</a></li>  <li class="file"><a href="/2023/02/02/eab31b38c19844429c0475c74bdd9991/">06 【nodejs内置模块（中）】</a></li>  <li class="file"><a href="/2023/02/02/865661190f8f4ac79861ce7df6db4beb/">07 【nodejs内置模块（下）】</a></li>  <li class="file"><a href="/2023/02/02/901210553dfa45d3afe4457d57c3de3d/">09 【原生nodejs路由、获取参数、静态目录】</a></li>  <li class="file"><a href="/2023/02/02/4515be56c20449919855a7506716b2cf/">16 【跨域】</a></li>  <li class="file"><a href="/2023/02/02/888cb674f6fb4d0bb80e8bbf63a5047f/">13 【操作mysql数据库】</a></li>  <li class="file"><a href="/2023/02/02/1d20f98f527b465096fcec6bd4c2a604/">17 【文件上传】</a></li>  <li class="file"><a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/">01 【nodejs简介】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            react
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ddb53a019f342579b13f34eddaaf39c/">11 【react-router 5】</a></li>  <li class="file"><a href="/2023/02/02/d3e37d3926734fd9b08b23b8d1cf4a76/">02 【面向组件编程】</a></li>  <li class="file"><a href="/2023/02/02/f09c9109b77c40b5bc7ece5b36c57fa4/">14【react-Hook （上）】</a></li>  <li class="file"><a href="/2023/02/02/49cd82fe5a0843eeb7d20dce85205767/">07 【收集表单数据】</a></li>  <li class="file"><a href="/2023/02/02/fc925383cd634fc384c0149bb81440d7/">10 【初始化脚手架】</a></li>  <li class="file"><a href="/2023/02/02/eff28d3f98a44083b80b2d779a742937/">13【react高级指引（下）】</a></li>  <li class="file"><a href="/2023/02/02/d47733b473484eff8245e2a785c161e0/">21 【styled-components的使用】</a></li>  <li class="file"><a href="/2023/02/02/b273e59e62894b4da1bb45adbdee98b1/">03 【事件处理】</a></li>  <li class="file"><a href="/2023/02/02/c78ad7d58e00468290b8bf9b1bbdf35f/">05 【条件渲染】</a></li>  <li class="file"><a href="/2023/02/02/f1602a4566b64671bc65486a7041308f/">18 【Redux Toolkit】</a></li>  <li class="file"><a href="/2023/02/02/ff2d1e21a86541918b1aa6230f9c765d/">16 【react-router 6】</a></li>  <li class="file"><a href="/2023/02/02/0432db33aca24dd6aaa0cd981d8f3a9c/">12 【react高级指引（上）】</a></li>  <li class="file"><a href="/2023/02/02/ced58ed76774454a929bef6b403e57cb/">08 【状态提升】</a></li>  <li class="file"><a href="/2023/02/02/125ea617daa24bafb8ee8e8bc80f67a1/">17【redux】</a></li>  <li class="file"><a href="/2023/02/02/e10e4b26d2bf44378e8037d640849094/">01 【react入门】</a></li>  <li class="file"><a href="/2023/02/02/269c3589e4be4b75a6c862285f2814ec/">15【react-Hook （下）】</a></li>  <li class="file"><a href="/2023/02/02/eaeb4b81181e44c88b5ea739de867f61/">04 【生命周期】</a></li>  <li class="file"><a href="/2023/02/02/1b30544e4df4423597f839fcf8c37fba/">20 【react中使用ts】</a></li>  <li class="file"><a href="/2023/02/02/0e6479990fed4ea2a64f5e78935f308b/">09 【组合组件】</a></li>  <li class="file"><a href="/2023/02/02/c0bcdc567e0b44ab8a74c8f6af0cb309/">19 【RTK Query】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/0b43e486feca40e7b50ea25602885b96/">01 【TypeScript简介 初体验】</a></li>  <li class="file"><a href="/2023/02/02/c6556a99f0a542d0894002af7851a206/">05 【接口  interface VS type】</a></li>  <li class="file"><a href="/2023/02/02/f11ed972e4a5429d8e24c713cba8ad6e/">03 【常用类型（下）】</a></li>  <li class="file"><a href="/2023/02/02/566f4f3d44794728b106bb3d508278e8/">06 【泛型】</a></li>  <li class="file"><a href="/2023/02/02/9ae5591e9bd243bdac816b4dbba0a626/">04【编译选项 webpack配置】</a></li>  <li class="file"><a href="/2023/02/02/b3639a6ae3334e6caa0f58c95deb58db/">第二章：面向对象</a></li>  <li class="file"><a href="/2023/02/02/9325308d90134c2d89042d5118c8aac9/">02 【常用类型（上）】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            基础三剑客
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7880448dad2345f6ad10793267396c06/">24 【键盘事件】</a></li>  <li class="file"><a href="/2023/02/02/3df9b05587534928ad52b2bab8daede5/">29【定时器和延时器】</a></li>  <li class="file"><a href="/2023/02/02/d17418a26029492e8d26142599edb639/">17 【Document 节点】</a></li>  <li class="file"><a href="/2023/02/02/42ec8243b3584ce9949b0d8a167f7f8f/">31【window 对象】</a></li>  <li class="file"><a href="/2023/02/02/3a1cee3416f44e0a9bcce9c7a4190cea/">05 【函数（上）】</a></li>  <li class="file"><a href="/2023/02/02/6dfad1b9f2a747b78ddac1382be9a5e0/">08 【标准库之Date对象】</a></li>  <li class="file"><a href="/2023/02/02/840362a4d9f041caaf0e1ed6a33eaaec/">33 【History对象和Location对象】</a></li>  <li class="file"><a href="/2023/02/02/d44bb868777147b8b283ea41e73ce4b1/">14 【语法之console 对象与控制台】</a></li>  <li class="file"><a href="/2023/02/02/19848e9f214542ecb0edd74a862cd652/">23 【事件对象与鼠标事件】</a></li>  <li class="file"><a href="/2023/02/02/4a5546755a7c4fd695274767efe8fe5f/">35【Storage接口】</a></li>  <li class="file"><a href="/2023/02/02/e3707da0f0c74cbaad841455d51a8912/">30【BOM和浏览器环境概述】</a></li>  <li class="file"><a href="/2023/02/02/16ff10afc67647a19e96ced945267d1a/">25 【进度事件和表单事件】</a></li>  <li class="file"><a href="/2023/02/02/35b7e41b399341619c9fc855fbc3ffb5/">09 【标准库之Math对象和String对象】</a></li>  <li class="file"><a href="/2023/02/02/9c1da8c2638049b6aa8bc77c365bee48/">03 【流程控制语句】</a></li>  <li class="file"><a href="/2023/02/02/12edce39ff004cba8e7d204ec89253f8/">21【节点的属性】</a></li>  <li class="file"><a href="/2023/02/02/e5abe46191f446439970f94b9b0d3ba6/">10 【标准库之RegExp对象】</a></li>  <li class="file"><a href="/2023/02/02/2f850099dd994cd49f47a9fba9f3cf6b/">11 【标准库之JSON对象 JSON5】</a></li>  <li class="file"><a href="/2023/02/02/98088e10e9394c50b60ecff18690bb98/">36 【节流和防抖】</a></li>  <li class="file"><a href="/2023/02/02/0bd96d59f698491eae334ca1acb77194/">13 【语法之编程风格】</a></li>  <li class="file"><a href="/2023/02/02/e7518bf293bd48ffb053673c07982b2a/">19 【节点的增删改查】</a></li>  <li class="file"><a href="/2023/02/02/d07f06774f8c4d22b87460e592ed8865/">26 【触摸事件和其它常见事件】</a></li>  <li class="file"><a href="/2023/02/02/7a23018a60814bceba65798c147b332b/">01 【基础语法与基本数据类型】</a></li>  <li class="file"><a href="/2023/02/02/47ecc198b851461bb2a56b1118f0bf4b/">20 【节点的集合】</a></li>  <li class="file"><a href="/2023/02/02/62aad3c089ed4aa9b4f1bc99ded57008/">02 【JS表达式与操作符】</a></li>  <li class="file"><a href="/2023/02/02/e18409b1902f4104a522af41137a6bbd/">15 【严格模式】</a></li>  <li class="file"><a href="/2023/02/02/3d4ce9313a0640cf8230defbe18858e1/">04 【对象】</a></li>  <li class="file"><a href="/2023/02/02/8283ef6acb05410db22d90d8d837d454/">06 【函数（下）】</a></li>  <li class="file"><a href="/2023/02/02/9225703b95ce4608bb1cfc5e5edb9e48/">22 【事件监听】</a></li>  <li class="file"><a href="/2023/02/02/ecf66e051ad24a4bb78aafce7e3466d0/">07 【数组及常用方法】</a></li>  <li class="file"><a href="/2023/02/02/2f50015bcdd3481782e878f1a86da20b/">27 【三大家族scroll、offset、client】</a></li>  <li class="file"><a href="/2023/02/02/5d433175f200488f8ff66fa6331fd2aa/">16 【DOM概述】</a></li>  <li class="file"><a href="/2023/02/02/7dbd11b2638e487b88a3024d6e6f9682/">28 【事件传播】</a></li>  <li class="file"><a href="/2023/02/02/6a031ac5c5d647d082ee19856d0fc2bc/">18 【节点的关系和内部操作】</a></li>  <li class="file"><a href="/2023/02/02/4cf03139b6ea43d8a5642bc9286ba774/">12 【语法之错误处理机制】</a></li>  <li class="file"><a href="/2023/02/02/a28dc6634bb4456c8fc30e9d225b6eb3/">34 【表单和FormData 对象】</a></li>  <li class="file"><a href="/2023/02/02/a7b4cba18cdf4e45ae01e87a990ca1fe/">32 【Navigator 对象和Screen 对象】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            html+css
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/eb673a07916a497c827dd80b72017dc6/">09 【浮动 常见网页布局】</a></li>  <li class="file"><a href="/2023/02/02/6b1c3b3c007b4ffbb737ced5fa931d4d/">16 【过渡 动画】</a></li>  <li class="file"><a href="/2023/02/02/3a2b4fa5dfc7400aa7038b017420c521/">08 【盒模型(上) 盒模型(下)】</a></li>  <li class="file"><a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">19 【flex布局】</a></li>  <li class="file"><a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/">21 【vw布局】</a></li>  <li class="file"><a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/">13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】</a></li>  <li class="file"><a href="/2023/02/02/04aa04fcb2fc4c1386acf05fab99bece/">04 【CSS选择器 】</a></li>  <li class="file"><a href="/2023/02/02/1cbd87e2a3df47e7a142782b47821cdb/">03 【语义标签(下) CSS简介】</a></li>  <li class="file"><a href="/2023/02/02/5c5a21a8362549d5bacd900b41379c26/">18 【移动端基础 流式布局】</a></li>  <li class="file"><a href="/2023/02/02/7a7112271245402292a058135d68bb8d/">07 【Emmet语法 三大特性及单位】</a></li>  <li class="file"><a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">06 【CSS字体属性 CSS文本属性】</a></li>  <li class="file"><a href="/2023/02/02/8cfe33e063e14ed29ae060f119d43177/">12 【网页布局总结 元素的显示与隐藏】</a></li>  <li class="file"><a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/">22 【响应式布局】</a></li>  <li class="file"><a href="/2023/02/02/5c06def72fec4285bb849d30528e0303/">20 【rem适配布局】</a></li>  <li class="file"><a href="/2023/02/02/3deb7901e74d4e9aa9095df3da7305cf/">05 【CSS引入方式 CSS的元素显示模式】</a></li>  <li class="file"><a href="/2023/02/02/af297262b66348929acf86f09c99809c/">01 【HTML简介】</a></li>  <li class="file"><a href="/2023/02/02/394f3f21624a42298f8bd0cc0a8cf034/">15【背景 渐变色】</a></li>  <li class="file"><a href="/2023/02/02/3ba1ad7172b74c9f888fb5577a4f1143/">11 【定位】</a></li>  <li class="file"><a href="/2023/02/02/26011a9163a6486990089e0a074d5690/">02 【字符实体与语义标签(上)】</a></li>  <li class="file"><a href="/2023/02/02/a336b8d65382447abc8b9db0742c76df/">10 【高度塌陷与BFC】</a></li>  <li class="file"><a href="/2023/02/02/03f7d5a3ec6b484f99dcd540e3a0c800/">17 【2D转换 3D转换 浏览器私有前缀】</a></li>  <li class="file"><a href="/2023/02/02/0279e5f2fa4c42e5a595c1c80949701f/">14 【margin负值 文字围绕浮动 行内快 CSS三角 CSS初始化】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/227a7e051a0440e69890ea45ac4bf5e5/">数据结构与算法（二）</a></li>  <li class="file"><a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">数据结构与算法（三）</a></li>  <li class="file"><a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/">数据结构与算法（五）</a></li>  <li class="file active"><a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">数据结构与算法（四）</a></li>  <li class="file"><a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/">数据结构与算法（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            搜索与图论
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/21/b74bc4b803df4e7b99cf906cd5177da6/">DFS算法</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站收藏
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/c64a51c38c9542fe9a5c1d7e2dc93dba/">小火柴的前端小站</a></li>  <li class="file"><a href="/2023/01/22/e18feca3c0ce43cd96468b8ad72fbc36/">被删的前端游乐场</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编辑器
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/9f99a098f001487da297656e466dcb3b/">VSCode 是什么|极客教程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            镜像站
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/ae79cc4392384967b905c952b720f392/">腾讯软件源</a></li>  <li class="file"><a href="/2023/01/22/6be31fe5f1cd44e7a52b7602603705ac/">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-719f228dbc304a20955e90f38b4aa635" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">
+            <time datetime="2023-01-18T02:24:32.000Z" itemprop="datePublished">2023-01-18</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/719f228dbc304a20955e90f38b4aa635.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/719f228dbc304a20955e90f38b4aa635.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/719f228dbc304a20955e90f38b4aa635.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            数据结构与算法（四）
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <p><img src="https://s2.loli.net/2022/08/18/sMHy2Ga3bqwuDBY.png" alt="image-20220818210450592"></p>
+<h1 id="图结构篇"><a href="#图结构篇" class="headerlink" title="图结构篇"></a>图结构篇</h1><p>图结构在我们的生活中实际上是非常常见的，其中最显著的就是我们的地图了，比如我的家乡重庆：</p>
+<p><img src="https://s2.loli.net/2022/09/04/HFR6kX18NnjGx94.png" alt="image-20220821222600741"></p>
+<p>可以看到，地图盘根错节，错综复杂，不同的道路相互连接，我们可以自由地从这些道路通过，从一个地点到达另一个地点。当然除了地图，我们的计算机网络、你的人际关系网等等，这些都可以用图结构来表示。图结构也是整个数据结构中比较难的一部分，而这一章，我们将探讨图结构的性质与应用。</p>
+<p>图也是由多个结点连接而成的，但是一个结点可以同时连接多个其他结点，多个结点也可以同时指向一个结点，跟我们之前讲解的树结构不同，它是一种多对多的关系：</p>
+<p><img src="https://s2.loli.net/2022/08/21/zGfXODMAVc7aH34.png" alt="image-20220821223128857"></p>
+<p>它比树形结构更加复杂，没有明确的层次关系，结点与结点之间的连接关系更加自由，图结构是<strong>任意两个数据对象之间都有可能存在某种特定关系</strong>的数据结构。</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>图（Graph）一般由两个集合共同构成，一个是非空但是有限的顶点集合V（Vertex），另一个是描述顶点之间连接关系的边集合E（Edge，边集合可以为空集，比如只有一个顶点的情况下，没得连啊），一个图实际上正是由这些结点（顶点）和对应的边组成的。因此，图可以表示为：$G &#x3D; (V, E)$</p>
+<p>比如一个图我们可以表示为，集合$V &#x3D; {A,B,C,D}$，集合$E &#x3D; {(A,B),(B,C),(C,D),(D,A),(C,A)}$，图有两种基本形式，一种是上面那样的有向图（有向图表明了方向，从哪个点到哪个点），还有一种是无向图（无向图仅仅是连接，并不指明方向），比如我们上面这样表示就是一个无向图：</p>
+<p><img src="https://s2.loli.net/2022/08/22/nqjEmh5YyJlkFZQ.png" alt="image-20220822101619660"></p>
+<p>每个结点的度就是与其连接的边数，每条边是可以包含权值的，当前也可以不包含。</p>
+<p>当然我们也可以将其表示为有向图，集合$V &#x3D; {A,B,C,D}$，集合$E &#x3D; {&lt;A,B&gt;,&lt;B,C&gt;,&lt;C,D&gt;,&lt;D,A&gt;,&lt;C,A&gt;}$注意有向图的边使用尖括号&lt;&gt;表示。比如上面这个有向图，那么就长这样：</p>
+<p><img src="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png" alt="image-20220822104015728"></p>
+<p>如果是无向图的一条边(A,B)，那么就称A、B互为邻接点；如果是有向图的一条边&lt;A,B&gt;，那么就称起点A邻接到终点B。有向图的每个结点分为入度和出度，其中入度就是与顶点相连且指向该顶点的边的个数，出度就是从该顶点指向邻接顶点的边的个数。</p>
+<p>只要我们的图中不出现自回路边或是重边，那么我们就可以称这个图为简单图，比如上面两张图都是简单图。而下面的则是典型的非简单图了，其中图一出现了自回路，而图二出现了重边：</p>
+<p><img src="https://s2.loli.net/2022/08/22/JSr2lIKfZ7X9OeR.png" alt="image-20220822112214106"></p>
+<p>如果在一个无向图中，任意两个顶点都有一条边相连，则称该图为<strong>无向完全图</strong>：</p>
+<p><img src="https://s2.loli.net/2022/08/22/G6tJfjZpaNsx5gE.png" alt="image-20220822121243988"></p>
+<p>同样的，在一个有向图中，如果任意两顶点之间都有由方向互为相反的两条边连接，则称该图为<strong>有向完全图</strong>：</p>
+<p><img src="https://s2.loli.net/2022/08/22/obs24zGhCKmS6Fu.png" alt="image-20220822113126420"></p>
+<p>图通过边将顶点相连，这样我们就可以从一个顶点经过某条路径到达其他顶点了，比如我们现在想要从下面的V5点到达V1点：</p>
+<p><img src="https://s2.loli.net/2022/08/22/1hTPvxCscLg2SKy.png" alt="image-20220822205354964"></p>
+<p>那么我们可以有很多种路线，比如经过V2到达，经过V3到达等：</p>
+<p><img src="https://s2.loli.net/2022/08/22/dsMRoAJiBxVCTju.png" alt="image-20220822205824613"></p>
+<p>在一个无向图中，如果从一个顶点到另一个顶点有路径，那么就称这两个顶点是连通的。可以看到，要从V5到达V1我们可以有很多种选择，从V5可以到达V1（当然也可以反着来），所以，我们称V5和V1连通的。特别的，如果图中任意两点都是连通的，那么我们就称这个图为<strong>连通图</strong>。对于有向图，如果图中任意顶点A和B，既有从A到B的路径，也有B到A的路径，则称该有向图是<strong>强连通图</strong>。</p>
+<p>对于图 $G &#x3D; (V, E)$ 和 $G’ &#x3D; (V’, E’)$，若满足 $V’$ 是 $V$ 的子集，并且 $E’$ 是 $E$ 的子集，则称 $G’$ 是 $G$ 的<strong>子图</strong>，比如下面的两个图：</p>
+<p><img src="https://s2.loli.net/2022/08/22/5hLlIVNf1o4BRuM.png" alt="image-20220822212041079"></p>
+<p>其中右边的图就满足上述性质，所以说右边的图是左边图的子图。</p>
+<p>无向图的极大连通子图称为<strong>连通分量</strong>，有向图的极大连通子图称为<strong>强连通分量</strong>。那么什么是极大连通子图呢？首先连通子图就是原图的子图，并且子图也是连通图，同时应该具有最大的顶点数，即再加入原图中的其他顶点会导致子图不连通，拥有极大顶点数的同时也要包含依附于这点顶点所有的边才行，比如：</p>
+<p><img src="https://s2.loli.net/2022/08/22/jlUfrcTXNPYGvOR.png" alt="image-20220822214010526"></p>
+<p>可以看到右侧图1、2、3都是左图的子图，但是它们并不都是原图的连通分量，首先我们来看图1，它也是一个连通图，并且包含极大顶点数和所有的边（也就是原图内部的这一块）所以说它是连通分量，我们接着来看图2，它虽然也是连通图，但是并没有包含极大顶点数（最多可以吧D也给加上，但是这里没加）所以说并不是。最后来看图3，它也是连通图，并且包含了极大顶点数和边，所以说是连通分量。</p>
+<ul>
+<li>原图为连通图，那么连通分量就是其本身，有且仅有一个。</li>
+<li>原图为非连通图，那么连通分量会有多个。</li>
+</ul>
+<p>对于极小连通子图，我们会在后面的生成树部分进行讲解。</p>
+<hr>
+<h2 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h2><p>前面我们介绍了图的一些基本概念，我们接着来看如何在程序中对图结构进行表示，这一部分可能会涉及到某些在《线性代数》这门课程中出现的概念。</p>
+<h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><p>邻接矩阵实际上就是用矩阵去表示图中各顶点之间的邻接关系和权值。假设有一个图 $G &#x3D; (V, E)$，其中有N个顶点，那么我们就可以使用一个N×N的矩阵来表示，比如下面有A、B、C、D四个顶点的图：</p>
+<p><img src="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png" alt="image-20220822104015728"></p>
+<p>此时我们需要使用邻接矩阵来表示它，就像下面这样：</p>
+<p><img src="https://s2.loli.net/2022/08/22/PjTo236CahYf1DZ.png" alt="image-20220822220549501"></p>
+<p>对于一个不带权值的图来说：<br>$$<br>G_{ij} &#x3D; \begin{cases}<br>1, 无向图的(v_i,v_j)或有向图的&lt;v_i,v_j&gt;是图中的边\<br>0, 无向图的(v_i,v_j)或有向图的&lt;v_i,v_j&gt;不是图中的边<br>\end{cases}<br>$$<br>对于一个带权值的图来说，如果有边，则直接填写对应边的权值，如果没有，那么就填写0或是∞（因为某些图会认为0也是权值，所以说可以用∞，它可以是一个计算机允许的最大值大于所有边的权值的数）来进行表示：<br>$$<br>G_{ij} &#x3D; \begin{cases}<br>w_{ij}, 无向图的(v_i,v_j)或有向图的&lt;v_i,v_j&gt;是图中的边\<br>0或∞, 无向图的(v_i,v_j)或有向图的&lt;v_i,v_j&gt;不是图中的边<br>\end{cases}<br>$$<br>所以说，对于上面的有向图，我们应该像这样填写：</p>
+<p><img src="https://s2.loli.net/2022/08/22/AzuomNgXr78TFDp.png" alt="image-20220822221214967"></p>
+<p>那么我们来看看无向图的邻接矩阵呢？比如下面的这个图：</p>
+<p><img src="https://s2.loli.net/2022/08/22/nqjEmh5YyJlkFZQ.png" alt="image-20220822101619660"></p>
+<p>对于无向图来说，一条边两边是相互连接的，所以说，A连接B，那么B也连接A，所以说就像这样：</p>
+<p>![image-20220822222331925](&#x2F;Users&#x2F;nagocoler&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220822222331925.png)</p>
+<p>可以看到得到的矩阵用我们在《线性代数》中的定义来说就是一个对称矩阵（上半和下半都是一样的）因为没有自回路顶点，所以说主对角线上的元素全都是<code>0</code>。由于无向图没有方向之分，顶点之间是相互连接的，所以说无向图的邻接矩阵必定是一个对称矩阵。</p>
+<p>我们可以来总结一下性质：</p>
+<ul>
+<li>无向图的邻接矩阵一定是一个对称矩阵，因此，有时为了节省时间，我们可以只存放上半部分。</li>
+<li>对于无向图，邻接矩阵的第<code>i</code>行非0（或非∞）的个数就是第<code>i</code>个顶点的度。</li>
+<li>对于有向图，邻接矩阵的第<code>i</code>行非0（或非∞）的个数就是第<code>i</code>个顶点的出度（纵向就是入度了）</li>
+</ul>
+<p>接着我们来看看如何通过代码实现，首先我们需要对结构体进行一下定义，这里我们以有向图为例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxVertex 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> E;   <span class="comment">//顶点存放的数据类型，这个不用我多说了吧</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">MatrixGraph</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> vertexCount;   <span class="comment">//顶点数</span></span><br><span class="line">    <span class="type">int</span> edgeCount;     <span class="comment">//边数</span></span><br><span class="line">    <span class="type">int</span> matrix[MaxVertex][MaxVertex];   <span class="comment">//邻接矩阵</span></span><br><span class="line">    E data[MaxVertex];    <span class="comment">//各个顶点对应的数据</span></span><br><span class="line">&#125; * Graph;</span><br></pre></td></tr></table></figure>
+
+<p>接着我们可以对其进行一下初始化创建后返回：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Graph <span class="title function_">create</span><span class="params">()</span>&#123;   <span class="comment">//创建时，我们可以指定图中初始有多少个结点</span></span><br><span class="line">    Graph graph = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> MatrixGraph));</span><br><span class="line">    graph-&gt;vertexCount = <span class="number">0</span>;    <span class="comment">//顶点和边数肯定一开始是0</span></span><br><span class="line">    graph-&gt;edgeCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MaxVertex; ++i)    <span class="comment">//记得把矩阵每个位置都置为0</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; MaxVertex; ++j)</span><br><span class="line">            graph-&gt;matrix[i][j] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> graph;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    Graph graph = create();   <span class="comment">//这里咱们就搞一个</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接着我们就可以编写一下添加顶点和添加边的函数了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">addVertex</span><span class="params">(Graph graph, E element)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(graph-&gt;vertexCount &gt;= MaxVertex) <span class="keyword">return</span>;</span><br><span class="line">    graph-&gt;data[graph-&gt;vertexCount++] = element;   <span class="comment">//添加新元素</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">addEdge</span><span class="params">(Graph graph, <span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;   <span class="comment">//添加几号顶点到几号顶点的边</span></span><br><span class="line">    <span class="keyword">if</span>(graph-&gt;matrix[a][b] == <span class="number">0</span>) &#123;</span><br><span class="line">        graph-&gt;matrix[a][b] = <span class="number">1</span>;  <span class="comment">//注意如果是无向图的话，需要[a][b]和[b][a]都置为1</span></span><br><span class="line">        graph-&gt;edgeCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来尝试构建一下这个有向图：</p>
+<p><img src="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png" alt="image-20220822104015728"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Graph graph = create();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> c = <span class="string">&#x27;A&#x27;</span>; c &lt;= <span class="string">&#x27;D&#x27;</span> ; ++c) </span><br><span class="line">    addVertex(graph, (<span class="type">char</span>) c);</span><br><span class="line">addEdge(graph, <span class="number">0</span>, <span class="number">1</span>);   <span class="comment">//A -&gt; B</span></span><br><span class="line">addEdge(graph, <span class="number">1</span>, <span class="number">2</span>);   <span class="comment">//B -&gt; C</span></span><br><span class="line">addEdge(graph, <span class="number">2</span>, <span class="number">3</span>);   <span class="comment">//C -&gt; D</span></span><br><span class="line">addEdge(graph, <span class="number">3</span>, <span class="number">0</span>);   <span class="comment">//D -&gt; A</span></span><br><span class="line">addEdge(graph, <span class="number">2</span>, <span class="number">0</span>);   <span class="comment">//C -&gt; A</span></span><br></pre></td></tr></table></figure>
+
+<p>接着我们打印此领接矩阵，看看是否变成了我们预想中的那样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printGraph</span><span class="params">(Graph graph)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">-1</span>; i &lt; graph-&gt;vertexCount; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">-1</span>; j &lt; graph-&gt;vertexCount; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">-1</span>)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, <span class="string">&#x27;A&#x27;</span> + i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i == <span class="number">-1</span>)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%3c&quot;</span>, <span class="string">&#x27;A&#x27;</span> + j);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>, graph-&gt;matrix[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后得到：</p>
+<p><img src="https://s2.loli.net/2022/08/30/1XnqfOBEHd4DPTk.png" alt="image-20220830123847943"></p>
+<p>可以看到结果跟我们上面推导得出的邻接矩阵一模一样，当然这里仅仅是演示了普通的有向图，我们也可以稍微将代码进行修改，将其变成一个无向图或是带权有向图，这里就不做演示了。</p>
+<h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><p>前面我们介绍了领接矩阵，我们可以使用邻接矩阵在程序中保存一个图的边相关信息，它采用二维数组的形式，将对应边的连接关系进行存储，但是我们知道，数组存在容量上的局限性（学了这么多节课了，应该能体会到，数组需要一段连续空间，无论是申请还是用起来都很麻烦）同时，我们创建邻接矩阵后，如果图的边数较多（稠密图）利用率还是挺高的，但是一旦遇到边数很少的图（稀疏图）那么表中大量的位置实际上都是<code>0</code>，根本没有被利用起来，是很浪费的。</p>
+<p>此时，我们可以考虑使用链式结构来解决这种问题，就像下面这样：</p>
+<p><img src="https://s2.loli.net/2022/08/30/2H68yAbFS9GnKD4.png" alt="image-20220830125309778"></p>
+<p>对于图中的每个顶点，建立一个数组，存放一个头结点，我们将与其邻接的顶点，通过一个链表进行记录（看着挺像前面讲的哈希表）这样，也可以表示一个图的连接关系，并且内存空间能够得到更加有效的利用。当然，对于无向图来说，跟之前一样，两边都需要进行保存：</p>
+<p><img src="https://s2.loli.net/2022/08/30/vJ65hqwpuzRLs1O.png" alt="image-20220830141940278"></p>
+<p>我们来尝试编写一下代码实现，首先还是定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxVertex 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span>   <span class="comment">//结点和头结点分开定义，普通结点记录邻接顶点信息</span></span><br><span class="line">    <span class="type">int</span> nextVertex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">next</span>;</span></span><br><span class="line">&#125; * Node;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HeadNode</span> &#123;</span>   <span class="comment">//头结点记录元素</span></span><br><span class="line">    E element;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">AdjacencyGraph</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> vertexCount;   <span class="comment">//顶点数</span></span><br><span class="line">    <span class="type">int</span> edgeCount;     <span class="comment">//边数</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HeadNode</span> <span class="title">vertex</span>[<span class="title">MaxVertex</span>];</span></span><br><span class="line">&#125; * Graph;</span><br></pre></td></tr></table></figure>
+
+<p>接着是对其进行初始化：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Graph <span class="title function_">create</span><span class="params">()</span>&#123;   <span class="comment">//创建时，我们可以指定图中初始有多少个结点</span></span><br><span class="line">    Graph graph = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> AdjacencyGraph));</span><br><span class="line">    graph-&gt;vertexCount = graph-&gt;edgeCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> graph;   <span class="comment">//头结点数组一开始可以不用管</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在添加边和顶点时，稍微麻烦一些：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">addVertex</span><span class="params">(Graph graph, E element)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(graph-&gt;vertexCount &gt;= MaxVertex) <span class="keyword">return</span>;   <span class="comment">//跟之前一样</span></span><br><span class="line">    graph-&gt;vertex[graph-&gt;vertexCount].element = element;   <span class="comment">//添加新结点时，再来修改也行</span></span><br><span class="line">    graph-&gt;vertex[graph-&gt;vertexCount].next = <span class="literal">NULL</span>;</span><br><span class="line">  	graph-&gt;vertexCount++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">addEdge</span><span class="params">(Graph graph, <span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    Node node = graph-&gt;vertex[a].next;</span><br><span class="line">    Node newNode = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Node));</span><br><span class="line">    newNode-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    newNode-&gt;nextVertex = b;</span><br><span class="line">    <span class="keyword">if</span>(!node) &#123;    <span class="comment">//如果头结点下一个都没有，那么直接连上去</span></span><br><span class="line">        graph-&gt;vertex[a].next = newNode;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;   <span class="comment">//否则说明当前顶点已经连接了至少一个其他顶点了，有可能会出现已经连接过的情况，所以说要特别处理一下</span></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;nextVertex == b) <span class="keyword">return</span>;   <span class="comment">//如果已经连接了对应的顶点，那么直接返回</span></span><br><span class="line">            <span class="keyword">if</span>(node-&gt;next) node = node-&gt;next;   <span class="comment">//否则继续向后遍历</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;   <span class="comment">//如果没有下一个了，那就找到最后一个结点了，直接结束</span></span><br><span class="line">        &#125; <span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line">        node-&gt;next = newNode;</span><br><span class="line">    &#125;</span><br><span class="line">  	graph-&gt;edgeCount++;   <span class="comment">//边数计数+1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来将其构建一下吧，还是以上面的图为例：</p>
+<p><img src="https://s2.loli.net/2022/08/22/V9BuJt72QH5SEb3.png" alt="image-20220822104015728"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    Graph graph = create();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> c = <span class="string">&#x27;A&#x27;</span>; c &lt;= <span class="string">&#x27;D&#x27;</span> ; ++c)</span><br><span class="line">        addVertex(graph, (<span class="type">char</span>) c);</span><br><span class="line">    addEdge(graph, <span class="number">0</span>, <span class="number">1</span>);   <span class="comment">//A -&gt; B</span></span><br><span class="line">    addEdge(graph, <span class="number">1</span>, <span class="number">2</span>);   <span class="comment">//B -&gt; C</span></span><br><span class="line">    addEdge(graph, <span class="number">2</span>, <span class="number">3</span>);   <span class="comment">//C -&gt; D</span></span><br><span class="line">    addEdge(graph, <span class="number">3</span>, <span class="number">0</span>);   <span class="comment">//D -&gt; A</span></span><br><span class="line">    addEdge(graph, <span class="number">2</span>, <span class="number">0</span>);   <span class="comment">//C -&gt; A</span></span><br><span class="line"></span><br><span class="line">    printGraph(graph);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来打印看看效果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printGraph</span><span class="params">(Graph graph)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; graph-&gt;vertexCount; ++i) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d | %c&quot;</span>, i, graph-&gt;vertex[i].element);</span><br><span class="line">        Node node = graph-&gt;vertex[i].next;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, node-&gt;nextVertex);</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到结果如下：</p>
+<p><img src="https://s2.loli.net/2022/08/30/Colcf6k7hpIGTDt.png" alt="image-20220830132526621"></p>
+<p>可以看到结果符合我们的预期。</p>
+<p>不过虽然这样的方式看上去更加的简单高效，但是会给我们带来一些不必要的麻烦，比如上面创建的领接表，我们只能快速得到某个顶点指向了哪些顶点，也就是只能计算到顶点的出度，但是无法快速计算顶点的入度，只能将所有结点统计之后才能得到入度。所以说在表示有向图时，查找上并没有邻接矩阵来的方便。</p>
+<p>为了解决这种问题，我们可以建立一个逆领接表，来表示所有指向当前顶点的顶点列表：</p>
+<p><img src="https://s2.loli.net/2022/08/30/YlAgIUmGdP2Ej3X.png" alt="image-20220830133244446"></p>
+<p>实际上就是反着来而已，通过建立这两个领接表，就能在一定程度上缓解不方便的情况。</p>
+<p><strong>图练习题：</strong></p>
+<ol>
+<li><p>在一个具有n个顶点的有向图中，若所有顶点的出度之和为s，则所有顶点的入度数之和为？</p>
+<p>A. s         B. s - 1           C. s + 1           D. 2s</p>
+<p><em>有向图的所有出度实际上就是所有顶点连向其他顶点的边数，对于单个顶点来说，要么是自己指向别人（自己的出度，别人的入度），要么别人指向自己（别人的出度，自己的入度），这东西就是个相对的而已，而这些都可以一律看做出度，所以说所有顶点入度数之和就是所有顶点出度之和，所以选A</em></p>
+</li>
+<li><p>在一个具有n个顶点的无向完全图中，所含的边数为？</p>
+<p>A. n       B. n(n-1)         C. n(n - 1)&#x2F;2         D. n(n + 1)&#x2F;2</p>
+<p><em>首先回顾一下无向完全图的定义：在一个无向图中，任意两个顶点都有一条边相连，则称该图为无向完全图。既然任意两个顶点都有一个，那么每个结点都会有n-1条与其连接的边，所以说总数为 $n \times (n-1)$ 但是由于是无向图，没有方向之分，所以说需要去掉一半的数量，得到 $\frac {n \times (n-1)} {2}$，选择C</em></p>
+</li>
+<li><p>若要把n个顶点连接为一个连通图，则至少需要几条边？</p>
+<p>A. n         B. n - 1           C. n + 1           D. 2n</p>
+<p><em>连通图的定义是，每个顶点至少有一条到达其他顶点的路径，所以说我们只需要找一个最简单能够保证每个结点都有与其相连的就行了，也就是连成一根直线（或者是树）的情况，选择B</em></p>
+</li>
+<li><p>对于一个具有 n 个顶点和 e 条边的无向图，在其对应的邻接表中，所含边结点有多少个？</p>
+<p>A. n         B. ne          C. e           D. 2e</p>
+<p><em>对于无向图，这结点个数等于边数的两倍，对于有向图，刚好等于边数，所以说选择 D</em></p>
+</li>
+</ol>
+<hr>
+<h2 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h2><p>记得小时候每次去书店，都能看到迷宫书：</p>
+<p><img src="https://s2.loli.net/2022/08/31/NR1W9HQVnI5rZj8.png" alt="image-20220831141620073"></p>
+<p>每次看到都想买一本，但是当时家里条件并不允许消费这么贵的书，所以都只能在书店多看几眼再回去。迷宫的解，实际上就是我们在一个复杂的地图中寻找一条能够从起点到达终点的路径。可以看到从起点开始，每到一个路口，可能都会出现多个分叉，可能有的分叉就会走进死胡同，有的分叉就会走到下一个路口。</p>
+<p>那么我们人脑是怎么去寻找到正确的路径呢？</p>
+<p><img src="https://s2.loli.net/2022/08/31/t7RFJSnBdu2pxcL.png" alt="image-20220831142540478"></p>
+<p>我们首先还是会从起点开始看，我们会尝试去走分叉路的每一个方向，如果遇到死胡同，那么我们就退回到上一个路口，再去尝试其他方向，直到能一直往下走为止。经过不断重复上述的操作，最后我们就肯定能够到达迷宫的出口了。</p>
+<p>而图的搜索，实际上也是类似于迷宫这样的形式，我们需要从图的某一个顶点出发，去寻找到图中对应顶点的位置，这一部分，我们将对图的搜索算法进行讨论。</p>
+<p><img src="https://s2.loli.net/2022/08/31/WYxKZwDMtej1JXv.png" alt="image-20220831144250794"></p>
+<h3 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h3><p>我们之前在学习二叉树的过程中，讲解了树的前序遍历，各位回想一下，我们当时是如何在进行遍历的？</p>
+<p><img src="https://s2.loli.net/2022/08/14/ZRjFywa6kWHrbJY.png" alt="image-20220814145531577"></p>
+<p>前序遍历就是勇往直前，直接走到底，然后再回去走其他的分支，而我们的图其实也可以像这样，我们可以一路向前，如果到了死胡同，那么就倒回去再走其他的方向，如果所有方向都走不通，继续再回到上一个路口（实际上就是我们人脑的思维）这样不断的寻找，肯定是可以找到的。</p>
+<p>比如现在我们要从A开始寻找下图中的I：</p>
+<p><img src="https://s2.loli.net/2022/08/31/XgN2k3Ce9VnUDaR.png" alt="image-20220831145024885"></p>
+<p>那么我们的路线可以是这样的：</p>
+<p><img src="https://s2.loli.net/2022/08/31/XO93w5N6tEMIhFZ.png" alt="image-20220831145204170"></p>
+<p>此时顶点B有三个方向，那么我们可以先随便选一个方向（当然，一般情况下为了规范，推荐按照字母排列顺序来走，这里为了演示，就随便走了）看看：</p>
+<p><img src="https://s2.loli.net/2022/08/31/gFIJDkKEOe4bzl5.png" alt="image-20220831145313492"></p>
+<p>此时来到K，我们发现K已经是一个死胡同，没有其他路了，那么此时我们就需要回到上一个路口，继续去探索其他的路径：</p>
+<p><img src="https://s2.loli.net/2022/08/31/NSUDtQTRZfoBnuY.png" alt="image-20220831145530501"></p>
+<p>此时我们接着往下一个相邻的顶点G走，发现G有其他的分叉，那么我们就继续向前：</p>
+<p><img src="https://s2.loli.net/2022/08/31/sp39cE8yhT54F1R.png" alt="image-20220831145910420"></p>
+<p>此时走到F发现又是死路，那么退回到G，走其他的方向：</p>
+<p><img src="https://s2.loli.net/2022/08/31/a8I7smtX6PK3NVe.png" alt="image-20220831150008288"></p>
+<p>运气太垃了，又到死胡同了，同样的，回到G继续走其他方向：</p>
+<p><img src="https://s2.loli.net/2022/08/31/o8MSFfkiHe1ptGV.png" alt="image-20220831150236884"></p>
+<p>走到C之后，我们有其他的路，我们继续往后走：</p>
+<p><img src="https://s2.loli.net/2022/08/31/v4rlfJdkaWCIcOi.png" alt="image-20220831150354010"></p>
+<p>此时走到顶点H，发现H只有一条路，并且H再向前是已经走过的顶点B，那么此时不能再向前了，所以说直接退回到C，走另一边：</p>
+<p><img src="https://s2.loli.net/2022/08/31/JCNUjlfpOgbkLIQ.png" alt="image-20220831150617828"></p>
+<p>此时来到E，又有两条路，那么继续随便选一条走：</p>
+<p><img src="https://s2.loli.net/2022/08/31/IK1AZgGjXr3LqJm.png" alt="image-20220831150820472"></p>
+<p>此时来到顶点J，发现又是死胡同，退回到E，继续走另一边：</p>
+<p><img src="https://s2.loli.net/2022/08/31/3PfzdGYI6Dv745x.png" alt="image-20220831150913443"></p>
+<p>好了，经过了这么多试错，终于是找到了I顶点，这种方式就是深度优先搜索了。</p>
+<p>那么我们就来打个代码玩玩吧，这里我们构建一个简单一点的图：</p>
+<p><img src="https://s2.loli.net/2022/08/31/m7lHM3zQvoRs8Uw.png" alt="image-20220831152924911"></p>
+<p>这里我们使用邻接表表示图，因为邻接表直接保存相邻顶点，所以说到达顶点时遍历相邻顶点会更快（能够到达 $O(V + E)$ 线性阶）而如果使用邻接矩阵的话，我们得完整遍历整个二维数组，就比较费时间了（需要 $O(V^2)$ 平方阶）。</p>
+<p>比如现在我们想从A开始查找顶点F，首先先把图给建好（注意有6个顶点，记得容量写好）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    Graph graph = create();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> c = <span class="string">&#x27;A&#x27;</span>; c &lt;= <span class="string">&#x27;F&#x27;</span> ; ++c)</span><br><span class="line">        addVertex(graph, (<span class="type">char</span>) c);</span><br><span class="line">    addEdge(graph, <span class="number">0</span>, <span class="number">1</span>);   <span class="comment">//A -&gt; B</span></span><br><span class="line">    addEdge(graph, <span class="number">1</span>, <span class="number">2</span>);   <span class="comment">//B -&gt; C</span></span><br><span class="line">    addEdge(graph, <span class="number">1</span>, <span class="number">3</span>);   <span class="comment">//B -&gt; D</span></span><br><span class="line">    addEdge(graph, <span class="number">1</span>, <span class="number">4</span>);   <span class="comment">//D -&gt; E</span></span><br><span class="line">    addEdge(graph, <span class="number">4</span>, <span class="number">5</span>);   <span class="comment">//E -&gt; F</span></span><br><span class="line"></span><br><span class="line">    printGraph(graph);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/08/31/gS3uycojfd4GBDT.png" alt="image-20220831154358394"></p>
+<p>然后就是我们的深度优先搜索算法了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 深度优先搜索算法</span></span><br><span class="line"><span class="comment"> * @param graph 图</span></span><br><span class="line"><span class="comment"> * @param startVertex 起点顶点下标</span></span><br><span class="line"><span class="comment"> * @param targetVertex 目标顶点下标</span></span><br><span class="line"><span class="comment"> * @param visited 已到达过的顶点数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(Graph graph, <span class="type">int</span> startVertex, <span class="type">int</span> targetVertex, <span class="type">int</span> * visited)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们先将深度优先遍历写出来：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 深度优先搜索算法（无向图和有向图都适用）</span></span><br><span class="line"><span class="comment"> * @param graph 图</span></span><br><span class="line"><span class="comment"> * @param startVertex 起点顶点下标</span></span><br><span class="line"><span class="comment"> * @param targetVertex 目标顶点下标</span></span><br><span class="line"><span class="comment"> * @param visited 已到达过的顶点数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(Graph graph, <span class="type">int</span> startVertex, <span class="type">int</span> targetVertex, <span class="type">int</span> * visited)</span> &#123;</span><br><span class="line">    visited[startVertex] = <span class="number">1</span>;   <span class="comment">//走过之后一定记得mark一下</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c -&gt; &quot;</span>, graph-&gt;vertex[startVertex].element);   <span class="comment">//打印当前顶点值</span></span><br><span class="line">    Node node = graph-&gt;vertex[startVertex].next;   <span class="comment">//遍历当前顶点所有的分支</span></span><br><span class="line">    <span class="keyword">while</span> (node) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[node-&gt;nextVertex])   <span class="comment">//如果已经到过（有可能是走其他分支到过，或是回头路）那就不继续了</span></span><br><span class="line">            dfs(graph, node-&gt;nextVertex, targetVertex, visited);  <span class="comment">//没到过就继续往下走，这里将startVertex设定为对于分支的下一个顶点，按照同样的方式去寻找</span></span><br><span class="line">        node = node-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> arr[graph-&gt;vertexCount];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; graph-&gt;vertexCount; ++i) arr[i] = <span class="number">0</span>;</span><br><span class="line">    dfs(graph, <span class="number">0</span>, <span class="number">5</span>, arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>深度优先遍历结果如下：</p>
+<p><img src="https://s2.loli.net/2022/08/31/TNwzR2d5ZGt7Sau.png" alt="image-20220831163728799"></p>
+<p>路线如下：</p>
+<p><img src="https://s2.loli.net/2022/08/31/RZE9zF54cQlYAg8.png" alt="image-20220831163909522"></p>
+<p>现在我们将需要查找的顶点进行判断：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 深度优先搜索</span></span><br><span class="line"><span class="comment"> * @param graph 图</span></span><br><span class="line"><span class="comment"> * @param startVertex 起点顶点下标</span></span><br><span class="line"><span class="comment"> * @param targetVertex 目标顶点下标</span></span><br><span class="line"><span class="comment"> * @param visited 已到达过的顶点数组</span></span><br><span class="line"><span class="comment"> * @return 搜索结果，如果找到返回1，没找到返回0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">dfs</span><span class="params">(Graph graph, <span class="type">int</span> startVertex, <span class="type">int</span> targetVertex, <span class="type">int</span> * visited)</span> &#123;</span><br><span class="line">    visited[startVertex] = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c -&gt; &quot;</span>, graph-&gt;vertex[startVertex].element);</span><br><span class="line">    <span class="keyword">if</span>(startVertex == targetVertex) <span class="keyword">return</span> <span class="number">1</span>;   <span class="comment">//如果当前顶点就是要找的顶点，直接返回</span></span><br><span class="line">    Node node = graph-&gt;vertex[startVertex].next;</span><br><span class="line">    <span class="keyword">while</span> (node) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[node-&gt;nextVertex])</span><br><span class="line">            <span class="keyword">if</span>(dfs(graph, node-&gt;nextVertex, targetVertex, visited))  <span class="comment">//如果查找成功，直接返回1，不用再看其他分支了</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        node = node-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">//while结束那肯定是没找到了，直接返回0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> arr[graph-&gt;vertexCount];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; graph-&gt;vertexCount; ++i) arr[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n%d&quot;</span>, dfs(graph, <span class="number">0</span>, <span class="number">5</span>, arr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到结果如下：</p>
+<p><img src="https://s2.loli.net/2022/08/31/xAHsYRfzStMwvGT.png" alt="image-20220831164615659"></p>
+<p>再来找一下顶点D呢：</p>
+<p><img src="https://s2.loli.net/2022/08/31/Gwf1XhDIPT3mUzv.png" alt="image-20220831164641467"></p>
+<p>可以看到到D之后就停止了，因为已经找到了。那么要是去寻找一个没有连接到图中的结点呢？</p>
+<p><img src="https://s2.loli.net/2022/08/31/luIONkfmKYPCG2V.png" alt="image-20220831164739301"></p>
+<p>可以看到整个图按照深度优先遍历找完了都没找到。</p>
+<h3 id="广度优先搜索（BFS）"><a href="#广度优先搜索（BFS）" class="headerlink" title="广度优先搜索（BFS）"></a>广度优先搜索（BFS）</h3><p>前面我们介绍了深度优先搜索，我们接着来看另一种方案。还记得我们在前面二叉树中学习的层序遍历吗？</p>
+<p><img src="https://s2.loli.net/2022/08/31/hwiEoZ9OM2Fqv47.png" alt="image-20220831165617419"></p>
+<p>层序遍历实际上是优先将每一层进行遍历，而不是像前序遍历那样勇往直前，而图的搜索其实也可以采用这种方案，我们可以先探索顶点所有的分支，然后再依次去看这些分支的所有分支：</p>
+<p><img src="https://s2.loli.net/2022/08/31/qm3OUZbv8XzFLiJ.png" alt="image-20220831170114857"></p>
+<p>首先咱还是从A来到B，此时B有三条分叉路，我们依次访问这三条路的各个顶点：</p>
+<p><img src="https://s2.loli.net/2022/08/31/SCeXgptNDbdFkLi.png" alt="image-20220831172011576"></p>
+<p>我们先记录一下这三个顶点，同样需要使用队列来完成：H、G、K</p>
+<p>注意访问之后不要再继续向下了，接着我们从这三个里面的第一个顶点H开始，按照同样的方法继续：</p>
+<p><img src="https://s2.loli.net/2022/08/31/t8c2KVLZM6qx4ui.png" alt="image-20220831172153888"></p>
+<p>此时因为只有一个分支，所以说找到C，继续记录，将C也添加进去：G、K、C</p>
+<p>注意此时需要回去，继续看之前三个顶点的第二个顶点G：</p>
+<p><img src="https://s2.loli.net/2022/08/31/Y5qFPAbanH4VcuM.png" alt="image-20220831172312762"></p>
+<p>此时C已经看过了，接着就找到了F和D，也是记录一下：K、C、F、D</p>
+<p>然后，我们继续看之前三个结点的最后一个：</p>
+<p><img src="https://s2.loli.net/2022/08/31/3yfDGmKzLbBhcsA.png" alt="image-20220831172726616"></p>
+<p>此时K已经是死胡同了，那么就结束，然后继续看下一个C：</p>
+<p><img src="https://s2.loli.net/2022/08/31/4aTCOYzlm3dLGbt.png" alt="image-20220831172941671"></p>
+<p>此时继续将E给记录进去：F、D、E，接着看D和F，也没有后续了，那么最后就只有E了：</p>
+<p><img src="https://s2.loli.net/2022/08/31/lWyvMUbSdsELVNI.png" alt="image-20220831173224689"></p>
+<p>成功找到目标I顶点，实际上广度优先遍历就是尽可能地扩展范围，多去探索广阔的土地，而不是死拽着一根不放，就像爱情，实在得不到就算了吧，她至始至终就没爱过你，不要继续在她身上浪费感情了，多去结交新的朋友，相信你会遇到更好的。</p>
+<p>那么按照这个思路，我们就来尝试代码实现一下，首先把队列搬过来：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> T;   <span class="comment">//这里将顶点下标作为元素</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">QueueNode</span> &#123;</span></span><br><span class="line">    T element;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">QueueNode</span> * <span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">QueueNode</span> * <span class="title">QNode</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Queue</span>&#123;</span></span><br><span class="line">    QNode front, rear;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Queue</span> * <span class="title">LinkedQueue</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">initQueue</span><span class="params">(LinkedQueue <span class="built_in">queue</span>)</span>&#123;</span><br><span class="line">    QNode node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> QueueNode));</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">queue</span>-&gt;front = <span class="built_in">queue</span>-&gt;rear = node;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">offerQueue</span><span class="params">(LinkedQueue <span class="built_in">queue</span>, T element)</span>&#123;</span><br><span class="line">    QNode node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> QueueNode));</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    node-&gt;element = element;</span><br><span class="line">    <span class="built_in">queue</span>-&gt;rear-&gt;next = node;</span><br><span class="line">    <span class="built_in">queue</span>-&gt;rear = node;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">isEmpty</span><span class="params">(LinkedQueue <span class="built_in">queue</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">queue</span>-&gt;front == <span class="built_in">queue</span>-&gt;rear;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">T <span class="title function_">pollQueue</span><span class="params">(LinkedQueue <span class="built_in">queue</span>)</span>&#123;</span><br><span class="line">    T e = <span class="built_in">queue</span>-&gt;front-&gt;next-&gt;element;</span><br><span class="line">    QNode node = <span class="built_in">queue</span>-&gt;front-&gt;next;</span><br><span class="line">    <span class="built_in">queue</span>-&gt;front-&gt;next = <span class="built_in">queue</span>-&gt;front-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">queue</span>-&gt;rear == node) <span class="built_in">queue</span>-&gt;rear = <span class="built_in">queue</span>-&gt;front;</span><br><span class="line">    <span class="built_in">free</span>(node);</span><br><span class="line">    <span class="keyword">return</span> e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们还是以上面的图为例：</p>
+<p><img src="https://s2.loli.net/2022/08/31/m7lHM3zQvoRs8Uw.png" alt="image-20220831152924911"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 广度优先遍历</span></span><br><span class="line"><span class="comment"> * @param graph 图</span></span><br><span class="line"><span class="comment"> * @param startVertex 起点顶点下标</span></span><br><span class="line"><span class="comment"> * @param targetVertex 目标顶点下标</span></span><br><span class="line"><span class="comment"> * @param visited 已到达过的顶点数组</span></span><br><span class="line"><span class="comment"> * @param queue 辅助队列</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">bfs</span><span class="params">(Graph graph, <span class="type">int</span> startVertex, <span class="type">int</span> targetVertex, <span class="type">int</span> * visited, LinkedQueue <span class="built_in">queue</span>)</span> &#123;</span><br><span class="line">    offerQueue(<span class="built_in">queue</span>, startVertex);  <span class="comment">//首先把起始位置顶点丢进去</span></span><br><span class="line">    visited[startVertex] = <span class="number">1</span>;   <span class="comment">//起始位置设置为已走过</span></span><br><span class="line">    <span class="keyword">while</span> (!isEmpty(<span class="built_in">queue</span>)) &#123;</span><br><span class="line">        <span class="type">int</span> next = pollQueue(<span class="built_in">queue</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c -&gt; &quot;</span>, graph-&gt;vertex[next].element);  <span class="comment">//从队列中取出下一个顶点，打印</span></span><br><span class="line">        Node node = graph-&gt;vertex[next].next;    <span class="comment">//同样的，把每一个分支都遍历一下</span></span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!visited[node-&gt;nextVertex]) &#123;   <span class="comment">//如果没有走过，那么就直接入队</span></span><br><span class="line">                offerQueue(<span class="built_in">queue</span>, node-&gt;nextVertex);</span><br><span class="line">                visited[node-&gt;nextVertex] = <span class="number">1</span>;   <span class="comment">//入队时就需要设定为1了</span></span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来测试一下吧：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">  	...</span><br><span class="line">      </span><br><span class="line">    <span class="type">int</span> arr[graph-&gt;vertexCount];</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Queue</span> <span class="title">queue</span>;</span></span><br><span class="line">    initQueue(&amp;<span class="built_in">queue</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; graph-&gt;vertexCount; ++i) arr[i] = <span class="number">0</span>;</span><br><span class="line">    bfs(graph, <span class="number">0</span>, <span class="number">5</span>, arr, &amp;<span class="built_in">queue</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>成功得到结果：</p>
+<p><img src="https://s2.loli.net/2022/08/31/5Mxt2czgTkoUQ9p.png" alt="image-20220831184445728"></p>
+<p>如果要指定查找的话，就更简单了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">_Bool</span> <span class="title function_">bfs</span><span class="params">(Graph graph, <span class="type">int</span> startVertex, <span class="type">int</span> targetVertex, <span class="type">int</span> * visited, LinkedQueue <span class="built_in">queue</span>)</span> &#123;</span><br><span class="line">    offerQueue(<span class="built_in">queue</span>, startVertex);</span><br><span class="line">    visited[startVertex] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (!isEmpty(<span class="built_in">queue</span>)) &#123;</span><br><span class="line">        <span class="type">int</span> next = pollQueue(<span class="built_in">queue</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c -&gt; &quot;</span>, graph-&gt;vertex[next].element);</span><br><span class="line">        Node node = graph-&gt;vertex[next].next;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;nextVertex == targetVertex) <span class="keyword">return</span> <span class="number">1</span>;   <span class="comment">//如果就是我们要找的，直接返回1</span></span><br><span class="line">            <span class="keyword">if</span>(!visited[node-&gt;nextVertex]) &#123;</span><br><span class="line">                offerQueue(<span class="built_in">queue</span>, node-&gt;nextVertex);</span><br><span class="line">                visited[node-&gt;nextVertex] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">//找完了还没有，那就返回0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就实现了图的广度优先搜索。</p>
+<p><strong>图练习题：</strong></p>
+<ol>
+<li><p>若一个图的边集为：{(A, B),(A, C),(B, D),(C, F),(D, E),(D, F)}，对该图进行深度优先搜索，得到的顶点序列可能是：</p>
+<p>A. ABCFDE                  B. ACFDEB                   C. ABDCFE                     D. ABDFEC</p>
+<p><em>这种题直接把图画出来，因为边集是圆括号，说是肯定是一个无向图，图先画出来再说：</em></p>
+<p><img src="https://s2.loli.net/2022/09/02/WZoIyVGu2n3p5hD.png" alt="image-20220902112113153"></p>
+<p><em>因为这四个选项都是A开始的，所以说我们从A开始看，因为A连接了B和C，所以说A后面紧跟B或是C都可以，接着往下看，先看走B的情况，因为B只连接了一个D，所以说选项A直接排除，接着往下看，D链接了E和F，所以说选项C直接排除，此时只有选项D了，我们接着往后看，此时我们走F，紧接着的只有C，D也不满足，所以选择B（当然你怕不稳的话把B选项也推出来就行了）</em></p>
+</li>
+<li><p>若一个图的边集为：{(A, B),(A, C),(B, D),(C, F),(D, E),(D, F)}，对该图进行广度优先搜索，得到的顶点序列可能是：</p>
+<p>A. ABCDEF                  B. ABCFDE                   C. ABDCEF                     D. ACBFDE</p>
+<p><em>跟上面是同样的思路，只要各位小伙伴听懂了BFS和DFS的思路，肯定没问题的，选择 D</em></p>
+</li>
+<li><p>如下图所示的无向连通图，从顶点A开始对该图进行广度优先遍历，得到的顶点序列可能是：</p>
+<p><img src="https://s2.loli.net/2022/09/02/bKRp6Qzu5vo3fEw.png" alt="image-20220902110829087"></p>
+<p><em>同样的思路，选择D</em></p>
+</li>
+</ol>
+<hr>
+<h2 id="图应用"><a href="#图应用" class="headerlink" title="图应用"></a>图应用</h2><p>前面我们介绍了图的相关性质，以及图的遍历方式，这一部分我们接着来看图的相关应用。</p>
+<h3 id="生成树和最小生成树"><a href="#生成树和最小生成树" class="headerlink" title="生成树和最小生成树"></a>生成树和最小生成树</h3><p>在开始讲解最小生成树之前，我们先来回顾一下之前讲解的连通分量。</p>
+<ul>
+<li>对于无向图来说，如果图中任意两点都是连通的，那么我们就称这个图为<strong>连通图</strong>。</li>
+<li>对于有向图来说，如果图中任意顶点A和B，既有从A到B的路径，也有B到A的路径，则称该有向图是<strong>强连通图</strong>。</li>
+</ul>
+<p>而连通分量则要求是某个图的子图（子图可以是只包原图含部分顶点和边的图，也可以就是原图本身，因为定义只是子集，不是真子集），并且子图也要是连通的才可以，还有一个重要条件是必须拥有极大顶点数（能够保证图连通的且包含原图最大的顶点数）并且包含所有依附于这些顶点的边（这个极大更偏向于顶点数的极大），我们就称这个子图为极大连通子图。</p>
+<ul>
+<li>无向图的极大连通子图称为连通分量。</li>
+<li>有向图的极大强连通子图称为强连通分量。</li>
+</ul>
+<p>比如下面的有向图，这个图本身并不是连通的：</p>
+<p><img src="https://s2.loli.net/2022/09/03/lHEi8GWsIjCFg3D.png" alt="image-20220903101036333"></p>
+<p>其中图1和图2都满足上述条件，都是强连通分量，本身就是连通并且已经到达最大的顶点数和边数了（只要再加入其他的顶点和边就会导致不连通）但是图3并不是子图（A到B的边缺失）并且不是强连通的，所以说不是强连通分量。</p>
+<p>又比如下面这个无向图，这个图本身也是不连通的：</p>
+<p><img src="https://s2.loli.net/2022/08/22/jlUfrcTXNPYGvOR.png" alt="image-20220822214010526"></p>
+<p>其中图1和图3都满足条件，都是连通分量，但是图2并没有到达最大的顶点数和边数，所以说不是连通分量。</p>
+<p>当然上面都是原图不连通的情况，如果原图就是一个连通图，包含其所有顶点和边的子图就已经满足条件了，所以其本身就是一个连通分量；同样的，如果原图就是一个强连通图，那么其本身就是一个强连通分量。</p>
+<p>总结如下：</p>
+<ul>
+<li>如果原图本身不连通，那么其连通分量（强连通分量）不止一个。</li>
+<li>如果原图本身连通，那么其连通分量（强连通分量）就是其本身。</li>
+</ul>
+<p>极大连通子图我们回顾完了，那么我们接着来讨论一下<strong>极小连通子图</strong>。这里的极小主要是说的边数的极小，首先依然要是原图的子图并且是连通的，但是此时要求具有最大的顶点数和最小的边数，也就是说再去掉任意一条边会导致图不连通（直接理解为极大连通子图尽可能去掉能去掉的边就行了）</p>
+<p>针对于极小连通子图，我们一般只讨论无向图（对于有向图，不存在极小强连通子图的说法，因为主要是讨论生成树）我们依然将原图就是连通图和原图不是连通图分开分析，首先是原图本身就是连通图的情况：</p>
+<p><img src="https://s2.loli.net/2022/09/01/zCap6w2A51rEnkK.png" alt="image-20220901180909877"></p>
+<p>原图本身就是连通图，那么其极大连通子图就是其本身，此时我们需要尽可能去掉那些“不必要”的边，依然能够保证其是连通的，也就是极小连通子图。可以看到右边两幅图，跟左边这幅图包含了同样的顶点数量，但是边数被去掉了一些，并且如果再继续去掉任意一条边的话，那么就会导致不连通，所以说左边两幅图都是右边这幅图的极小连通图（当然，就像上面这样，可能会出现多种方案，极小连通图不唯一）</p>
+<p>我们发现，无论是去掉哪些边的情况，到最后一定是只留下 N-1 条边（其中N是顶点数）每个顶点有且仅有一条路径相连，也就是包含原图全部N个顶点的极小连通子图，我们一般称其为：<strong>生成树</strong>，为什么叫生成树呢，因为结点数和边数正好满足树的定义（且不存在回路的情况），我们可以将其调整为一棵树：</p>
+<p><img src="https://s2.loli.net/2022/09/03/ldtA9jbE1JXMcWf.png" alt="image-20220903103444346"></p>
+<p>当然，这是原图本身就连通的情况，如果原图本身不连通的话，那么就会出现多个连通分量，此时就会得到一片<strong>生成森林</strong>，森林中的树的数量就是其连通分量的数量。</p>
+<p>那么我们在程序中要怎么才能得到一个有向图的生成树呢？我们可以使用前面讲解的两种图的遍历方式来进行生成，我们以下图为例，这是一个普通的无向连通图：</p>
+<p><img src="https://s2.loli.net/2022/09/03/RI5Lrpt8WeOkdZX.png" alt="image-20220903111255127"></p>
+<p>我们如果按照深度优先遍历的方式，从G开始，那么就会得到下面的顺序：</p>
+<p><img src="https://s2.loli.net/2022/09/03/CrsQhon4wxOAjRm.png" alt="image-20220903112122707"></p>
+<p>按照顺序我们就可以得到一棵生成树：</p>
+<p><img src="https://s2.loli.net/2022/09/03/k1IctqPrOA6BKgp.png" alt="image-20220903112332571"></p>
+<p>虽然看着很奇怪，但是按照我们的顺序，得到的树就是这样的，可以发现，因为我们的深度优先搜索不会去走那些回头路，相当于直接把哪些导致回路和多余的边给去掉了，最后遍历得到的结果就是一颗生成树了。</p>
+<p>同样的，我们来看看如果是按照广度优先遍历的方式，又会得到什么结果呢？</p>
+<p><img src="https://s2.loli.net/2022/09/03/UhRBnocjCL3uD9E.png" alt="image-20220903112733812"></p>
+<p>最后得到的生成树为：</p>
+<p><img src="https://s2.loli.net/2022/09/03/FKRSnvProHtXegi.png" alt="image-20220903113108162"></p>
+<p>实际上我们发现，在广度优先遍历下得到的生成树，也是按照每一层在进行排列的，非常清晰。当然，因为深度优先遍历和广度优先遍历本身的顺序就不是唯一的，所以最后得到的生成树也不是唯一的。</p>
+<p>生成树讨论完成之后，我们接着来讨论一下最小生成树，那么这个最小指的是什么最小呢？如果我们给一个无向图的边都加上权值（网图）现在要求生成树边的权值总和最小，我们就称这棵树为<strong>最小生成树</strong>（注意最小生成树不唯一，因为有可能出现多种方案都是最小的情况）比如下面的就是最后得到的最小生成树了：</p>
+<p><img src="https://s2.loli.net/2022/09/03/BWEzS1YOwDohRdU.png" alt="image-20220903113954010"></p>
+<p>构建最小生成树有两种算法，一种是**普利姆（Prim）<strong>算法，还有一种是</strong>克鲁斯卡尔（Kruskal）**算法，我们先来讨论第一种：</p>
+<p>我们以下图为例：</p>
+<p><img src="https://s2.loli.net/2022/09/03/c4Xge3QImBdDKYt.png" alt="image-20220903142138573"></p>
+<p>普利姆算法的核心就是从任意一个顶点开始，不断成长为一棵树，每次都会选择尽可能小的方向去进行延伸，比如我们一开始还是从顶点A开始：</p>
+<p>此时与A相连的边有B和E，A的延伸方向有两个，此时我们只需要选择一个最小的就可以了：</p>
+<p><img src="https://s2.loli.net/2022/09/03/LZ5ho6mxtweRPMg.png" alt="image-20220903142208537"></p>
+<p>此时我们已经构建出了由A、E组成的一棵树，同样的，我们需要去寻找与当前树中A、E顶点相连的所有顶点，包括B、G、H，哪一个最小，那么下一个延伸的就是哪一个，此时发现H和E之间最小，继续延伸：</p>
+<p><img src="https://s2.loli.net/2022/09/03/zT75jqNVS4RX3bI.png" alt="image-20220903142245688"></p>
+<p>现在已经变成了由A、E、H组成的一棵树，同样的，按照之前的思路继续寻找一个最小的方向进行延伸：</p>
+<p><img src="https://s2.loli.net/2022/09/03/nJWbov1LZNBR8lX.png" alt="image-20220903142413604"></p>
+<p>继续进行延伸，发现F、K之间最小：</p>
+<p><img src="https://s2.loli.net/2022/09/03/OyGRMXi9K5fE3zD.png" alt="image-20220903142558882"></p>
+<p>此时K、B和K、D和K、H的权重都是4，其中H顶点已经走过了，不能出现回路，所以说不考虑，此时随便选择K、B或是K、D都可以，不会影响后续结果：</p>
+<p><img src="https://s2.loli.net/2022/09/03/uxI21o4vnbdNLkB.png" alt="image-20220903142829606"></p>
+<p>此时依然是K、D为最小，所以说直接选择：</p>
+<p><img src="https://s2.loli.net/2022/09/03/cR2BPhbI5X9jAU3.png" alt="image-20220903142917096"></p>
+<p>紧接着，我们发现最小权重的来到了5，此时权重为5的边有B、E和H、I和B、D，但是由于E、D已经走过，此时直接选择H、I即可：</p>
+<p><img src="https://s2.loli.net/2022/09/03/Lg5Tf1Y2AQ9hjNk.png" alt="image-20220903143057702"></p>
+<p>接着，我们发现I、G也是5，直接选择即可：</p>
+<p><img src="https://s2.loli.net/2022/09/03/sgfxIojGRUYdQHc.png" alt="image-20220903143509563"></p>
+<p>然后最小权重此时就是6了，选择H、J和I、J都可以，随便选择一个即可：</p>
+<p><img src="https://s2.loli.net/2022/09/03/T6BoY4IXa3fKpir.png" alt="image-20220903143532060"></p>
+<p>此时，整个图的所有顶点就遍历完成了，现在我们去掉那些没用被采用的边，得到的结果就是我们的最小生成树了：</p>
+<p><img src="https://s2.loli.net/2022/09/03/eVyJ6o8xraRvl3d.png" alt="image-20220903143645249"></p>
+<p>虽然样子有点丑，但是把它捋一捋就好了。可以看到省去的边都是尽可能大的边，或是那种导致回路的边，留下的边基本都是权重小的边，得到的就是最小生成树了（注意考试的时候只要按照我们的思路推是肯定没问题的，但是千万要仔细看，不要把边给看漏了，不然会出大问题）</p>
+<p>我们接着来看另一种，克鲁斯卡尔算法，它的核心思想就是我们主动去选择那些小的边，而不是像上面一样被动地扩展延伸。</p>
+<p>在一开始的时候，直接去掉所有的边，我们从这些边中一个一个选择出来（注意是任意一条边都可以选择，并不是只有选择的顶点旁边才能选择，这个过程中可能会出现多棵树，但是最后一定会连成一棵树的），最后形成一颗最小生成树，假设一开始什么都没选择，被选中的边我们一会用橙色标注：</p>
+<p><img src="https://s2.loli.net/2022/09/03/qdNyC6We2cZHTog.png" alt="image-20220903144403449"></p>
+<p>首先我们直接找到最小边，K、F，它的权值为2，所以说直接选择就行：</p>
+<p><img src="https://s2.loli.net/2022/09/03/tTq2NnfJPcvogFG.png" alt="image-20220903144533239"></p>
+<p>紧接着就是F、H的边，权重为3，目前最小的了：</p>
+<p><img src="https://s2.loli.net/2022/09/03/MtJxvkjZoScT2KH.png" alt="image-20220903144828106"></p>
+<p>此时最小的权重就只有4了，目前有4条边都可以进行选择，但是K、H这条边因为K和H都已经在树中了，所以说不能考虑，其他三条边都是没问题的，我们随便选择一条就行了：</p>
+<p><img src="https://s2.loli.net/2022/09/03/9vEVncqotmeklr7.png" alt="image-20220903145239074"></p>
+<p>继续选择权重为4的边：</p>
+<p><img src="https://s2.loli.net/2022/09/03/BXZjrOTYfow51iD.png" alt="image-20220903145321395"></p>
+<p>此时权重就来到了5，那么权重为5的顶点我们也可以随便选择一条，只要不会导致出现回路就行了：</p>
+<p><img src="https://s2.loli.net/2022/09/03/qUd8hiGnYyAZLo5.png" alt="image-20220903145431925"></p>
+<p>此时连接G、I，我们发现出现了两棵树，没关系的，最后会连成一棵树的，我们继续选择其他权重为5的边：</p>
+<p><img src="https://s2.loli.net/2022/09/03/hpcVj8HwRJnvaf9.png" alt="image-20220903145551091"></p>
+<p>此时我们选择A、E这条边，然后是H、I这条边，虽然这条边上的H和I顶点都已经在树中了，但是它们并不属于同一棵树，这种情况也是可以连接的，然后我们继续选择权重为6的顶点：</p>
+<p><img src="https://s2.loli.net/2022/09/03/Sltei9m4GdHXQkW.png" alt="image-20220903145828812"></p>
+<p>此时选择I、J或是H、J都可以（最小生成树不唯一）现在我们已经连接上所有的顶点了，最小生成树构建完成，我们把那些没有选择都边都扔了：</p>
+<p><img src="https://s2.loli.net/2022/09/03/eVyJ6o8xraRvl3d.png" alt="image-20220903143645249"></p>
+<p>其实无论是哪种算法，最后都能够得到一棵最小生成树，有关实现代码，由于太过复杂，这里就不进行编写了。</p>
+<h3 id="最短路径问题"><a href="#最短路径问题" class="headerlink" title="最短路径问题"></a>最短路径问题</h3><p>前面我们介绍了最小生成树，通过两种算法就能够从众多的边中选择那些尽可能小的边得到一个权重最小的树，这一块我们将继续讨论最小开销相关的问题。</p>
+<p><img src="https://s2.loli.net/2022/09/03/FuxnpoTNezYP9Aa.png" alt="image-20220903150609366"></p>
+<p>地铁线路错综复杂，我们想要从一个站点坐到另一个站点，其实是有很多种方案的，比如我们可以选择少的换乘数放的方案，或是距离近的方案，不同的方案可能坐的站点数就不同，而最后我们出站时，始终是按照从A地点到B地点最小经过的站点数进行收费的（比如从A到B有两种方案，前者要坐11个站，后者要坐7个站，但是最后只会按7个站进行收费），那么这么多线路，我们要如何计算得到一条最短的路径呢？</p>
+<p>我们首先从最简单的<strong>单源最短路径</strong>进行讨论，所谓单源最短路径，就是一个顶点出发，到其他顶点的最短路径，比如下面的这张图：</p>
+<p><img src="https://s2.loli.net/2022/09/03/6ABvydlgPUqEYIZ.png" alt="image-20220903153802247"></p>
+<p>要解决这种问题，我们可以采用**迪杰斯特拉（Dijkstra）**算法，下面我们来看看迪杰斯特拉算法是如何让计算机来计算最短路径的，它跟普利姆算法求最小生成树有着很多相似之处，我们就从A出发，这里我们需要一个表来记录：</p>
+<p><img src="https://s2.loli.net/2022/09/03/cU2s1vRGq9SJkpE.png" alt="image-20220903195351496"></p>
+<p>dist这一行记录A到其他顶点的最短路径，path这一行记录的是最短路径所邻接的顶点，我们首先还是从A开始，与A直接相邻的两个分别是B和D，其中B的距离是2，D的距离是5，那么我们就先进行一下记录：</p>
+<p><img src="https://s2.loli.net/2022/09/03/fxAocwRZFzSYgBb.png" alt="image-20220903195723929"></p>
+<p>因为都是从A过来的，所以说直接记录为A即可，接着我们继续找到当前A路径最短的一个顶点B，此时顶点B可以到达C、D、A，因为不能走回头路，不考虑A，那么目前从A到达C的最短距离就是经过B到达的，相当于A-&gt;B加上B-&gt;C的距离：</p>
+<p><img src="https://s2.loli.net/2022/09/03/nbhD6gKrcWHZYwF.png" alt="image-20220903230103368"></p>
+<p>然后我们来看顶点D，此时我们发现，除了A直接到D之外，从B也可以到达D，那么我们就可以比较一下，看是从B到D更短一些，还是从A直接到D更短一些 $min(2 + 2, 5)$ ，通过比较，我们发现从B绕过去会更短一些，只需要4即可，所以说我们将其更新一下：</p>
+<p><img src="https://s2.loli.net/2022/09/03/wZtX2eCvWciJ7mo.png" alt="image-20220903230254335"></p>
+<p>接着我们继续找到下一个离A最近的顶点D，D与顶点E和J相连，直接更新即可，比如E的最短路径就是相当于是A到D的最短路径加上D到E的路径，D到J也是同理：</p>
+<p><img src="https://s2.loli.net/2022/09/03/RndcpoWkY6Oe84y.png" alt="image-20220903230521739"></p>
+<p>此时继续找到表中下一个距离A最近的顶点J，J可以到达H或者是E，按照同样的方式，我们看看是从D直接到E更短，还是从J到E更短，进行比较 $min(6 + 3, 8)$ ，得到结果是D直接过去更短，所以说不需要更新。然后H更新为J过去的最短路径：</p>
+<p><img src="https://s2.loli.net/2022/09/03/d8qoaxZiymTGBlv.png" alt="image-20220903231152767"></p>
+<p>我们接着来看下一个距离A最近的顶点C，此时C可以到达F和E，我们先来看E，还是对其进行比较，如果从C到达E更短，那么就更新为新的值，$min(7 + 4, 8)$，最后仍然是从D到E最短，所以说不变，接着我们把F的值更新一下：</p>
+<p><img src="https://s2.loli.net/2022/09/03/uknUSC2gK5adZjL.png" alt="image-20220903231449081"></p>
+<p>然后我们来看下一个距离A最近的顶点E，E连接的就比较多了，此时E最短路径是从D过来的，那么我们就不考虑D，我们来依次看看与其相连的C、F、G、H、J（注意这里比较的是从E到这些顶点，之前比较的是从这些顶点到E，不要以为是一样的了）</p>
+<ul>
+<li>从E到达顶点C：$min(8 + 4, 7)$，故C继续采用原方案。</li>
+<li>从E到达顶点F：$min(8 + 2, 15)$，此时从E到达F路径更短，更新F。</li>
+<li>从E到达顶点G：直接更新。</li>
+<li>从E到达顶点H：$min(8 + 6, 13)$，故H继续采用原方案。</li>
+<li>从E到达顶点J：$min(8 + 3, 6)$，故J继续采用原方案。</li>
+</ul>
+<p>最后得到：</p>
+<p><img src="https://s2.loli.net/2022/09/03/Ek7nhJuXtKSZgeo.png" alt="image-20220903232316607"></p>
+<p>我们继续来到下一个离A最近的顶点F，F连接了G和E，但是由于当前最短路径是从E过来的，不能走回头路，所以说直接去看G，比较 $min(10 + 5, 17)$，得到从F到达G会更短，所以说更新G：</p>
+<p><img src="https://s2.loli.net/2022/09/03/mphBFRsLArDQHwK.png" alt="image-20220903232542904"></p>
+<p>然后我们接着看到下一个最短的顶点H，此时H与G和I相连，我们先来看G，$min(13 + 3, 15)$，维持原方案。然后是I，直接更新即可：</p>
+<p><img src="https://s2.loli.net/2022/09/03/PlHs4NE8JTiFZad.png" alt="image-20220903232752582"></p>
+<p>虽然此时表已经填完了，但是我们还没有把所有的顶点都遍历完，有可能还会存在更短的路径，所以说别着急，我们还得继续看。此时继续选择下一个离A最近的顶点G，它与E、F、H、I相连，由于其实从F过来的，排除掉F，我们来看看其他三个：</p>
+<ul>
+<li>从G到达顶点E：$min(15 + 9, 8)$，显然选择原方案就行。</li>
+<li>从G到达顶点H：$min(15 + 3, 13)$，依然是选择原方案更短。</li>
+<li>从G到达顶点I：$min(15 + 4, 21)$，从G到达I更短，更新。</li>
+</ul>
+<p>最后得到：</p>
+<p><img src="https://s2.loli.net/2022/09/03/RL9XeTnAJBdUNMF.png" alt="image-20220903233144469"></p>
+<p>此时我们来看最后一个顶点I，与其连接的有G和H，因为是从G过来的，直接比较H就行了，$min(19 + 8, 13)$，维持原方案就行，至此，迪杰斯特拉算法结束。最后得到的表，就是最终的A到达各个顶点的最短路径值了，并且根据path这一栏的数据，我们就可以直接推出一条路径出来。</p>
+<p>当然，这只是解决了<strong>单源最短路径</strong>问题，现在我们将问题的难度提升一下，比如我们现在想要求得图中每一对顶点之间的最短路径，那么该如何进行计算呢？最简单的办法就是，我们可以将所有的顶点都执行一次迪杰斯特拉算法，这样我们就可以求到所有顶点之间的最短距离了。只不过这种方式并不是最好的选择，对于这种问题，我们可以选择<strong>弗洛伊德</strong>（Floyd）算法。</p>
+<p>比如下面的有向网图（权值别出现负数了，不然要出大问题）：</p>
+<p><img src="https://s2.loli.net/2022/09/04/MdPc7Ew96Ukzxjt.png" alt="image-20220904094948962"></p>
+<p>我们可以很轻松地得到它的邻接矩阵：</p>
+<p><img src="https://s2.loli.net/2022/09/04/ZQ7KvWeuJ6bdThx.png" alt="image-20220904101234641"></p>
+<p>而弗洛伊德算法则是根据最初的邻接矩阵进行推导得出的。规则如下：</p>
+<ul>
+<li>从1开始，一直到n（n就是顶点数）的一个矩阵序列A1、A2、…An，我们需要从最初的邻接矩阵开始，从A1开始不断往后推。</li>
+<li>每一轮，我们都会去更新那些非对角线（对角线都是0，更新了还是0，所以说没必要看）、<code>i</code>行<code>i</code>列以外的元素，判断水平和垂直方向投影的两个元素之和是否比原值小，如果是，那就更新为新的值。迭代公式为：$A_k(i,j)&#x3D;min(A_{k−1}(i,j), A_{k−1}(i,k)+A_{k−1}(k,j))$</li>
+<li>经历n轮后，最后得到的就是最终的最短距离了。</li>
+</ul>
+<p>我们从第一轮开始，第一轮是基于原有的邻接矩阵来进行处理的：</p>
+<p><img src="https://s2.loli.net/2022/09/04/czu5FEq8gGsRC97.png" alt="image-20220904102258851"></p>
+<p>此时我们看到，除了对角线以外，就是B-&gt;C和C-&gt;B的这两个位置，我们按照上面的规则，进行计算：</p>
+<p><img src="https://s2.loli.net/2022/09/04/i3csRCQaxW17jV9.png" alt="image-20220904102738649"></p>
+<p>同样的，我们继续看到C-&gt;B这个为止，按照同样的方式进行更新：</p>
+<p><img src="https://s2.loli.net/2022/09/04/TsIgShcqrdR3BaQ.png" alt="image-20220904103010762"></p>
+<p>最后更新完成得到的结果如下：</p>
+<p><img src="https://s2.loli.net/2022/09/04/dObC8f2u6SqX4eT.png" alt="image-20220904103033008"></p>
+<p>实际上我们发现，我们计算的和相当于是绕路的结果与当前直接走的结果相比较得到的。按照的同样的方式，我们开始第二轮：</p>
+<p><img src="https://s2.loli.net/2022/09/04/tXkEVLqR5dIchWT.png" alt="image-20220904103410691"></p>
+<p>更新完成之后，C-&gt;A的距离变成了5：</p>
+<p><img src="https://s2.loli.net/2022/09/04/b9SGVFR6xEWBtgp.png" alt="image-20220904103549079"></p>
+<p>我们接着来看最后一轮：</p>
+<p><img src="https://s2.loli.net/2022/09/04/alRYcGDp8xETLn1.png" alt="image-20220904103724239"></p>
+<p>此时我们将A-&gt;B的距离也更新一下：</p>
+<p><img src="https://s2.loli.net/2022/09/04/Qwa2JMLXYBhnFsd.png" alt="image-20220904103815369"></p>
+<p>最后我们得到的矩阵，存放的就是所有顶点之间的最短距离了，当然这里我们只计算了最短距离，没有去记录从哪个方向到达此顶点的，各位小伙伴也可以在计算的同时单独在另一个表中记录一下从哪个顶点过去计算出来的最小距离，这里就不演示了。实际上这个算法对我们来说是更好理解的一种算法，并且在编写程序时也会很简单，我们以下图为例：</p>
+<p><img src="https://s2.loli.net/2022/09/04/9fuBUwRYav4bghd.png" alt="image-20220904105442929"></p>
+<p>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> INF 210000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 4</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">min</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? b : a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">floyd</span><span class="params">(<span class="type">int</span> matrix[N][N], <span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; n; ++k)    <span class="comment">//一共需要执行K轮</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)   <span class="comment">//i和j从0开始就行了，直接全看，不会影响结果的</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">                matrix[i][j] = min(matrix[i][k] + matrix[k][j], matrix[i][j]);   <span class="comment">//按照规则更新就行了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> matrix[N][N] = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>, INF, INF&#125;,</span><br><span class="line">                        &#123;<span class="number">4</span>, <span class="number">0</span>, INF, <span class="number">5</span>&#125;,</span><br><span class="line">                        &#123;INF, <span class="number">2</span>, <span class="number">0</span>, INF&#125;,</span><br><span class="line">                        &#123;<span class="number">3</span>, INF, <span class="number">7</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    floyd(matrix, N);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; ++j)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, matrix[i][j]);</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后得到的结果为：</p>
+<p><img src="https://s2.loli.net/2022/09/04/mDWY8ZzqSipRGFa.png" alt="image-20220904110149836"></p>
+<p>经过对比，确实是最短的路径了。</p>
+<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>我们接着来看<strong>拓扑排序</strong>，实际上我们生活中可能会遇到下面的问题：</p>
+<p>比如我们的大学课程的学习，一些课程开启可能需要修完一些前置课程，比如数据结构开课需要先修完C语言程序设计，Java开课需要修完计算机网络、计算机组成原理等课程，我们在到达某个阶段之前，需要完成一些前置条件才可以解锁。包括我们游戏中的任务，需要先完成哪些主线任务，完成哪些支线任务，才能解锁新的阶段。</p>
+<p>我们可以将这些任务都看做是一个顶点，最后就能够连接成一个有向图：</p>
+<p><img src="https://s2.loli.net/2022/09/04/OoPBQgd9WrSJhNx.png" alt="image-20220904110937920"></p>
+<p>因为始终是由前置条件来解锁后续，所以说整个图中是不可以出现循环的（要是有循环的话就没办法继续了，就像先有鸡还是先有蛋的问题一样）所以说构建出来的这种图我们也称为<strong>有向无环图</strong>（DAG），其实按照我们通俗的话来说，它就是个流程图罢了，我们只需要按照这个流程图来进行即可。像这种顶点表示活动或任务的图也称为<strong>AOV图</strong>。</p>
+<p><strong>拓扑排序</strong>（Topological Order）是指，将一个有向无环图（Directed Acyclic Graph）进行排序进而得到一个有序的线性序列。</p>
+<p>比如上图的拓扑排序可以是以下的几种：</p>
+<ul>
+<li>A,B,C,D,E,F,G,H,I,J</li>
+<li>A,C,D,B,E,F,G,H,I,J</li>
+<li>A,D,C,B,E,F,G,H,I,J</li>
+<li>A,B,D,C,E,F,G,H,I,J</li>
+</ul>
+<p>只要我们保证前置任务在后续任务之前完成即可，前置任务的完成顺序不做要求，所以拓扑排序不唯一。</p>
+<p><img src="https://s2.loli.net/2022/09/04/uMWBeLlzh9vHpdC.png" alt="image-20220904121459739"></p>
+<p>那么我们在程序中如何对一个有向无环图进行拓扑排序呢？以上图为例，其实很简单，我们还是利用队列来完成，我们每次只需要将那些入度为0的顶点，丢进队列中（注意丢进去之后记得更新一下图中其他顶点的入度）首先从A：</p>
+<p><img src="https://s2.loli.net/2022/09/04/7bRdsEGLMqokZCf.png" alt="image-20220904122602140"></p>
+<p>此时队列中有A这个顶点，接着我们来看看图中剩余的顶点，哪些又是入度为0的顶点，可以看到D也是：</p>
+<p><img src="https://s2.loli.net/2022/09/04/quj1yedrT69OQz3.png" alt="image-20220904122621668"></p>
+<p>当目前所有度数为0的顶点进入队列之后，我们开始出队，正式开始拓扑排序，在出队时直接打印，并且查看，当此顶点离开图之后，图中会不会有其他顶点的入度变为0，如果有，将其他顶点入队。比如此时A出队之后，那么A要从图中移除，现在B也变成了入度为0的顶点，所以说将B丢进队列：</p>
+<p><img src="https://s2.loli.net/2022/09/04/23gdNArusypQS84.png" alt="image-20220904122914376"></p>
+<p>接着，我们继续让D出队，我们发现D出队之后，E变成了入度为0的顶点，所以说将E入队：</p>
+<p><img src="https://s2.loli.net/2022/09/04/wjZ4TFslOL69IBA.png" alt="image-20220904123206951"></p>
+<p>接着我们继续出队，B出队之后，我们发现没有任何顶点入度变为0了，所以说不管，继续：</p>
+<p><img src="https://s2.loli.net/2022/09/04/gWDMYimuxjFN45O.png" alt="image-20220904123257858"></p>
+<p>继续将E出队，在E出队之后，顶点F、C都变成了入度为0的顶点，统统入队：</p>
+<p><img src="https://s2.loli.net/2022/09/04/uiXtEYK5aIWxNl4.png" alt="image-20220904123445483"></p>
+<p>此时继续将C出队，我们发现没有任何顶点入队变为0，我们继续来看F：</p>
+<p><img src="https://s2.loli.net/2022/09/04/ue1dkjGcLKg3TCY.png" alt="image-20220904123544940"></p>
+<p>当F出队后，顶点G变成了入度为0的顶点，此时将G入队：</p>
+<p><img src="https://s2.loli.net/2022/09/04/yqDC2BFQpElfz1L.png" alt="image-20220904123635522"></p>
+<p>剩下就是把G出队，然后F入队F再出队了：</p>
+<p><img src="https://s2.loli.net/2022/09/04/2Na4UxFBJV6u3eR.png" alt="image-20220904123742305"></p>
+<p>最后得到的拓扑序列为：ADBECFGH，其实思路还是比较简单的，当然，其实我们利用拓扑排序算法可以检测一个有向图是否为有向无环图，也就是说顶点还没遍历完队列就空了的话，说明一定出现了回路。</p>
+<h3 id="关键路径计算"><a href="#关键路径计算" class="headerlink" title="关键路径计算"></a>关键路径计算</h3><p>经过前面的学习，我们知道一个任务可能会存在前置任务，只不过我们仅仅是简单讨论了任务的完成顺序，如果此时我们为每个任务添加一个权重，表示任务所需要花费的时间，那么我们的后续任务就需要前置任务全部按时间完成之后才能继续：</p>
+<p><img src="https://s2.loli.net/2022/09/04/uUPRtKrGBbXlNHi.png" alt="image-20220904130014247"></p>
+<p>比如A代表某个任务（事件），B代表另一个任务，我们需要先花费2天时间完成A之后，才能开始B，活动包括时间用边来表示，我们将边作为活动的图称为<strong>AOE图</strong>，每个事件对应着多个活动（多条边）它就像一个大工程一样，从A开始，中间需要经过各种各样的步骤，最后到H完工作为结束。</p>
+<p>而我们需要计算的是那些最拖延工期的活动，比如要开始任务C，那么需要完成A、B才可以，完成A需要7天，完成B需要5天，由于C需要同时完成A和B才能继续，所以说A就变成了最拖延工期的任务，因为它的时间比B还长，B都完工了，还需要等待A完成才可以。只要计算出这些最拖延工期的任务，得到一条<strong>关键路径</strong>，我们就可以得到完成整个工程最早的时间以及各项任务可以在什么时候开工了。</p>
+<p>我们来看看如何进行计算，我们以下图为例：</p>
+<p><img src="https://s2.loli.net/2022/09/04/E8UqCQoylmLMuZA.png" alt="image-20220904132328013"></p>
+<p>我们需要计算两个东西，一个是<strong>事件最早完成时间</strong>（也就是要完成这个事件最快要多久），还有一个是<strong>事件最晚开始时间</strong>（就是这个事件在不影响工期的情况下最晚可以多久开始）：</p>
+<p><img src="https://s2.loli.net/2022/09/04/GeXishvJ5wmKUHW.png" alt="image-20220904132930050"></p>
+<p>我们依然是按照之前的拓扑排序的顺序进行，首先一开始是A，因为只有一个起点A肯定是可以直接开始的，所以说最早和最晚时间都是0（注意如果出现多个起点的话，最晚开始时间就不一定了），我们接着AOE图的工作顺序，来计算任务B和C的最早和最晚时间：</p>
+<p><img src="https://s2.loli.net/2022/09/04/YFJonUm1x6H5AOl.png" alt="image-20220904133246766"></p>
+<p>接着就是D和E，首先D需要B和C同时完工之后才能继续，那么也就是说需要选择B和C过来时间最长的那一个：</p>
+<p><img src="https://s2.loli.net/2022/09/04/qo1ZwWgSji45uv3.png" alt="image-20220904133658962"></p>
+<p>最后就是F，到达F一共有三条路径，我们依然是选择最长的那一条，从D过来总共需要8天时间：</p>
+<p><img src="https://s2.loli.net/2022/09/04/M4UzkX9ePgtSV2c.png" alt="image-20220904133802361"></p>
+<p>故整个工程的最早完成时间为8天，我们接着来看活动的最晚开始时间，现在我们要从终点倒着往回看：</p>
+<p><img src="https://s2.loli.net/2022/09/04/EsHI4DSYjWAVfvB.png" alt="image-20220904134114068"></p>
+<p>首先终点一定是8，因为工期最快是在8天结束的，我们继续倒着往回走，先来看E，E需要6天才能到达，但是只需要1天就可以结束，所以 8 - 1 &#x3D; 7，最晚可以在第7天时动工：</p>
+<p><img src="https://s2.loli.net/2022/09/04/8W2mo5D1vFN9ur6.png" alt="image-20220904134310369"></p>
+<p>然后是D，因为D到F需要2天时间，而D已经是第6天了，总时间8天，所以说D刻不容缓，第6天就需要马上开工：</p>
+<p><img src="https://s2.loli.net/2022/09/04/mTkRZXpP8necDyf.png" alt="image-20220904134445037"></p>
+<p>然后是C，C比较复杂，因为C有两个活动，一个是指向D的，一个是指向F的，我们需要单独计算每一个活动：</p>
+<ul>
+<li>C -&gt; F：用F的最晚开始时间减去任务时间 &#x3D; 8 - 3 &#x3D; 5，此时C最晚可以从第5天开始。</li>
+<li>C -&gt; D：用D的最晚开始时间减去任务时间 &#x3D; 6 - 4 &#x3D; 2，此时因为C的最早开始时间就是2，所以说C不能晚点开始。</li>
+</ul>
+<p>综上，C不能晚点开始，只能从第2天就开始，因为要满足D的条件：</p>
+<p><img src="https://s2.loli.net/2022/09/04/7YbvfGVhlwO1yJR.png" alt="image-20220904135059487"></p>
+<p>最后是B，B也是有两个任务，一个是指向E一个是指向D：</p>
+<ul>
+<li>B -&gt; E：用E的最晚开始时间减去任务时间 &#x3D; 7 - 3 &#x3D; 4，此时B最晚可以第4天开工。</li>
+<li>B -&gt; D：用D的最晚开始时间减去任务时间 &#x3D; 6 - 2 &#x3D; 4，同上。</li>
+</ul>
+<p>所以，B的最晚开始时间可以是第4天：</p>
+<p><img src="https://s2.loli.net/2022/09/04/oyInZ68SxJqYm5R.png" alt="image-20220904135338214"></p>
+<p>当然最后我们也可以计算一下A -&gt; B和A -&gt; C，但是由于只有这一个起点，所以说算出来肯定是0，当然如果出现多个起点的情况，还需要进行计算得到的。</p>
+<p>计算完成之后，我们就可以得到关键路径了，也就是那些最早和最晚时间都一样的顶点（说明是刻不容缓的，时间很紧）这些顶点连成的路线，就是我们要找的关键路径了：A -&gt; C -&gt; D -&gt; F，这条路径被安排的满满当当。关键路径上的所有活动都是<strong>关键活动</strong>，整个工期就是由这些活动在决定的，因此，我们可通过适当加快关键活动来缩短整个项目的工期，但是注意不能加快得太猛，因为如果用力过猛可能会导致关键路径发生变化。当然，关键路径并不是唯一的，可能会出现一样的情况。</p>
+<p>至此，有关图结构相关的内容，我们就讲解到这里。</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    数据结构与算法（五）
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">数据结构与算法（一）</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Public &copy; 2023 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

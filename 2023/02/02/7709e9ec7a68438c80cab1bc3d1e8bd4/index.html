@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>19 【flex布局】 | 知识库</title>
+    
+    
+        <meta name="keywords" content="19 【flex布局】" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="34.flex布局34.1 flex布局体验34.1.1  传统布局与flex布局【传统布局】  兼容性好  布局繁琐  局限性，不能在移动端很好的布局   【flex布局】  操作方便，布局极为简单，移动端应用很广泛 PC 端浏览器支持情况较差 IE11 或更低版本不支持或仅部分支持  建议：  如果是 PC 端页面布局，我们还是建议使用传统布局 如果是移动端或者不考虑兼容性问题的 PC 端页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19 【flex布局】">
+<meta property="og:url" content="http://example.com/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="34.flex布局34.1 flex布局体验34.1.1  传统布局与flex布局【传统布局】  兼容性好  布局繁琐  局限性，不能在移动端很好的布局   【flex布局】  操作方便，布局极为简单，移动端应用很广泛 PC 端浏览器支持情况较差 IE11 或更低版本不支持或仅部分支持  建议：  如果是 PC 端页面布局，我们还是建议使用传统布局 如果是移动端或者不考虑兼容性问题的 PC 端页面">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/35b96b04d3f1a95d5f84db0144a8ed972463d672.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/6d70e5725dcb049a630bd6fbe386fda63e9c53b4.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d7a57c689b9692c5dccc4131f7c9e105ca63ef0f.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/897c0e795aeb8f5d8b881d3dafc7ad954a5a9b97.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/f2d2c9fb7956df15da4cea034930fcc113048e7a.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/1bff4d080d7437c8bb2dc17c6a38f35df217ca0e.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/e897fad7623720ddc687c091739aa2d4fee74352.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/8c13a430cea233f2c574e7f49ef3a08339850144.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/ef3457bfc8477bc5b825bb7272ba46fdc7f7b14e.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/51e7f397043eef3e0b4282aecc3bafd7492ad708.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/e5abc3d231d6dabd682c4777fc69951cf5729ed7.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/90eaec58b3e2f2b6a56c6314f4440cc6aec0914d.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/b7dd454e231a2627f0d7a3beed2ef8b8b1227d86.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/008889e323285a5a8bd055f8c9bc7e17beb6c3d3.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/4c7a2bfc919c4dc0f6113ef7838c97a02153e693.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/e81b12ef6c8b3c12325ba377894a17f1b3c43173.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/186275c836d91572211f12780a4f154ae3145d77.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/0b6afe1d08a543f4e61c585b207e527f41d1c584.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/1b3ddbaf1f0d608ddb08ec78acf8116b0ceb8606.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/bb005e50536217371f764154f55e6e77aa39426d.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d567cb6e04e12144a77be96b0b4c5c1aea15038e.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d2cb207e29718ed796592a033c3a65fab834161c.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d37358b55053592cf3ceb174c37e7f72c76854fd.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/1825de48955b6e4cf496224fa41d0b4a6ddc6969.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/df1cb1d2aeddf3d0d561d4da400d324065127d13.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/2e605b349e3285d7168dd125aba27cea6b530849.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/0f1b2a03959a9cc2906249c368d29c73197b6db2.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/3170da9ea015bcd564d892ef095b877b6bbe9fb8.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d6c0c1eba75c109f71322feeae31bc8e74b646f1.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/64a0439d75ab20ba3028cadf6a202dbfeacf12d5.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/236869854dc0b30199fbcd3bedd39a7513763483.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d5ebb96dd5a524a86cf430ee8e16f0e8a80ee90b.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/ebf1d9360330231869e358f269165f2a198436b8.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/183a552be79119aaa913ae68fd3e46546ec5b873.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/91bff2646ecca85d0a785579f731df13ac287138.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/ff9d3a127b6b9fad056166008f9eb5420eddd506.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/ee070dc47a9c470bf70bd549156266726be8f07d.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/76811f822d60894dfeee25d9efc74dc4a3e8af89.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/345481371c7123424e4403043fcd2d308801d9d2.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/70cdc6617eeca2b5d9aeea5e96f97c28116d19d8.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/12890ae3e4fe65753139c6c56a63b9b64caa308f.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/434734b1dedd911e790f580db33c20692198d684.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/26aa97391cc163a66e6fe14c0d2128f81b56b43b.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/4647d0bc6d55bac2696290e774e95375980d0c27.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/b1c6285d6655afa9b670eb425c3ec7318aebc31d.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/bf356ffc1aefa7b89271239e21dea1f15cd02dfd.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d1441e028eab5b0b2058baa141d9dc7d17739726.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/1f278a5da9bb333386bc447a518c094bbe802b2d.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/d480f8736cda00b4007bb0317b88db63caaead1e.gif">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/c5c50c20f8e56b0c60e27cf55f48898b4fc3e8c1.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/41fd1d59969a50e741dd50a6fa060167d567dbcf.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/fa56d10c1397c95cd0311f904e0311cddd0f8fc2.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/83f04bf46dd3e74e8d143e40b2a484680b5880c1.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/ccc36c52a6e507043f403f9e0f2b7999d1f4ea1a.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/430479d8da8e7d6c5d4b7f43409ec183dbb8cd22.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/5854f585e0eec3c54caaff56d26f0fb252203619.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/c1de61e6423afeceac2cd21cec17dd825ff825fd.png">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/album/44d9c79b1f90bba0f99b21d4b5c9cf1654b691d1.png">
+<meta property="article:published_time" content="2023-02-02T05:18:15.653Z">
+<meta property="article:modified_time" content="2023-02-02T05:30:57.951Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/album/35b96b04d3f1a95d5f84db0144a8ed972463d672.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知识库" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C/C++
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C语言程序设计笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0b556fd3fac3446ab962debd1d7d0d3d/">C语言（三）</a></li>  <li class="file"><a href="/2023/01/18/517e2a056e2e4190bafc18633ffb142a/">C语言（二）</a></li>  <li class="file"><a href="/2023/01/18/47f2147369be440d89c32f4ac310c6a7/">C语言（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-c
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            lib
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/">assert.h</a></li>  <li class="file"><a href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/">ctype.h</a></li>  <li class="file"><a href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/">float.h</a></li>  <li class="file"><a href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/">errno.h</a></li>  <li class="file"><a href="/2023/02/02/03a886d85a6e423a9dea00ed1979a294/">stdarg.h</a></li>  <li class="file"><a href="/2023/02/02/174190d1271c441296fe6161dbe1e3b0/">inttypes.h</a></li>  <li class="file"><a href="/2023/02/02/3c0028c132394bf49855502500823843/">signal.h</a></li>  <li class="file"><a href="/2023/02/02/3c2477856e494e289da69d3223ba7674/">math.h</a></li>  <li class="file"><a href="/2023/02/02/3ec857ad74414dfa9785db229745cff4/">stdint.h</a></li>  <li class="file"><a href="/2023/02/02/4709412c44ae4a488075c134135a0c7d/">limits.h</a></li>  <li class="file"><a href="/2023/02/02/63a6e5300615432c802b5fad1526b013/">iso646.h</a></li>  <li class="file"><a href="/2023/02/02/74ea4d343a0a466dafd2938741af9b82/">stdio.h</a></li>  <li class="file"><a href="/2023/02/02/7c6a577e51b44a30896461029a72e0d9/">stddef.h</a></li>  <li class="file"><a href="/2023/02/02/f15fbe0430cd4183b0fce6d942edec61/">stdbool.h</a></li>  <li class="file"><a href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/">locale.h</a></li>  <li class="file"><a href="/2023/02/02/30aaa7981bcb41ecb2cab759dc8d61d9/">string.h</a></li>  <li class="file"><a href="/2023/02/02/43c955dbbcff4f31b6b395baf15b3643/">time.h</a></li>  <li class="file"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/">stdlib.h</a></li>  <li class="file"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/">wchar.h</a></li>  <li class="file"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/">wctype.h</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/">array</a></li>  <li class="file"><a href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/">enum</a></li>  <li class="file"><a href="/2023/02/02/88026f8bed5a4692a3eb48abb8cc2c47/">cli</a></li>  <li class="file"><a href="/2023/02/02/9e03d1990b4c477c8e5ecd52164183d1/">flow-control</a></li>  <li class="file"><a href="/2023/02/02/a57d1c9278214ad49c0c94d45a92af2b/">file</a></li>  <li class="file"><a href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/">io</a></li>  <li class="file"><a href="/2023/02/02/83858a169b23461eadc882914abf4bd1/">function</a></li>  <li class="file"><a href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/">intro</a></li>  <li class="file"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/">memory</a></li>  <li class="file"><a href="/2023/02/02/ec65e72324264fbb8acf7006f6ced494/">multibyte</a></li>  <li class="file"><a href="/2023/02/02/635718a1db8b4ccebbfd9a4f8a55de47/">preprocessor</a></li>  <li class="file"><a href="/2023/02/02/bb7bba4594234ae5832af49f8d3e56ee/">pointer</a></li>  <li class="file"><a href="/2023/02/02/cf8653eb740a49b7a58a852bbbed00a4/">string</a></li>  <li class="file"><a href="/2023/02/02/e1cb8d47ae9c459eb5ac11818a7c6e27/">operator</a></li>  <li class="file"><a href="/2023/02/02/ecce61b4548c4e45ba73284c9ba7f0cc/">specifier</a></li>  <li class="file"><a href="/2023/02/02/41797336ff734560a26025353b233d54/">types</a></li>  <li class="file"><a href="/2023/02/02/5f8eaecb5f1f414d9106a33847f193a9/">variable</a></li>  <li class="file"><a href="/2023/02/02/a86312379ebb44c39fbda22a6eecf977/">struct</a></li>  <li class="file"><a href="/2023/02/02/bf7f6d8e12f54a7c8802abcbdc18e689/">union</a></li>  <li class="file"><a href="/2023/02/02/c19ba4705d5142bf98d9207eece2ef79/">typedef</a></li>  <li class="file"><a href="/2023/02/02/cb86948a24cf470ea1c847f85f8b8349/">syntax</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/a2acb1e85c084003b09433633a27ec8f/">C++求和的多种方式</a></li>  <li class="file"><a href="/2023/01/25/dd59a1b3ef8343efb5e60f2fd43084a8/">水仙花题解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Docker
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/20/b4a4813646324eab97b039cacf031705/">Docker容器技术</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            wangdoc-git
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/00429dd58f6c4ce6a2b03b9aeeb9d521/">git-log</a></li>  <li class="file"><a href="/2023/02/02/02fdd75f9f2a47489decf6f32d0b3c7a/">git-rebase</a></li>  <li class="file"><a href="/2023/02/02/0b2ea073a1c14893b3dd7098546e0655/">git-add</a></li>  <li class="file"><a href="/2023/02/02/13f9c3847de9456f9a8078f072da7eab/">git-init</a></li>  <li class="file"><a href="/2023/02/02/22d2d3f830f145289393d0f82e740cb9/">git-diff</a></li>  <li class="file"><a href="/2023/02/02/4781f042463f4f40b1bbad14879d0ac7/">git-clone</a></li>  <li class="file"><a href="/2023/02/02/58789f766a6c4768be5f19a121c6fd61/">git-checkout</a></li>  <li class="file"><a href="/2023/02/02/587e496a180048d98ac872605ced2d67/">git-cherry-pick</a></li>  <li class="file"><a href="/2023/02/02/63225ea3537e44c4bd42c553358e0a14/">git-cat-file</a></li>  <li class="file"><a href="/2023/02/02/6c452a5f156c43cfa90eb618191dcda7/">git-commit-tree</a></li>  <li class="file"><a href="/2023/02/02/6d6d53b08a474a0d938c0711dae464b1/">git-commit</a></li>  <li class="file"><a href="/2023/02/02/88a36c4e06f04c1c90ee2d93d231fcf0/">git-remote</a></li>  <li class="file"><a href="/2023/02/02/a4f4a7cf1b5446f58b3403e34b90adcb/">git-ls-files</a></li>  <li class="file"><a href="/2023/02/02/bbc2b9d3586f4c05946853201ac0e103/">git-hash-object</a></li>  <li class="file"><a href="/2023/02/02/cfc661f62c4f473fb166b17ef54c5d37/">git-merge</a></li>  <li class="file"><a href="/2023/02/02/e69a3fc86aad49f2a7e9b61b6377403e/">git-pull</a></li>  <li class="file"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/">git-branch</a></li>  <li class="file"><a href="/2023/02/02/0215eb43a3cd48af8db8b7826c738ae9/">git-show</a></li>  <li class="file"><a href="/2023/02/02/01c2ed5c17c944e4b3dede0de2616c27/">git-rm</a></li>  <li class="file"><a href="/2023/02/02/1ee03873808d4c469cfa0998032e4936/">git-write-tree</a></li>  <li class="file"><a href="/2023/02/02/2f3fcea5172b40dc8e12f9ef817fb413/">git-update-ref</a></li>  <li class="file"><a href="/2023/02/02/4027c7dfd0a849658d350c9374793484/">git-restore</a></li>  <li class="file"><a href="/2023/02/02/446de5db36bf4d5a858dc7d949a7da12/">git-update-index</a></li>  <li class="file"><a href="/2023/02/02/59d93e8c48164f0190417df6f9a1f573/">git-rev-parse</a></li>  <li class="file"><a href="/2023/02/02/69ebd17fb555427285f272241105d5cd/">git-reset</a></li>  <li class="file"><a href="/2023/02/02/861b301a7bce4dad8bb92d273cd75daf/">git-switch</a></li>  <li class="file"><a href="/2023/02/02/a4bb2f6830624e38bccbc32c93085d32/">git-stash</a></li>  <li class="file"><a href="/2023/02/02/bb8b63b8991b414d92411977cc87bbbe/">git-revert</a></li>  <li class="file"><a href="/2023/02/02/e6a606da62da484dbf52fce543abb094/">git-tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/">basic</a></li>  <li class="file"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/">branch</a></li>  <li class="file"><a href="/2023/02/02/1459cfd798b842b4a80ce78e41d4155d/">operations</a></li>  <li class="file"><a href="/2023/02/02/31b7e45e02f54e149fea5d1d8cda26fe/">internal</a></li>  <li class="file"><a href="/2023/02/02/26cbe9e22b164aeaabf617d844abc440/">reference</a></li>  <li class="file"><a href="/2023/02/02/90fb796e66734920ae724f9fa66ce763/">tag</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/c77ab20583d64ba9a3dc6f8d6ea89f55/">04 【忽略某些文件】</a></li>  <li class="file"><a href="/2023/02/02/2b8f3ce0fed44813a0919553cb304e64/">03 【远程库操作】</a></li>  <li class="file"><a href="/2023/02/02/aeb16e6138444c83ae3bd8886ba906bc/">01 【版本控制和Git的安装介绍】</a></li>  <li class="file"><a href="/2023/02/02/52d9a2a8683a42eb966022415a93058a/">02 【版本控制命令】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JAVASE
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/49756fe6e6cc44f88ee3cc213ec4bd67/">Java泛型</a></li>  <li class="file"><a href="/2023/01/19/338f5f76a1914f72822772ea3026f220/">Java 集合</a></li>  <li class="file"><a href="/2023/01/19/929bd134ed01499c92d8e177925950ef/">Java面向对象基础(初级)</a></li>  <li class="file"><a href="/2023/01/19/274b1dfaf07945e7ab77710afad502a3/">Java面向对象基础（中级）</a></li>  <li class="file"><a href="/2023/01/19/9a52b66178b746debfe7111574e464a2/">Java面向对象(高级)</a></li>  <li class="file"><a href="/2023/01/25/47c9d6ac38214463ae1ca07fd5b85614/">Java-Math类</a></li>  <li class="file"><a href="/2023/01/25/65905cb7c01348b0b1ac5264ecc87ab0/">Java Object类详解</a></li>  <li class="file"><a href="/2023/01/25/0b0365b51c0644958b204ed11719a88a/">Java 访问修饰符</a></li>  <li class="file"><a href="/2023/01/25/e7838ce563844f3a9811936eaa09cb09/">Java数据结构-栈</a></li>  <li class="file"><a href="/2023/01/25/cefb06ca6f8049a99703cf1b3bc1fa3d/">Java异常处理</a></li>  <li class="file"><a href="/2023/01/25/d8cc29145a834e3aaa2a43b7d88c9ce1/">java选择排序</a></li>  <li class="file"><a href="/2023/01/25/abec654a37ad4a498798cdf019a2e61e/">Java-枚举</a></li>  <li class="file"><a href="/2023/01/25/d5d66a7ebad94d6483e19407faf46cc5/">Java-包装类</a></li>  <li class="file"><a href="/2023/01/25/b3ada79e6ff745f0acd8edcf57c95acc/">Java-递归执行机制</a></li>  <li class="file"><a href="/2023/01/25/03f3dd343d094bd6baf6772f4a6a2aed/">Java-冒泡排序</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JUC笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/83aef7425d394df3901ca188c1afc6d5/">JUC笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/b41b5f3eb08f41cbbbf454a8c9922051/">JUC笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/1d97f5daca284471abd5c2a42c140143/">JUC笔记（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JVM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/f4f7756d2f6644d4b0e098cb3789a9c6/">JVM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/3222fc6cde8442a89eda4e5e0808952a/">JVM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/8e58362eaa734ad292f357536ef1b05e/">JVM笔记（三）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java-GUi
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/f7310f53495a4e258159180b2ce529db/">Java-GUI-窗口配置</a></li>  <li class="file"><a href="/2023/01/19/f172572c7d114592aaa804efa121761e/">Java-GUI-监听器</a></li>  <li class="file"><a href="/2023/01/19/2c969cb92c56489ab91482067305ab42/">Java-GUI-常用组件</a></li>  <li class="file"><a href="/2023/01/19/a8eb012039114ca6a601a1c34622ba93/">Java-GUI 布局</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记 2023重制版
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/09da4fbf346f4f459ef48c64c61f6cc1/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/30140692c4144c2cbc65ba707a7b0c89/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/aea1e8a802bd45ebbe33970dab1bad21/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/df26e1c8129b412a8284a955dbe26b3c/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/31ca9cc5ea8a4795b75b49ec9680cca7/">JavaSE笔记（一）重制版</a></li>  <li class="file"><a href="/2023/01/18/7ecb50884e214c28abe6a905186f2051/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/cae1499c7dd54b5f9729e77e75f9e92f/">JavaSE笔记（四）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSE 笔记（含新特性介绍）
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0e413f24b04d46babc26b48035844a34/">JavaSE笔记（五）重制版</a></li>  <li class="file"><a href="/2023/01/18/4781c8feb884488d93fcbc64d83998eb/">JavaSE笔记（六）重制版</a></li>  <li class="file"><a href="/2023/01/18/6561c4991b054522a438ae9c3573bf7b/">JavaSE笔记（三）重置版</a></li>  <li class="file"><a href="/2023/01/18/e9b900b310774688844b4e31729afc40/">JavaSE笔记（二）重制版</a></li>  <li class="file"><a href="/2023/01/18/4616dce1a1c745fb84672ffed7bf43ed/">JavaSE笔记（七）重制版</a></li>  <li class="file"><a href="/2023/01/18/5aef6240910849d4b69b36b03baf7d2c/">JavaSE笔记（四）重制版</a></li>  <li class="file"><a href="/2023/01/18/d7d20c40f1044de59760363f8b9d8c4b/">JavaSE笔记（一）重制版</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaSSM笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/0dbb54c3201b45ec9eb61b3e76209382/">Java SSM笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/13fdccb2f789426fb795cdb23e8cb0c0/">JavaSSM笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/86717e97bcd34af2ab62ade51eddc019/">JavaSSM笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/9dfd598003ab43828c77f2676dd6cf8f/">JavaSSM笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaWeb笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/088fcec4e8a846479c3cfcf5a6a52da7/">JavaWeb笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/5756fdcc799c4064be4e4a84d7ab5244/">JavaWeb笔记（五）</a></li>  <li class="file"><a href="/2023/01/18/b79318accafa44dfaabad60dbbe8de4c/">JavaWeb笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/f795be55936d42ddafd17995abae6aa8/">JavaWeb笔记（三）</a></li>  <li class="file"><a href="/2023/01/23/65909752ee164b2c877f1f77097d6358/">使用Socket传输文件</a></li>  <li class="file"><a href="/2023/01/24/1c60970a20864932bc3ef0807b9fda67/">JavaWeb笔记（四）</a></li>  <li class="file"><a href="/2023/01/24/74716fee04044e3cb78e867d1d06d583/">SQL事务（非常详细）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Java设计模式笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/022f64208f254fbea3a8fb31b281a85b/">Java设计模式（一）</a></li>  <li class="file"><a href="/2023/01/18/3e0642cd3b254fb2b80bf2932ac4b9be/">Java设计模式（三）</a></li>  <li class="file"><a href="/2023/01/18/407c5b3cecb14dfaa0649e6f89d0ec2b/">Java设计模式（四）</a></li>  <li class="file"><a href="/2023/01/18/7acbd5ac3c754f2287c448b72010bac1/">Java设计模式（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            NIO笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/93e61e24ebe54aacb046d8fb7e524ec8/">Java NIO笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/cdec76bf6ea84248809947e5c365c26e/">Java NIO笔记（二）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SpringCloud笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/89a3686366ac4733a117121766e12109/">SpringCould笔记（二）</a></li>  <li class="file"><a href="/2023/01/18/f828affac4f64da487d581f2cb0a7ddb/">SpringCloud笔记（三）</a></li>  <li class="file"><a href="/2023/01/18/3156ff5edada4090a2470abcafcc1ace/">SpringCloud笔记（一）</a></li>  <li class="file"><a href="/2023/01/18/af85cc65b701415f8bf1a97873320570/">SpringCloud笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Springboot笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/24/05176b8a3d5648d6b1fe75092e4c293b/">SpringBoot笔记（一）</a></li>  <li class="file"><a href="/2023/01/24/e28befc0f1c24c7d99df9847b5d91cb7/">SpringBoot笔记（二）</a></li>  <li class="file"><a href="/2023/01/24/99650712d4104d00a2c4a5ccfc3f525e/">SpringBoot笔记（三）</a></li>  <li class="file"><a href="/2023/01/24/3636e46047924c11b7ec162ffc9f9271/">SprintBoot笔记（四）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            环境配置
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/19/06a5ebd1d51442d58ba9f7b02612a94b/">Linux下JAVA环境配置</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Bash
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            archives
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            commands (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/">cp</a></li>  <li class="file"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/">awk</a></li>  <li class="file"><a href="/2023/02/02/5e2e0bec39da4147b3fa493d53c38fcf/">clear</a></li>  <li class="file"><a href="/2023/02/02/6c931bc223d04f6ea0004ce2e60ed0a9/">cal</a></li>  <li class="file"><a href="/2023/02/02/e371d141f5e04b83985097a365e488f3/">alias</a></li>  <li class="file"><a href="/2023/02/02/eb9fd5a58ed4424db318906b45b3a2c1/">cat</a></li>  <li class="file"><a href="/2023/02/02/298cc2ee3f30471c95ffe20b7fd68de7/">find</a></li>  <li class="file"><a href="/2023/02/02/3262b0fe7c3c405693a43c3b00fd31a2/">cut</a></li>  <li class="file"><a href="/2023/02/02/4a44a9b960604e14b21acd79b661370d/">gunzip</a></li>  <li class="file"><a href="/2023/02/02/4e6e8b622ad94bc7b9beaac8b4db5e9b/">df</a></li>  <li class="file"><a href="/2023/02/02/57a4373ff3994387ba06b86756caa443/">dd</a></li>  <li class="file"><a href="/2023/02/02/66f0d5d37af44909b7a1826752bb25f8/">fmt</a></li>  <li class="file"><a href="/2023/02/02/6a731d9df2e2418b906e03243a37fe5a/">egrep</a></li>  <li class="file"><a href="/2023/02/02/7e8da3da77434aa3b080c04619bd6f6c/">export</a></li>  <li class="file"><a href="/2023/02/02/825b8a01e7684bf5817ef4aa18e1dcea/">file</a></li>  <li class="file"><a href="/2023/02/02/8a29743a5dd34506a48aed9f8f23e68e/">du</a></li>  <li class="file"><a href="/2023/02/02/96af26754cb14ae88ba85f62f34485e2/">gzcat</a></li>  <li class="file"><a href="/2023/02/02/af40050b4bbb4296a2359591e5267652/">date</a></li>  <li class="file"><a href="/2023/02/02/cd9720c1fa0e4e02a5fde942d26acace/">grep</a></li>  <li class="file"><a href="/2023/02/02/031200e492574917bc61ee527a9dbec2/">sort</a></li>  <li class="file"><a href="/2023/02/02/1a711a5945444415a8a3dd969f8ecd2e/">tr</a></li>  <li class="file"><a href="/2023/02/02/1ba049a64f9a46e983332666e7e82f90/">killall</a></li>  <li class="file"><a href="/2023/02/02/265f581f57e742a990d88f8e3b81e332/">lpr</a></li>  <li class="file"><a href="/2023/02/02/50ee6471baf0464380f10b8cdcf1ace7/">gzip</a></li>  <li class="file"><a href="/2023/02/02/58e2782991a046f9b090a30000ad263f/">ps</a></li>  <li class="file"><a href="/2023/02/02/5d789ba3d1df439fae3342ddab2e8936/">uptime</a></li>  <li class="file"><a href="/2023/02/02/89e04320d7f744c089eacbb3e0e119f9/">ls</a></li>  <li class="file"><a href="/2023/02/02/8e7aba35b4a2409aa2163e101ca9c459/">uniq</a></li>  <li class="file"><a href="/2023/02/02/92ca2811477044ad84363b2a0830bf8b/">last</a></li>  <li class="file"><a href="/2023/02/02/a548ef6cd0a047a59f705a4d72e69e79/">lpq</a></li>  <li class="file"><a href="/2023/02/02/bd5a94df51574676a7fb3cf91798129b/">kill</a></li>  <li class="file"><a href="/2023/02/02/c4dace09d06a4255ada3235e13622e84/">nl</a></li>  <li class="file"><a href="/2023/02/02/d39d39701de24c9e8fc1ee2a957df430/">sed</a></li>  <li class="file"><a href="/2023/02/02/d999bd8656094f66b6dd34cd212085d7/">uname</a></li>  <li class="file"><a href="/2023/02/02/ebc4924fe4974446ac9f3911f9b27e91/">scp</a></li>  <li class="file"><a href="/2023/02/02/372ae469bfff43328cc696cd3b8243d2/">which</a></li>  <li class="file"><a href="/2023/02/02/5bbf81dd30b64aafaa5f5565992b6349/">who</a></li>  <li class="file"><a href="/2023/02/02/7bb4b5c41da44269a6c70f4633d0917e/">whereis</a></li>  <li class="file"><a href="/2023/02/02/809b6b7eb42c403f8e1b0211e44409e0/">wc</a></li>  <li class="file"><a href="/2023/02/02/a07cab80bd4c47789ae6242c402ada05/">w</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            deleted
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f5f6eb42d7684fe989265596e9306f01/">stdio</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/">archiving</a></li>  <li class="file"><a href="/2023/02/02/82a5e084940844de91c02625e19ad744/">async</a></li>  <li class="file"><a href="/2023/02/02/8a206bc871634efdbbffd067c656673b/">command</a></li>  <li class="file"><a href="/2023/02/02/933495d6b7fe4de99eefa41cd63865b8/">file</a></li>  <li class="file"><a href="/2023/02/02/e1466852223e4f6bb5dc8a46a6104e76/">file-operation</a></li>  <li class="file"><a href="/2023/02/02/0cd5e142ec7a4f2abaa5cc522dbfa62d/">user</a></li>  <li class="file"><a href="/2023/02/02/154ccd75c486446aac1353805e3f901a/">host</a></li>  <li class="file"><a href="/2023/02/02/5fdd36fee51d4c49833a3a9b35303088/">system</a></li>  <li class="file"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/">text</a></li>  <li class="file"><a href="/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/">hardware</a></li>  <li class="file"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/">named-pipe</a></li>  <li class="file"><a href="/2023/02/02/d08fc4409e6e4bb1abc3bc66097589de/">process</a></li>  <li class="file"><a href="/2023/02/02/e6cc1bf092814f148a6c9a72e5615e73/">time</a></li>  <li class="file"><a href="/2023/02/02/ea57261da8fe46bdbdad1471dfe28140/">regex</a></li>  <li class="file"><a href="/2023/02/02/eca6d9d98e874548a12942d08e09bed4/">redirection</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/02/02/253ec4deec8c4beda7dd99a6f419b404/">arithmetic</a></li>  <li class="file"><a href="/2023/02/02/307a6025886648d98d3ee4d27c48ac00/">array</a></li>  <li class="file"><a href="/2023/02/02/42867f9a3d9f4e5c99a0d6ce517b903e/">condition</a></li>  <li class="file"><a href="/2023/02/02/e23e7e4f49ac4a77a19f9cedc6bb7393/">expansion</a></li>  <li class="file"><a href="/2023/02/02/e66fbc86e05a4521882246e9dc4d3adc/">function</a></li>  <li class="file"><a href="/2023/02/02/0888cfb07af44e419d21c7d3d9f7348b/">prompt</a></li>  <li class="file"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/">quotation</a></li>  <li class="file"><a href="/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/">mktemp</a></li>  <li class="file"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/">read</a></li>  <li class="file"><a href="/2023/02/02/61f4af2f28f34d6c83a93732a217826a/">intro</a></li>  <li class="file"><a href="/2023/02/02/68774db840cb4ba9975a4b9b5b27d531/">grammar</a></li>  <li class="file"><a href="/2023/02/02/b894fd5ea7ce4f5f83bd345deeb191c7/">loop</a></li>  <li class="file"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/">script</a></li>  <li class="file"><a href="/2023/02/02/36a498d21f274b8698386927095852e5/">string</a></li>  <li class="file"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/">variable</a></li>  <li class="file"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/">readline</a></li>  <li class="file"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/">startup</a></li>  <li class="file"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/">set</a></li>  <li class="file"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/">stack</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux (1)
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/5a21bf6e23174e779456f061bc8ea251/">06 【实操篇-时间日期类 用户和用户组管理】</a></li>  <li class="file"><a href="/2023/02/02/be09fa41bc9e49bca29ba43a396b4726/">03 【基础篇-系统管理】</a></li>  <li class="file"><a href="/2023/02/02/622750bc961b42b79daeb6a4cc15161d/">05【实操篇-文件目录类命令】</a></li>  <li class="file"><a href="/2023/02/02/976629fb7bd241958fbac447af492905/">10 【实操篇-进程管理类】</a></li>  <li class="file"><a href="/2023/02/02/3e5ebad9a8e34aeab1791403f375e9cf/">04 【实操篇-帮助命令 文件目录管理基础知识】</a></li>  <li class="file"><a href="/2023/02/02/0994e211c03c4ca5a71ebfaddd83a5b4/">02 【基础篇-vim编辑器 网络配置 远程登录】</a></li>  <li class="file"><a href="/2023/02/02/ae308f099ff843e4974f7a3fa0ab67ff/">07 【实操篇-文件权限和搜索查找类命令】</a></li>  <li class="file"><a href="/2023/02/02/9d51515086d54d9da60959402195a54e/">08 【实操篇-压缩和解压类】</a></li>  <li class="file"><a href="/2023/02/02/b4f31671b35f4b879ac18de3fa565b44/">09 【实操篇-磁盘查看和分区类】</a></li>  <li class="file"><a href="/2023/02/02/4f43f36734ff4b7fbb862ab41b32afda/">11 【实操篇-定时任务 软件安装 克隆虚拟机】</a></li>  <li class="file"><a href="/2023/02/02/594959a1b8b0475493968c2559ce6895/">01 【入门篇-介绍和安装】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Nginx
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/d7b325aae2594d32ad44c26d7d441ae0/">02 【Nginx的目录介绍】</a></li>  <li class="file"><a href="/2023/02/02/6b1fb70d0a4441949a907556d92c32f8/">03 【Nginx虚拟主机和域名解析】</a></li>  <li class="file"><a href="/2023/02/02/ac4d35d0ad0a454381e46471c91f723d/">01 【Nginx的安装和启动】</a></li>  <li class="file"><a href="/2023/02/02/5860918f92bb4edaaf5d8aed17697c0f/">04 【Nginx反向代理和负载均衡】</a></li>  <li class="file"><a href="/2023/02/02/601b78d0331e4a25b26de4819fec9d1c/">06 【防盗链】</a></li>  <li class="file"><a href="/2023/02/02/05ca312f1aad4b1198b58405d038fc40/">05 【动静分离和URLRewrite】</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/20/85a4024620e141f4b16389b65a2ce85e/">Linux SCP指令</a></li>  <li class="file"><a href="/2023/01/25/c701f1c34bb44b30a2fa83eafe2f97b5/">Linux 同步时间</a></li>  <li class="file"><a href="/2023/01/25/6555fe10b1904e6f8ad9e999d5bb8c09/">Linux压缩和解压缩</a></li>  <li class="file"><a href="/2023/01/25/e2660f8d01d24bafbcab08e0a21766ae/">Linux用户管理</a></li>  <li class="file"><a href="/2023/01/25/76440ac4b9d649d0923e1dc7808d6d9e/">Linux 目录结构</a></li>  <li class="file"><a href="/2023/01/25/761fa1243125429eb927901f3014a91b/">Debian修改国内原</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Ajax
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/f4a82199df954988886f793eb07bea6e/">01 【AJAX概述 HTTP相关问题】</a></li>  <li class="file"><a href="/2023/02/02/a4bdac42f33042a09a9d5ff13bf5effe/">02 【axios fetch 跨域】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            css预处理语言
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Sass
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ff4b2c9dbf641d08213e2278205e32a/">10 【Sass语法介绍-继承】</a></li>  <li class="file"><a href="/2023/02/02/d1b7676560c64fbb81882453865edebc/">04 【Sass语法介绍-运算】</a></li>  <li class="file"><a href="/2023/02/02/b6aa35c8f62d46e499d2847e3b0c0ba0/">03 【Sass语法介绍-嵌套】</a></li>  <li class="file"><a href="/2023/02/02/720abd9ef54447e6b45f4f690ae7f1b7/">07 【Sass语法介绍-控制指令】</a></li>  <li class="file"><a href="/2023/02/02/cc4f543711a54ccd9a05d4bf128898f5/">02 【Sass语法介绍-变量】</a></li>  <li class="file"><a href="/2023/02/02/d40a67d9f9f841059a8a689603793673/">05 【Sass语法介绍-插值】</a></li>  <li class="file"><a href="/2023/02/02/8fd4499649a940418f3222e3d09ee2aa/">09 【Sass语法介绍-函数指令】</a></li>  <li class="file"><a href="/2023/02/02/c147cb6550934f58904823a45536056c/">01 【Sass的安装使用】</a></li>  <li class="file"><a href="/2023/02/02/424c4e271557488ca5b2c1b775754008/">06 【Sass语法介绍-函数】</a></li>  <li class="file"><a href="/2023/02/02/2d8afd58354f4270b36e307161cf351a/">08 【Sass语法介绍-混合指令】</a></li>  <li class="file"><a href="/2023/02/02/5c17818f7da844169c13e53e58c59fb7/">11【Sass语法介绍-导入】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            less
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7750b9ec9e19421a805fe45697c0dc2d/">01 【less学习笔记】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     <li class="file"><a href="/2023/01/25/d3a6f3f0a7314b8c96148565dead839f/">CSS-position位置-绝对定位和相对定位</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Canvas
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/1b03369a713343afa2a193408cc8b22f/">02 【canvas绘制基本图形】</a></li>  <li class="file"><a href="/2023/02/02/faa9ad753f834bb181309f4257b09b37/">07 【canvas图像处理】</a></li>  <li class="file"><a href="/2023/02/02/e96f125a9a854c8eb2ce8b05244ba275/">05 【canvas图像变换】</a></li>  <li class="file"><a href="/2023/02/02/815ddf95af0048f2ac2ab12ffb2ca36d/">06 【canvas图像合成】</a></li>  <li class="file"><a href="/2023/02/02/48f96f2e7faf49ce94282d5e4da0145e/">04 【canvas绘制文字】</a></li>  <li class="file"><a href="/2023/02/02/54f4c804683649cc9eb20b1f7b33d7a4/">03 【canvas样式控制】</a></li>  <li class="file"><a href="/2023/02/02/fc62e5cc497a4fc8ae6b4c6a93bf4830/">01 【认识canvas】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/732ec77199574e42aa8a3ef00df24d8d/">Javascript 面向对象(OOP)</a></li>  <li class="file"><a href="/2023/01/25/4f2d10c3153e4c7c89f2ecf584fbc453/">Javascript-三种包装对象</a></li>  <li class="file"><a href="/2023/01/25/acf1e9f487974ce1853395619e12e44d/">ES6闭包</a></li>  <li class="file"><a href="/2023/01/25/2601a78cd4fb449e90738af73cc0370d/">Javascript-展开语法</a></li>  <li class="file"><a href="/2023/01/25/5b879117bcd14d1f8a9850b134549a71/">javascript-克隆节点&&删除节点</a></li>  <li class="file"><a href="/2023/01/25/bf50528806834aada4bf812a6e5cb4d7/">javascript-变量提升</a></li>  <li class="file"><a href="/2023/01/25/3eb18b717005473285e60b95a1783d27/">javascript- 节点增加创建与追加-</a></li>  <li class="file"><a href="/2023/01/25/97466e0ebd1f48c8836d82a772e97d39/">javascript-DOM-分时问候案例</a></li>  <li class="file"><a href="/2023/01/25/6d5690c11c9c40d9ab1e41f85c32ea0d/">javascript-事件流</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Node.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/25/ac95840c294b45909b8a32b5a3c7b1f7/">Node-包管理工具</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            es6
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/08ed7d14c0b74fd9a8e849fdf55e8a80/">04 【函数的扩展】</a></li>  <li class="file"><a href="/2023/02/02/6bfa93761a9348309ee45e5c8d39d60f/">14 【Class extends】</a></li>  <li class="file"><a href="/2023/02/02/4d05e596059f482899f63dadecc42521/">06【对象的扩展】</a></li>  <li class="file"><a href="/2023/02/02/e3c46bd0c64943f4967d81b8b78cacd4/">07【字符串的扩展】</a></li>  <li class="file"><a href="/2023/02/02/2fc965f3cd9f4ebfae565e4a72ebd00b/">05【数组的扩展】</a></li>  <li class="file"><a href="/2023/02/02/ba336fd9e8f942889f5a76b31f239ff5/">01 【ES6 介绍】</a></li>  <li class="file"><a href="/2023/02/02/1a48072db3f149f1b7909da3eb852945/">13【Class的语法】</a></li>  <li class="file"><a href="/2023/02/02/d125a45575e841bfa140266dbe46daea/">12【es6模块化】</a></li>  <li class="file"><a href="/2023/02/02/44969c8246a04010946d39fe5a3da347/">03【解构赋值】</a></li>  <li class="file"><a href="/2023/02/02/c425906829ba4b5cbc58fb07c533496e/">10【Promise对象】</a></li>  <li class="file"><a href="/2023/02/02/0e2deadfa63b4dd980806733cd48565d/">02 【let和const】</a></li>  <li class="file"><a href="/2023/02/02/73a1c792b2754bf4bef4d5c9b9819b0a/">08【运算符的扩展】</a></li>  <li class="file"><a href="/2023/02/02/706e1bd0fa5f495fafc420ac1b96f259/">09【Set 和 Map 数据结构】</a></li>  <li class="file"><a href="/2023/02/02/1274b7d6c86142c0bb25d906aebc593a/">11【async 函数】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            nodejs
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/a209b664c3ca4578a9eb3cb91ba512ba/">18 【Koa基本使用】</a></li>  <li class="file"><a href="/2023/02/02/a073d8cb390d422cbbd313823ed2d641/">14 【接口规范和业务分层】</a></li>  <li class="file"><a href="/2023/02/02/b0af28901ba147c1bad8451f46f62c0c/">05 【nodejs内置模块（上）】</a></li>  <li class="file"><a href="/2023/02/02/ff479e47cd154e9a8c8a8a385b0f4723/">02 【nodejs开发环境安装】</a></li>  <li class="file"><a href="/2023/02/02/3b68d412870a445a8d87cfd22ac39d87/">03 【npm的使用】</a></li>  <li class="file"><a href="/2023/02/02/2de266d3a093495fa8a805a1ff7696b7/">10 【Express基本使用】</a></li>  <li class="file"><a href="/2023/02/02/c280122bb3b54525b2f9dd2c3a136016/">15 【登录鉴权】</a></li>  <li class="file"><a href="/2023/02/02/e2c3e6468ad84a1dba70d04460347ed3/">04 【nodejs模块化规范：CommonJS】</a></li>  <li class="file"><a href="/2023/02/02/9ec6f6652fd94d8fbd140127c68af01e/">11 【Express服务端渲染】</a></li>  <li class="file"><a href="/2023/02/02/a81505b065c245b088a3012c1712bcdd/">08 【爬虫】</a></li>  <li class="file"><a href="/2023/02/02/b26c2cc0675b49cbac6cc6cbce060205/">12 【操作mongodb数据库】</a></li>  <li class="file"><a href="/2023/02/02/eab31b38c19844429c0475c74bdd9991/">06 【nodejs内置模块（中）】</a></li>  <li class="file"><a href="/2023/02/02/865661190f8f4ac79861ce7df6db4beb/">07 【nodejs内置模块（下）】</a></li>  <li class="file"><a href="/2023/02/02/901210553dfa45d3afe4457d57c3de3d/">09 【原生nodejs路由、获取参数、静态目录】</a></li>  <li class="file"><a href="/2023/02/02/4515be56c20449919855a7506716b2cf/">16 【跨域】</a></li>  <li class="file"><a href="/2023/02/02/888cb674f6fb4d0bb80e8bbf63a5047f/">13 【操作mysql数据库】</a></li>  <li class="file"><a href="/2023/02/02/1d20f98f527b465096fcec6bd4c2a604/">17 【文件上传】</a></li>  <li class="file"><a href="/2023/02/02/c3e972d6440b46f8a2d7249c38d187d3/">01 【nodejs简介】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            react
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/4ddb53a019f342579b13f34eddaaf39c/">11 【react-router 5】</a></li>  <li class="file"><a href="/2023/02/02/d3e37d3926734fd9b08b23b8d1cf4a76/">02 【面向组件编程】</a></li>  <li class="file"><a href="/2023/02/02/f09c9109b77c40b5bc7ece5b36c57fa4/">14【react-Hook （上）】</a></li>  <li class="file"><a href="/2023/02/02/49cd82fe5a0843eeb7d20dce85205767/">07 【收集表单数据】</a></li>  <li class="file"><a href="/2023/02/02/fc925383cd634fc384c0149bb81440d7/">10 【初始化脚手架】</a></li>  <li class="file"><a href="/2023/02/02/eff28d3f98a44083b80b2d779a742937/">13【react高级指引（下）】</a></li>  <li class="file"><a href="/2023/02/02/d47733b473484eff8245e2a785c161e0/">21 【styled-components的使用】</a></li>  <li class="file"><a href="/2023/02/02/b273e59e62894b4da1bb45adbdee98b1/">03 【事件处理】</a></li>  <li class="file"><a href="/2023/02/02/c78ad7d58e00468290b8bf9b1bbdf35f/">05 【条件渲染】</a></li>  <li class="file"><a href="/2023/02/02/f1602a4566b64671bc65486a7041308f/">18 【Redux Toolkit】</a></li>  <li class="file"><a href="/2023/02/02/ff2d1e21a86541918b1aa6230f9c765d/">16 【react-router 6】</a></li>  <li class="file"><a href="/2023/02/02/0432db33aca24dd6aaa0cd981d8f3a9c/">12 【react高级指引（上）】</a></li>  <li class="file"><a href="/2023/02/02/ced58ed76774454a929bef6b403e57cb/">08 【状态提升】</a></li>  <li class="file"><a href="/2023/02/02/125ea617daa24bafb8ee8e8bc80f67a1/">17【redux】</a></li>  <li class="file"><a href="/2023/02/02/e10e4b26d2bf44378e8037d640849094/">01 【react入门】</a></li>  <li class="file"><a href="/2023/02/02/269c3589e4be4b75a6c862285f2814ec/">15【react-Hook （下）】</a></li>  <li class="file"><a href="/2023/02/02/eaeb4b81181e44c88b5ea739de867f61/">04 【生命周期】</a></li>  <li class="file"><a href="/2023/02/02/1b30544e4df4423597f839fcf8c37fba/">20 【react中使用ts】</a></li>  <li class="file"><a href="/2023/02/02/0e6479990fed4ea2a64f5e78935f308b/">09 【组合组件】</a></li>  <li class="file"><a href="/2023/02/02/c0bcdc567e0b44ab8a74c8f6af0cb309/">19 【RTK Query】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/0b43e486feca40e7b50ea25602885b96/">01 【TypeScript简介 初体验】</a></li>  <li class="file"><a href="/2023/02/02/c6556a99f0a542d0894002af7851a206/">05 【接口  interface VS type】</a></li>  <li class="file"><a href="/2023/02/02/f11ed972e4a5429d8e24c713cba8ad6e/">03 【常用类型（下）】</a></li>  <li class="file"><a href="/2023/02/02/566f4f3d44794728b106bb3d508278e8/">06 【泛型】</a></li>  <li class="file"><a href="/2023/02/02/9ae5591e9bd243bdac816b4dbba0a626/">04【编译选项 webpack配置】</a></li>  <li class="file"><a href="/2023/02/02/b3639a6ae3334e6caa0f58c95deb58db/">第二章：面向对象</a></li>  <li class="file"><a href="/2023/02/02/9325308d90134c2d89042d5118c8aac9/">02 【常用类型（上）】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            基础三剑客
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            JavaScript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/7880448dad2345f6ad10793267396c06/">24 【键盘事件】</a></li>  <li class="file"><a href="/2023/02/02/3df9b05587534928ad52b2bab8daede5/">29【定时器和延时器】</a></li>  <li class="file"><a href="/2023/02/02/d17418a26029492e8d26142599edb639/">17 【Document 节点】</a></li>  <li class="file"><a href="/2023/02/02/42ec8243b3584ce9949b0d8a167f7f8f/">31【window 对象】</a></li>  <li class="file"><a href="/2023/02/02/3a1cee3416f44e0a9bcce9c7a4190cea/">05 【函数（上）】</a></li>  <li class="file"><a href="/2023/02/02/6dfad1b9f2a747b78ddac1382be9a5e0/">08 【标准库之Date对象】</a></li>  <li class="file"><a href="/2023/02/02/840362a4d9f041caaf0e1ed6a33eaaec/">33 【History对象和Location对象】</a></li>  <li class="file"><a href="/2023/02/02/d44bb868777147b8b283ea41e73ce4b1/">14 【语法之console 对象与控制台】</a></li>  <li class="file"><a href="/2023/02/02/19848e9f214542ecb0edd74a862cd652/">23 【事件对象与鼠标事件】</a></li>  <li class="file"><a href="/2023/02/02/4a5546755a7c4fd695274767efe8fe5f/">35【Storage接口】</a></li>  <li class="file"><a href="/2023/02/02/e3707da0f0c74cbaad841455d51a8912/">30【BOM和浏览器环境概述】</a></li>  <li class="file"><a href="/2023/02/02/16ff10afc67647a19e96ced945267d1a/">25 【进度事件和表单事件】</a></li>  <li class="file"><a href="/2023/02/02/35b7e41b399341619c9fc855fbc3ffb5/">09 【标准库之Math对象和String对象】</a></li>  <li class="file"><a href="/2023/02/02/9c1da8c2638049b6aa8bc77c365bee48/">03 【流程控制语句】</a></li>  <li class="file"><a href="/2023/02/02/12edce39ff004cba8e7d204ec89253f8/">21【节点的属性】</a></li>  <li class="file"><a href="/2023/02/02/e5abe46191f446439970f94b9b0d3ba6/">10 【标准库之RegExp对象】</a></li>  <li class="file"><a href="/2023/02/02/2f850099dd994cd49f47a9fba9f3cf6b/">11 【标准库之JSON对象 JSON5】</a></li>  <li class="file"><a href="/2023/02/02/98088e10e9394c50b60ecff18690bb98/">36 【节流和防抖】</a></li>  <li class="file"><a href="/2023/02/02/0bd96d59f698491eae334ca1acb77194/">13 【语法之编程风格】</a></li>  <li class="file"><a href="/2023/02/02/e7518bf293bd48ffb053673c07982b2a/">19 【节点的增删改查】</a></li>  <li class="file"><a href="/2023/02/02/d07f06774f8c4d22b87460e592ed8865/">26 【触摸事件和其它常见事件】</a></li>  <li class="file"><a href="/2023/02/02/7a23018a60814bceba65798c147b332b/">01 【基础语法与基本数据类型】</a></li>  <li class="file"><a href="/2023/02/02/47ecc198b851461bb2a56b1118f0bf4b/">20 【节点的集合】</a></li>  <li class="file"><a href="/2023/02/02/62aad3c089ed4aa9b4f1bc99ded57008/">02 【JS表达式与操作符】</a></li>  <li class="file"><a href="/2023/02/02/e18409b1902f4104a522af41137a6bbd/">15 【严格模式】</a></li>  <li class="file"><a href="/2023/02/02/3d4ce9313a0640cf8230defbe18858e1/">04 【对象】</a></li>  <li class="file"><a href="/2023/02/02/8283ef6acb05410db22d90d8d837d454/">06 【函数（下）】</a></li>  <li class="file"><a href="/2023/02/02/9225703b95ce4608bb1cfc5e5edb9e48/">22 【事件监听】</a></li>  <li class="file"><a href="/2023/02/02/ecf66e051ad24a4bb78aafce7e3466d0/">07 【数组及常用方法】</a></li>  <li class="file"><a href="/2023/02/02/2f50015bcdd3481782e878f1a86da20b/">27 【三大家族scroll、offset、client】</a></li>  <li class="file"><a href="/2023/02/02/5d433175f200488f8ff66fa6331fd2aa/">16 【DOM概述】</a></li>  <li class="file"><a href="/2023/02/02/7dbd11b2638e487b88a3024d6e6f9682/">28 【事件传播】</a></li>  <li class="file"><a href="/2023/02/02/6a031ac5c5d647d082ee19856d0fc2bc/">18 【节点的关系和内部操作】</a></li>  <li class="file"><a href="/2023/02/02/4cf03139b6ea43d8a5642bc9286ba774/">12 【语法之错误处理机制】</a></li>  <li class="file"><a href="/2023/02/02/a28dc6634bb4456c8fc30e9d225b6eb3/">34 【表单和FormData 对象】</a></li>  <li class="file"><a href="/2023/02/02/a7b4cba18cdf4e45ae01e87a990ca1fe/">32 【Navigator 对象和Screen 对象】</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            html+css
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/02/02/eb673a07916a497c827dd80b72017dc6/">09 【浮动 常见网页布局】</a></li>  <li class="file"><a href="/2023/02/02/6b1c3b3c007b4ffbb737ced5fa931d4d/">16 【过渡 动画】</a></li>  <li class="file"><a href="/2023/02/02/3a2b4fa5dfc7400aa7038b017420c521/">08 【盒模型(上) 盒模型(下)】</a></li>  <li class="file active"><a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">19 【flex布局】</a></li>  <li class="file"><a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/">21 【vw布局】</a></li>  <li class="file"><a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/">13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】</a></li>  <li class="file"><a href="/2023/02/02/04aa04fcb2fc4c1386acf05fab99bece/">04 【CSS选择器 】</a></li>  <li class="file"><a href="/2023/02/02/1cbd87e2a3df47e7a142782b47821cdb/">03 【语义标签(下) CSS简介】</a></li>  <li class="file"><a href="/2023/02/02/5c5a21a8362549d5bacd900b41379c26/">18 【移动端基础 流式布局】</a></li>  <li class="file"><a href="/2023/02/02/7a7112271245402292a058135d68bb8d/">07 【Emmet语法 三大特性及单位】</a></li>  <li class="file"><a href="/2023/02/02/c8617a7a739149f29b61b9a121203f65/">06 【CSS字体属性 CSS文本属性】</a></li>  <li class="file"><a href="/2023/02/02/8cfe33e063e14ed29ae060f119d43177/">12 【网页布局总结 元素的显示与隐藏】</a></li>  <li class="file"><a href="/2023/02/02/9c6a09be07d445028f7506bf2b15dc24/">22 【响应式布局】</a></li>  <li class="file"><a href="/2023/02/02/5c06def72fec4285bb849d30528e0303/">20 【rem适配布局】</a></li>  <li class="file"><a href="/2023/02/02/3deb7901e74d4e9aa9095df3da7305cf/">05 【CSS引入方式 CSS的元素显示模式】</a></li>  <li class="file"><a href="/2023/02/02/af297262b66348929acf86f09c99809c/">01 【HTML简介】</a></li>  <li class="file"><a href="/2023/02/02/394f3f21624a42298f8bd0cc0a8cf034/">15【背景 渐变色】</a></li>  <li class="file"><a href="/2023/02/02/3ba1ad7172b74c9f888fb5577a4f1143/">11 【定位】</a></li>  <li class="file"><a href="/2023/02/02/26011a9163a6486990089e0a074d5690/">02 【字符实体与语义标签(上)】</a></li>  <li class="file"><a href="/2023/02/02/a336b8d65382447abc8b9db0742c76df/">10 【高度塌陷与BFC】</a></li>  <li class="file"><a href="/2023/02/02/03f7d5a3ec6b484f99dcd540e3a0c800/">17 【2D转换 3D转换 浏览器私有前缀】</a></li>  <li class="file"><a href="/2023/02/02/0279e5f2fa4c42e5a595c1c80949701f/">14 【margin负值 文字围绕浮动 行内快 CSS三角 CSS初始化】</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据结构
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/18/227a7e051a0440e69890ea45ac4bf5e5/">数据结构与算法（二）</a></li>  <li class="file"><a href="/2023/01/18/504f1b143b0347e9a90eec81b294bbc5/">数据结构与算法（三）</a></li>  <li class="file"><a href="/2023/01/18/63a7aa64c56a40cd9f00d86713f849d8/">数据结构与算法（五）</a></li>  <li class="file"><a href="/2023/01/18/719f228dbc304a20955e90f38b4aa635/">数据结构与算法（四）</a></li>  <li class="file"><a href="/2023/01/18/a4c91c9ef15842b68fd3c9948dfde5bf/">数据结构与算法（一）</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            搜索与图论
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/21/b74bc4b803df4e7b99cf906cd5177da6/">DFS算法</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站收藏
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            前端
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/c64a51c38c9542fe9a5c1d7e2dc93dba/">小火柴的前端小站</a></li>  <li class="file"><a href="/2023/01/22/e18feca3c0ce43cd96468b8ad72fbc36/">被删的前端游乐场</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            编辑器
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/9f99a098f001487da297656e466dcb3b/">VSCode 是什么|极客教程</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            镜像站
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2023/01/22/ae79cc4392384967b905c952b720f392/">腾讯软件源</a></li>  <li class="file"><a href="/2023/01/22/6be31fe5f1cd44e7a52b7602603705ac/">阿里巴巴开源镜像站-OPSX镜像站-阿里云开发者社区</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-7709e9ec7a68438c80cab1bc3d1e8bd4" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E4%B8%89%E5%89%91%E5%AE%A2/">基础三剑客</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%9F%BA%E7%A1%80%E4%B8%89%E5%89%91%E5%AE%A2/html-css/">html+css</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2023/02/02/7709e9ec7a68438c80cab1bc3d1e8bd4/">
+            <time datetime="2023-02-02T05:18:15.653Z" itemprop="datePublished">2023-02-02</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/7709e9ec7a68438c80cab1bc3d1e8bd4.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/7709e9ec7a68438c80cab1bc3d1e8bd4.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/7709e9ec7a68438c80cab1bc3d1e8bd4.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            19 【flex布局】
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="34-flex布局"><a href="#34-flex布局" class="headerlink" title="34.flex布局"></a>34.flex布局</h1><h2 id="34-1-flex布局体验"><a href="#34-1-flex布局体验" class="headerlink" title="34.1 flex布局体验"></a>34.1 flex布局体验</h2><h3 id="34-1-1-传统布局与flex布局"><a href="#34-1-1-传统布局与flex布局" class="headerlink" title="34.1.1  传统布局与flex布局"></a>34.1.1  传统布局与flex布局</h3><p>【传统布局】</p>
+<ul>
+<li><p>兼容性好</p>
+</li>
+<li><p>布局繁琐</p>
+</li>
+<li><p>局限性，不能在移动端很好的布局</p>
+</li>
+</ul>
+<p>【flex布局】</p>
+<ul>
+<li>操作方便，布局极为简单，移动端应用很广泛</li>
+<li>PC 端浏览器支持情况较差</li>
+<li>IE11 或更低版本不支持或仅部分支持</li>
+</ul>
+<p>建议：</p>
+<ol>
+<li>如果是 PC 端页面布局，我们还是建议使用传统布局</li>
+<li>如果是移动端或者不考虑兼容性问题的 PC 端页面布局，推荐使用 flex 弹性布局</li>
+</ol>
+<h3 id="34-1-2-初体验"><a href="#34-1-2-初体验" class="headerlink" title="34.1.2 初体验"></a>34.1.2 初体验</h3><p><strong>弹性盒</strong></p>
+<p><code>flex</code>（弹性盒、伸缩盒）</p>
+<ul>
+<li><p>是<code>css</code>中的又一种布局手段，它主要用来代替浮动来完成页面的布局</p>
+</li>
+<li><p><code>flex</code>可以使元素具有弹性，让元素可以跟随页面的大小的改变而改变</p>
+</li>
+</ul>
+<p><strong>弹性容器</strong></p>
+<p>要使用弹性盒，必须先将一个元素设置为弹性容器</p>
+<p>我们通过<code>display</code> 来设置弹性容器</p>
+<ul>
+<li><p><code>display:flex</code> 设置为块级弹性容器</p>
+</li>
+<li><p><code>display:inline-flex</code> 设置为行内的弹性容器</p>
+</li>
+</ul>
+<p><strong>弹性元素</strong></p>
+<ul>
+<li><p>弹性容器的子元素是弹性元素（弹性项）</p>
+</li>
+<li><p>弹性元素可以同时是弹性容器</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 弹性布局中：行内盒子的宽高可直接设置了，这也是优于百分比布局的地方之一 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 免去了浮动的设置，以及对父盒子清除浮动的麻烦 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin-right</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/35b96b04d3f1a95d5f84db0144a8ed972463d672.png"></p>
+<p><strong>等间距分布</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80%</span>;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/6d70e5725dcb049a630bd6fbe386fda63e9c53b4.gif"></p>
+<p><strong>平均分为三等分</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80%</span>;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="comment">/* 弹性布局中：行内盒子的宽高可直接设置了 */</span></span><br><span class="line">    <span class="comment">/* width: 150px; */</span></span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/d7a57c689b9692c5dccc4131f7c9e105ca63ef0f.gif"></p>
+<h2 id="34-2-flex布局原理"><a href="#34-2-flex布局原理" class="headerlink" title="34.2 flex布局原理"></a>34.2 flex布局原理</h2><p>flex 是 flexible Box 的缩写，意为 “弹性布局”，用来为盒状模型<strong>提供最大的灵活性</strong>，<strong>任何一个容器都可以指定为 flex 布局</strong>。</p>
+<ul>
+<li>当我们为父盒子设为 flex 布局以后，子元素的 float（浮动功能）、clear（清除浮动功能）和 vertical-align（垂直居中功能）属性将失效。</li>
+<li>伸缩布局 &#x3D; 弹性布局 &#x3D; 伸缩盒布局 &#x3D; 弹性盒布局 &#x3D; flex 布局</li>
+</ul>
+<p>采用 flex 布局的元素，称为 flex 容器（flex container），简称 “容器”。它的所有子元素自动成为容器成员，称为 flex 项目（flex item），简称 “项目”。</p>
+<ul>
+<li>上面的体验中 div 就是 flex 父容器</li>
+<li>上面的体验中 span 就是子容器 flex 项目</li>
+<li>子容器可以横向排列也可以纵向排列</li>
+</ul>
+<p>【子容器横向排列时的图示】</p>
+<p><img src="https://i0.hdslb.com/bfs/album/897c0e795aeb8f5d8b881d3dafc7ad954a5a9b97.png"></p>
+<p>【总结 flex 布局原理】</p>
+<p><strong>就是通过给父盒子添加 flex 属性，来控制子盒子的位置和排列方式。</strong></p>
+<h2 id="34-3-常见弹性容器属性"><a href="#34-3-常见弹性容器属性" class="headerlink" title="34.3 常见弹性容器属性"></a>34.3 常见弹性容器属性</h2><p>以下由 6 个属性是对父元素设置的</p>
+<ul>
+<li><code>flex-direction</code>：设置主轴的方向</li>
+<li><code>justify-content</code>：设置主轴上的子元素排列方式</li>
+<li><code>flex-wrap</code>：设置子元素是否换行</li>
+<li><code>flex-flow</code>：复合属性，相当于同时设置了 flex-direction 和 flex-wrap</li>
+<li><code>align-content</code>：设置侧轴上的子元素的排列方式（多行）</li>
+<li><code>align-items</code>：设置侧轴上的子元素排列方式（单行）</li>
+</ul>
+<h2 id="34-4-flex-direction设置主轴的方向"><a href="#34-4-flex-direction设置主轴的方向" class="headerlink" title="34.4  flex-direction设置主轴的方向"></a>34.4  flex-direction设置主轴的方向</h2><p><code>flex-direction</code> 指定容器中弹性元素的排列方式</p>
+<p><strong>（1）主轴与侧轴</strong></p>
+<p>在 flex 布局中，是分为主轴和侧轴两个方向，同样的叫法有：行 和 列、x轴 和 y轴</p>
+<ul>
+<li>默认主轴方向就是 x轴 方向，水平向右</li>
+<li>默认侧轴方向就是 y轴 方向，水平向下</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/f2d2c9fb7956df15da4cea034930fcc113048e7a.png"></p>
+<p><strong>（2）属性值</strong></p>
+<p><code>flex-direction</code> 属性决定主轴的方向（即：项目的排列方向）</p>
+<p>注意：主轴和侧轴是会变化的，就看 flex-direction 设置谁为主轴，剩下的就是侧轴。而我们的子元素是跟着主轴来排列的。</p>
+<ul>
+<li><p><code>row</code>默认值，弹性元素在容器中水平排列（自左向右）</p>
+</li>
+<li><p><code>row-reverse</code> 弹性元素在容器中反向水平排列（自右向左）</p>
+</li>
+<li><p><code>column</code> 弹性元素纵向排列（自上向下）</p>
+</li>
+<li><p><code>column-reverse</code> 弹性元素反向纵向排列（自下向上）</p>
+</li>
+</ul>
+<p>【案例】</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 给父级添加flex属性 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 默认的主轴是 x 轴,那么 y 轴就是侧轴喽 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 我们的元素是跟着主轴来排列的 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-direction</span>: row;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 简单了解翻转即可 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* flex-direction: row-reverse; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 我们可以把我们的主轴设置为 y 轴 那么 x 轴就成了侧轴 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* flex-direction: column; */</span></span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: purple;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/1bff4d080d7437c8bb2dc17c6a38f35df217ca0e.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex-direction</span>: row-reverse;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/e897fad7623720ddc687c091739aa2d4fee74352.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex-direction</span>: column;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/8c13a430cea233f2c574e7f49ef3a08339850144.png"></p>
+<h2 id="34-5-justify-content设置主轴上的子元素排列方式"><a href="#34-5-justify-content设置主轴上的子元素排列方式" class="headerlink" title="34.5 justify-content设置主轴上的子元素排列方式"></a>34.5 justify-content设置主轴上的子元素排列方式</h2><p><code>justify-content</code> 属性定义了项目在主轴上的对齐方式</p>
+<p>注意：使用这个属性之前一定要确定好主轴是哪个！</p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>flex-start</code></td>
+<td>元素沿着主轴起边排列，如果主轴是 x轴，则从左到右（默认值）</td>
+</tr>
+<tr>
+<td><code>flex-end</code></td>
+<td>元素沿着主轴终边排列</td>
+</tr>
+<tr>
+<td><code>center</code></td>
+<td>在主轴居中对齐（如果主轴是 x轴 则 水平居中）</td>
+</tr>
+<tr>
+<td><code>space-around</code></td>
+<td>空白分布到元素两侧</td>
+</tr>
+<tr>
+<td><code>space-between</code></td>
+<td>先两边贴边再平方剩余空间（重要）</td>
+</tr>
+<tr>
+<td><code>space-evenly</code></td>
+<td>空白分布到元素的单侧</td>
+</tr>
+</tbody></table>
+<p>【案例】</p>
+<p><code>flex-start</code> 元素沿着主轴起边排列</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 默认的主轴是 x轴 row */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-direction</span>: row;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* justify-content: 是设置主轴上子元素的排列方式 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 从头部开始，如果主轴是 x轴，则从左到右（默认值） */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">justify-content</span>: flex-start;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 从尾部开始排列 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* justify-content: flex-end; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 让我们子元素居中对齐 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* justify-content: center; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 平分剩余空间 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* justify-content: space-around; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 先两边贴边，在分配剩余的空间 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* justify-content: space-between; */</span></span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>4<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/ef3457bfc8477bc5b825bb7272ba46fdc7f7b14e.png"></p>
+<p><code>flex-end</code> 元素沿着主轴终边排列</p>
+<p><img src="https://i0.hdslb.com/bfs/album/51e7f397043eef3e0b4282aecc3bafd7492ad708.png"></p>
+<p><code>center</code> 元素居中排列</p>
+<p><img src="https://i0.hdslb.com/bfs/album/e5abc3d231d6dabd682c4777fc69951cf5729ed7.png" alt="image-20220812122252100"> <code>space-around</code>  空白分布到元素两侧</p>
+<p><img src="https://i0.hdslb.com/bfs/album/90eaec58b3e2f2b6a56c6314f4440cc6aec0914d.png"></p>
+<p><code>space-between</code> 先两边贴边再平方剩余空间</p>
+<p><img src="https://i0.hdslb.com/bfs/album/b7dd454e231a2627f0d7a3beed2ef8b8b1227d86.png"></p>
+<blockquote>
+<p><strong>补充</strong></p>
+<p><code>space-evenly</code> 空白分布到元素的单侧</p>
+<p><img src="https://i0.hdslb.com/bfs/album/008889e323285a5a8bd055f8c9bc7e17beb6c3d3.png" alt="image-20220812105356829"></p>
+</blockquote>
+<blockquote>
+<p>注意：以上例子并不能根据浏览器窗口大小自动调整子项之间的间距，因为父盒子的宽度是固定死 800px 的，假如我们把父盒子宽度设为 80%，那么就可以有效果了。</p>
+</blockquote>
+<p><code>div &#123;width: 800px;&#125;</code></p>
+<p><img src="https://i0.hdslb.com/bfs/album/4c7a2bfc919c4dc0f6113ef7838c97a02153e693.gif"></p>
+<p><code>div &#123;width: 80%;&#125;</code></p>
+<p><img src="https://i0.hdslb.com/bfs/album/e81b12ef6c8b3c12325ba377894a17f1b3c43173.gif"></p>
+<p><code>div &#123;width: 80%;&#125;</code></p>
+<p><code>div span &#123;width: 80%;&#125;</code></p>
+<p><img src="https://i0.hdslb.com/bfs/album/186275c836d91572211f12780a4f154ae3145d77.gif"></p>
+<p>【以上到下为主轴的案例】</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 我们现在的主轴是 y轴 */</span></span><br><span class="line"> <span class="attribute">flex-direction</span>: column;</span><br><span class="line"><span class="comment">/* justify-content: 是设置主轴上子元素的排列方式 */</span></span><br><span class="line"><span class="comment">/* 从头部开始，则从上到下（默认值） */</span></span><br><span class="line"><span class="attribute">justify-content</span>: flex-start;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/0b6afe1d08a543f4e61c585b207e527f41d1c584.png" alt="image-20220812122358520"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 我们现在的主轴是 y轴 */</span></span><br><span class="line"><span class="attribute">flex-direction</span>: column;</span><br><span class="line"><span class="comment">/* justify-content: 是设置主轴上子元素的排列方式 */</span></span><br><span class="line"><span class="comment">/* 从下开始排列 */</span></span><br><span class="line"><span class="attribute">justify-content</span>: flex-end;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/1b3ddbaf1f0d608ddb08ec78acf8116b0ceb8606.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 我们现在的主轴是 y轴 */</span></span><br><span class="line"><span class="attribute">flex-direction</span>: column;</span><br><span class="line"><span class="comment">/* justify-content: 是设置主轴上子元素的排列方式 */</span></span><br><span class="line"><span class="comment">/* 让我们子元素垂直居中对齐 */</span></span><br><span class="line"><span class="attribute">justify-content</span>: center;</span><br></pre></td></tr></table></figure>
+
+<p>盒子自动垂直居中的困扰终于解决啦！！！</p>
+<p><img src="https://i0.hdslb.com/bfs/album/bb005e50536217371f764154f55e6e77aa39426d.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 我们现在的主轴是 y轴 */</span></span><br><span class="line"><span class="attribute">flex-direction</span>: column;</span><br><span class="line"><span class="comment">/* justify-content: 是设置主轴上子元素的排列方式 */</span></span><br><span class="line"><span class="comment">/* 平分剩余空间 */</span></span><br><span class="line"><span class="attribute">justify-content</span>: space-around;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/d567cb6e04e12144a77be96b0b4c5c1aea15038e.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 我们现在的主轴是 y轴 */</span></span><br><span class="line"><span class="attribute">flex-direction</span>: column;</span><br><span class="line"><span class="comment">/* justify-content: 是设置主轴上子元素的排列方式 */</span></span><br><span class="line"><span class="comment">/* 先上下两边贴边，在分配剩余的空间 */</span></span><br><span class="line"><span class="attribute">justify-content</span>: space-between;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/d2cb207e29718ed796592a033c3a65fab834161c.png"></p>
+<h2 id="34-6-flex-wrap设置子元素是否换行"><a href="#34-6-flex-wrap设置子元素是否换行" class="headerlink" title="34.6 flex-wrap设置子元素是否换行"></a>34.6 flex-wrap设置子元素是否换行</h2><p><code>flex-wrap</code> 设置弹性元素是否在弹性容器中自动换行</p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>nowrap</code></td>
+<td>默认值，元素不会自动换行</td>
+</tr>
+<tr>
+<td><code>wrap</code></td>
+<td>元素沿着辅轴方向自动换行</td>
+</tr>
+</tbody></table>
+<p>【案例】</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* flex布局中，默认的子元素是不换行的， 如果装不开，会缩小子元素的宽度，放到父元素里面  */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* flex-wrap: nowrap; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 自动换行 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* flex-wrap: wrap; */</span></span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>4<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>5<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>6<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://i0.hdslb.com/bfs/album/d37358b55053592cf3ceb174c37e7f72c76854fd.png" alt="image-20220119004923437" style="zoom:50%;" />
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex-wrap</span>: wrap;</span><br></pre></td></tr></table></figure>
+
+<img src="https://i0.hdslb.com/bfs/album/1825de48955b6e4cf496224fa41d0b4a6ddc6969.png" style="zoom:50%;" />
+
+<h2 id="34-7-flex-flow复合属性"><a href="#34-7-flex-flow复合属性" class="headerlink" title="34.7 flex-flow复合属性"></a>34.7 flex-flow复合属性</h2><p><code>flex-flow</code> 属性是 flex-direction 和 flex-wrap 属性的复合属性</p>
+<p><code>flex-flow: row wrap;</code></p>
+<p>【案例】</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">300px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* flex-direction: column;</span></span></span><br><span class="line"><span class="comment"><span class="language-css">        flex-wrap: wrap; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 把设置主轴方向和是否换行（换列）简写 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-flow</span>: column wrap;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>4<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>5<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/df1cb1d2aeddf3d0d561d4da400d324065127d13.png"></p>
+<h2 id="34-8-align-items设置侧轴上的子元素排列方式（单行）"><a href="#34-8-align-items设置侧轴上的子元素排列方式（单行）" class="headerlink" title="34.8  align-items设置侧轴上的子元素排列方式（单行）"></a>34.8  align-items设置侧轴上的子元素排列方式（单行）</h2><p>该属性是控制子项在侧轴（默认是 y轴）上的排列方式，在子项为单项（单行）的时候使用。</p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>flex-start</code></td>
+<td>从上到下</td>
+</tr>
+<tr>
+<td><code>flex-end</code></td>
+<td>从下到上</td>
+</tr>
+<tr>
+<td><code>center</code></td>
+<td>挤在一起居中</td>
+</tr>
+<tr>
+<td><code>stretch</code></td>
+<td>拉伸（默认值）注：前提是子盒子没有指定高度，否则没有效果！</td>
+</tr>
+</tbody></table>
+<p>【案例】</p>
+<p><code>flex-start</code> 元素不会拉伸，沿着辅轴起边对齐</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 默认的主轴是 x轴 row */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-direction</span>: row;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 设置侧轴：从上到下 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">align-items</span>: flex-start;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/2e605b349e3285d7168dd125aba27cea6b530849.png"></p>
+<p><code>flex-end</code> 沿着辅轴的终边对齐</p>
+<p><img src="https://i0.hdslb.com/bfs/album/0f1b2a03959a9cc2906249c368d29c73197b6db2.png"></p>
+<p><code>center</code> 居中对齐</p>
+<p><img src="https://i0.hdslb.com/bfs/album/3170da9ea015bcd564d892ef095b877b6bbe9fb8.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 默认的主轴是 x轴 row */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-direction</span>: row;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 设置侧轴：拉伸（默认） */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">align-items</span>: stretch;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 拉伸的前提是没有指定高度 */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* height: 100px; */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/d6c0c1eba75c109f71322feeae31bc8e74b646f1.png"></p>
+<blockquote>
+<p>align-items 只能统一对侧轴上的子元素排列方式，假如有多行子元素，要分别对不同的行设置不同的排列方式，那么此种方式就无法做了。</p>
+</blockquote>
+<h2 id="34-9-align-content-设置侧轴上的子元素的排列方式（多行）"><a href="#34-9-align-content-设置侧轴上的子元素的排列方式（多行）" class="headerlink" title="34.9 align-content 设置侧轴上的子元素的排列方式（多行）"></a>34.9 align-content 设置侧轴上的子元素的排列方式（多行）</h2><p>设置子项在侧轴上的排列方式并且只能用于子项出现 <strong>换行</strong> 的情况（多行），在单行下是没有效果的。</p>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>flex-start</code></td>
+<td>在侧轴的头部开始排列</td>
+</tr>
+<tr>
+<td><code>flex-end</code></td>
+<td>在侧轴的尾部开始排列</td>
+</tr>
+<tr>
+<td><code>center</code></td>
+<td>在侧轴中间显示</td>
+</tr>
+<tr>
+<td><code>space-around</code></td>
+<td>子项在侧轴平方剩余空间</td>
+</tr>
+<tr>
+<td><code>space-between</code></td>
+<td>子项在侧轴先分布在两头，再平分剩余空间</td>
+</tr>
+<tr>
+<td><code>stretch</code></td>
+<td>行拉伸以占据剩余空间（默认值）</td>
+</tr>
+</tbody></table>
+<p>【案例】</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 换行 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-wrap</span>: wrap;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 因为有了换行，此时我们侧轴上控制子元素的对齐方式我们用 align-content */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">align-content</span>: flex-start;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* align-content: center; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* align-content: space-around; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* align-content: space-between; */</span></span></span><br><span class="line"><span class="language-css">        <span class="comment">/* align-content: stretch; */</span></span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: gray;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>4<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>5<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>6<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>7<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>8<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/64a0439d75ab20ba3028cadf6a202dbfeacf12d5.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">align-content</span>: center;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/236869854dc0b30199fbcd3bedd39a7513763483.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">align-content</span>: space-around;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/d5ebb96dd5a524a86cf430ee8e16f0e8a80ee90b.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">align-content</span>: space-between;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/ebf1d9360330231869e358f269165f2a198436b8.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">400px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 换行 */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-wrap</span>: wrap;</span></span><br><span class="line"><span class="language-css">        <span class="comment">/* 因为有了换行，此时我们侧轴上控制子元素的对齐方式我们用 align-content */</span></span></span><br><span class="line"><span class="language-css">        <span class="attribute">align-content</span>: stretch;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span> <span class="selector-tag">span</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">150px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/183a552be79119aaa913ae68fd3e46546ec5b873.png"></p>
+<p><strong>弹性居中</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">justify-content</span>: center;</span><br><span class="line"><span class="attribute">align-items</span>: center;</span><br></pre></td></tr></table></figure>
+
+<p>利用弹性盒对元素进行水平垂直双方向居中</p>
+<p><img src="https://i0.hdslb.com/bfs/album/91bff2646ecca85d0a785579f731df13ac287138.png" alt="image-20220812111500820"></p>
+<h2 id="34-10-align-content和align-items区别"><a href="#34-10-align-content和align-items区别" class="headerlink" title="34.10 align-content和align-items区别"></a>34.10 align-content和align-items区别</h2><ul>
+<li>align-items 适用于单行情况下，只有上对齐、下对齐、居中和拉伸</li>
+<li>align-content 适应于换行（多行）的情况下（单行情况下无效），可以设置上对齐、下对齐、居中、拉伸以及平均分配剩余空间等属性值</li>
+<li>总结就是单行找 align-items 多行找 align-content</li>
+</ul>
+<p><img src="https://i0.hdslb.com/bfs/album/ff9d3a127b6b9fad056166008f9eb5420eddd506.png"></p>
+<h2 id="34-11-常见弹性元素属性"><a href="#34-11-常见弹性元素属性" class="headerlink" title="34.11 常见弹性元素属性"></a>34.11 常见弹性元素属性</h2><ul>
+<li><code>flex-grow</code> 指定弹性元素的伸展系数，默认值为0</li>
+<li><code>flex-shrink</code> 指定弹性元素的收缩系数，默认值为1</li>
+<li><code>flex-basis</code> 指定的是元素在主轴上的基础长度</li>
+<li><code>flex</code> flex-grow、flex-shrink、flex-basis 三个属性的合集</li>
+<li><code>order</code> 决定弹性元素的排列顺序（前后顺序）</li>
+<li><code>align-self</code> 控制子项自己在侧轴的排列方式</li>
+</ul>
+<h2 id="34-12-伸展系数"><a href="#34-12-伸展系数" class="headerlink" title="34.12 伸展系数"></a>34.12 伸展系数</h2><p><code>flex-grow</code> 指定弹性元素的伸展系数，默认值为0</p>
+<ul>
+<li><p>当父元素有多余空间的时，子元素如何伸展</p>
+</li>
+<li><p>父元素的剩余空间，会按照比例进行分配</p>
+</li>
+</ul>
+<h3 id="34-12-1-flex-grow基础"><a href="#34-12-1-flex-grow基础" class="headerlink" title="34.12.1 flex-grow基础"></a>34.12.1 flex-grow基础</h3><p>flex-grow 属性定义项目的扩大系数，用于<strong>分配容器的剩余空间</strong>，那么什么是剩余空间呢？</p>
+<p>其实非常简单，剩余空间计算方式就是：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">容器大小 - 所有项目的总大小</span><br></pre></td></tr></table></figure>
+
+<p>参考如下示例：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/ee070dc47a9c470bf70bd549156266726be8f07d.png" alt="image-20220812112444197"></p>
+<p>其中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 每个项目的宽度为<span class="number">50px</span>，<span class="number">3</span>个为<span class="number">150px</span>。</span><br><span class="line"><span class="number">2</span>. 剩余空间为 <span class="number">450px</span> - <span class="number">150px</span> = <span class="number">300px</span>。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 默认为 <span class="number">0</span> ，即如果容器存在剩余空间，也不放大。</span><br><span class="line"><span class="number">2</span>. <span class="attribute">flex-grow</span>只能为&gt;=<span class="number">0</span>的数字，项目根据设置的系数进行放大。</span><br></pre></td></tr></table></figure>
+
+<p>那么问题就来了：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">项目是如何根据设置的系数分配剩余空间呢？</span><br></pre></td></tr></table></figure>
+
+<p>这边涉及到<strong>两个关键公式：</strong></p>
+<p>1）计算将多少剩余空间拿来分配。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：剩余空间 * ( 所有项目的<span class="attribute">flex-grow</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-grow之和 ) 。</span><br></pre></td></tr></table></figure>
+
+<p>这边用了一个三元表达式，理解不难，公式的意思就是说：</p>
+<p>如果 所有项目的flex-grow之和 大于等于1，那么就是所有的剩余空间都拿来分配，否则乘以系数即为要分配的剩余空间。</p>
+<p>2）计算每个项目分配到多少剩余空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：要分配的剩余空间 * ( 单个项目<span class="attribute">flex-grow</span> / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br></pre></td></tr></table></figure>
+
+<p>简单的说，就是按照 flex-grow 占比进行分配。</p>
+<p>下面我们结合例子进行说明，对这边的计算公式进行理解。</p>
+<p><strong>示例1</strong>，设置项目的flex-grow为1：</p>
+<p>有一个div（容器，450px），容器内包含3个div（项目，各50px）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* 	flex-basis属性定义了项目占据主轴空间（main size）大小。 */</span></span><br><span class="line">	<span class="comment">/* 	这边设置为50px */</span></span><br><span class="line">	<span class="attribute">flex-basis</span>: <span class="number">50px</span>;</span><br><span class="line">	<span class="comment">/* flex-grow 属性定义项目的扩大系数 */</span></span><br><span class="line">	<span class="comment">/* 这边设置为1 */</span></span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/76811f822d60894dfeee25d9efc74dc4a3e8af89.png" alt="image-20220812112908755"></p>
+<p>我们观察到3个项目的宽度都变成了150px，可以看到项目被进行了扩大。</p>
+<p>现在套公式看下情况：</p>
+<p>1）计算总共要分配多少剩余空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要分配的剩余空间</span><br><span class="line"> = 剩余空间 * ( 所有项目的<span class="attribute">flex-grow</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-grow之和 ) </span><br><span class="line"> = <span class="number">300px</span> * (<span class="number">3</span> &gt;= <span class="number">1</span> ? <span class="number">1</span> : <span class="number">3</span>)</span><br><span class="line"> = <span class="number">300px</span> * <span class="number">1</span></span><br><span class="line"> = <span class="number">300px</span></span><br></pre></td></tr></table></figure>
+
+<p>2）计算每个项目分配到多少剩余空间。</p>
+<p>因为每个项目flex-grow都为1，所以每个项目分配的剩余空间都一样。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">每个项目分配的剩余空间</span><br><span class="line"> = 要分配的剩余空间 * ( 单个项目<span class="attribute">flex-grow</span> / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br><span class="line"> = <span class="number">300px</span> * ( <span class="number">1</span> / <span class="number">3</span>)</span><br><span class="line"> = <span class="number">100px</span></span><br></pre></td></tr></table></figure>
+
+<p>每个项目多分配100px，加上自身设置的flex-basis，最终每个项目宽度就为150px了。</p>
+<p><strong>示例2</strong>，设置项目1的flex-grow为1，项目2的flex-grow为2，项目3的flex-grow为3：</p>
+<p>我们直接套公式计算：</p>
+<p>1）计算总共要分配多少剩余空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要分配的剩余空间</span><br><span class="line"> = 剩余空间 * ( 所有项目的<span class="attribute">flex-grow</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-grow之和 ) </span><br><span class="line"> = <span class="number">300px</span> * (<span class="number">6</span> &gt;= <span class="number">1</span> ? <span class="number">1</span> : <span class="number">6</span>)</span><br><span class="line"> = <span class="number">300px</span> * <span class="number">1</span></span><br><span class="line"> = <span class="number">300px</span></span><br></pre></td></tr></table></figure>
+
+<p>2）计算每个项目分配到多少剩余空间。</p>
+<p>因为每个项目flex-grow都不一样，所以每个项目分配的剩余空间要分开计算。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">项目<span class="number">1</span>分配的剩余空间</span><br><span class="line"> = 要分配的剩余空间 * ( 项目<span class="number">1</span>flex-grow / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br><span class="line"> = <span class="number">300px</span> * ( <span class="number">1</span> / <span class="number">6</span>)</span><br><span class="line"> = <span class="number">50px</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">2</span>分配的剩余空间</span><br><span class="line"> = 要分配的剩余空间 * ( 项目<span class="number">2</span>flex-grow / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br><span class="line"> = <span class="number">300px</span> * ( <span class="number">2</span> / <span class="number">6</span>)</span><br><span class="line"> = <span class="number">100px</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">3</span>分配的剩余空间</span><br><span class="line"> = 要分配的剩余空间 * ( 项目<span class="number">3</span>flex-grow / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br><span class="line"> = <span class="number">300px</span> * ( <span class="number">3</span> / <span class="number">6</span>)</span><br><span class="line"> = <span class="number">150px</span> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>所以最终：项目1宽为100px、项目2宽为150px、项目3宽为200px。</p>
+<p>写上代码看看效果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* 	flex-basis属性定义了项目占据主轴空间（main size）大小。 */</span></span><br><span class="line">	<span class="comment">/* 	这边设置为50px */</span></span><br><span class="line">	<span class="attribute">flex-basis</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item3</span> &#123;</span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/345481371c7123424e4403043fcd2d308801d9d2.gif"></p>
+<p>观察运行效果，符合预期。</p>
+<p><strong>示例3</strong>：设置项目1的 flex-grow 为 0.1，项目2的 flex-grow 为0.2，项目3的 flex-grow 为 0.3：</p>
+<p>这个示例和上例差不多，只是数字变成了小数，并且总和不大于1。</p>
+<p>先套公式来计算一下：</p>
+<p>1）计算总共要分配多少剩余空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要分配的剩余空间</span><br><span class="line"> = 剩余空间 * ( 所有项目的<span class="attribute">flex-grow</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-grow之和 ) </span><br><span class="line"> = <span class="number">300px</span> * (<span class="number">0.6</span> &gt;= <span class="number">1</span> ? <span class="number">1</span> : <span class="number">0.6</span>)</span><br><span class="line"> = <span class="number">300px</span> * <span class="number">0.6</span></span><br><span class="line"> = <span class="number">180px</span></span><br></pre></td></tr></table></figure>
+
+<p>2）计算每个项目分配到多少剩余空间。因为每个项目flex-grow都不一样，所以每个项目分配的剩余空间要分开计算。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">项目<span class="number">1</span>分配的剩余空间</span><br><span class="line"> = 要分配的剩余空间 * ( 项目<span class="number">1</span>flex-grow / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br><span class="line"> = <span class="number">180px</span> * ( <span class="number">0.1</span> / <span class="number">0.6</span>)</span><br><span class="line"> = <span class="number">30px</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">2</span>分配的剩余空间</span><br><span class="line"> = 要分配的剩余空间 * ( 项目<span class="number">2</span>flex-grow / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br><span class="line"> = <span class="number">180px</span> * ( <span class="number">0.2</span> / <span class="number">0.6</span>)</span><br><span class="line"> = <span class="number">60px</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">3</span>分配的剩余空间</span><br><span class="line"> = 要分配的剩余空间 * ( 项目<span class="number">3</span>flex-grow / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br><span class="line"> = <span class="number">180px</span> * ( <span class="number">0.3</span> / <span class="number">0.6</span>)</span><br><span class="line"> = <span class="number">90px</span></span><br></pre></td></tr></table></figure>
+
+<p>所以最终：项目1宽为80px、项目2宽为110px、项目3宽为140px。</p>
+<p>样式代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-basis属性定义了项目占据主轴空间（main size）大小。 */</span></span><br><span class="line">	<span class="attribute">flex-basis</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-grow属性定义项目的放大比例 */</span></span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">0.1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-grow属性定义项目的放大比例 */</span></span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">0.2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item3</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-grow属性定义项目的放大比例 */</span></span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">0.3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果如下：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/70cdc6617eeca2b5d9aeea5e96f97c28116d19d8.png" alt="image-20220812113709146"></p>
+<p>符合计算预期。</p>
+<h3 id="34-12-2-flow-grow应用"><a href="#34-12-2-flow-grow应用" class="headerlink" title="34.12.2 flow-grow应用"></a>34.12.2 flow-grow应用</h3><p>flow-grow属性在项目中运用很多，比如页面布局、导航条、分页等。</p>
+<p><strong>实例1</strong>：使用 flex 弹性布局实现如下效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/12890ae3e4fe65753139c6c56a63b9b64caa308f.png" alt="image-20220812113818509"></p>
+<p>这个其实就是腾讯首页的导航条了，我们模拟实现一下，步骤分为4步：</p>
+<p>1）首先先写html标签，标签很简单一个 nav 包含若干 a 标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>新闻<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>视频<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>图片<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>军事<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>体育<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>NBA<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>娱乐<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>财经<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>科技<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2）设置基本样式，背景、颜色、边框圆角等：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">44px</span>;</span><br><span class="line">	<span class="attribute">background-color</span>: <span class="number">#1479d7</span>;</span><br><span class="line">	<span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="attribute">color</span>: white;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">	<span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/434734b1dedd911e790f580db33c20692198d684.png" alt="image-20220812114128188"></p>
+<p>3）设置容器为 flex 布局，项目 flex-grow 为1 平分剩余空间：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="comment">/* 设置子元素的布局为flex布局 */</span></span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* 设置项目放大系数 */</span></span><br><span class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/26aa97391cc163a66e6fe14c0d2128f81b56b43b.png" alt="image-20220812114149809"></p>
+<p>4）再来一个上下居中即可，flex 弹性布局将容器属性 align-items 设置为 center 即可：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="comment">/* 设置辅轴上项目居中排列 */</span></span><br><span class="line">	<span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/4647d0bc6d55bac2696290e774e95375980d0c27.png" alt="image-20220812114302213"></p>
+<p>至此这个例子就完成了。</p>
+<p>和之前使用float相比，<strong>我们尝试改变容器大小，会发现项目也跟着变化，这个就是弹性的意思了</strong>。如下图所示：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/b1c6285d6655afa9b670eb425c3ec7318aebc31d.gif"></p>
+<h3 id="3-12-3-总结"><a href="#3-12-3-总结" class="headerlink" title="3.12.3 总结"></a>3.12.3 总结</h3><ol>
+<li>容器内未被占用的空间称为剩余空间。</li>
+<li>flex-grow用于设置项目的放大系数。</li>
+<li>项目放大尺寸计算包含两个公式：</li>
+</ol>
+<p>1）计算将多少剩余空间拿来分配。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：剩余空间 * ( 所有项目的<span class="attribute">flex-grow</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-grow之和 ) 。</span><br></pre></td></tr></table></figure>
+
+<p>2）计算每个项目分配到多少剩余空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：要分配的剩余空间 * ( 单个项目<span class="attribute">flex-grow</span> / 所有项目的<span class="attribute">flex-grow</span>之和 )</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>flex-grow不是设置具体的尺寸，在弹性布局中应用广泛。</li>
+</ol>
+<h2 id="34-13-缩减系数"><a href="#34-13-缩减系数" class="headerlink" title="34.13 缩减系数"></a>34.13 缩减系数</h2><p><code>flex-shrink</code> 指定弹性元素的收缩系数，默认值为1</p>
+<ul>
+<li><p>当父元素中的空间不足以容纳所有的子元素时，如何对子元素进行收缩</p>
+</li>
+<li><p>缩减系数的计算方式比较复杂，缩减多少是根据 <em>缩减系数</em> 和 <em>元素大小</em> 来计算</p>
+</li>
+</ul>
+<p>简单的说 flex-grow 用于放大，那么 flex-shrink 就是用于缩小了，两个属性就是反过来，计算方式都类似。放大是因为有剩余空间，缩小就是因为项目的宽度超过容器了，有一个<strong>超出空间</strong>，所以就要进行缩小。</p>
+<h3 id="34-13-1-flex-shrink基础"><a href="#34-13-1-flex-shrink基础" class="headerlink" title="34.13.1 flex-shrink基础"></a>34.13.1 flex-shrink基础</h3><p>超出空间计算方式：</p>
+<pre><code>所有项目的总大小 - 容器大小
+</code></pre>
+<p>参考如下示例：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/bf356ffc1aefa7b89271239e21dea1f15cd02dfd.png" alt="image-20220812114904538"></p>
+<p>容器宽度为450px，三个项目各为200px，总宽超过容器了，就自动缩小了。不难计算，这里超出的空间就是 <strong>200px * 3 - 450px &#x3D; 150px</strong>。</p>
+<p>其中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 默认值为<span class="number">1</span>，表示所有项目等比例缩小。</span><br><span class="line"><span class="number">2</span>. 如果为<span class="number">0</span>，那么表示不缩小。</span><br></pre></td></tr></table></figure>
+
+<p>缩小的尺寸计算方式和flew-grow类似，涉及到<strong>两个公式：</strong></p>
+<p>1）计算超出空间中多少用来压缩。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：超出空间 * ( 所有项目的<span class="attribute">flex-shrink</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-shrink之和 ) 。</span><br></pre></td></tr></table></figure>
+
+<p>如果没有超出空间，那么就用压缩了；如果超出空间为150px，所有项目的flex-shrink之和为0.6，那么90px用来压缩。</p>
+<p>2）计算每个项目缩小多少空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：要压缩的空间 * ( 单个项目<span class="attribute">flex-shrink</span> / 所有项目的<span class="attribute">flex-shrink</span>之和 )</span><br></pre></td></tr></table></figure>
+
+<p>简单的说，就是按照 flex-shrink 占比进行缩小。</p>
+<p>下面我们结合例子进行说明，对这边的计算公式进行理解。</p>
+<p>示例1，设置项目的 flex-shrink 为0：</p>
+<p>接上一篇例子，有一个div（容器，450px），容器内包含3个div（项目，flex-basis 为200px）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-basis属性定义了项目占据主轴空间（main size）大小。 */</span></span><br><span class="line">	<span class="attribute">flex-basis</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="comment">/* flex-shrink 属性定义项目的缩小系数 */</span></span><br><span class="line">	<span class="attribute">flex-shrink</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>flex-shrink 为0表示不压缩项目。</p>
+</blockquote>
+<p><img src="https://i0.hdslb.com/bfs/album/d1441e028eab5b0b2058baa141d9dc7d17739726.gif"></p>
+<p>可以看到item3项目那边超出了容器一截。</p>
+<p><strong>示例2</strong>，接上例，设置项目1、2、3的 flex-shrink 分别为0、1、2：</p>
+<p>套公式计算：</p>
+<p>1）计算超出空间中多少用来压缩。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">要压缩的空间</span><br><span class="line"> = 总超出空间 * ( 所有项目的<span class="attribute">flex-shrink</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-shrink之和 ) 。</span><br><span class="line"> = <span class="number">150px</span> * ( <span class="number">3</span> &gt;= <span class="number">1</span> ? <span class="number">1</span> : <span class="number">3</span>)</span><br><span class="line"> = <span class="number">150px</span></span><br></pre></td></tr></table></figure>
+
+<p>2）计算每个项目缩小多少空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">项目<span class="number">1</span>压缩的空间</span><br><span class="line"> = <span class="number">150px</span> * ( <span class="number">0</span> / <span class="number">3</span> )</span><br><span class="line"> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">2</span>压缩的空间</span><br><span class="line"> = <span class="number">150px</span> * ( <span class="number">1</span> / <span class="number">3</span> )</span><br><span class="line"> = <span class="number">50px</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">3</span>压缩的空间</span><br><span class="line"> = <span class="number">150px</span> * ( <span class="number">2</span> / <span class="number">3</span> )</span><br><span class="line"> = <span class="number">100px</span></span><br></pre></td></tr></table></figure>
+
+<p>所以最终：项目1宽为200px、项目2宽为150px、项目3宽为100px。</p>
+<p>写上代码看看效果：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-basis属性定义了项目占据主轴空间（main size）大小。 */</span></span><br><span class="line">	<span class="attribute">flex-basis</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line">		</span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">	<span class="attribute">flex-shrink</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">	<span class="attribute">flex-shrink</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item3</span> &#123;</span><br><span class="line">	<span class="attribute">flex-shrink</span>: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/1f278a5da9bb333386bc447a518c094bbe802b2d.gif"></p>
+<p>观察运行效果，符合预期。</p>
+<p><strong>示例3</strong>：设置项目1、2、3的 flex-shrink 分别为 0.1、0.2、0.3：</p>
+<p>这个示例和上例差不多，只是数字变成了小数，并且总和不大于1。</p>
+<p>先套公式来计算一下：</p>
+<p>1）计算超出空间中多少用来压缩</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">要压缩的空间</span><br><span class="line"> = 总超出空间 * ( 所有项目的<span class="attribute">flex-shrink</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-shrink之和 ) 。</span><br><span class="line"> = <span class="number">150px</span> * ( <span class="number">0.6</span> &gt;= <span class="number">1</span> ? <span class="number">1</span> : <span class="number">0.6</span>)</span><br><span class="line"> = <span class="number">90px</span></span><br></pre></td></tr></table></figure>
+
+<p>2）计算每个项目缩小多少空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">项目<span class="number">1</span>压缩的空间</span><br><span class="line"> = <span class="number">90px</span> * ( <span class="number">0.1</span> / <span class="number">0.6</span> )</span><br><span class="line"> = <span class="number">15px</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">2</span>压缩的空间</span><br><span class="line"> = <span class="number">90px</span> * ( <span class="number">0.2</span> / <span class="number">0.6</span> )</span><br><span class="line"> = <span class="number">30px</span></span><br><span class="line"></span><br><span class="line">项目<span class="number">3</span>压缩的空间</span><br><span class="line"> = <span class="number">90px</span> * ( <span class="number">0.3</span> / <span class="number">0.6</span> )</span><br><span class="line"> = <span class="number">45px</span></span><br></pre></td></tr></table></figure>
+
+<p>所以最终：项目1宽为185x、项目2宽为170px、项目3宽为155px。</p>
+<p>样式代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-basis属性定义了项目占据主轴空间（main size）大小。 */</span></span><br><span class="line">	<span class="attribute">flex-basis</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">	<span class="attribute">flex-shrink</span>: .<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">	<span class="attribute">flex-shrink</span>: .<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item3</span> &#123;</span><br><span class="line">	<span class="attribute">flex-shrink</span>: .<span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果如下：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/d480f8736cda00b4007bb0317b88db63caaead1e.gif"></p>
+<p>符合计算预期。</p>
+<h3 id="34-13-2-总结"><a href="#34-13-2-总结" class="headerlink" title="34.13.2 总结"></a>34.13.2 总结</h3><ol>
+<li>项目的总大小超出容器部分成为超出空间。</li>
+<li>flex-shrink用于设置项目的缩小系数。</li>
+<li>项目缩小尺寸计算包含两个公式：</li>
+</ol>
+<p>1）计算超出空间中多少用来压缩。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：总超出空间 * ( 所有项目的<span class="attribute">flex-shrink</span>之和 &gt;= <span class="number">1</span> ? <span class="number">1</span> : 所有项目的flex-shrink之和 ) 。</span><br></pre></td></tr></table></figure>
+
+<p>2）计算每个项目缩小多少空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">公式：要压缩的空间 * ( 单个项目<span class="attribute">flex-shrink</span> / 所有项目的<span class="attribute">flex-shrink</span>之和 )</span><br></pre></td></tr></table></figure>
+
+<h2 id="34-14-基础长度"><a href="#34-14-基础长度" class="headerlink" title="34.14 基础长度"></a>34.14 基础长度</h2><h3 id="34-14-1-flex-basis基础"><a href="#34-14-1-flex-basis基础" class="headerlink" title="34.14.1 flex-basis基础"></a>34.14.1 flex-basis基础</h3><p><code>flex-basis</code> 指定的是元素在主轴上的基础长度</p>
+<ul>
+<li><p>如果主轴是横向的，则该值指定的就是元素的宽度</p>
+</li>
+<li><p>如果主轴是纵向的，则该值指定的就是元素的高度</p>
+</li>
+<li><p>默认值是<code>auto</code>，表示参考元素自身的高度或宽度</p>
+</li>
+<li><p>如果传递了一个具体的数值，则以该值为准</p>
+</li>
+</ul>
+<blockquote>
+<p>在这里可以先理解成 宽（width）属性，用法和 width 的一致，只是优先级比 width 更高。</p>
+</blockquote>
+<p><strong>示例1</strong> 有一个div（容器），容器内包含3个div（项目），容器设置为 flex 弹性布局。</p>
+<p><img src="https://i0.hdslb.com/bfs/album/c5c50c20f8e56b0c60e27cf55f48898b4fc3e8c1.png" alt="image-20220812120114551"></p>
+<p>容器内项目的宽度是根据内容自适应的，这个也就是 flex-basis 默认值为 auto 的含义了。</p>
+<p>下面设置项目的宽度为120px：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* flex-basis属性定义了项目占据主轴空间（main size）大小。 */</span></span><br><span class="line">	<span class="attribute">flex-basis</span>: <span class="number">120px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/41fd1d59969a50e741dd50a6fa060167d567dbcf.png" alt="image-20220812120209155"></p>
+<p>可以看到3个项目的宽度都为120px了，这个就是 flex-basis 的含义了。</p>
+<p><strong>思考：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果设置 <span class="attribute">width</span>: <span class="number">100px</span>，那么项目实际为多宽呢？</span><br></pre></td></tr></table></figure>
+
+<p>解答：因为 flex-basis 属性的优先级比 width 高，所以项目的宽度还是120px。</p>
+<p><strong>思考：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置宽度为什么不直接用 <span class="attribute">width</span> 属性？还要再多一个 <span class="attribute">flex-basis</span> 属性，不是多此一举吗？</span><br></pre></td></tr></table></figure>
+
+<p><strong>解答（难点）：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex-basis</span> 这边并没有说是定义项目的宽度，而是说：占据主轴空间的大小。</span><br><span class="line">因为设置容器属性 <span class="attribute">flex-direction</span> 为 column或者column-reverse 的时候主轴会变成纵向的（可以想象成数学坐标轴的Y轴）。</span><br><span class="line">在这种情况下，<span class="attribute">flex-basis</span> 就是设置高，可以理解成 <span class="attribute">height</span> 属性。</span><br><span class="line">从这个意义上来讲，<span class="attribute">flex-basis</span> 不全等于 <span class="attribute">width</span>。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-14-2-总结"><a href="#3-14-2-总结" class="headerlink" title="3.14.2 总结"></a>3.14.2 总结</h3><ol>
+<li>flex-basis 属性设置在项目上的。</li>
+<li>flex-basis 是设置项目 占据主轴空间的大小、不全等于width。</li>
+<li>flex-basis 优先级比 width 更高。</li>
+</ol>
+<h2 id="34-15-flex属性"><a href="#34-15-flex属性" class="headerlink" title="34.15 flex属性"></a>34.15 flex属性</h2><p>前面三节讲了 flex-grow、flex-shrink、flex-basis 三个项目属性。</p>
+<ol>
+<li>flex-grow 用于设置项目的放大系数。</li>
+<li>flex-shrink 用于设置项目的缩小系数。</li>
+<li>flex-basis 用于设置项目在主轴上的空间。</li>
+</ol>
+<p>那么项目属性 flex 就很简单了，他其实是3个属性的集中而已，语法格式如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="attribute">flex</span>: flex-grow flex-shrink flex-basis | auto | none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 这个属性可以独立设置 <span class="attribute">flex-grow</span> <span class="attribute">flex-shrink</span> <span class="attribute">flex-basis</span> 的值，如：<span class="number">1</span> <span class="number">0</span> <span class="number">120px</span>。</span><br><span class="line"><span class="number">2</span>. auto 表示：<span class="number">1</span> <span class="number">1</span> auto，即等比例扩大或者压缩。</span><br><span class="line"><span class="number">3</span>. <span class="attribute">none</span> 表示：<span class="number">0</span> <span class="number">0</span> auto，即不扩大，也不压缩。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>initial</code>：<code>flex: 0 1 auto</code> 默认值</p>
+</blockquote>
+<p>实务中经常会看到如下样式代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个其实就是表示 flex-grow 设置为1，各项目等比例放大。</p>
+<p>经常用作自适应布局，内容区会自动放大或缩小占满剩余空间。在chrome浏览器上也可以将flex: 1;</p>
+<p><img src="https://i0.hdslb.com/bfs/album/fa56d10c1397c95cd0311f904e0311cddd0f8fc2.png" alt="image-20220812121004252"></p>
+<p>flex: 2;</p>
+<p><img src="https://i0.hdslb.com/bfs/album/83f04bf46dd3e74e8d143e40b2a484680b5880c1.png" alt="image-20220812121016075"></p>
+<p>下面有几个flex布局的常用场景：<br>1、一个元素宽度（或高度）固定，另一个元素宽度（或高度）自适应。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line">// 高度/宽度固定</span><br><span class="line"><span class="selector-class">.son1</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">200px</span>; //或者 <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">	<span class="attribute">flex</span>: none; // 加不加都可 相当于<span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line">// 高度/宽度自适应</span><br><span class="line"><span class="selector-class">.son2</span> &#123;</span><br><span class="line">	<span class="attribute">flex</span>: <span class="number">1</span>;  // <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> <span class="number">0%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、子元素都设置flex: 1; 子元素盒子会平分并占满父盒子；</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;<span class="selector-tag">div</span>&quot;&gt;我是一个<span class="selector-tag">div</span>&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;<span class="selector-tag">div</span>&quot;&gt;我是一个很多字<span class="selector-tag">div</span>&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;<span class="selector-tag">div</span>&quot;&gt;我是一个更多字而且第三个<span class="selector-tag">div</span>&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/ccc36c52a6e507043f403f9e0f2b7999d1f4ea1a.png" alt="image-20220812121143203"></p>
+<p>3、那么如果设置 flex: 1 1 auto;呢？ 子元素盒子会根据自己的内容来适配并一起占满整个空间；</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;<span class="selector-tag">div</span>&quot;&gt;我是一个<span class="selector-tag">div</span>&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;<span class="selector-tag">div</span>&quot;&gt;我是一个很多字<span class="selector-tag">div</span>&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;<span class="selector-tag">div</span>&quot;&gt;我是一个更多字而且第三个<span class="selector-tag">div</span>&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.div</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> auto;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i0.hdslb.com/bfs/album/430479d8da8e7d6c5d4b7f43409ec183dbb8cd22.png" alt="image-20220812121218240"></p>
+<h2 id="34-16-order属性定义项目的排列顺序"><a href="#34-16-order属性定义项目的排列顺序" class="headerlink" title="34.16  order属性定义项目的排列顺序"></a>34.16  order属性定义项目的排列顺序</h2><p>order 用于是设置项目的排序顺序，从小到大排列。</p>
+<p>项目的排序默认会按照html的结构进行排序，如果需要定义排序顺序，可以通过order属性定义项目的排序顺序，语法格式如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="comment">/* 整数，默认值为 0，可以为负数 */</span></span><br><span class="line">	<span class="attribute">order</span>: &lt;integer&gt;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">order</span> 为整数，可以为负数。</span><br><span class="line"><span class="attribute">order</span> 默认值为 <span class="number">0</span>。</span><br><span class="line">项目按照 <span class="attribute">order</span> 值从小到大排列。</span><br></pre></td></tr></table></figure>
+
+<p>如果之前有学习过sql，那么对 order 就很熟悉了。因为sql中排序的关键词就是 order by。</p>
+<p><strong>示例1</strong>：有一个div（容器，450px），容器内包含5个div（项目，flex-grow 为1）。</p>
+<p>1）和前面章节相比多两个项目，方便看出排序效果。</p>
+<p>未设置排序前的效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/5854f585e0eec3c54caaff56d26f0fb252203619.png" alt="image-20220812121521482"></p>
+<p>2）默认所有的项目 order 值都为0，设置项目1为99，项目3为-1，项目4为-2：</p>
+<p>因为项目是按照order从小到大排列，那么正常显示的顺序应该是：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">项目<span class="number">4</span>、项目<span class="number">3</span>、项目<span class="number">2</span>、项目<span class="number">5</span>、项目<span class="number">1</span>。</span><br></pre></td></tr></table></figure>
+
+<p>写上代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">	<span class="attribute">order</span>: <span class="number">99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item3</span> &#123;</span><br><span class="line">	<span class="attribute">order</span>: -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item4</span> &#123;</span><br><span class="line">	<span class="attribute">order</span>: -<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/c1de61e6423afeceac2cd21cec17dd825ff825fd.png" alt="image-20220812121638855"></p>
+<h2 id="34-17-align-self属性"><a href="#34-17-align-self属性" class="headerlink" title="34.17 align-self属性"></a>34.17 align-self属性</h2><p>项目属性 align-self，和 align-items 类似。align-items设置在容器上，作用所有的项目。align-self 设置在项目上，作用单个项目</p>
+<p>align-self 属性用来设置项目在辅轴方向上的对齐方式，设置在项目上，作用单个项目。<br>而 align-items 设置在容器上，作用所有的项目。</p>
+<p>语法格式如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">	<span class="attribute">align-self</span>: <span class="built_in">auto</span>(默认值) | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. auto 表示继承容器的 <span class="attribute">align-items</span> 属性。（默认值）</span><br><span class="line"><span class="number">2</span>. <span class="attribute">flex</span>-start 沿着辅轴方向 起点 对齐（默认值）。</span><br><span class="line"><span class="number">3</span>. <span class="attribute">flex</span>-end 沿着辅轴方向 结尾 对齐。</span><br><span class="line"><span class="number">4</span>. center 沿着辅轴方向 居中 对齐。</span><br><span class="line"><span class="number">5</span>. baseline 沿着辅轴方向，按照项目内的文字对齐。</span><br><span class="line"><span class="number">6</span>. stretch 沿着辅轴方向自动进行拉升到最大。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例1</strong>，有一个div（容器，450px），容器内包含3个div（项目，flex-basis 为50px），设置 align-items 为 flex-start，项目1的align-self设置为 flex-end：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="comment">/* 设置子元素的布局为flex布局 */</span></span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="comment">/* 设置项目交叉轴方向上的对齐方式 */</span></span><br><span class="line">	<span class="comment">/* 作用于所有项目 */</span></span><br><span class="line">	<span class="attribute">align-items</span>: flex-start;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">	<span class="comment">/* 设置单个项目交叉轴方向上的对齐方式 */</span></span><br><span class="line">	<span class="comment">/* 作用于单个项目 */</span></span><br><span class="line">	<span class="attribute">align-self</span>: flex-end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行效果：</p>
+<p><img src="https://i0.hdslb.com/bfs/album/44d9c79b1f90bba0f99b21d4b5c9cf1654b691d1.png" alt="image-20220812122009637"></p>
+<p><strong>本节总结</strong></p>
+<ol>
+<li>align-self 和 align-items 类似，默认值为auto，表示继承 align-items 的属性。</li>
+<li>align-self 设置在项目上，作用单个项目。align-items设置在容器上，作用所有的项目。</li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2023/02/02/e728c6b3ccf24ff7ae4d0e47c13e36e4/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    13 【精灵图 图标字体 CSS三角 鼠标样式 溢出省略号】
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2023/02/02/f47b689a0b8147388d4b108dbc7cefcd/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">21 【vw布局】</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Public &copy; 2023 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>
