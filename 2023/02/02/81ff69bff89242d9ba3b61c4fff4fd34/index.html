@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>hardware | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="硬件操作dfdf命令查看硬盘信息。 12345$ dfFilesystem 1K-blocks Used Available Use% Mounted on&#x2F;dev&#x2F;sda2 15115452 5012392 9949716 34% &#x2F;&#x2F;dev&#x2F;sda5 59631908 26545424 30008432 47% &#x2F;home&#x2F;dev&#x2F;sda1 147764 17370 122765 13% &#x2F;b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hardware">
+<meta property="og:url" content="http://example.com/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="硬件操作dfdf命令查看硬盘信息。 12345$ dfFilesystem 1K-blocks Used Available Use% Mounted on&#x2F;dev&#x2F;sda2 15115452 5012392 9949716 34% &#x2F;&#x2F;dev&#x2F;sda5 59631908 26545424 30008432 47% &#x2F;home&#x2F;dev&#x2F;sda1 147764 17370 122765 13% &#x2F;b">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:13:57.067Z">
+<meta property="article:modified_time" content="2023-02-02T03:14:41.490Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/81ff69bff89242d9ba3b61c4fff4fd34/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hardware',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:14:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">hardware</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:13:57.067Z" title="发表于 2023-02-02 11:13:57">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:14:41.490Z" title="更新于 2023-02-02 11:14:41">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/">Bash</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/archives/">archives</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="硬件操作"><a href="#硬件操作" class="headerlink" title="硬件操作"></a>硬件操作</h1><h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p><code>df</code>命令查看硬盘信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">df</span></span><br><span class="line">Filesystem 1K-blocks Used Available Use% Mounted on</span><br><span class="line">/dev/sda2 15115452 5012392 9949716 34% /</span><br><span class="line">/dev/sda5 59631908 26545424 30008432 47% /home</span><br><span class="line">/dev/sda1 147764 17370 122765 13% /boot</span><br></pre></td></tr></table></figure>
+
+<h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><p><code>free</code>命令查看内存占用情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ free</span><br><span class="line"> total used free shared buffers cached</span><br><span class="line">Mem: 513712 503976 9736 0 5312 122916</span><br><span class="line">-/+ buffers/cache: 375748 137964</span><br><span class="line">Swap: 1052248 104712 947536</span><br></pre></td></tr></table></figure>
+
+<h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><p>文件<code>/etc/fstab</code>配置系统启动时要挂载的设备。</p>
+<pre><code>LABEL=/12               /               ext3        defaults        1   1
+LABEL=/home             /home           ext3        defaults        1   2
+LABEL=/boot             /boot           ext3        defaults        1   2
+</code></pre>
+<p>输出结果一共有6个字段，含义依次如下。</p>
+<ul>
+<li>设备名：与物理设备相关联的设备文件（或设备标签）的名字，比如说<code>/dev/hda1</code>（第一个 IDE 通道上第一个主设备分区）。</li>
+<li>挂载点：设备所连接到的文件系统树的目录。</li>
+<li>文件系统类型：Linux 允许挂载许多文件系统类型。</li>
+<li>选项：文件系统可以通过各种各样的选项来挂载。</li>
+<li>频率：一位数字，指定是否和在什么时间用 dump 命令来备份一个文件系统。</li>
+<li>次序：一位数字，指定 fsck 命令按照什么次序来检查文件系统。</li>
+</ul>
+<h2 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h2><p><code>mount</code>不带参数时，显示当前挂载的文件系统。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mount</span><br><span class="line">/dev/sda2 on / <span class="built_in">type</span> ext3 (rw)</span><br><span class="line">proc on /proc <span class="built_in">type</span> proc (rw)</span><br><span class="line">sysfs on /sys <span class="built_in">type</span> sysfs (rw)</span><br><span class="line">devpts on /dev/pts <span class="built_in">type</span> devpts (rw,gid=5,mode=620)</span><br><span class="line">/dev/sda5 on /home <span class="built_in">type</span> ext3 (rw)</span><br></pre></td></tr></table></figure>
+
+<p>这个列表的格式是：设备 on 挂载点 type 文件系统类型（可选的）。</p>
+<p><code>mount</code>带参数时，用于将设备文件挂载到挂载点，<code>-t</code>参数用来指定文件系统类型。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mount -t iso9660 /dev/hdc /mnt/cdrom</span><br><span class="line"></span><br><span class="line"><span class="comment"># 挂载一个iso文件</span></span><br><span class="line">$ mount -t iso9660 -o loop image.iso /mnt/iso_image</span><br></pre></td></tr></table></figure>
+
+<h2 id="umount"><a href="#umount" class="headerlink" title="umount"></a>umount</h2><p><code>umount</code>命令用来卸载设备。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ umount [设备名]</span><br><span class="line"></span><br><span class="line">$ umount /dev/hdc</span><br></pre></td></tr></table></figure>
+
+<h2 id="fdisk"><a href="#fdisk" class="headerlink" title="fdisk"></a>fdisk</h2><p><code>fdisk</code>命令用于格式化磁盘。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo umount /dev/sdb1</span><br><span class="line">$ sudo fdisk /dev/sdb</span><br></pre></td></tr></table></figure>
+
+<h2 id="mkfs"><a href="#mkfs" class="headerlink" title="mkfs"></a>mkfs</h2><p><code>mkfs</code>命令用于在一个设备上新建文件系统。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkfs -t ext3 /dev/sdb1</span><br><span class="line">$ sudo mkfs -t vfat /dev/sdb1</span><br></pre></td></tr></table></figure>
+
+<h2 id="fsck"><a href="#fsck" class="headerlink" title="fsck"></a>fsck</h2><p><code>fsck</code>命令用于检查（修复）文件系统。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo fsck /dev/sdb1</span><br></pre></td></tr></table></figure>
+
+<h2 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h2><p><code>dd</code>命令用于将大型数据块，从一个磁盘复制到另一个磁盘。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">dd</span> <span class="keyword">if</span>=input_file of=output_file [bs=block_size [count=blocks]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 /dev/sdb 的所有数据复制到 /dev/sdc</span></span><br><span class="line">$ <span class="built_in">dd</span> <span class="keyword">if</span>=/dev/sdb of=/dev/sdc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 /dev/sdb 的所有数据拷贝到一个镜像文件</span></span><br><span class="line">$ <span class="built_in">dd</span> <span class="keyword">if</span>=/dev/sdb of=flash_drive.img</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从cdrom制作一个iso文件</span></span><br><span class="line">$ <span class="built_in">dd</span> <span class="keyword">if</span>=/dev/cdrom of=ubuntu.iso</span><br></pre></td></tr></table></figure>
+
+<h2 id="dmidecode"><a href="#dmidecode" class="headerlink" title="dmidecode"></a>dmidecode</h2><p><code>dmidecode</code>命令用于输出BIOS信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dmidecode</span><br></pre></td></tr></table></figure>
+
+<p>以上命令会输出全部BIOS信息。为了便于查看，往往需要指定所需信息的类别。</p>
+<ul>
+<li>0 BIOS</li>
+<li>1 System</li>
+<li>2 Base Board</li>
+<li>3 Chassis 4 Processor</li>
+<li>5 Memory Controller</li>
+<li>6 Memory Module</li>
+<li>7 Cache</li>
+<li>8 Port Connector</li>
+<li>9 System Slots</li>
+<li>10 On Board Devices</li>
+<li>11 OEM Strings</li>
+<li>12 System Configuration Options</li>
+<li>13 BIOS Language</li>
+<li>14 Group Associations</li>
+<li>15 System Event Log</li>
+<li>16 Physical Memory Array</li>
+<li>17 Memory Device</li>
+<li>18 32-bit Memory Error</li>
+<li>19 Memory Array Mapped Address</li>
+<li>20 Memory Device Mapped Address</li>
+<li>21 Built-in Pointing Device</li>
+<li>22 Portable Battery</li>
+<li>23 System Reset</li>
+<li>24 Hardware Security</li>
+<li>25 System Power Controls</li>
+<li>26 Voltage Probe</li>
+<li>27 Cooling Device</li>
+<li>28 Temperature Probe</li>
+<li>29 Electrical Current Probe</li>
+<li>30 Out-of-band Remote Access</li>
+<li>31 Boot Integrity Services</li>
+<li>32 System Boot</li>
+<li>33 64-bit Memory Error</li>
+<li>34 Management Device</li>
+<li>35 Management Device Component</li>
+<li>36 Management Device Threshold Data</li>
+<li>37 Memory Channel</li>
+<li>38 IPMI Device</li>
+<li>39 Power Supply</li>
+</ul>
+<p>查看内存信息的命令如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dmidecode -t 17</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">$ dmidecode --<span class="built_in">type</span> 17</span><br></pre></td></tr></table></figure>
+
+<p>以下是其他一些选项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看BIOS信息</span></span><br><span class="line">$ sudo dmidecode –t 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看CPU信息</span></span><br><span class="line">$ sudo dmidecode -t 4</span><br></pre></td></tr></table></figure>
+
+<p><code>dmidecode</code>也支持关键词查看，关键词与类别的对应关系如下。</p>
+<ul>
+<li>bios 0, 13</li>
+<li>system 1, 12, 15, 23, 32</li>
+<li>baseboard 2, 10</li>
+<li>chassis 3</li>
+<li>processor 4</li>
+<li>memory 5, 6, 16, 17</li>
+<li>cache 7</li>
+<li>connector 8</li>
+<li>slot 9</li>
+</ul>
+<p>查看系统信息的命令如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dmidecode -t system</span><br></pre></td></tr></table></figure>
+
+<h2 id="lspci"><a href="#lspci" class="headerlink" title="lspci"></a>lspci</h2><p><code>lspci</code>命令列出本机的所有PCI设备。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lspci</span><br></pre></td></tr></table></figure>
+
+<p>该命令输出信息的格式如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">03:00.0 Unassigned class [ff00]: Realtek Semiconductor Co., Ltd. RTS5209 PCI Express Card Reader (rev 01)</span><br></pre></td></tr></table></figure>
+
+<p>输出信息一共分成三个字段。</p>
+<ul>
+<li>Field 1：PCI bus slot 的编号</li>
+<li>Field 2：PCI slot的名字</li>
+<li>Field 3：设备名和厂商名</li>
+</ul>
+<p>如果想查看更详细信息，可以使用下面的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lspci -vmm</span><br></pre></td></tr></table></figure>
+
+<h2 id="lsusb"><a href="#lsusb" class="headerlink" title="lsusb"></a>lsusb</h2><p><code>lsusb</code>命令用于操作USB端口。</p>
+<p>下面命令列出本机所有USB端口。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsusb</span><br></pre></td></tr></table></figure>
+
+<p>它的输出格式如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bus 002 Device 003: ID 0781:5567 SanDisk Corp. Cruzer Blade</span><br></pre></td></tr></table></figure>
+
+<p>各个字段的含义如下。</p>
+<ul>
+<li>Bus 002 : bus编号</li>
+<li>Device 003：bus 002连接的第三个设备</li>
+<li>ID 0781:5567：当前设备的编号，冒号前是厂商编号，冒号后是设备编号</li>
+<li>SanDisk Corp. Cruzer Blade：厂商和设备名</li>
+</ul>
+<p>找出本机有多少个USB接口可用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ find /dev/bus/</span><br><span class="line">/dev/bus/</span><br><span class="line">/dev/bus/usb</span><br><span class="line">/dev/bus/usb/002</span><br><span class="line">/dev/bus/usb/002/006</span><br><span class="line">/dev/bus/usb/002/005</span><br><span class="line">/dev/bus/usb/002/004</span><br><span class="line">/dev/bus/usb/002/002</span><br><span class="line">/dev/bus/usb/002/001</span><br><span class="line">/dev/bus/usb/001</span><br><span class="line">/dev/bus/usb/001/007</span><br><span class="line">/dev/bus/usb/001/003</span><br><span class="line">/dev/bus/usb/001/002</span><br><span class="line">/dev/bus/usb/001/001</span><br></pre></td></tr></table></figure>
+
+<p>查看某个USB设备的详细情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsusb -D /dev/bus/usb/002/005</span><br></pre></td></tr></table></figure>
+
+<p>查看所有设备的详细情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsusb -v</span><br></pre></td></tr></table></figure>
+
+<p>查看USB端口的版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsusb -v | grep -i bcdusb</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/7acac2dc1651442d922d704f243105d9/" title="text"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">text</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/b61f89783da14822aa6f31cea72b0c4e/" title="named-pipe"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">named-pipe</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">硬件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#df"><span class="toc-number">1.1.</span> <span class="toc-text">df</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#free"><span class="toc-number">1.2.</span> <span class="toc-text">free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E7%9B%98"><span class="toc-number">1.3.</span> <span class="toc-text">硬盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mount"><span class="toc-number">1.4.</span> <span class="toc-text">mount</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#umount"><span class="toc-number">1.5.</span> <span class="toc-text">umount</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fdisk"><span class="toc-number">1.6.</span> <span class="toc-text">fdisk</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkfs"><span class="toc-number">1.7.</span> <span class="toc-text">mkfs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fsck"><span class="toc-number">1.8.</span> <span class="toc-text">fsck</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dd"><span class="toc-number">1.9.</span> <span class="toc-text">dd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dmidecode"><span class="toc-number">1.10.</span> <span class="toc-text">dmidecode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lspci"><span class="toc-number">1.11.</span> <span class="toc-text">lspci</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lsusb"><span class="toc-number">1.12.</span> <span class="toc-text">lsusb</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

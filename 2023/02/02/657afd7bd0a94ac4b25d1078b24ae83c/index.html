@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>readline | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="Bash 行操作简介Bash 内置了 Readline 库，具有这个库提供的很多“行操作”功能，比如命令的自动补全，可以大大加快操作速度。 这个库默认采用 Emacs 快捷键，也可以改成 Vi 快捷键。 1$ set -o vi  下面的命令可以改回 Emacs 快捷键。 1$ set -o emacs  如果想永久性更改编辑模式（Emacs &#x2F; Vi），可以将命令写在~&#x2F;.inputr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="readline">
+<meta property="og:url" content="http://example.com/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="Bash 行操作简介Bash 内置了 Readline 库，具有这个库提供的很多“行操作”功能，比如命令的自动补全，可以大大加快操作速度。 这个库默认采用 Emacs 快捷键，也可以改成 Vi 快捷键。 1$ set -o vi  下面的命令可以改回 Emacs 快捷键。 1$ set -o emacs  如果想永久性更改编辑模式（Emacs &#x2F; Vi），可以将命令写在~&#x2F;.inputr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:13:57.070Z">
+<meta property="article:modified_time" content="2023-02-02T03:14:42.168Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'readline',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:14:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">readline</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:13:57.070Z" title="发表于 2023-02-02 11:13:57">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:14:42.168Z" title="更新于 2023-02-02 11:14:42">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/">Bash</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="Bash-行操作"><a href="#Bash-行操作" class="headerlink" title="Bash 行操作"></a>Bash 行操作</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Bash 内置了 Readline 库，具有这个库提供的很多“行操作”功能，比如命令的自动补全，可以大大加快操作速度。</p>
+<p>这个库默认采用 Emacs 快捷键，也可以改成 Vi 快捷键。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -o vi</span><br></pre></td></tr></table></figure>
+
+<p>下面的命令可以改回 Emacs 快捷键。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span> -o emacs</span><br></pre></td></tr></table></figure>
+
+<p>如果想永久性更改编辑模式（Emacs &#x2F; Vi），可以将命令写在<code>~/.inputrc</code>文件，这个文件是 Readline 的配置文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> editing-mode vi</span><br></pre></td></tr></table></figure>
+
+<p>本章介绍的快捷键都属于 Emacs 模式。Vi 模式的快捷键，读者可以参考 Vi 编辑器的教程。</p>
+<p>Bash 默认开启这个库，但是允许关闭。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash --noediting</span><br></pre></td></tr></table></figure>
+
+<p>上面命令中，<code>--noediting</code>参数关闭了 Readline 库，启动的 Bash 就不带有行操作功能。</p>
+<h2 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h2><p>Readline 提供快速移动光标的快捷键。</p>
+<ul>
+<li><code>Ctrl + a</code>：移到行首。</li>
+<li><code>Ctrl + b</code>：向行首移动一个字符，与左箭头作用相同。</li>
+<li><code>Ctrl + e</code>：移到行尾。</li>
+<li><code>Ctrl + f</code>：向行尾移动一个字符，与右箭头作用相同。</li>
+<li><code>Alt + f</code>：移动到当前单词的词尾。</li>
+<li><code>Alt + b</code>：移动到当前单词的词首。</li>
+</ul>
+<p>上面快捷键的 Alt 键，也可以用 ESC 键代替。</p>
+<h2 id="清除屏幕"><a href="#清除屏幕" class="headerlink" title="清除屏幕"></a>清除屏幕</h2><p><code>Ctrl + l</code>快捷键可以清除屏幕，即将当前行移到屏幕的第一行，与<code>clear</code>命令作用相同。</p>
+<h2 id="编辑操作"><a href="#编辑操作" class="headerlink" title="编辑操作"></a>编辑操作</h2><p>下面的快捷键可以编辑命令行内容。</p>
+<ul>
+<li><code>Ctrl + d</code>：删除光标位置的字符（delete）。</li>
+<li><code>Ctrl + w</code>：删除光标前面的单词。</li>
+<li><code>Ctrl + t</code>：光标位置的字符与它前面一位的字符交换位置（transpose）。</li>
+<li><code>Alt + t</code>：光标位置的词与它前面一位的词交换位置（transpose）。</li>
+<li><code>Alt + l</code>：将光标位置至词尾转为小写（lowercase）。</li>
+<li><code>Alt + u</code>：将光标位置至词尾转为大写（uppercase）。</li>
+</ul>
+<p>使用<code>Ctrl + d</code>的时候，如果当前行没有任何字符，会导致退出当前 Shell，所以要小心。</p>
+<p>剪切和粘贴快捷键如下。</p>
+<ul>
+<li><code>Ctrl + k</code>：剪切光标位置到行尾的文本。</li>
+<li><code>Ctrl + u</code>：剪切光标位置到行首的文本。</li>
+<li><code>Alt + d</code>：剪切光标位置到词尾的文本。</li>
+<li><code>Alt + Backspace</code>：剪切光标位置到词首的文本。</li>
+<li><code>Ctrl + y</code>：在光标位置粘贴文本。</li>
+</ul>
+<p>同样地，Alt 键可以用 Esc 键代替。</p>
+<h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p>命令输入到一半的时候，可以按一下 Tab 键，Readline 会自动补全命令或路径。比如，输入<code>cle</code>，再按下 Tab 键，Bash 会自动将这个命令补全为<code>clear</code>。</p>
+<p>如果符合条件的命令或路径有多个，就需要连续按两次 Tab 键，Bash 会提示所有符合条件的命令或路径。</p>
+<p>除了命令或路径，Tab 还可以补全其他值。如果一个值以<code>$</code>开头，则按下 Tab 键会补全变量；如果以<code>~</code>开头，则补全用户名；如果以<code>@</code>开头，则补全主机名（hostname），主机名以列在<code>/etc/hosts</code>文件里面的主机为准。</p>
+<p>自动补全相关的快捷键如下。</p>
+<ul>
+<li>Tab：完成自动补全。</li>
+<li><code>Alt + ?</code>：列出可能的补全，与连按两次 Tab 键作用相同。</li>
+<li><code>Alt + /</code>：尝试文件路径补全。</li>
+<li><code>Ctrl + x /</code>：先按<code>Ctrl + x</code>，再按<code>/</code>，等同于<code>Alt + ?</code>，列出可能的文件路径补全。</li>
+<li><code>Alt + !</code>：命令补全。</li>
+<li><code>Ctrl + x !</code>：先按<code>Ctrl + x</code>，再按<code>!</code>，等同于<code>Alt + !</code>，命令补全。</li>
+<li><code>Alt + ~</code>：用户名补全。</li>
+<li><code>Ctrl + x ~</code>：先按<code>Ctrl + x</code>，再按<code>~</code>，等同于<code>Alt + ~</code>，用户名补全。</li>
+<li><code>Alt + $</code>：变量名补全。</li>
+<li><code>Ctrl + x $</code>：先按<code>Ctrl + x</code>，再按<code>$</code>，等同于<code>Alt + $</code>，变量名补全。</li>
+<li><code>Alt + @</code>：主机名补全。</li>
+<li><code>Ctrl + x @</code>：先按<code>Ctrl + x</code>，再按<code>@</code>，等同于<code>Alt + @</code>，主机名补全。</li>
+<li><code>Alt + *</code>：在命令行一次性插入所有可能的补全。</li>
+<li><code>Alt + Tab</code>：尝试用<code>.bash_history</code>里面以前执行命令，进行补全。</li>
+</ul>
+<p>上面的<code>Alt</code>键也可以用 ESC 键代替。</p>
+<h2 id="操作历史"><a href="#操作历史" class="headerlink" title="操作历史"></a>操作历史</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>Bash 会保留用户的操作历史，即用户输入的每一条命令都会记录。有了操作历史以后，就可以使用方向键的<code>↑</code>和<code>↓</code>，快速浏览上一条和下一条命令。</p>
+<p>退出当前 Shell 的时候，Bash 会将用户在当前 Shell 的操作历史写入<code>~/.bash_history</code>文件，该文件默认储存500个操作。</p>
+<p>环境变量<code>HISTFILE</code>总是指向这个文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$HISTFILE</span></span><br><span class="line">/home/me/.bash_history</span><br></pre></td></tr></table></figure>
+
+<p><code>history</code>命令会输出这个文件的全部内容。用户可以看到最近执行过的所有命令，每条命令之前都有行号。越近的命令，排在越后面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">history</span></span><br><span class="line">...</span><br><span class="line">498 <span class="built_in">echo</span> Goodbye</span><br><span class="line">499 <span class="built_in">ls</span> ~</span><br><span class="line">500 <span class="built_in">cd</span></span><br></pre></td></tr></table></figure>
+
+<p>输入命令时，按下<code>Ctrl + r</code>快捷键，就可以搜索操作历史，选择以前执行过的命令。这时键入命令的开头部分，Shell 就会自动在历史文件中，查询并显示最近一条匹配的结果，这时按下回车键，就会执行那条命令。</p>
+<p>下面的方法可以快速执行以前执行过的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> Hello World</span><br><span class="line">Hello World</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> Goodbye</span><br><span class="line">Goodbye</span><br><span class="line"></span><br><span class="line">$ !e</span><br><span class="line"><span class="built_in">echo</span> Goodbye</span><br><span class="line">Goodbye</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，<code>!e</code>表示找出操作历史之中，最近的那一条以<code>e</code>开头的命令并执行。Bash 会先输出那一条命令<code>echo Goodbye</code>，然后直接执行。</p>
+<p>同理，<code>!echo</code>也会执行最近一条以<code>echo</code>开头的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ !<span class="built_in">echo</span></span><br><span class="line"><span class="built_in">echo</span> Goodbye</span><br><span class="line">Goodbye</span><br><span class="line"></span><br><span class="line">$ !<span class="built_in">echo</span> H</span><br><span class="line"><span class="built_in">echo</span> Goodbye H</span><br><span class="line">Goodbye H</span><br><span class="line"></span><br><span class="line">$ !<span class="built_in">echo</span> H G</span><br><span class="line"><span class="built_in">echo</span> Goodbye H G</span><br><span class="line">Goodbye H G</span><br></pre></td></tr></table></figure>
+
+<p>注意，<code>!string</code>语法只会匹配命令，不会匹配参数。所以<code>!echo H</code>不会执行<code>echo Hello World</code>，而是会执行<code>echo Goodbye</code>，并把参数<code>H</code>附加在这条命令之后。同理，<code>!echo H G</code>也是等同于<code>echo Goodbye</code>命令之后附加<code>H G</code>。</p>
+<p>由于<code>!string</code>语法会扩展成以前执行过的命令，所以含有<code>!</code>的字符串放在双引号里面，必须非常小心，如果它后面有非空格的字符，就很有可能报错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;I say:\&quot;hello!\&quot;&quot;</span></span><br><span class="line">bash: !\: event not found</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令会报错，原因是感叹号后面是一个反斜杠，Bash 会尝试寻找，以前是否执行过反斜杠开头的命令，一旦找不到就会报错。解决方法就是在感叹号前面，也加上反斜杠。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;I say:\&quot;hello\!\&quot;&quot;</span></span><br><span class="line">I say:<span class="string">&quot;hello\!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="history-命令"><a href="#history-命令" class="headerlink" title="history 命令"></a>history 命令</h3><p>前面说过，<code>history</code>命令能显示操作历史，即<code>.bash_history</code>文件的内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">history</span></span><br></pre></td></tr></table></figure>
+
+<p>使用该命令，而不是直接读取<code>.bash_history</code>文件的好处是，它会在所有的操作前加上行号，最近的操作在最后面，行号最大。</p>
+<p>通过定制环境变量<code>HISTTIMEFORMAT</code>，可以显示每个操作的时间。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> HISTTIMEFORMAT=<span class="string">&#x27;%F %T  &#x27;</span></span><br><span class="line">$ <span class="built_in">history</span></span><br><span class="line">1  2013-06-09 10:40:12   <span class="built_in">cat</span> /etc/issue</span><br><span class="line">2  2013-06-09 10:40:12   clear</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>%F</code>相当于<code>%Y - %m - %d</code>，<code>%T</code>相当于<code> %H : %M : %S</code>。</p>
+<p>只要设置<code>HISTTIMEFORMAT</code>这个环境变量，就会在<code>.bash_history</code>文件保存命令的执行时间戳。如果不设置，就不会保存时间戳。</p>
+<p>环境变量<code>HISTSIZE</code>设置保存历史操作的数量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> HISTSIZE=10000</span><br></pre></td></tr></table></figure>
+
+<p>上面命令设置保存过去10000条操作历史。</p>
+<p>如果不希望保存本次操作的历史，可以设置<code>HISTSIZE</code>等于0。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HISTSIZE=0</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>HISTSIZE=0</code>写入用户主目录的<code>~/.bashrc</code>文件，那么就不会保留该用户的操作历史。如果写入<code>/etc/profile</code>，整个系统都不会保留操作历史。</p>
+<p>环境变量<code>HISTIGNORE</code>可以设置哪些命令不写入操作历史。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HISTIGNORE=<span class="string">&#x27;pwd:ls:exit&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面示例设置，<code>pwd</code>、<code>ls</code>、<code>exit</code>这三个命令不写入操作历史。</p>
+<p>如果想搜索某个以前执行的命令，可以配合<code>grep</code>命令搜索操作历史。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">history</span> | grep /usr/bin</span><br></pre></td></tr></table></figure>
+
+<p>上面命令返回<code>.bash_history</code>文件里面，那些包含<code>/usr/bin</code>的命令。</p>
+<p>操作历史的每一条记录都有编号。知道了命令的编号以后，可以用<code>感叹号 + 编号</code>执行该命令。如果想要执行<code>.bash_history</code>里面的第8条命令，可以像下面这样操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ !8</span><br></pre></td></tr></table></figure>
+
+<p><code>history</code>命令的<code>-c</code>参数可以清除操作历史。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">history</span> -c</span><br></pre></td></tr></table></figure>
+
+<h3 id="相关快捷键"><a href="#相关快捷键" class="headerlink" title="相关快捷键"></a>相关快捷键</h3><p>下面是一些与操作历史相关的快捷键。</p>
+<ul>
+<li><code>Ctrl + p</code>：显示上一个命令，与向上箭头效果相同（previous）。</li>
+<li><code>Ctrl + n</code>：显示下一个命令，与向下箭头效果相同（next）。</li>
+<li><code>Alt + &lt;</code>：显示第一个命令。</li>
+<li><code>Alt + &gt;</code>：显示最后一个命令，即当前的命令。</li>
+<li><code>Ctrl + o</code>：执行历史文件里面的当前条目，并自动显示下一条命令。这对重复执行某个序列的命令很有帮助。</li>
+</ul>
+<p>感叹号<code>!</code>的快捷键如下。</p>
+<ul>
+<li><code>!!</code>：执行上一个命令。</li>
+<li><code>!n</code>：<code>n</code>为数字，执行历史文件里面行号为<code>n</code>的命令。</li>
+<li><code>!-n</code>：执行当前命令之前<code>n</code>条的命令。</li>
+<li><code>!string</code>：执行最近一个以指定字符串<code>string</code>开头的命令。</li>
+<li><code>!?string</code>：执行最近一条包含字符串<code>string</code>的命令。</li>
+<li><code>!$</code>：代表上一个命令的最后一个参数。</li>
+<li><code>!*</code>：代表上一个命令的所有参数，即除了命令以外的所有部分。</li>
+<li><code>^string1^string2</code>：执行最近一条包含<code>string1</code>的命令，将其替换成<code>string2</code>。</li>
+</ul>
+<p>下面是<code>!$</code>和<code>!*</code>的例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> a.txt b.txt</span><br><span class="line">$ <span class="built_in">echo</span> !$</span><br><span class="line">b.txt</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cp</span> a.txt b.txt</span><br><span class="line">$ <span class="built_in">echo</span> !*</span><br><span class="line">a.txt b.txt</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>!$</code>代表上一个命令的最后一个参数（<code>b.txt</code>），<code>!*</code>代表上一个命令的所有参数（<code>a.txt b.txt</code>）。</p>
+<p>下面是<code>^string1^string2</code>的例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">rm</span> /var/log/httpd/error.log</span><br><span class="line">$ ^error^access</span><br><span class="line"><span class="built_in">rm</span> /var/log/httpd/access.log</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>^error^access</code>将最近一条含有<code>error</code>的命令里面的<code>error</code>，替换成<code>access</code>。</p>
+<p>如果希望确定是什么命令，然后再执行，可以打开<code>histverify</code>选项。这样的话，使用<code>!</code>快捷键所产生的命令，会先打印出来，等到用户按下回车键后再执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">shopt</span> -s histverify</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他快捷键"><a href="#其他快捷键" class="headerlink" title="其他快捷键"></a>其他快捷键</h2><ul>
+<li><code>Ctrl + j</code>：等同于回车键（LINEFEED）。</li>
+<li><code>Ctrl + m</code>：等同于回车键（CARRIAGE RETURN）。</li>
+<li><code>Ctrl + o</code>：等同于回车键，并展示操作历史的下一个命令。 </li>
+<li><code>Ctrl + v</code>：将下一个输入的特殊字符变成字面量，比如回车变成<code>^M</code>。</li>
+<li><code>Ctrl + [</code>：等同于 ESC。 </li>
+<li><code>Alt + .</code>：插入上一个命令的最后一个词。</li>
+<li><code>Alt + _</code>：等同于<code>Alt + .</code>。</li>
+</ul>
+<p>上面的<code>Alt + .</code>快捷键，对于很长的文件路径，有时会非常方便。因为 Unix 命令的最后一个参数通常是文件路径。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> foo_bar</span><br><span class="line">$ <span class="built_in">cd</span> <span class="comment">#按下 Alt + .</span></span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，在<code>cd</code>命令后按下<code>Alt + .</code>，就会自动插入<code>foo_bar</code>。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/" title="variable"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">variable</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/" title="startup"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">startup</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bash-%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">Bash 行操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E6%A0%87%E7%A7%BB%E5%8A%A8"><span class="toc-number">1.2.</span> <span class="toc-text">光标移动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E5%B1%8F%E5%B9%95"><span class="toc-number">1.3.</span> <span class="toc-text">清除屏幕</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">编辑操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="toc-number">1.5.</span> <span class="toc-text">自动补全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E5%8E%86%E5%8F%B2"><span class="toc-number">1.6.</span> <span class="toc-text">操作历史</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.6.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#history-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.6.2.</span> <span class="toc-text">history 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">1.6.3.</span> <span class="toc-text">相关快捷键</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">1.7.</span> <span class="toc-text">其他快捷键</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

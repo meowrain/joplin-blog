@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>set | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="set 命令，shopt 命令set命令是 Bash 脚本的重要环节，却常常被忽视，导致脚本的安全性和可维护性出问题。本章介绍set的基本用法，帮助你写出更安全的 Bash 脚本。 简介我们知道，Bash 执行脚本时，会创建一个子 Shell。 1$ bash script.sh  上面代码中，script.sh是在一个子 Shell 里面执行。这个子 Shell 就是脚本的执行环境，Bash 默">
+<meta property="og:type" content="article">
+<meta property="og:title" content="set">
+<meta property="og:url" content="http://example.com/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="set 命令，shopt 命令set命令是 Bash 脚本的重要环节，却常常被忽视，导致脚本的安全性和可维护性出问题。本章介绍set的基本用法，帮助你写出更安全的 Bash 脚本。 简介我们知道，Bash 执行脚本时，会创建一个子 Shell。 1$ bash script.sh  上面代码中，script.sh是在一个子 Shell 里面执行。这个子 Shell 就是脚本的执行环境，Bash 默">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:13:57.070Z">
+<meta property="article:modified_time" content="2023-02-02T03:14:42.233Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'set',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:14:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">set</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:13:57.070Z" title="发表于 2023-02-02 11:13:57">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:14:42.233Z" title="更新于 2023-02-02 11:14:42">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/">Bash</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="set-命令，shopt-命令"><a href="#set-命令，shopt-命令" class="headerlink" title="set 命令，shopt 命令"></a>set 命令，shopt 命令</h1><p><code>set</code>命令是 Bash 脚本的重要环节，却常常被忽视，导致脚本的安全性和可维护性出问题。本章介绍<code>set</code>的基本用法，帮助你写出更安全的 Bash 脚本。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>我们知道，Bash 执行脚本时，会创建一个子 Shell。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>script.sh</code>是在一个子 Shell 里面执行。这个子 Shell 就是脚本的执行环境，Bash 默认给定了这个环境的各种参数。</p>
+<p><code>set</code>命令用来修改子 Shell 环境的运行参数，即定制环境。一共有十几个参数可以定制，<a target="_blank" rel="noopener" href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">官方手册</a>有完整清单，本章介绍其中最常用的几个。</p>
+<p>顺便提一下，如果命令行下不带任何参数，直接运行<code>set</code>，会显示所有的环境变量和 Shell 函数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="set-u"><a href="#set-u" class="headerlink" title="set -u"></a>set -u</h2><p>执行脚本时，如果遇到不存在的变量，Bash 默认忽略它。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$a</span></span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>$a</code>是一个不存在的变量。执行结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br><span class="line"></span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，<code>echo $a</code>输出了一个空行，Bash 忽略了不存在的<code>$a</code>，然后继续执行<code>echo bar</code>。大多数情况下，这不是开发者想要的行为，遇到变量不存在，脚本应该报错，而不是一声不响地往下执行。</p>
+<p><code>set -u</code>就用来改变这种行为。脚本在头部加上它，遇到不存在的变量就会报错，并停止执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -u</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$a</span></span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br><span class="line">bash: script.sh:行4: a: 未绑定的变量</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，脚本报错了，并且不再执行后面的语句。</p>
+<p><code>-u</code>还有另一种写法<code>-o nounset</code>，两者是等价的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -o nounset</span><br></pre></td></tr></table></figure>
+
+<h2 id="set-x"><a href="#set-x" class="headerlink" title="set -x"></a>set -x</h2><p>默认情况下，脚本执行后，只输出运行结果，没有其他内容。如果多个命令连续执行，它们的运行结果就会连续输出。有时会分不清，某一段内容是什么命令产生的。</p>
+<p><code>set -x</code>用来在运行结果之前，先输出执行的那一行命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -x</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的脚本，结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br><span class="line">+ <span class="built_in">echo</span> bar</span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，执行<code>echo bar</code>之前，该命令会先打印出来，行首以<code>+</code>表示。这对于调试复杂的脚本是很有用的。</p>
+<p><code>-x</code>还有另一种写法<code>-o xtrace</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -o xtrace</span><br></pre></td></tr></table></figure>
+
+<p>脚本当中如果要关闭命令输出，可以使用<code>set +x</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">number=1</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -x</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$number</span> = <span class="string">&quot;1&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Number equals 1&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Number does not equal 1&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">set</span> +x</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子中，只对特定的代码段打开命令输出。</p>
+<h2 id="Bash-的错误处理"><a href="#Bash-的错误处理" class="headerlink" title="Bash 的错误处理"></a>Bash 的错误处理</h2><p>如果脚本里面有运行失败的命令（返回值非<code>0</code>），Bash 默认会继续执行后面的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">foo</span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>上面脚本中，<code>foo</code>是一个不存在的命令，执行时会报错。但是，Bash 会忽略这个错误，继续往下执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br><span class="line">script.sh:行3: foo: 未找到命令</span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，Bash 只是显示有错误，并没有终止执行。</p>
+<p>这种行为很不利于脚本安全和除错。实际开发中，如果某个命令失败，往往需要脚本停止执行，防止错误累积。这时，一般采用下面的写法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">command</span> || <span class="built_in">exit</span> 1</span><br></pre></td></tr></table></figure>
+
+<p>上面的写法表示只要<code>command</code>有非零返回值，脚本就会停止执行。</p>
+<p>如果停止执行之前需要完成多个操作，就要采用下面三种写法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写法一</span></span><br><span class="line"><span class="built_in">command</span> || &#123; <span class="built_in">echo</span> <span class="string">&quot;command failed&quot;</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写法二</span></span><br><span class="line"><span class="keyword">if</span> ! <span class="built_in">command</span>; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;command failed&quot;</span>; <span class="built_in">exit</span> 1; <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写法三</span></span><br><span class="line"><span class="built_in">command</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;$?&quot;</span> -ne 0 ]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;command failed&quot;</span>; <span class="built_in">exit</span> 1; <span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>另外，除了停止执行，还有一种情况。如果两个命令有继承关系，只有第一个命令成功了，才能继续执行第二个命令，那么就要采用下面的写法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command1 &amp;&amp; command2</span><br></pre></td></tr></table></figure>
+
+<h2 id="set-e"><a href="#set-e" class="headerlink" title="set -e"></a>set -e</h2><p>上面这些写法多少有些麻烦，容易疏忽。<code>set -e</code>从根本上解决了这个问题，它使得脚本只要发生错误，就终止执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line">foo</span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>执行结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br><span class="line">script.sh:行4: foo: 未找到命令</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，第4行执行失败以后，脚本就终止执行了。</p>
+<p><code>set -e</code>根据返回值来判断，一个命令是否运行失败。但是，某些命令的非零返回值可能不表示失败，或者开发者希望在命令失败的情况下，脚本继续执行下去。这时可以暂时关闭<code>set -e</code>，该命令执行结束后，再重新打开<code>set -e</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> +e</span><br><span class="line">command1</span><br><span class="line">command2</span><br><span class="line"><span class="built_in">set</span> -e</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>set +e</code>表示关闭<code>-e</code>选项，<code>set -e</code>表示重新打开<code>-e</code>选项。</p>
+<p>还有一种方法是使用<code>command || true</code>，使得该命令即使执行失败，脚本也不会终止执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line">foo || <span class="literal">true</span></span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>true</code>使得这一行语句总是会执行成功，后面的<code>echo bar</code>会执行。</p>
+<p><code>-e</code>还有另一种写法<code>-o errexit</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -o errexit</span><br></pre></td></tr></table></figure>
+
+<h2 id="set-o-pipefail"><a href="#set-o-pipefail" class="headerlink" title="set -o pipefail"></a>set -o pipefail</h2><p><code>set -e</code>有一个例外情况，就是不适用于管道命令。</p>
+<p>所谓管道命令，就是多个子命令通过管道运算符（<code>|</code>）组合成为一个大的命令。Bash 会把最后一个子命令的返回值，作为整个命令的返回值。也就是说，只要最后一个子命令不失败，管道命令总是会执行成功，因此它后面命令依然会执行，<code>set -e</code>就失效了。</p>
+<p>请看下面这个例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line">foo | <span class="built_in">echo</span> a</span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>执行结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br><span class="line">a</span><br><span class="line">script.sh:行4: foo: 未找到命令</span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>foo</code>是一个不存在的命令，但是<code>foo | echo a</code>这个管道命令会执行成功，导致后面的<code>echo bar</code>会继续执行。</p>
+<p><code>set -o pipefail</code>用来解决这种情况，只要一个子命令失败，整个管道命令就失败，脚本就会终止执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -eo pipefail</span><br><span class="line"></span><br><span class="line">foo | <span class="built_in">echo</span> a</span><br><span class="line"><span class="built_in">echo</span> bar</span><br></pre></td></tr></table></figure>
+
+<p>运行后，结果如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bash script.sh</span><br><span class="line">a</span><br><span class="line">script.sh:行4: foo: 未找到命令</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，<code>echo bar</code>没有执行。</p>
+<h2 id="set-E"><a href="#set-E" class="headerlink" title="set -E"></a>set -E</h2><p>一旦设置了<code>-e</code>参数，会导致函数内的错误不会被<code>trap</code>命令捕获（参考《trap 命令》一章）。<code>-E</code>参数可以纠正这个行为，使得函数也能继承<code>trap</code>命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="built_in">trap</span> <span class="string">&quot;echo ERR trap fired!&quot;</span> ERR</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">myfunc</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment"># &#x27;foo&#x27; 是一个不存在的命令</span></span><br><span class="line">  foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myfunc</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>myfunc</code>函数内部调用了一个不存在的命令<code>foo</code>，导致执行这个函数会报错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ bash test.sh</span><br><span class="line">test.sh:行9: foo：未找到命令</span><br></pre></td></tr></table></figure>
+
+<p>但是，由于设置了<code>set -e</code>，函数内部的报错并没有被<code>trap</code>命令捕获，需要加上<code>-E</code>参数才可以。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -Eeuo pipefail</span><br><span class="line"></span><br><span class="line"><span class="built_in">trap</span> <span class="string">&quot;echo ERR trap fired!&quot;</span> ERR</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">myfunc</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment"># &#x27;foo&#x27; 是一个不存在的命令</span></span><br><span class="line">  foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myfunc</span><br></pre></td></tr></table></figure>
+
+<p>执行上面这个脚本，就可以看到<code>trap</code>命令生效了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bash test.sh</span><br><span class="line">test.sh:行9: foo：未找到命令</span><br><span class="line">ERR <span class="built_in">trap</span> fired!</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h2><p><code>set</code>命令还有一些其他参数。</p>
+<ul>
+<li><code>set -n</code>：等同于<code>set -o noexec</code>，不运行命令，只检查语法是否正确。</li>
+<li><code>set -f</code>：等同于<code>set -o noglob</code>，表示不对通配符进行文件名扩展。</li>
+<li><code>set -v</code>：等同于<code>set -o verbose</code>，表示打印 Shell 接收到的每一行输入。</li>
+<li><code>set -o noclobber</code>：防止使用重定向运算符<code>&gt;</code>覆盖已经存在的文件。</li>
+</ul>
+<p>上面的<code>-f</code>和<code>-v</code>参数，可以分别使用<code>set +f</code>、<code>set +v</code>关闭。</p>
+<h2 id="set-命令总结"><a href="#set-命令总结" class="headerlink" title="set 命令总结"></a>set 命令总结</h2><p>上面重点介绍的<code>set</code>命令的几个参数，一般都放在一起使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写法一</span></span><br><span class="line"><span class="built_in">set</span> -Eeuxo pipefail</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写法二</span></span><br><span class="line"><span class="built_in">set</span> -Eeux</span><br><span class="line"><span class="built_in">set</span> -o pipefail</span><br></pre></td></tr></table></figure>
+
+<p>这两种写法建议放在所有 Bash 脚本的头部。</p>
+<p>另一种办法是在执行 Bash 脚本的时候，从命令行传入这些参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash -euxo pipefail script.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="shopt-命令"><a href="#shopt-命令" class="headerlink" title="shopt 命令"></a>shopt 命令</h2><p><code>shopt</code>命令用来调整 Shell 的参数，跟<code>set</code>命令的作用很类似。之所以会有这两个类似命令的主要原因是，<code>set</code>是从 Ksh 继承的，属于 POSIX 规范的一部分，而<code>shopt</code>是 Bash 特有的。</p>
+<p>直接输入<code>shopt</code>可以查看所有参数，以及它们各自打开和关闭的状态。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">shopt</span></span><br></pre></td></tr></table></figure>
+
+<p><code>shopt</code>命令后面跟着参数名，可以查询该参数是否打开。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">shopt</span> globstar</span><br><span class="line">globstar  off</span><br></pre></td></tr></table></figure>
+
+<p>上面例子表示<code>globstar</code>参数默认是关闭的。</p>
+<p><strong>（1）-s</strong></p>
+<p><code>-s</code>用来打开某个参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">shopt</span> -s optionNameHere</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）-u</strong></p>
+<p><code>-u</code>用来关闭某个参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">shopt</span> -u optionNameHere</span><br></pre></td></tr></table></figure>
+
+<p>举例来说，<code>histappend</code>这个参数表示退出当前 Shell 时，将操作历史追加到历史文件中。这个参数默认是打开的，如果使用下面的命令将其关闭，那么当前 Shell 的操作历史将替换掉整个历史文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">shopt</span> -u histappend</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）-q</strong></p>
+<p><code>-q</code>的作用也是查询某个参数是否打开，但不是直接输出查询结果，而是通过命令的执行状态（<code>$?</code>）表示查询结果。如果状态为<code>0</code>，表示该参数打开；如果为<code>1</code>，表示该参数关闭。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">shopt</span> -q globstar</span><br><span class="line">$ <span class="built_in">echo</span> $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>上面命令查询<code>globstar</code>参数是否打开。返回状态为<code>1</code>，表示该参数是关闭的。</p>
+<p>这个用法主要用于脚本，供<code>if</code>条件结构使用。下面例子是如果打开了这个参数，就执行<code>if</code>结构内部的语句。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">shopt</span> -q globstar); <span class="keyword">then</span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html">The Set Builtin</a></li>
+<li><a target="_blank" rel="noopener" href="https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/">Safer bash scripts with ‘set -euxo pipefail’</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.davidpashley.com/articles/writing-robust-shell-scripts/">Writing Robust Bash Shell Scripts</a></li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/" title="startup"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">startup</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/8e77da8f48ec4470990c28b991d2a9c6/" title="stack"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">stack</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#set-%E5%91%BD%E4%BB%A4%EF%BC%8Cshopt-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">set 命令，shopt 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-u"><span class="toc-number">1.2.</span> <span class="toc-text">set -u</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-x"><span class="toc-number">1.3.</span> <span class="toc-text">set -x</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bash-%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">Bash 的错误处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-e"><span class="toc-number">1.5.</span> <span class="toc-text">set -e</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-o-pipefail"><span class="toc-number">1.6.</span> <span class="toc-text">set -o pipefail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-E"><span class="toc-number">1.7.</span> <span class="toc-text">set -E</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0"><span class="toc-number">1.8.</span> <span class="toc-text">其他参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="toc-number">1.9.</span> <span class="toc-text">set 命令总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shopt-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.10.</span> <span class="toc-text">shopt 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.11.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

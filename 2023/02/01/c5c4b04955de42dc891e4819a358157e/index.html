@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>communication | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="聊天通讯 🍻 海上生明月，天涯共此时这一小节讨论在 archlinux 上安装常用的聊天通讯软件   🔖 这一节将会讨论：::: details 目录 [[toc]] :::  ::: tip ℹ️ 提示 指南中带有 aur 角标的软件代表是在 AUR（Arch User Repository）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新不及时、无法安装、使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="communication">
+<meta property="og:url" content="http://example.com/2023/02/01/c5c4b04955de42dc891e4819a358157e/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="聊天通讯 🍻 海上生明月，天涯共此时这一小节讨论在 archlinux 上安装常用的聊天通讯软件   🔖 这一节将会讨论：::: details 目录 [[toc]] :::  ::: tip ℹ️ 提示 指南中带有 aur 角标的软件代表是在 AUR（Arch User Repository）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新不及时、无法安装、使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-01T04:57:59.103Z">
+<meta property="article:modified_time" content="2023-02-02T03:21:21.926Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/01/c5c4b04955de42dc891e4819a358157e/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'communication',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:21:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">communication</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-01T04:57:59.103Z" title="发表于 2023-02-01 12:57:59">2023-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:21:21.926Z" title="更新于 2023-02-02 11:21:21">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/">Arch-Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/apps/">apps</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="聊天通讯"><a href="#聊天通讯" class="headerlink" title="聊天通讯"></a>聊天通讯</h1><blockquote>
+<h3 id="🍻-海上生明月，天涯共此时"><a href="#🍻-海上生明月，天涯共此时" class="headerlink" title="🍻 海上生明月，天涯共此时"></a>🍻 海上生明月，天涯共此时</h3><p>这一小节讨论在 archlinux 上安装常用的聊天通讯软件</p>
+</blockquote>
+<blockquote>
+<h3 id="🔖-这一节将会讨论："><a href="#🔖-这一节将会讨论：" class="headerlink" title="🔖 这一节将会讨论："></a>🔖 这一节将会讨论：</h3><p>::: details 目录</p>
+<p>[[toc]]</p>
+<p>:::</p>
+</blockquote>
+<p>::: tip ℹ️ 提示</p>
+<p>指南中带有 <sup>aur</sup> 角标的软件代表是在 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/">AUR</a>（Arch User Repository）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新不及时、无法安装、使用出错等。</p>
+<p>指南中带有 <sup>cn</sup> 角标的软件代表是在 <a target="_blank" rel="noopener" href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/">archlinuxcn</a>（Arch Linux 中文社区仓库）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新不及时、无法安装、使用出错等。</p>
+<p>指南中带有 <sup>EULA</sup> 角标的软件代表是 <a target="_blank" rel="noopener" href="https://www.gnu.org/proprietary/proprietary.html">专有软件</a>。请自行斟酌是否使用。</p>
+<p>:::</p>
+<h2 id="💬-即时通讯"><a href="#💬-即时通讯" class="headerlink" title="💬 即时通讯"></a>💬 即时通讯</h2><h3 id="Telegram"><a href="#Telegram" class="headerlink" title="Telegram"></a>Telegram</h3><p>Telegram（电报）是跨平台的即时通信软件。其客户端是自由软件（桌面端在 <a target="_blank" rel="noopener" href="https://github.com/telegramdesktop/tdesktop/blob/dev/LICENSE">GPLv3</a> 协议下发布），但服务器是专有软件。</p>
+<p>Telegram 有两种加密模式：</p>
+<ul>
+<li>一般聊天 —— 使用<strong>端到端</strong>的加密通信，但服务端会有访问密钥的权限，而且可以经由多重设备登录</li>
+<li>秘密聊天 —— 使用<strong>端对端</strong>的加密通信，而且只能经由两个特定设备登录</li>
+</ul>
+<p>官方宣称当两名用户进行通信时，第三方包含管理人员皆无法访问用户的通信内容。当用户在进行秘密聊天时，消息包含多媒体皆可以被指定为自毁消息，当消息被用户阅读之后，消息在指定的时间内会自动销毁。一旦消息过期，消息会消失在用户的设备上。</p>
+<ol>
+<li><p>安装 <code>Telegram</code><sup>community &#x2F; cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item community</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S telegram-desktop</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item cn (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S telegram-desktop-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S telegram-desktop-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur（dev）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S telegram-desktop-bin-dev</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/9a642ec745354166aff2af015afa0292.png" alt="telegram"></p>
+</li>
+<li><p>调整隐私权限以及自动下载：</p>
+<ul>
+<li><p>在 <code>Settings</code>（设置） &gt; <code>Advanced</code>（高级） &gt; <code>Automatic media download</code>（自动媒体下载） 中分别将 <code>In private chats</code>（私聊中）、<code>In groups</code>（群组中） 和 <code>In channels</code>（频道中） 的 <code>Files</code>（文件） 关掉，以避免下载病毒以及垃圾文件</p>
+</li>
+<li><p>在 <code>Settings</code>（设置） &gt; <code>Privacy and Security</code>（隐私和安全） &gt; <code>Privacy</code>（隐私） 中将 <code>Phone number</code>（电话号码） 改为 <code>Nobody</code>（仅联系人可见）、将 <code>Forwarded messages</code>（转发的消息）、<code>Calls</code>（语音通话） 和 <code>Groups &amp; channels</code>（邀请权限） 分别改为 <code>My contacts</code>（仅联系人）</p>
+<p>::: tip ℹ️ 提示</p>
+<p>更进一步，可将 <code>Phone number</code> 中的 <code>Who can find me by my number</code> 改为 <code>My contacts</code>，这将使只有双向联系人（即双方手机都有对方的电话号码）才可以通过电话号码添加您为好友。这可以在一定程度增加安全性。</p>
+<p>:::</p>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<h4 id="💕-相关链接：archlinux-Telegram-相关群组"><a href="#💕-相关链接：archlinux-Telegram-相关群组" class="headerlink" title="💕 相关链接：archlinux Telegram 相关群组"></a>💕 相关链接：archlinux Telegram 相关群组</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://t.me/archlinuxcn_group">#archlinux-cn</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/archlinuxcn_offtopic">#archlinux-cn-offtopic</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/kdwu1fan">篝ノ雾枝的咕咕小屋 | ArchLinux Studio</a></li>
+</ul>
+</blockquote>
+<p>::: tip ℹ️ 提示</p>
+<p>目前官方中文语言包还不完整，可以通过点击第三方语言包链接设置 Telegram 为中文：</p>
+<ul>
+<li>简体：<ul>
+<li><a target="_blank" rel="noopener" href="https://t.me/setlanguage/zhcncc">聪聪</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/setlanguage/jianghu">江湖</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/setlanguage/zhlangcn">langCN</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/setlanguage/zh-hans-beta">zh-hans</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/setlanguage/moecn">Moecn</a></li>
+</ul>
+</li>
+<li>繁体：<ul>
+<li><a target="_blank" rel="noopener" href="https://t.me/setlanguage/hongkong">繁體一</a></li>
+<li><a target="_blank" rel="noopener" href="https://t.me/setlanguage/zhhant-hk">繁體二</a></li>
+</ul>
+</li>
+</ul>
+<p>:::</p>
+<p>::: tip ℹ️ 提示</p>
+<p>虽然 Telegram 很“自由”，但也带来了很多问题：</p>
+<ul>
+<li>牵涉恐怖活动 —— 2015 年 11 月，由于伊斯兰国（ISIS）相关组织使用频繁，Telegram 移除了近 250 个所使用广播频道，并屏蔽其所属账号并且持续每天移除近百频道</li>
+<li>非法出售个人信息 —— 2020 年 3 月中旬，中华人民共和国江苏园区公安分局网安大队在“净网 2020”专项行动的网络巡查中获取了一条网民通过 Telegram 出售公民个人信息的线索，并于 4 月 22 日在广东东莞和湖南衡阳逮捕 6 名嫌疑犯，查获过百万条公民个人信息</li>
+<li>传播钓鱼木马 —— 2020 年 12 月 26 日，金山毒霸安全团队通过“捕风”威胁感知系统捕获一类新的钓鱼木马，该类木马在 Telegram 群组中传播，通过命名成各种时政热点消息的标题或者更改图标伪装成正规软件，诱使用户点击</li>
+<li>传播色情、侵犯著作权的内容 —— 2018 年下半年至 2020 年 3 月间，韩国有人通过 Telegram 组建多个聊天室并收取费用，进行了有组织的、大规模的性虐待事件，即震惊韩国社会的 N 号房事件</li>
+<li>颠覆国家政权 —— 2019 年 6 月，“反修例运动”期间，香港很多“抗议者”使用 Telegram 来逃避电子监视</li>
+</ul>
+<p>使用 Telegram 时注意安全，保护好个人隐私；同时也要注意谨言慎行。</p>
+<p>:::</p>
+<blockquote>
+<h4 id="🍧-碎碎念"><a href="#🍧-碎碎念" class="headerlink" title="🍧 碎碎念"></a>🍧 碎碎念</h4><p>道也者，不可须臾离也；可离，非道也。是故君子戒慎乎其所不睹，恐惧乎其所不闻。莫见乎隐，莫显乎微，故君子慎其独也。</p>
+</blockquote>
+<h3 id="QQ"><a href="#QQ" class="headerlink" title="QQ"></a>QQ</h3><p>推荐安装官方最新的<a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/linuxqq"><code>linuxqq</code></a><sup>EULA &#x2F; aur</sup>（基于 Electron 框架）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S linuxqq</span><br></pre></td></tr></table></figure>
+
+<p>wrap版本<a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/linuxqq-nt-bwrap"><code>linuxqq-nt-bwrap</code></a><sup>EULA &#x2F; aur</sup>，该版本限制了qq的目录访问</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S linuxqq-nt-bwrap</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/8d20e7d4cfe54f80863cfaa08d9b7c20.png" alt="qq-3"></p>
+<h4 id="其它版本"><a href="#其它版本" class="headerlink" title="其它版本"></a>其它版本</h4><p>基于 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/deepin-wine5"><code>deepin-wine5</code></a><sup>EULA &#x2F; community &#x2F; cn &#x2F; aur</sup> 的 QQ。</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/deepin-wine-qq/"><code>deepin-wine-qq</code></a><sup>aur</sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S deepin-wine-qq</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/444c8e663f2144ac908ed6b10fa3ecae.png" alt="qq-1"></p>
+</li>
+<li><p>参考 <a href=":/69a66ceda4454dcd95137991f28495b3#deepin-wine5-%E7%9B%B8%E5%85%B3">deepin-wine5 相关</a> 完成配置：</p>
+<p><img src="/resources/e22adf6cd0174d1483e71d21b67495c1.png" alt="qq-2"></p>
+</li>
+</ol>
+<h4 id="第三方"><a href="#第三方" class="headerlink" title="第三方"></a>第三方</h4><p>以下为第三方版本 QQ</p>
+<ul>
+<li>Icalingua <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/icalingua/"><code>Icalingua</code></a><sup>aur</sup> - electron 开发的第三方<del>QQ</del> (<a target="_blank" rel="noopener" href="https://github.com/Icalingua/Icalingua"><del>github</del></a>)(作者已删库)<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S icalingua</span><br></pre></td></tr></table></figure></li>
+<li>Icalingua++ <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/icalingua++/"><code>Icalingua++</code></a><sup>aur</sup> - electron 开发的第三方 QQ (<a target="_blank" rel="noopener" href="https://github.com/Icalingua/Icalingua++">github</a>)(为 icalingua 升级版)<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S icalingua++</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h3><p>推荐使用基于 <code>deepin-wine5</code> 的微信。</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/com.qq.weixin.deepin/"><code>com.qq.weixin.deepin</code></a><sup>EULA &#x2F; aur</sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S com.qq.weixin.deepin</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/ec5ddf5c01e844daa6d22268a6fe3958.png" alt="wechat-1"></p>
+</li>
+<li><p>参考 <a href=":/69a66ceda4454dcd95137991f28495b3#deepin-wine5-%E7%9B%B8%E5%85%B3">deepin-wine5 相关</a> 完成配置：</p>
+<p><img src="/resources/eaca2534428d4d4f80e712a65015a7de.png" alt="wechat-2"></p>
+</li>
+</ol>
+<h4 id="其它版本-1"><a href="#其它版本-1" class="headerlink" title="其它版本"></a>其它版本</h4><p>以下为其它的微信版本，但体验一般：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/wechat-uos/"><code>wechat-uos</code></a><sup>aur</sup> —— UOS 版本原生微信的移植版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S wechat-uos</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Skype"><a href="#Skype" class="headerlink" title="Skype"></a>Skype</h3><p>Skype 是一款通信应用软件，可通过互联网为电脑、平板电脑和移动设备提供与其它联网设备或传统电话 &#x2F; 智能手机间进行视频通话和语音通话的服务。用户也可通过 Skype 收发即时通讯信息、传输文件、收发多媒体信息、进行视频会议。</p>
+<p>目前 Skype 归微软所有。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://www.skype.com/zh-Hans/">Skype</a><sup>EULA &#x2F; cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S skypeforlinux-stable-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/skypeforlinux-stable-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item cn（preview）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S skypeforlinux-preview-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur（preview）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/skypeforlinux-preview-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/e2831aa0fe2d4ffaa3240b596b9c061b.png" alt="skype"></p>
+<h3 id="Discord"><a href="#Discord" class="headerlink" title="Discord"></a>Discord</h3><p><a target="_blank" rel="noopener" href="https://discord.com/">Discord</a> 是一款专为社区设计的免费网络实时通话软件与数字发行平台，主要针对游戏玩家、教育人士及商业人士，用户之间可以在其中的聊天频道通过信息、图片、视频和音频进行互动。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/community/x86_64/discord/">Discord</a>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S discord</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/d6043625dcd54d419033f0585d993966.png" alt="discord"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>类似 Telegram，Discord 同样存在诸多不正当内容（包括但不限于种族歧视、色情内容等）。</p>
+<p>请注意安全、保护好隐私、文明上网。<br>:::</p>
+<h3 id="TeamSpeak-3"><a href="#TeamSpeak-3" class="headerlink" title="TeamSpeak 3"></a>TeamSpeak 3</h3><p>一款代替 <code>YY语音</code> <code>Discord</code> 等游戏语音聊天软件，有占用资源低、连接快捷、自带 Opus 音频解码器、无广告、全平台、语音加密传输、可自建服务器、可随意调节的“语音感应激活”功能告别通讯底噪和键盘噪音。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S teamspeak3</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/5c1d6b956f8a4b51833e9b70baf9b29b.png" alt="teamspeak3"><br>::: tip ℹ️ 提示</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.wevg.org/archives/fix-ts3-linux-plugin/">中文汉化</a> 没有目录就创建目录，脚本需要给执行权限</p>
+</li>
+<li><p>直接 <code>/opt/teamspeak3/package_inst Chinese_Translation_zh-CN.ts3_translation</code></p>
+</li>
+<li><p>以上汉化 二选一</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.wevg.org/archives/how-to-use-teamspeak3/">新手指南</a><br>:::</p>
+</li>
+</ol>
+<h2 id="🤝🏻-团队合作"><a href="#🤝🏻-团队合作" class="headerlink" title="🤝🏻 团队合作"></a>🤝🏻 团队合作</h2><h3 id="Slack"><a href="#Slack" class="headerlink" title="Slack"></a>Slack</h3><p><a target="_blank" rel="noopener" href="https://slack.com/intl/zh-cn/features">Slack</a> 是一款基于云端运算的即时通讯软件。为团队和工作提供一个单一的平台。类似 Discord，也分有许多频道，通过频道组织工作。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/slack-desktop/">Slack</a><sup>EULA &#x2F; cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S slack-desktop</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/slack-desktop</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/e56b8e8566d9403ab1f27686f613ca3d.png" alt="slack"></p>
+<h2 id="📹-网络会议"><a href="#📹-网络会议" class="headerlink" title="📹 网络会议"></a>📹 网络会议</h2><h3 id="Zoom"><a href="#Zoom" class="headerlink" title="Zoom"></a>Zoom</h3><p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/zoom/">Zoom</a>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S zoom</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/b86d44b63b044724a92fc47afc6b6f2b.png" alt="zoom"></p>
+<h3 id="腾讯会议"><a href="#腾讯会议" class="headerlink" title="腾讯会议"></a>腾讯会议</h3><p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/wemeet-bin"><code>wemeet-bin</code></a><sup>EULA &#x2F; aur</sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S wemeet-bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/00a9d2c7df7c4d2da5682ea5f0015761.png" alt="meeting-2"></p>
+<h2 id="✉️-电子邮件"><a href="#✉️-电子邮件" class="headerlink" title="✉️ 电子邮件"></a>✉️ 电子邮件</h2><h3 id="Thunderbird"><a href="#Thunderbird" class="headerlink" title="Thunderbird"></a>Thunderbird</h3><p>Mozilla Thunderbird（雷鸟）是由 Mozilla 基金会研发的一款自由开源的跨平台电子邮件客户端、新闻阅读器、聚合器以及即时通信软件。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/thunderbird/">Thunderbird</a>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S thunderbird</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/ae33a7767e25421a9734e539dd86c6e2.png" alt="thunderbird"></p>
+<h3 id="KMail"><a href="#KMail" class="headerlink" title="KMail"></a>KMail</h3><p>KMail 是一款功能先进的电子邮件客户端，能与 GMail 等常用电子邮件服务提供商进行整合。KMail 支持各种电子邮件协议，包括 POP3、IMAP、Microsoft Exchange（EWS）等。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/kmail/">KMail</a>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S kmail</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/cdb00364c24d4bdab80ac7a10dfadf43.png" alt="kmail"></p>
+<h3 id="Mailspring"><a href="#Mailspring" class="headerlink" title="Mailspring"></a>Mailspring</h3><p>MailSpring 是一款界面简约、操作便捷、功能出众的邮件管理工具。MailSpring 官方版可以帮助用户管理多个邮箱，提高工作效率，同时还能够对重要事项进行提醒，并可以编辑自己的签名，给大家带来了不一样的感受和体验。其客户端在 github 上开源，但使用时需要注册 mailspring 账户。</p>
+<p>KDE 用户使用 mailspring 前需要安装<code>gnome-keyring</code></p>
+<p>安装 <a target="_blank" rel="noopener" href="https://github.com/Foundry376/Mailspring">mailspring</a><sup>EULA &#x2F; cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S mailspring</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/mailspring</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="https://raw.githubusercontent.com/Foundry376/Mailspring/master/screenshots/hero_graphic_mac%402x.png" alt="mailspring"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/01/b882a6f73bd74e37aa75fead7df2c88c/" title="android"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">android</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/01/cf1926bfaabf4369b69ce8bf4df54d72/" title="system-ctl"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">system-ctl</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%8A%E5%A4%A9%E9%80%9A%E8%AE%AF"><span class="toc-number">1.</span> <span class="toc-text">聊天通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8D%BB-%E6%B5%B7%E4%B8%8A%E7%94%9F%E6%98%8E%E6%9C%88%EF%BC%8C%E5%A4%A9%E6%B6%AF%E5%85%B1%E6%AD%A4%E6%97%B6"><span class="toc-number">1.0.1.</span> <span class="toc-text">🍻 海上生明月，天涯共此时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%96-%E8%BF%99%E4%B8%80%E8%8A%82%E5%B0%86%E4%BC%9A%E8%AE%A8%E8%AE%BA%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">🔖 这一节将会讨论：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%AC-%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF"><span class="toc-number">1.1.</span> <span class="toc-text">💬 即时通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Telegram"><span class="toc-number">1.1.1.</span> <span class="toc-text">Telegram</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%92%95-%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5%EF%BC%9Aarchlinux-Telegram-%E7%9B%B8%E5%85%B3%E7%BE%A4%E7%BB%84"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">💕 相关链接：archlinux Telegram 相关群组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%8D%A7-%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">🍧 碎碎念</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QQ"><span class="toc-number">1.1.2.</span> <span class="toc-text">QQ</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E7%89%88%E6%9C%AC"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">其它版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">第三方</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1"><span class="toc-number">1.1.3.</span> <span class="toc-text">微信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E7%89%88%E6%9C%AC-1"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">其它版本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Skype"><span class="toc-number">1.1.4.</span> <span class="toc-text">Skype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discord"><span class="toc-number">1.1.5.</span> <span class="toc-text">Discord</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TeamSpeak-3"><span class="toc-number">1.1.6.</span> <span class="toc-text">TeamSpeak 3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A4%9D%F0%9F%8F%BB-%E5%9B%A2%E9%98%9F%E5%90%88%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">🤝🏻 团队合作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Slack"><span class="toc-number">1.2.1.</span> <span class="toc-text">Slack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%B9-%E7%BD%91%E7%BB%9C%E4%BC%9A%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">📹 网络会议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Zoom"><span class="toc-number">1.3.1.</span> <span class="toc-text">Zoom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%85%BE%E8%AE%AF%E4%BC%9A%E8%AE%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text">腾讯会议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9C%89%EF%B8%8F-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">✉️ 电子邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Thunderbird"><span class="toc-number">1.4.1.</span> <span class="toc-text">Thunderbird</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KMail"><span class="toc-number">1.4.2.</span> <span class="toc-text">KMail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mailspring"><span class="toc-number">1.4.3.</span> <span class="toc-text">Mailspring</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

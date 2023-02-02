@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta property="og:type" content="website">
+<meta property="og:title" content="知识库">
+<meta property="og:url" content="http://example.com/page/15/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/15/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '知识库',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-02-02 11:23:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/fbe96274d2474454a01631fecb5e0865/" title="locale.h">locale.h</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.204Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/lib/">lib</a></span></div><div class="content">locale.h简介locale.h是程序的本地化设置，主要影响以下的行为。
+
+数字格式
+货币格式
+字符集
+日期和时间格式
+
+它设置了以下几个宏。
+
+LC_COLLATE：影响字符串比较函数strcoll()和strxfrm()。
+LC_CTYPE：影响字符处理函数的行为。
+LC_MONETARY：影响货币格式。
+LC_NUMERIC：影响printf()的数字格式。
+LC_TIME：影响时间格式strftime()和wcsftime()。
+LC_ALL：将以上所有类别设置为给定的语言环境。
+
+setlocale()setlocale()用来设置当前的地区。
+1char* setlocale(int category, const char* locale);
+
+它接受两个参数。第一个参数表示影响范围，如果值为前面五个表示类别的宏之一，则只影响该宏对应的类别，如果值为LC_ALL，则影响所有类别。第二个参数通常只为&quot;C&quot;（正常模式）或&quot;&quot;（本地模式）。
+任意程序开始时，都隐含下面的调用。
+1setlocale(LC_ALL, &quot;C&qu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/3138472e04144b4f842c0bd5ba66524e/" title="assert.h">assert.h</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.203Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/lib/">lib</a></span></div><div class="content">assert.hassert()assert.h头文件定义了宏assert()，用于在运行时确保程序符合指定条件，如果不符合，就报错终止运行。这个宏常常被称为“断言”。
+1assert(PI &gt; 3);
+
+上面代码在程序运行到这一行语句时，验证变量PI是否大于3。如果确实大于3，程序继续运行，否则就会终止运行，并且给出报错信息提示。
+assert()宏接受一个表达式作为参数。如果该表达式为真（返回值非零），assert()不会产生任何作用，程序继续运行。如果该表达式为假（返回值为零），assert()就会报错，在标准错误流stderr中写入一条错误信息，显示没有通过的表达式，以及包含这个表达式的文件名和行号。最后，调用abort()函数终止程序（abort()函数的原型在stdlib.h头文件中）。
+12z = x * x - y * y;assert(z &gt;= 0);
+
+上面的assert()语句类似于下面的代码。
+1234if (z &lt; 0) &#123;  puts(&quot;z less than 0&quot;);  abort();&#125;
+
+如果断 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/44b562d9159b4e8ab6fbcda77a8443f0/" title="io">io</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.203Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a></span></div><div class="content">I&#x2F;O 函数C 语言提供了一些函数，用于与外部设备通信，称为输入输出函数，简称 I&#x2F;O 函数。输入（import）指的是获取外部数据，输出（export）指的是向外部传递数据。
+缓存和字节流严格地说，输入输出函数并不是直接与外部设备通信，而是通过缓存（buffer）进行间接通信。这个小节介绍缓存是什么。
+普通文件一般都保存在磁盘上面，跟 CPU 相比，磁盘读取或写入数据是一个很慢的操作。所以，程序直接读写磁盘是不可行的，可能每执行一行命令，都必须等半天。C 语言的解决方案，就是只要打开一个文件，就在内存里面为这个文件设置一个缓存区。
+程序向文件写入数据时，程序先把数据放入缓存，等到缓存满了，再把里面的数据会一次性写入磁盘文件。这时，缓存区就空了，程序再把新的数据放入缓存，重复整个过程。
+程序从文件读取数据时，文件先把一部分数据放到缓存里面，然后程序从缓存获取数据，等到缓存空了，磁盘文件再把新的数据放入缓存，重复整个过程。
+内存的读写速度比磁盘快得多，缓存的设计减少了读写磁盘的次数，大大提高了程序的执行效率。另外，一次性移动大块数据，要比多次移动小块数据快得多。
+这种 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/5c46094c4bad4fbb8ec4d2b1983c719b/" title="ctype.h">ctype.h</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.203Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/lib/">lib</a></span></div><div class="content">ctype.hctype.h头文件定义了一系列字符处理函数的原型。
+字符测试函数这些函数用来判断字符是否属于某种类型。
+
+isalnum()：是否为字母数字
+isalpha()：是否为字母
+isdigit()：是否为数字
+isxdigit()：是否为十六进制数字符
+islower()：是否为小写字母
+isupper()：是否为大写字母
+isblank()：是否为标准的空白字符（包含空格、水平制表符或换行符）
+isspace()：是否为空白字符（空格、换行符、换页符、回车符、垂直制表符、水平制表符等）
+iscntrl()：是否为控制字符，比如 Ctrl + B
+isprint()：是否为可打印字符
+isgraph()：是否为空格以外的任意可打印字符
+ispunct()：是否为标点符号（除了空格、字母、数字以外的可打印字符）
+
+它们接受一个待测试的字符作为参数。注意，参数类型为int，而不是char，因为它们允许 EOF 作为参数。
+如果参数字符属于指定类型，就返回一个非零整数（通常是1，表示为真），否则返回0（表示为伪）。
+下面是一个例子，用户输入一个字符，程序判断是否为英文字母。
+12 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/681633db477e45c99924a0b8fc358e2d/" title="float.h">float.h</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.203Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/lib/">lib</a></span></div><div class="content">float.hfloat.h定义了浮点数类型 float、double、long double 的一些宏，规定了这些类型的范围和精度。
+(1) FLT_ROUNDS
+宏FLT_ROUNDS表示当前浮点数加法的四舍五入方向。
+它有以下可能的值。
+
+-1：不确定。
+0：向零舍入。
+1：向最近的整数舍入。
+2：向正无穷方向舍入。
+3：向负无穷方向舍入。
+
+（2）FLT_RADIX
+宏FLT_RADIX表示科学计数法的指数部分的底（base），一般总是2。
+（3）浮点数类型的最大值
+
+FLT_MAX
+DBL_MAX
+LDBL_MAX
+
+（4）浮点数类型的最小正值
+
+FLT_MIN
+DBL_MIN
+LDBL_MIN
+
+（5）两个同类型浮点数之间可表示的最小差值（最小精度）
+
+FLT_EPSILON
+DBL_EPSILON
+LDBL_EPSILON
+
+（6）DECIMAL_DIG
+宏DECIMAL_DIG表示十进制有效位数。
+（7）FLT_EVAL_METHOD
+宏FLT_EVAL_METHOD表示浮点数运算时的类型转换。
+它可能有以下值。
+
+-1：不确定。
+0：在当前类型中运算。
+1：float ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/83858a169b23461eadc882914abf4bd1/" title="function">function</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.203Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a></span></div><div class="content">函数简介函数是一段可以重复执行的代码。它可以接受不同的参数，完成对应的操作。下面的例子就是一个函数。
+123int plus_one(int n) &#123;  return n + 1;&#125;
+
+上面的代码声明了一个函数plus_one()。
+函数声明的语法有以下几点，需要注意。
+（1）返回值类型。函数声明时，首先需要给出返回值的类型，上例是int，表示函数plus_one()返回一个整数。
+（2）参数。函数名后面的圆括号里面，需要声明参数的类型和参数名，plus_one(int n)表示这个函数有一个整数参数n。
+（3）函数体。函数体要写在大括号里面，后面（即大括号外面）不需要加分号。大括号的起始位置，可以跟函数名在同一行，也可以另起一行，本书采用同一行的写法。
+（4）return语句。return语句给出函数的返回值，程序运行到这一行，就会跳出函数体，结束函数的调用。如果函数没有返回值，可以省略return语句，或者写成return;。
+调用函数时，只要在函数名后面加上圆括号就可以了，实际的参数放在圆括号里面，就像下面这样。
+12int a = plus_one(13); ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/b18a246240264c3f849764da8d1be1cb/" title="errno.h">errno.h</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.203Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/lib/">lib</a></span></div><div class="content">errno.herrno 变量errno.h声明了一个 int 类型的 errno 变量，用来存储错误码（正整数）。
+如果这个变量有非零值，表示已经执行的程序发生了错误。
+12345678910int x = -1;errno = 0;int y = sqrt(x);if (errno != 0) &#123;  fprintf(stderr, &quot;sqrt error; program terminated.\n&quot;);  exit(EXIT_FAILURE);&#125;
+
+上面示例中，计算一个负值的平方根是不允许的，会导致errno不等于0。
+如果要检查某个函数是否发生错误，必须在即将调用该函数之前，将errno的值置为0，防止其他函数改变errno的值。
+宏变量errno的值通常是两个宏EDOM或ERANGE。这两个宏都定义在errno.h。它们表示调用数学函数时，可能发生的两种错误。
+
+定义域错误（EDOM）：传递给函数的一个参数超出了函数的定义域。例如，负数传入sqrt()作为参数。
+取值范围错误（ERANGE）：函数的返回值太大，无法用返回类型表示。例如， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/d7776ffc599f4b0caf4f966a3b0d2695/" title="intro">intro</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.203Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a></span></div><div class="content">C 语言简介历史C 语言最初是作为 Unix 系统的开发工具而发明的。
+1969年，美国贝尔实验室的肯·汤普森（Ken Thompson）与丹尼斯·里奇（Dennis Ritchie）一起开发了 Unix 操作系统。Unix 是用汇编语言写的，无法移植到其他计算机，他们决定使用高级语言重写。但是，当时的高级语言无法满足他们的要求，汤普森就在 BCPL 语言的基础上发明了 B 语言。
+1972年，丹尼斯·里奇和布莱恩·柯林汉（Brian Kernighan）又在 B 语言的基础上重新设计了一种新语言，这种新语言取代了 B 语言，所以称为 C 语言。
+1973年，整个 Unix 系统都使用 C 语言重写。此后，这种语言开始快速流传，广泛用于各种操作系统和系统软件的开发。
+1988年，美国国家标准协会（ANSI）正式将 C 语言标准化，标志着 C 语言开始稳定和规范化。
+几十年后的今天，C 语言依然是最广泛使用、最流行的系统编程语言之一，Unix 和 Linux 系统现在还是使用 C 语言开发。
+C 语言的特点C 语言能够长盛不衰、广泛应用，主要原因是它有一些鲜明的特点。
+（1）低级语言
+C ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/1fba82438224409aa1cdfd37d4786681/" title="array">array</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.202Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a></span></div><div class="content">数组简介数组是一组相同类型的值，按照顺序储存在一起。数组通过变量名后加方括号表示，方括号里面是数组的成员数量。
+1int scores[100];
+
+上面示例声明了一个数组scores，里面包含100个成员，每个成员都是int类型。
+注意，声明数组时，必须给出数组的大小。
+数组的成员从0开始编号，所以数组scores[100]就是从第0号成员一直到第99号成员，最后一个成员的编号会比数组长度小1。
+数组名后面使用方括号指定编号，就可以引用该成员。也可以通过该方式，对该位置进行赋值。
+12scores[0] = 13;scores[99] = 42;
+
+上面示例对数组scores的第一个位置和最后一个位置，进行了赋值。
+注意，如果引用不存在的数组成员（即越界访问数组），并不会报错，所以必须非常小心。
+123int scores[100];scores[100] = 51;
+
+上面示例中，数组scores只有100个成员，因此scores[100]这个位置是不存在的。但是，引用这个位置并不会报错，会正常运行，使得紧跟在scores后面的那块内存区域被赋值，而那实际上是其他变量的区域，因此不 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/7ecb91b521b3435faf37f3f3b0a652e2/" title="enum">enum</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-02T03:09:53.202Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a></span></div><div class="content">Enum 类型如果一种数据类型的取值只有少数几种可能，并且每种取值都有自己的含义，为了提高代码的可读性，可以将它们定义为 Enum 类型，中文名为枚举。
+12345enum colors &#123;RED, GREEN, BLUE&#125;;printf(&quot;%d\n&quot;, RED); // 0printf(&quot;%d\n&quot;, GREEN);  // 1printf(&quot;%d\n&quot;, BLUE);  // 2
+
+上面示例中，假定程序里面需要三种颜色，就可以使用enum命令，把这三种颜色定义成一种枚举类型colors，它只有三种取值可能RED、GREEN、BLUE。这时，这三个名字自动成为整数常量，编译器默认将它们的值设为数字0、1、2。相比之下，RED要比0的可读性好了许多。
+注意，Enum 内部的常量名，遵守标识符的命名规范，但是通常都使用大写。
+使用时，可以将变量声明为 Enum 类型。
+1enum colors color;
+
+上面代码将变量color声明为enum colors类型。这个变量的值就是常量RED、GREEN、B ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/14/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#content-inner">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/#content-inner">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/#content-inner">50</a><a class="extend next" rel="next" href="/page/16/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C-C/"><span class="card-category-list-name">C/C++</span><span class="card-category-list-count">47</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C-C/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">C语言程序设计笔记</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C-C/wangdoc-c/"><span class="card-category-list-name">wangdoc-c</span><span class="card-category-list-count">42</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C-C/wangdoc-c/lib/"><span class="card-category-list-name">lib</span><span class="card-category-list-count">20</span></a></li></ul></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git/"><span class="card-category-list-name">Git</span><span class="card-category-list-count">36</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git/wangdoc-git/"><span class="card-category-list-name">wangdoc-git</span><span class="card-category-list-count">35</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git/wangdoc-git/commands/"><span class="card-category-list-name">commands</span><span class="card-category-list-count">29</span></a></li></ul></li></ul></li>
+            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">375</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">120</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">495</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-02-02T03:23:16.446Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

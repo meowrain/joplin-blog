@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>mktemp | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="mktemp 命令，trap 命令Bash 脚本有时需要创建临时文件或临时目录。常见的做法是，在&#x2F;tmp目录里面创建文件或目录，这样做有很多弊端，使用mktemp命令是最安全的做法。 临时文件的安全问题直接创建临时文件，尤其在&#x2F;tmp目录里面，往往会导致安全问题。 首先，&#x2F;tmp目录是所有人可读写的，任何用户都可以往该目录里面写文件。创建的临时文件也是所有人可读的。 123$ touch &#x2F;tmp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mktemp">
+<meta property="og:url" content="http://example.com/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="mktemp 命令，trap 命令Bash 脚本有时需要创建临时文件或临时目录。常见的做法是，在&#x2F;tmp目录里面创建文件或目录，这样做有很多弊端，使用mktemp命令是最安全的做法。 临时文件的安全问题直接创建临时文件，尤其在&#x2F;tmp目录里面，往往会导致安全问题。 首先，&#x2F;tmp目录是所有人可读写的，任何用户都可以往该目录里面写文件。创建的临时文件也是所有人可读的。 123$ touch &#x2F;tmp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:13:57.069Z">
+<meta property="article:modified_time" content="2023-02-02T03:14:42.068Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/1bfa316e536f47f7a05ab5c4a8f3ac6d/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'mktemp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:14:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">mktemp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:13:57.069Z" title="发表于 2023-02-02 11:13:57">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:14:42.068Z" title="更新于 2023-02-02 11:14:42">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/">Bash</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="mktemp-命令，trap-命令"><a href="#mktemp-命令，trap-命令" class="headerlink" title="mktemp 命令，trap 命令"></a>mktemp 命令，trap 命令</h1><p>Bash 脚本有时需要创建临时文件或临时目录。常见的做法是，在<code>/tmp</code>目录里面创建文件或目录，这样做有很多弊端，使用<code>mktemp</code>命令是最安全的做法。</p>
+<h2 id="临时文件的安全问题"><a href="#临时文件的安全问题" class="headerlink" title="临时文件的安全问题"></a>临时文件的安全问题</h2><p>直接创建临时文件，尤其在<code>/tmp</code>目录里面，往往会导致安全问题。</p>
+<p>首先，<code>/tmp</code>目录是所有人可读写的，任何用户都可以往该目录里面写文件。创建的临时文件也是所有人可读的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">touch</span> /tmp/info.txt</span><br><span class="line">$ <span class="built_in">ls</span> -l /tmp/info.txt</span><br><span class="line">-rw-r--r-- 1 ruanyf ruanyf 0 12月 28 17:12 /tmp/info.txt</span><br></pre></td></tr></table></figure>
+
+<p>上面命令在<code>/tmp</code>目录直接创建文件，该文件默认是所有人可读的。</p>
+<p>其次，如果攻击者知道临时文件的文件名，他可以创建符号链接，链接到临时文件，可能导致系统运行异常。攻击者也可能向脚本提供一些恶意数据。因此，临时文件最好使用不可预测、每次都不一样的文件名，防止被利用。</p>
+<p>最后，临时文件使用完毕，应该删除。但是，脚本意外退出时，往往会忽略清理临时文件。</p>
+<p>生成临时文件应该遵循下面的规则。</p>
+<blockquote>
+<ul>
+<li>创建前检查文件是否已经存在。</li>
+<li>确保临时文件已成功创建。</li>
+<li>临时文件必须有权限的限制。</li>
+<li>临时文件要使用不可预测的文件名。</li>
+<li>脚本退出时，要删除临时文件（使用<code>trap</code>命令）。</li>
+</ul>
+</blockquote>
+<h2 id="mktemp-命令的用法"><a href="#mktemp-命令的用法" class="headerlink" title="mktemp 命令的用法"></a>mktemp 命令的用法</h2><p><code>mktemp</code>命令就是为安全创建临时文件而设计的。虽然在创建临时文件之前，它不会检查临时文件是否存在，但是它支持唯一文件名和清除机制，因此可以减轻安全攻击的风险。</p>
+<p>直接运行<code>mktemp</code>命令，就能生成一个临时文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mktemp</span></span><br><span class="line">/tmp/tmp.4GcsWSG4vj</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">ls</span> -l /tmp/tmp.4GcsWSG4vj</span><br><span class="line">-rw------- 1 ruanyf ruanyf 0 12月 28 12:49 /tmp/tmp.4GcsWSG4vj</span><br></pre></td></tr></table></figure>
+
+<p>上面命令中，<code>mktemp</code>命令生成的临时文件名是随机的，而且权限是只有用户本人可读写。</p>
+<p>Bash 脚本使用<code>mktemp</code>命令的用法如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">TMPFILE=$(<span class="built_in">mktemp</span>)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Our temp file is <span class="variable">$TMPFILE</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>为了确保临时文件创建成功，<code>mktemp</code>命令后面最好使用 OR 运算符（<code>||</code>），保证创建失败时退出脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">TMPFILE=$(<span class="built_in">mktemp</span>) || <span class="built_in">exit</span> 1</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Our temp file is <span class="variable">$TMPFILE</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>为了保证脚本退出时临时文件被删除，可以使用<code>trap</code>命令指定退出时的清除操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">trap</span> <span class="string">&#x27;rm -f &quot;$TMPFILE&quot;&#x27;</span> EXIT</span><br><span class="line"></span><br><span class="line">TMPFILE=$(<span class="built_in">mktemp</span>) || <span class="built_in">exit</span> 1</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Our temp file is <span class="variable">$TMPFILE</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="mktemp-命令的参数"><a href="#mktemp-命令的参数" class="headerlink" title="mktemp 命令的参数"></a>mktemp 命令的参数</h2><p><code>-d</code>参数可以创建一个临时目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mktemp</span> -d</span><br><span class="line">/tmp/tmp.Wcau5UjmN6</span><br></pre></td></tr></table></figure>
+
+<p><code>-p</code>参数可以指定临时文件所在的目录。默认是使用<code>$TMPDIR</code>环境变量指定的目录，如果这个变量没设置，那么使用<code>/tmp</code>目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mktemp</span> -p /home/ruanyf/</span><br><span class="line">/home/ruanyf/tmp.FOKEtvs2H3</span><br></pre></td></tr></table></figure>
+
+<p><code>-t</code>参数可以指定临时文件的文件名模板，模板的末尾必须至少包含三个连续的<code>X</code>字符，表示随机字符，建议至少使用六个<code>X</code>。默认的文件名模板是<code>tmp.</code>后接十个随机字符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mktemp</span> -t mytemp.XXXXXXX</span><br><span class="line">/tmp/mytemp.yZ1HgZV</span><br></pre></td></tr></table></figure>
+
+<h2 id="trap-命令"><a href="#trap-命令" class="headerlink" title="trap 命令"></a>trap 命令</h2><p><code>trap</code>命令用来在 Bash 脚本中响应系统信号。</p>
+<p>最常见的系统信号就是 SIGINT（中断），即按 Ctrl + C 所产生的信号。<code>trap</code>命令的<code>-l</code>参数，可以列出所有的系统信号。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">trap</span> -l</span><br><span class="line"> 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP</span><br><span class="line"> 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1</span><br><span class="line">11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM</span><br><span class="line">16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP</span><br><span class="line">21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ</span><br><span class="line">26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR</span><br><span class="line">31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3</span><br><span class="line">38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8</span><br><span class="line">43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13</span><br><span class="line">48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12</span><br><span class="line">53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7</span><br><span class="line">58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2</span><br><span class="line">63) SIGRTMAX-1	64) SIGRTMAX</span><br></pre></td></tr></table></figure>
+
+<p><code>trap</code>的命令格式如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">trap</span> [动作] [信号1] [信号2] ...</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，“动作”是一个 Bash 命令，“信号”常用的有以下几个。</p>
+<blockquote>
+<ul>
+<li>HUP：编号1，脚本与所在的终端脱离联系。</li>
+<li>INT：编号2，用户按下 Ctrl + C，意图让脚本终止运行。</li>
+<li>QUIT：编号3，用户按下 Ctrl + 斜杠，意图退出脚本。</li>
+<li>KILL：编号9，该信号用于杀死进程。</li>
+<li>TERM：编号15，这是<code>kill</code>命令发出的默认信号。</li>
+<li>EXIT：编号0，这不是系统信号，而是 Bash 脚本特有的信号，不管什么情况，只要退出脚本就会产生。</li>
+</ul>
+</blockquote>
+<p><code>trap</code>命令响应<code>EXIT</code>信号的写法如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">trap</span> <span class="string">&#x27;rm -f &quot;$TMPFILE&quot;&#x27;</span> EXIT</span><br></pre></td></tr></table></figure>
+
+<p>上面命令中，脚本遇到<code>EXIT</code>信号时，就会执行<code>rm -f &quot;$TMPFILE&quot;</code>。</p>
+<p>trap 命令的常见使用场景，就是在 Bash 脚本中指定退出时执行的清理命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">trap</span> <span class="string">&#x27;rm -f &quot;$TMPFILE&quot;&#x27;</span> EXIT</span><br><span class="line"></span><br><span class="line">TMPFILE=$(<span class="built_in">mktemp</span>) || <span class="built_in">exit</span> 1</span><br><span class="line"><span class="built_in">ls</span> /etc &gt; <span class="variable">$TMPFILE</span></span><br><span class="line"><span class="keyword">if</span> grep -qi <span class="string">&quot;kernel&quot;</span> <span class="variable">$TMPFILE</span>; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&#x27;find&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，不管是脚本正常执行结束，还是用户按 Ctrl + C 终止，都会产生<code>EXIT</code>信号，从而触发删除临时文件。</p>
+<p>注意，<code>trap</code>命令必须放在脚本的开头。否则，它上方的任何命令导致脚本退出，都不会被它捕获。</p>
+<p>如果<code>trap</code>需要触发多条命令，可以封装一个 Bash 函数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> egress &#123;</span><br><span class="line">  command1</span><br><span class="line">  command2</span><br><span class="line">  command3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">trap</span> egress EXIT</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.putorius.net/working-with-temporary-files.html">Working with Temporary Files and Directories in Shell Scripts</a>, Steven Vona</li>
+<li><a target="_blank" rel="noopener" href="https://www.putorius.net/using-trap-to-exit-bash-scripts-cleanly.html">Using Trap to Exit Bash Scripts Cleanly</a></li>
+<li><a target="_blank" rel="noopener" href="https://mywiki.wooledge.org/SignalTrap">Sending and Trapping Signals</a></li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/0ec101f29cd14d4c8327686b47d12409/" title="quotation"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">quotation</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/37e4637c62fd4052ba2a954583b53b32/" title="read"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">read</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mktemp-%E5%91%BD%E4%BB%A4%EF%BC%8Ctrap-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">mktemp 命令，trap 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">临时文件的安全问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mktemp-%E5%91%BD%E4%BB%A4%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">mktemp 命令的用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mktemp-%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">mktemp 命令的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trap-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.4.</span> <span class="toc-text">trap 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.5.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

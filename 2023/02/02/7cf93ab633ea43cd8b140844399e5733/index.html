@@ -1,0 +1,408 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>stdlib.h | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="stdlib.h类型别名和宏stdlib.h 定义了下面的类型别名。  size_t：sizeof 的返回类型。 wchar_t：宽字符类型。  stdlib.h 定义了下面的宏。  NULL：空指针。 EXIT_SUCCESS：函数运行成功时的退出状态。 EXIT_FAILURE：函数运行错误时的退出状态。 RAND_MAX：rand() 函数可以返回的最大值。 MB_CUR_MAX：当前语言环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stdlib.h">
+<meta property="og:url" content="http://example.com/2023/02/02/7cf93ab633ea43cd8b140844399e5733/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="stdlib.h类型别名和宏stdlib.h 定义了下面的类型别名。  size_t：sizeof 的返回类型。 wchar_t：宽字符类型。  stdlib.h 定义了下面的宏。  NULL：空指针。 EXIT_SUCCESS：函数运行成功时的退出状态。 EXIT_FAILURE：函数运行错误时的退出状态。 RAND_MAX：rand() 函数可以返回的最大值。 MB_CUR_MAX：当前语言环">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:09:53.205Z">
+<meta property="article:modified_time" content="2023-02-02T03:10:32.950Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/7cf93ab633ea43cd8b140844399e5733/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'stdlib.h',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:10:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">stdlib.h</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:09:53.205Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:10:32.950Z" title="更新于 2023-02-02 11:10:32">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C-C/wangdoc-c/lib/">lib</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="stdlib-h"><a href="#stdlib-h" class="headerlink" title="stdlib.h"></a>stdlib.h</h1><h2 id="类型别名和宏"><a href="#类型别名和宏" class="headerlink" title="类型别名和宏"></a>类型别名和宏</h2><p>stdlib.h 定义了下面的类型别名。</p>
+<ul>
+<li>size_t：sizeof 的返回类型。</li>
+<li>wchar_t：宽字符类型。</li>
+</ul>
+<p>stdlib.h 定义了下面的宏。</p>
+<ul>
+<li>NULL：空指针。</li>
+<li>EXIT_SUCCESS：函数运行成功时的退出状态。</li>
+<li>EXIT_FAILURE：函数运行错误时的退出状态。</li>
+<li>RAND_MAX：rand() 函数可以返回的最大值。</li>
+<li>MB_CUR_MAX：当前语言环境中，多字节字符占用的最大字节数。</li>
+</ul>
+<h2 id="abs-，labs-，llabs"><a href="#abs-，labs-，llabs" class="headerlink" title="abs()，labs()，llabs()"></a>abs()，labs()，llabs()</h2><p>这三个函数用于计算整数的绝对值。<code>abs()</code>用于 int 类型，<code>labs()</code>用于 long int 类型，<code>llabs()</code>用于 long long int 类型。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">abs</span><span class="params">(<span class="type">int</span> j)</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">int</span> <span class="title function_">labs</span><span class="params">(<span class="type">long</span> <span class="type">int</span> j)</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">llabs</span><span class="params">(<span class="type">long</span> <span class="type">long</span> <span class="type">int</span> j)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>下面是用法示例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出 |-2| = 2</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;|-2| = %d\n&quot;</span>, <span class="built_in">abs</span>(<span class="number">-2</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 |4|  = 4</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;|4|  = %d\n&quot;</span>, <span class="built_in">abs</span>(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="div-，ldiv-，lldiv"><a href="#div-，ldiv-，lldiv" class="headerlink" title="div()，ldiv()，lldiv()"></a>div()，ldiv()，lldiv()</h2><p>这三个函数用来计算两个参数的商和余数。<code>div()</code>用于 int 类型的相除，<code>ldiv()</code>用于 long int 类型的相除，<code>lldiv()</code>用于 long long int 类型的相除。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">div_t</span> <span class="title function_">div</span><span class="params">(<span class="type">int</span> numer, <span class="type">int</span> denom)</span>;</span><br><span class="line"><span class="type">ldiv_t</span> <span class="title function_">ldiv</span><span class="params">(<span class="type">long</span> <span class="type">int</span> numer, <span class="type">long</span> <span class="type">int</span> denom)</span>;</span><br><span class="line"><span class="type">lldiv_t</span> <span class="title function_">lldiv</span><span class="params">(<span class="type">long</span> <span class="type">long</span> <span class="type">int</span> numer, <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> denom)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这些函数把第2个参数（分母）除以第1个参数（分子），产生商和余数。这两个值通过一个数据结构返回，<code>div()</code>返回 div_t 结构，<code>ldiv()</code>返回 ldiv_t 结构，<code>lldiv()</code>返回 lldiv_t 结构。</p>
+<p>这些结构都包含下面两个字段，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>　quot;　 <span class="comment">//　商</span></span><br><span class="line"><span class="type">int</span>　rem;　 <span class="comment">//　余数</span></span><br></pre></td></tr></table></figure>
+
+<p>它们完整的定义如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="type">int</span> quot, rem;</span><br><span class="line">&#125; <span class="type">div_t</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="type">long</span> <span class="type">int</span> quot, rem;</span><br><span class="line">&#125; <span class="type">ldiv_t</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> quot, rem;</span><br><span class="line">&#125; <span class="type">lldiv_t</span>;</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">div_t</span> d = div(<span class="number">64</span>, <span class="number">-7</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 64 / -7 = -9</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;64 / -7 = %d\n&quot;</span>, d.quot);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 64 % -7 = 1</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;64 %% -7 = %d\n&quot;</span>, d.rem);</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串转成数值"><a href="#字符串转成数值" class="headerlink" title="字符串转成数值"></a>字符串转成数值</h2><h3 id="a-系列函数"><a href="#a-系列函数" class="headerlink" title="a 系列函数"></a>a 系列函数</h3><p><code>stdlib.h</code>定义了一系列函数，可以将字符串转为数字。</p>
+<ul>
+<li>atoi()：字符串转成 int 类型。</li>
+<li>atof()：字符串转成 double 类型。</li>
+<li>atol()：字符串转成 long int 类型。</li>
+<li>atoll()：字符串转成 long long int 类型。</li>
+</ul>
+<p>它们的原型如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">atoi</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* nptr)</span>;</span><br><span class="line"><span class="type">double</span> <span class="title function_">atof</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* nptr)</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">int</span> <span class="title function_">atol</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* nptr)</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">atoll</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* nptr)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面函数的参数都是一个字符串指针，字符串开头的空格会被忽略，转换到第一个无效字符处停止。函数名称里面的<code>a</code>代表 ASCII，所以<code>atoi()</code>的意思是“ASCII to int”。</p>
+<p>它们返回转换后的数值，如果字符串无法转换，则返回<code>0</code>。</p>
+<p>下面是用法示例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">atoi(<span class="string">&quot;3490&quot;</span>)   <span class="comment">// 3490</span></span><br><span class="line">atof(<span class="string">&quot;3.141593&quot;</span>)   <span class="comment">// 3.141593</span></span><br></pre></td></tr></table></figure>
+
+<p>如果参数是数字开头的字符串，<code>atoi()</code>会只转换数字部分，比如<code>atoi(&quot;42regular&quot;)</code>会返回整数<code>42</code>。如果首字符不是数字，比如“hello world”，则会返回<code>0</code>。</p>
+<h3 id="str-系列函数（浮点数转换）"><a href="#str-系列函数（浮点数转换）" class="headerlink" title="str 系列函数（浮点数转换）"></a>str 系列函数（浮点数转换）</h3><p><code>stdlib.h</code>还定义了一些更强功能的浮点数转换函数。</p>
+<ul>
+<li>strtof()：字符串转成 float 类型。</li>
+<li>strtod()：字符串转成 double 类型。</li>
+<li>strtold()：字符串转成 long double 类型。</li>
+</ul>
+<p>它们的原型如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> <span class="title function_">strtof</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">char</span>* <span class="keyword">restrict</span> nptr,</span></span><br><span class="line"><span class="params">  <span class="type">char</span>** <span class="keyword">restrict</span> endptr</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">double</span> <span class="title function_">strtod</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">char</span>* <span class="keyword">restrict</span> nptr,</span></span><br><span class="line"><span class="params">  <span class="type">char</span>** <span class="keyword">restrict</span> endptr</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line">    </span><br><span class="line"><span class="type">long</span> <span class="type">double</span> <span class="title function_">strtold</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">char</span>* <span class="keyword">restrict</span> nptr,</span></span><br><span class="line"><span class="params">  <span class="type">char</span>** <span class="keyword">restrict</span> endptr</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>它们都接受两个参数，第一个参数是需要转换的字符串，第二个参数是一个指针，指向原始字符串里面无法转换的部分。</p>
+<ul>
+<li><code>nptr</code>：待转换的字符串（起首的空白字符会被忽略）。</li>
+<li><code>endprt</code>：一个指针，指向不能转换部分的第一个字符。如果字符串可以完全转成数值，该指针指向字符串末尾的终止符<code>\0</code>。这个参数如果设为 NULL，就表示不需要处理字符串剩余部分。</li>
+</ul>
+<p>它们的返回值是已经转换后的数值。如果字符串无法转换，则返回<code>0</code>。如果转换结果发生溢出，errno 会被设置为 ERANGE。如果值太大（无论是正数还是负数），函数返回<code>HUGE_VAL</code>；如果值太小，函数返回零。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *inp = <span class="string">&quot;   123.4567abdc&quot;</span>;</span><br><span class="line"><span class="type">char</span> *badchar;</span><br><span class="line"></span><br><span class="line"><span class="type">double</span> val = strtod(inp, &amp;badchar);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%f\n&quot;</span>, val); <span class="comment">// 123.456700</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, badchar); <span class="comment">// abdc</span></span><br></pre></td></tr></table></figure>
+
+<p>字符串可以完全转换的情况下，第二个参数指向<code>\0</code>，因此可以用下面的写法判断是否完全转换。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (*endptr == <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">  <span class="comment">// 完全转换</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 存在无法转换的字符</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不关心没有转换的部分，则可以将 endptr 设置为 NULL。</p>
+<p>这些函数还可以将字符串转换为特殊值 Infinity 和 NaN。如果字符串包含 INF 或 INFINITY（大写或小写皆可），则将转换为 Infinity；如果字符串包含 NAN，则将返回 NaN。</p>
+<h3 id="str-系列函数（整数转换）"><a href="#str-系列函数（整数转换）" class="headerlink" title="str 系列函数（整数转换）"></a>str 系列函数（整数转换）</h3><p>str 系列函数也有整数转换的对应函数。</p>
+<ul>
+<li>strtol()：字符串转成 long int 类型。</li>
+<li>strtoll()：字符串转成 long long int 类型。</li>
+<li>strtoul()：字符串转成 unsigned long int 类型。</li>
+<li>strtoull()：字符串转成 unsigned long long int 类型。</li>
+</ul>
+<p>它们的原型如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">int</span> <span class="title function_">strtol</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">char</span>* <span class="keyword">restrict</span> nptr,</span></span><br><span class="line"><span class="params">  <span class="type">char</span>** <span class="keyword">restrict</span> endptr,</span></span><br><span class="line"><span class="params">  <span class="type">int</span> base</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line">    </span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">strtoll</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">char</span>* <span class="keyword">restrict</span> nptr,</span></span><br><span class="line"><span class="params">  <span class="type">char</span>** <span class="keyword">restrict</span> endptr,</span></span><br><span class="line"><span class="params">  <span class="type">int</span> base</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line">    </span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">strtoul</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">char</span>* <span class="keyword">restrict</span> nptr,</span></span><br><span class="line"><span class="params">  <span class="type">char</span>** <span class="keyword">restrict</span> endptr,</span></span><br><span class="line"><span class="params">  <span class="type">int</span> base</span></span><br><span class="line"><span class="params">)</span>;</span><br><span class="line">    </span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">strtoull</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">char</span>* <span class="keyword">restrict</span> nptr,</span></span><br><span class="line"><span class="params">  <span class="type">char</span>** <span class="keyword">restrict</span> endptr, <span class="type">int</span> base</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>它们接受三个参数。</p>
+<p>（1）<code>nPtr</code>：待转换的字符串（起首的空白字符会被忽略）。</p>
+<p>（2）<code>endPrt</code>：一个指针，指向不能转换部分的第一个字符。如果字符串可以完全转成数值，该指针指向字符串末尾的终止符<code>\0</code>。这个参数如果设为 NULL，就表示不需要处理字符串剩余部分。</p>
+<p>（3）<code>base</code>：待转换整数的进制。这个值应该是<code>2</code>到<code>36</code>之间的整数，代表相应的进制，如果是特殊值<code>0</code>，表示让函数根据数值的前缀，自己确定进制，即如果数字有前缀<code>0</code>，则为八进制，如果数字有前缀<code>0x</code>或<code>0X</code>，则为十六进制。</p>
+<p>它们的返回值是转换后的数值，如果转换不成功，返回<code>0</code>。</p>
+<p>下面是转换十进制整数的例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* s = <span class="string">&quot;3490&quot;</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> x = strtoul(u, <span class="literal">NULL</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lu\n&quot;</span>, x); <span class="comment">// 3490</span></span><br></pre></td></tr></table></figure>
+
+<p>下面是转换十六进制整数的例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* end;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> value = strtol(<span class="string">&quot;0xff&quot;</span>, &amp;end, <span class="number">16</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>, value); <span class="comment">// 255</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, end); <span class="comment">// 无内容</span></span><br><span class="line"></span><br><span class="line">value = strtol(<span class="string">&quot;0xffxx&quot;</span>, &amp;end, <span class="number">16</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%ld\n&quot;</span>, value); <span class="comment">// 255</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, end); <span class="comment">// xx</span></span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>strtol()</code>可以指定字符串包含的是16进制整数。不能转换的部分，可以使用指针<code>end</code>进行访问。</p>
+<p>下面是转换二进制整数的例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* s = <span class="string">&quot;101010&quot;</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> x = strtoul(s, <span class="literal">NULL</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lu\n&quot;</span>, x); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+
+<p>下面是让函数自行判断整数进制的例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">const</span> <span class="type">char</span>* <span class="built_in">string</span> = <span class="string">&quot;-1234567abc&quot;</span>;</span><br><span class="line">  <span class="type">char</span>* remainderPtr;</span><br><span class="line">  <span class="type">long</span> x = strtol(<span class="built_in">string</span>, &amp;remainderPtr, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%s\&quot;%s\&quot;\n%s%ld\n%s\&quot;%s\&quot;\n&quot;</span>,</span><br><span class="line">    <span class="string">&quot;The original string is &quot;</span>,</span><br><span class="line">    <span class="built_in">string</span>,</span><br><span class="line">    <span class="string">&quot;The converted value is &quot;</span>,</span><br><span class="line">    x,</span><br><span class="line">    <span class="string">&quot;The remainder of the original string is &quot;</span>,</span><br><span class="line">    remainderPtr</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码的输出结果如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The original <span class="built_in">string</span> is <span class="string">&quot;-1234567abc&quot;</span></span><br><span class="line">The converted value is <span class="number">-1234567</span></span><br><span class="line">The remainder of the original <span class="built_in">string</span> is <span class="string">&quot;abc&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果被转换的值太大，<code>strtol()</code>函数在<code>errno</code>中存储<code>ERANGE</code>这个值，并返回<code>LONG_MIN</code>（原值为负数）或<code>LONG_MAX</code>（原值为正数），<code>strtoul()</code>则返回<code>ULONG_MAX</code>。</p>
+<h2 id="rand"><a href="#rand" class="headerlink" title="rand()"></a>rand()</h2><p><code>rand()</code>函数用来生成 0～RAND_MAX 之间的随机整数。<code>RAND_MAX</code>是一个定义在<code>stdlib.h</code>里面的宏，通常等于 INT_MAX。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原型</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">rand</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例</span></span><br><span class="line"><span class="type">int</span> x = rand();</span><br></pre></td></tr></table></figure>
+
+<p>如果希望获得整数 N 到 M 之间的随机数（包括 N 和 M 两个端点值），可以使用下面的写法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = rand() % （M - N + <span class="number">1</span>) + N;</span><br></pre></td></tr></table></figure>
+
+<p>比如，1 到 6 之间的随机数，写法如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = rand() % <span class="number">6</span> + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>获得浮点数的随机值，可以使用下面的写法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0 到 0.999999 之间的随机数</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;0 to 0.99999: %f\n&quot;</span>, rand() / ((<span class="type">float</span>)RAND_MAX + <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// n 到 m 之间的随机数：</span></span><br><span class="line"><span class="comment">// n + m * (rand() / (float)RAND_MAX)</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;10.5 to 15.7: %f\n&quot;</span>, <span class="number">10.5</span> + <span class="number">5.2</span> * rand() / (<span class="type">float</span>)RAND_MAX);</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，由于<code>rand()</code>和<code>RAND_MAX</code>都是 int 类型，要用显示的类型转换转为浮点数。</p>
+<h2 id="srand"><a href="#srand" class="headerlink" title="srand()"></a>srand()</h2><p><code>rand()</code>是伪随机数函数，为了增加随机性，必须在调用它之前，使用<code>srand()</code>函数重置一下种子值。</p>
+<p><code>srand()</code>函数接受一个无符号整数（unsigned int）作为种子值，没有返回值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">srand</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> seed)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>通常使用<code>time(NULL)</code>函数返回当前距离时间纪元的秒数，作为<code>srand()</code>的参数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line">srand((<span class="type">unsigned</span> <span class="type">int</span>) time(<span class="literal">NULL</span>));</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>time()</code>的原型定义在头文件<code>time.h</code>里面，返回值的类型是类型别名<code>time_t</code>，具体的类型与系统有关，所以要强制转换一下类型。<code>time()</code>的参数是一个指针，指向一个具体的 time_t 类型的时间值，这里传入空指针<code>NULL</code>作为参数，由于 NULL 一般是<code>0</code>，所以也可以写成<code>time(0)</code>。</p>
+<h2 id="abort"><a href="#abort" class="headerlink" title="abort()"></a>abort()</h2><p><code>abort()</code>用于不正常地终止一个正在执行的程序。使用这个函数的目的，主要是它会触发 SIGABRT 信号，开发者可以在程序中为这个信号设置一个处理函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">abort</span><span class="params">(<span class="type">void</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>该函数没有参数。</p>
+<h2 id="exit-，quick-exit-，-Exit"><a href="#exit-，quick-exit-，-Exit" class="headerlink" title="exit()，quick_exit()，_Exit()"></a>exit()，quick_exit()，_Exit()</h2><p>这三个函数都用来退出当前正在执行的程序。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">exit</span><span class="params">(<span class="type">int</span> status)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">quick_exit</span><span class="params">(<span class="type">int</span> status)</span>;</span><br><span class="line"><span class="type">void</span> _Exit(<span class="type">int</span> status);</span><br></pre></td></tr></table></figure>
+
+<p>它们都接受一个整数，表示程序的退出状态，<code>0</code>是正常退出，非零值表示发生错误，可以使用宏<code>EXIT_SUCCESS</code>和<code>EXIT_FAILURE</code>当作参数。它们本身没有返回值。</p>
+<p>它们的区别是，退出时所做的清理工作不同。<code>exit()</code>是正常退出，系统会做完整的清理，比如更新所有文件流，并且删除临时文件。<code>quick_exit()</code>是快速退出，系统的清理工作稍微少一点。<code>_Exit()</code>是立即退出，不做任何清理工作。</p>
+<p>下面是一些用法示例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">quick_exit(EXIT_FAILURE);</span><br><span class="line">_Exit(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="atexit-，at-quick-exit"><a href="#atexit-，at-quick-exit" class="headerlink" title="atexit()，at_quick_exit()"></a>atexit()，at_quick_exit()</h2><p><code>atexit()</code>用来登记当前程序退出时（调用<code>exit()</code>或<code>main()</code>正常退出），所要执行的其他函数。</p>
+<p><code>at_quick_exit()</code>则是登记使用<code>quick_exit()</code>方法退出当前程序时，所要执行的其他函数。</p>
+<p><code>exit()</code>只能触发<code>atexit()</code>登记的函数，<code>quick_exit()</code>只能触发<code>at_quick_exit()</code>登记的函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">atexit</span><span class="params">(<span class="type">void</span> (*func)(<span class="type">void</span>))</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">at_quick_exit</span><span class="params">(<span class="type">void</span> (*func)(<span class="type">void</span>))</span>;</span><br></pre></td></tr></table></figure>
+
+<p>它们的参数是要执行的函数地址，即函数名。它们的返回值都是调用成功时返回<code>0</code>，调用失败时返回非零值。</p>
+<p>下面是一个例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sign_off</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">too_bad</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> n;</span><br><span class="line">  atexit(sign_off);　　 <span class="comment">/* 注册 sign_off()函数 */</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;Enter an integer:&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) != <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;That&#x27;s no integer!&quot;</span>);</span><br><span class="line">    atexit(too_bad);　<span class="comment">/* 注册 too_bad()函数 */</span></span><br><span class="line">    <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d is %s.\n&quot;</span>, n, (n % <span class="number">2</span> == <span class="number">0</span>) ? <span class="string">&quot;even&quot;</span> : <span class="string">&quot;odd&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">sign_off</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;sign_off&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">too_bad</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;too bad&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，用户输入失败时，会调用<code>sign_off()</code>和<code>too_bad()</code>函数；但是输入成功时只会调用<code>sign_off()</code>。因为只有输入失败时，才会进入<code>if</code>语句登记<code>too_bad()</code>。</p>
+<p>另外，如果有多条<code>atexit()</code>语句，函数退出时最先调用的，是最后一个登记的函数。</p>
+<p><code>atexit()</code>登记的函数（如上例的<code>sign_off</code>和<code>too_bad</code>）应该不带任何参数且返回类型为<code>void</code>。通常，这些函数会执行一些清理任务，例如删除临时文件或重置环境变量。</p>
+<p><code>at_quick_exit()</code>也是同样的规则，下面是一个例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">exit_handler_1</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;1\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">exit_handler_2</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;2\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  at_quick_exit(exit_handler_1);</span><br><span class="line">  at_quick_exit(exit_handler_2);</span><br><span class="line">  quick_exit(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的示例，命令行会先输出2，再输出1。</p>
+<h2 id="getenv"><a href="#getenv" class="headerlink" title="getenv()"></a>getenv()</h2><p><code>getenv()</code>用于获取环境变量的值。环境变量是操作系统提供的程序之外的一些环境参数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">getenv</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* name)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>它的参数是一个字符串，表示环境变量名。返回值也是一个字符串，表示环境变量的值。如果指定的环境变量不存在，则返回 NULL。</p>
+<p>下面是输出环境变量<code>$PATH</code>的值的例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;PATH is %s\n&quot;</span>, getenv(<span class="string">&quot;PATH&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h2><p><code>system()</code>函数用于执行外部程序。它会把它的参数字符串传递给操作系统，让操作系统的命令处理器来执行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">system</span><span class="params">( <span class="type">char</span> <span class="type">const</span> * command )</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数的返回值因编译器而异。但是标准规定，如果 NULL 作为参数，表示询问操作系统，是否有可用的命令处理器，如果有的话，返回一个非零值，否则返回零。</p>
+<p>下面是执行<code>ls</code>命令的例子。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system(<span class="string">&quot;ls -l&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<h2 id="内存管理函数"><a href="#内存管理函数" class="headerlink" title="内存管理函数"></a>内存管理函数</h2><p>stdlib.h 提供了一些内存操作函数，下面几个函数详见《内存管理》一章，其余在本节介绍。</p>
+<ul>
+<li>malloc()：分配内存区域</li>
+<li>calloc()：分配内存区域。</li>
+<li>realloc()：调节内存区域大小。</li>
+<li>free()：释放内存区域。</li>
+</ul>
+<h3 id="aligned-alloc"><a href="#aligned-alloc" class="headerlink" title="aligned_alloc()"></a>aligned_alloc()</h3><p>很多系统有内存对齐的要求，即内存块的大小必须是某个值（比如64字节）的倍数，这样有利于提高处理速度。<code>aligned_alloc()</code>就用于分配满足内存对齐要求的内存块，它的原型如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">aligned_alloc</span><span class="params">(<span class="type">size_t</span> alignment, <span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>它接受两个参数。</p>
+<ul>
+<li>alignment：整数，表示内存对齐的单位大小，一般是2的整数次幂（2、4、8、16……）。</li>
+<li>size：整数，表示内存块的大小。</li>
+</ul>
+<p>分配成功时，它返回一个无类型指针，指向新分配的内存块。分配失败时，返回 NULL。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* p = aligned_alloc(<span class="number">64</span>, <span class="number">256</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>aligned_alloc()</code>分配的内存块，单位大小是64字节，要分配的字节数是256字节。</p>
+<h2 id="qsort"><a href="#qsort" class="headerlink" title="qsort()"></a>qsort()</h2><p><code>qsort()</code>用来快速排序一个数组。它对数组成员的类型没有要求，任何类型数组都可以用这个函数排序。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">qsort</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">void</span> *base,</span></span><br><span class="line"><span class="params">  <span class="type">size_t</span> nmemb, </span></span><br><span class="line"><span class="params">  <span class="type">size_t</span> size,</span></span><br><span class="line"><span class="params">  <span class="type">int</span> (*compar)(<span class="type">const</span> <span class="type">void</span> *, <span class="type">const</span> <span class="type">void</span> *)</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>该函数接受四个参数。</p>
+<ul>
+<li>base：指向要排序的数组开始位置的指针。</li>
+<li>nmemb：数组成员的数量。</li>
+<li>size：数组每个成员占用的字节长度。</li>
+<li>compar：一个函数指针，指向一个比较两个成员的函数。</li>
+</ul>
+<p>比较函数<code>compar</code>将指向数组两个成员的指针作为参数，并比较两个成员。如果第一个参数小于第二个参数，该函数应该返回一个负值；如果两个函数相等，返回<code>0</code>；如果第一个参数大于第二个参数，应该返回一个正数。</p>
+<p>下面是一个用法示例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">compar</span><span class="params">(<span class="type">const</span> <span class="type">void</span>* elem0, <span class="type">const</span> <span class="type">void</span>* elem1)</span> &#123;</span><br><span class="line">  <span class="type">const</span> <span class="type">int</span>* x = elem0;</span><br><span class="line">  <span class="type">const</span> <span class="type">int</span>* y = elem1; </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> *x - *y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">int</span> a[<span class="number">9</span>] = &#123;<span class="number">14</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">17</span>, <span class="number">10</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">13</span>&#125;;</span><br><span class="line"></span><br><span class="line">  qsort(a, <span class="number">9</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>), compar);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, a[i]);</span><br><span class="line">  <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行上面示例，会输出排序好的数组“1 2 3 6 8 10 13 14 17”。</p>
+<h2 id="bsearch"><a href="#bsearch" class="headerlink" title="bsearch()"></a>bsearch()</h2><p><code>bsearch()</code>使用二分法搜索，在数组中搜索一个值。它对数组成员的类型没有要求，任何类型数组都可以用这个函数搜索值。</p>
+<p>注意，该方法只对已经排序好的数组有效。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *<span class="title function_">bsearch</span><span class="params">(</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">void</span>* key,</span></span><br><span class="line"><span class="params">  <span class="type">const</span> <span class="type">void</span>* base,</span></span><br><span class="line"><span class="params">  <span class="type">size_t</span> nmemb,</span></span><br><span class="line"><span class="params">  <span class="type">size_t</span> size,</span></span><br><span class="line"><span class="params">  <span class="type">int</span> (*compar)(<span class="type">const</span> <span class="type">void</span> *, <span class="type">const</span> <span class="type">void</span> *)</span></span><br><span class="line"><span class="params">)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数接受5个参数。</p>
+<ul>
+<li>key：指向要查找的值的指针。</li>
+<li>base：指向数组开始位置的指针，数组必须已经排序。</li>
+<li>nmemb：数组成员的数量。</li>
+<li>size：数组每个成员占用的字节长度。</li>
+<li>compar：指向一个将待查找值与其他值进行比较的函数的指针。</li>
+</ul>
+<p>比较函数<code>compar</code>将待查找的值作为第一个参数，将要比较的值作为第二个参数。如果第一个参数小于第二个参数，该函数应该返回一个负值；如果两个参数相等，返回<code>0</code>；如果第一个参数大于第二个参数，返回一个正值。</p>
+<p>如果找到待查找的值，<code>bsearch()</code>返回指向该值的指针，如果找不到，返回 NULL。</p>
+<p>下面是一个用法示例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">compar</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *key, <span class="type">const</span> <span class="type">void</span> *value)</span> &#123;</span><br><span class="line">  <span class="type">const</span> <span class="type">int</span>* k = key;</span><br><span class="line">  <span class="type">const</span> <span class="type">int</span>* v = value;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> *k - *v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">int</span> a[<span class="number">9</span>] = &#123;<span class="number">2</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">18</span>, <span class="number">20</span>, <span class="number">32</span>, <span class="number">47</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span>* r;</span><br><span class="line">  <span class="type">int</span> key;</span><br><span class="line"></span><br><span class="line">  key = <span class="number">12</span>; <span class="comment">// 包括在数组中</span></span><br><span class="line">  r = bsearch(&amp;key, a, <span class="number">9</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>), compar);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Found %d\n&quot;</span>, *r);</span><br><span class="line"></span><br><span class="line">  key = <span class="number">30</span>;  <span class="comment">// 不包括在数组中</span></span><br><span class="line">  r = bsearch(&amp;key, a, <span class="number">9</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>), compar);</span><br><span class="line">  <span class="keyword">if</span> (r == <span class="literal">NULL</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Didn&#x27;t find 30\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行上面的示例，会输出下面的结果。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Found 12</span><br><span class="line">Didn<span class="string">&#x27;t find 30</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="多字节字符函数"><a href="#多字节字符函数" class="headerlink" title="多字节字符函数"></a>多字节字符函数</h2><p>stdlib.h 提供了下面的函数，用来操作多字节字符，详见《多字节字符》一章。</p>
+<ul>
+<li>mblen()：多字节字符的字节长度。</li>
+<li>mbtowc()：将多字节字符转换为宽字符。</li>
+<li>wctomb()：将宽字符转换为多字节字符。</li>
+<li>mbstowcs()：将多字节字符串转换为宽字符串。</li>
+<li>wcstombs()：将宽字符串转换为多字节字符串。</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/6a4a087fa63a43818f4727f7f6323646/" title="memory"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">memory</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/" title="wchar.h"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">wchar.h</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#stdlib-h"><span class="toc-number">1.</span> <span class="toc-text">stdlib.h</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%E5%92%8C%E5%AE%8F"><span class="toc-number">1.1.</span> <span class="toc-text">类型别名和宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abs-%EF%BC%8Clabs-%EF%BC%8Cllabs"><span class="toc-number">1.2.</span> <span class="toc-text">abs()，labs()，llabs()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#div-%EF%BC%8Cldiv-%EF%BC%8Clldiv"><span class="toc-number">1.3.</span> <span class="toc-text">div()，ldiv()，lldiv()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%88%90%E6%95%B0%E5%80%BC"><span class="toc-number">1.4.</span> <span class="toc-text">字符串转成数值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-%E7%B3%BB%E5%88%97%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.1.</span> <span class="toc-text">a 系列函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#str-%E7%B3%BB%E5%88%97%E5%87%BD%E6%95%B0%EF%BC%88%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BD%AC%E6%8D%A2%EF%BC%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">str 系列函数（浮点数转换）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#str-%E7%B3%BB%E5%88%97%E5%87%BD%E6%95%B0%EF%BC%88%E6%95%B4%E6%95%B0%E8%BD%AC%E6%8D%A2%EF%BC%89"><span class="toc-number">1.4.3.</span> <span class="toc-text">str 系列函数（整数转换）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rand"><span class="toc-number">1.5.</span> <span class="toc-text">rand()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#srand"><span class="toc-number">1.6.</span> <span class="toc-text">srand()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abort"><span class="toc-number">1.7.</span> <span class="toc-text">abort()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exit-%EF%BC%8Cquick-exit-%EF%BC%8C-Exit"><span class="toc-number">1.8.</span> <span class="toc-text">exit()，quick_exit()，_Exit()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atexit-%EF%BC%8Cat-quick-exit"><span class="toc-number">1.9.</span> <span class="toc-text">atexit()，at_quick_exit()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getenv"><span class="toc-number">1.10.</span> <span class="toc-text">getenv()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#system"><span class="toc-number">1.11.</span> <span class="toc-text">system()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%87%BD%E6%95%B0"><span class="toc-number">1.12.</span> <span class="toc-text">内存管理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#aligned-alloc"><span class="toc-number">1.12.1.</span> <span class="toc-text">aligned_alloc()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qsort"><span class="toc-number">1.13.</span> <span class="toc-text">qsort()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bsearch"><span class="toc-number">1.14.</span> <span class="toc-text">bsearch()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AD%97%E8%8A%82%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0"><span class="toc-number">1.15.</span> <span class="toc-text">多字节字符函数</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

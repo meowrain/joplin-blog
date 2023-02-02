@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>startup | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="Bash 启动环境Session用户每次使用 Shell，都会开启一个与 Shell 的 Session（对话）。 Session 有两种类型：登录 Session 和非登录 Session，也可以叫做 login shell 和 non-login shell。 登录 Session登录 Session 是用户登录系统以后，系统为用户开启的原始 Session，通常需要用户输入用户名和密码进行登">
+<meta property="og:type" content="article">
+<meta property="og:title" content="startup">
+<meta property="og:url" content="http://example.com/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="Bash 启动环境Session用户每次使用 Shell，都会开启一个与 Shell 的 Session（对话）。 Session 有两种类型：登录 Session 和非登录 Session，也可以叫做 login shell 和 non-login shell。 登录 Session登录 Session 是用户登录系统以后，系统为用户开启的原始 Session，通常需要用户输入用户名和密码进行登">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:13:57.070Z">
+<meta property="article:modified_time" content="2023-02-02T03:14:42.281Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/6aefad35d41d4aeaa46a35e89239807b/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'startup',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:14:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">startup</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:13:57.070Z" title="发表于 2023-02-02 11:13:57">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:14:42.281Z" title="更新于 2023-02-02 11:14:42">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/">Bash</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="Bash-启动环境"><a href="#Bash-启动环境" class="headerlink" title="Bash 启动环境"></a>Bash 启动环境</h1><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>用户每次使用 Shell，都会开启一个与 Shell 的 Session（对话）。</p>
+<p>Session 有两种类型：登录 Session 和非登录 Session，也可以叫做 login shell 和 non-login shell。</p>
+<h3 id="登录-Session"><a href="#登录-Session" class="headerlink" title="登录 Session"></a>登录 Session</h3><p>登录 Session 是用户登录系统以后，系统为用户开启的原始 Session，通常需要用户输入用户名和密码进行登录。</p>
+<p>登录 Session 一般进行整个系统环境的初始化，启动的初始化脚本依次如下。</p>
+<ul>
+<li><code>/etc/profile</code>：所有用户的全局配置脚本。</li>
+<li><code>/etc/profile.d</code>目录里面所有<code>.sh</code>文件</li>
+<li><code>~/.bash_profile</code>：用户的个人配置脚本。如果该脚本存在，则执行完就不再往下执行。</li>
+<li><code>~/.bash_login</code>：如果<code>~/.bash_profile</code>没找到，则尝试执行这个脚本（C shell 的初始化脚本）。如果该脚本存在，则执行完就不再往下执行。</li>
+<li><code>~/.profile</code>：如果<code>~/.bash_profile</code>和<code>~/.bash_login</code>都没找到，则尝试读取这个脚本（Bourne shell 和 Korn shell 的初始化脚本）。</li>
+</ul>
+<p>Linux 发行版更新的时候，会更新<code>/etc</code>里面的文件，比如<code>/etc/profile</code>，因此不要直接修改这个文件。如果想修改所有用户的登陆环境，就在<code>/etc/profile.d</code>目录里面新建<code>.sh</code>脚本。</p>
+<p>如果想修改你个人的登录环境，一般是写在<code>~/.bash_profile</code>里面。下面是一个典型的<code>.bash_profile</code>文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .bash_profile</span></span><br><span class="line">PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin</span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin</span><br><span class="line"></span><br><span class="line">SHELL=/bin/bash</span><br><span class="line">MANPATH=/usr/man:/usr/X11/man</span><br><span class="line">EDITOR=/usr/bin/vi</span><br><span class="line">PS1=<span class="string">&#x27;\h:\w\$ &#x27;</span></span><br><span class="line">PS2=<span class="string">&#x27;&gt; &#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span></span><br><span class="line">. ~/.bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH</span><br><span class="line"><span class="built_in">export</span> EDITOR</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这个脚本定义了一些最基本的环境变量，然后执行了<code>~/.bashrc</code>。</p>
+<p><code>bash</code>命令的<code>--login</code>参数，会强制执行登录 Session 会执行的脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash --login</span><br></pre></td></tr></table></figure>
+
+<p><code>bash</code>命令的<code>--noprofile</code>参数，会跳过上面这些 Profile 脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash --noprofile</span><br></pre></td></tr></table></figure>
+
+<h3 id="非登录-Session"><a href="#非登录-Session" class="headerlink" title="非登录 Session"></a>非登录 Session</h3><p>非登录 Session 是用户进入系统以后，手动新建的 Session，这时不会进行环境初始化。比如，在命令行执行<code>bash</code>命令，就会新建一个非登录 Session。</p>
+<p>非登录 Session 的初始化脚本依次如下。</p>
+<ul>
+<li><code>/etc/bash.bashrc</code>：对全体用户有效。</li>
+<li><code>~/.bashrc</code>：仅对当前用户有效。</li>
+</ul>
+<p>对用户来说，<code>~/.bashrc</code>通常是最重要的脚本。非登录 Session 默认会执行它，而登录 Session 一般也会通过调用执行它。每次新建一个 Bash 窗口，就相当于新建一个非登录 Session，所以<code>~/.bashrc</code>每次都会执行。注意，执行脚本相当于新建一个非互动的 Bash 环境，但是这种情况不会调用<code>~/.bashrc</code>。</p>
+<p><code>bash</code>命令的<code>--norc</code>参数，可以禁止在非登录 Session 执行<code>~/.bashrc</code>脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash --norc</span><br></pre></td></tr></table></figure>
+
+<p><code>bash</code>命令的<code>--rcfile</code>参数，指定另一个脚本代替<code>.bashrc</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash --rcfile testrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="bash-logout"><a href="#bash-logout" class="headerlink" title=".bash_logout"></a>.bash_logout</h3><p><code>~/.bash_logout</code>脚本在每次退出 Session 时执行，通常用来做一些清理工作和记录工作，比如删除临时文件，记录用户在本次 Session 花费的时间。</p>
+<p>如果没有退出时要执行的命令，这个文件也可以不存在。</p>
+<h2 id="启动选项"><a href="#启动选项" class="headerlink" title="启动选项"></a>启动选项</h2><p>为了方便 Debug，有时在启动 Bash 的时候，可以加上启动参数。</p>
+<ul>
+<li><code>-n</code>：不运行脚本，只检查是否有语法错误。</li>
+<li><code>-v</code>：输出每一行语句运行结果前，会先输出该行语句。</li>
+<li><code>-x</code>：每一个命令处理之前，先输出该命令，再执行该命令。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ bash -n scriptname</span><br><span class="line">$ bash -v scriptname</span><br><span class="line">$ bash -x scriptname</span><br></pre></td></tr></table></figure>
+
+<h2 id="键盘绑定"><a href="#键盘绑定" class="headerlink" title="键盘绑定"></a>键盘绑定</h2><p>Bash 允许用户定义自己的快捷键。全局的键盘绑定文件默认为<code>/etc/inputrc</code>，你可以在主目录创建自己的键盘绑定文件<code>.inputrc</code>文件。如果定义了这个文件，需要在其中加入下面这行，保证全局绑定不会被遗漏。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$include</span> /etc/inputrc</span><br></pre></td></tr></table></figure>
+
+<p><code>.inputrc</code>文件里面的快捷键，可以像这样定义，<code>&quot;\C-t&quot;:&quot;pwd\n&quot;</code>表示将<code>Ctrl + t</code>绑定为运行<code>pwd</code>命令。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/657afd7bd0a94ac4b25d1078b24ae83c/" title="readline"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">readline</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/7b996d9ec1e14e6992f345eab8a1150a/" title="set"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">set</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Bash-%E5%90%AF%E5%8A%A8%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">Bash 启动环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Session"><span class="toc-number">1.1.</span> <span class="toc-text">Session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95-Session"><span class="toc-number">1.1.1.</span> <span class="toc-text">登录 Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E7%99%BB%E5%BD%95-Session"><span class="toc-number">1.1.2.</span> <span class="toc-text">非登录 Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash-logout"><span class="toc-number">1.1.3.</span> <span class="toc-text">.bash_logout</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E9%80%89%E9%A1%B9"><span class="toc-number">1.2.</span> <span class="toc-text">启动选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E7%BB%91%E5%AE%9A"><span class="toc-number">1.3.</span> <span class="toc-text">键盘绑定</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

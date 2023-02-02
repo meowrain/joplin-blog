@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>wchar.h | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="wchar.h宽字符使用两个或四个字节表示一个字符，导致 C 语言常规的字符处理函数都会失效。wchar.h 定义了许多宽字符专用的处理函数。 类型别名和宏wchar.h 定义了一个类型别名 wint_t，表示宽字符对应整数值。 wchar.h 还定义了一个宏 WEOF，表示文件结束字符 EOF 的宽字符版。 btowc()，wctob()btowc()将单字节字符转换为宽字符，wctob()将宽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wchar.h">
+<meta property="og:url" content="http://example.com/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="wchar.h宽字符使用两个或四个字节表示一个字符，导致 C 语言常规的字符处理函数都会失效。wchar.h 定义了许多宽字符专用的处理函数。 类型别名和宏wchar.h 定义了一个类型别名 wint_t，表示宽字符对应整数值。 wchar.h 还定义了一个宏 WEOF，表示文件结束字符 EOF 的宽字符版。 btowc()，wctob()btowc()将单字节字符转换为宽字符，wctob()将宽">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:09:53.205Z">
+<meta property="article:modified_time" content="2023-02-02T03:10:33.027Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/d58ab97c2d0f44f882f61a6903d41db6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'wchar.h',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:10:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">wchar.h</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:09:53.205Z" title="发表于 2023-02-02 11:09:53">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:10:33.027Z" title="更新于 2023-02-02 11:10:33">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C-C/">C/C++</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C-C/wangdoc-c/">wangdoc-c</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C-C/wangdoc-c/lib/">lib</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="wchar-h"><a href="#wchar-h" class="headerlink" title="wchar.h"></a>wchar.h</h1><p>宽字符使用两个或四个字节表示一个字符，导致 C 语言常规的字符处理函数都会失效。wchar.h 定义了许多宽字符专用的处理函数。</p>
+<h2 id="类型别名和宏"><a href="#类型别名和宏" class="headerlink" title="类型别名和宏"></a>类型别名和宏</h2><p>wchar.h 定义了一个类型别名 wint_t，表示宽字符对应整数值。</p>
+<p>wchar.h 还定义了一个宏 WEOF，表示文件结束字符 EOF 的宽字符版。</p>
+<h2 id="btowc-，wctob"><a href="#btowc-，wctob" class="headerlink" title="btowc()，wctob()"></a>btowc()，wctob()</h2><p><code>btowc()</code>将单字节字符转换为宽字符，<code>wctob()</code>将宽字符转换为单字节字符。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">wint_t</span> <span class="title function_">btowc</span><span class="params">(<span class="type">int</span> c)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">wctob</span><span class="params">(<span class="type">wint_t</span> c)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>btowc()</code>返回一个宽字符。如果参数是 EOF，或转换失败，则返回 WEOF。</p>
+<p><code>wctob()</code>返回一个单字节字符。如果参数是 WEOF，或者参数宽字符无法对应单个的单字节字符，则返回 EOF。</p>
+<p>下面是用法示例。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">wint_t</span> wc = btowc(<span class="string">&#x27;B&#x27;</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出宽字符 B</span></span><br><span class="line">wprintf(<span class="string">L&quot;Wide character: %lc\n&quot;</span>, wc);</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> c = wctob(wc);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出单字节字符 B</span></span><br><span class="line">wprintf(<span class="string">L&quot;Single-byte character: %c\n&quot;</span>, c);</span><br></pre></td></tr></table></figure>
+
+<h2 id="fwide"><a href="#fwide" class="headerlink" title="fwide()"></a>fwide()</h2><p><code>fwide()</code>用来设置一个字节流是宽字符流，还是多字节字符流。</p>
+<p>如果使用宽字符专用函数处理字节流，就会默认设置字节流为宽字符流，否则就需要使用<code>fwide()</code>显式设置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">fwide</span><span class="params">(FILE* stream, <span class="type">int</span> mode)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>它接受两个参数，第一个参数是文件指针，第二个参数是字节流模式，有三种选择。</p>
+<ul>
+<li>0：字节流模式保持原样。</li>
+<li>-1（或其他负值）：设为多字节字符流。</li>
+<li>1（或其他正值）：设为宽字符流。</li>
+</ul>
+<p><code>fwide()</code>的返回值也分成三种情况：如果是宽字符流，返回一个正值；如果是多字节字符流，返回一个负值；如果是普通字符流，返回<code>0</code>。</p>
+<p>一旦设置了字节流模式，就无法再更改。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;wchar.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  wprintf(<span class="string">L&quot;Hello world!\n&quot;</span>);</span><br><span class="line">  <span class="type">int</span> mode = fwide(<span class="built_in">stdout</span>, <span class="number">0</span>);</span><br><span class="line">  wprintf(<span class="string">L&quot;Stream is %ls-oriented\n&quot;</span>, mode &lt; <span class="number">0</span> ? <span class="string">L&quot;byte&quot;</span> : <span class="string">L&quot;wide&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>wprintf()</code>将字节流隐式设为宽字符模式，所以<code>fwide(stdout, 0)</code>的返回值大于零。</p>
+<h2 id="宽字符专用函数"><a href="#宽字符专用函数" class="headerlink" title="宽字符专用函数"></a>宽字符专用函数</h2><p>下面这些函数基本都是 stdio.h 里面的字符处理函数的宽字符版本，必须使用这些函数来操作宽字符。</p>
+<ul>
+<li>fgetwc()	从宽字符流中获取宽字符，对应 fgetc()。</li>
+<li>fgetws()	从宽字符流中读取宽字符串，对应 fgets()。</li>
+<li>fputwc()	将宽字符写入宽字符流，对应 fputc()。</li>
+<li>fputws()	将宽字符串写入宽字符流，对应 fputs()。</li>
+<li>fwprintf()	格式化宽输出到宽字符流，对应 fprintf()。</li>
+<li>fwscanf()	来自宽字符流的格式化宽字符输入，对应 fscanf()。</li>
+<li>getwchar()	从 stdin 获取一个宽字符，对应 getchar()。</li>
+<li>getwc()	从 stdin 获取一个宽字符，对应 getc()。</li>
+<li>putwchar()	写一个宽字符到 stdout，对应 putchar()。</li>
+<li>putwc()	写一个宽字符到 stdout，对应 putc()。</li>
+<li>swprintf()	格式化宽输出到宽字符串，对应 sprintf()。</li>
+<li>swscanf()	来自宽字符串的格式化宽输入，对应 sscanf()。</li>
+<li>ungetwc()	将宽字符推回输入流，对应 ungetc()。</li>
+<li>vfwprintf()	可变参数的格式化宽字符输出到宽字符流，对应 vfprintf()。</li>
+<li>vfwscanf()	来自宽字符流的可变参数格式化宽字符输入，对应 vfscanf()。</li>
+<li>vswprintf()	可变参数的格式化宽字符输出到宽字符串，对应 vswprintf()。</li>
+<li>vswscanf()	来自宽字符串的可变参数格式化宽字符输入，对应 vsscanf()。</li>
+<li>vwprintf()	可变参数格式化宽字符输出，对应 vprintf()。</li>
+<li>vwscanf()	可变参数的格式化宽字符输入，对应 vscanf()。</li>
+<li>wcscat()	危险地连接宽字符串，对应 strcat()。</li>
+<li>wcschr()	在宽字符串中查找宽字符，对应 strchr()。</li>
+<li>wcscmp()	比较宽字符串，对应 strcmp()。</li>
+<li>wcscoll()	比较两个考虑语言环境的宽字符串，对应 strcoll()。</li>
+<li>wcscpy()	危险地复制宽字符串，对应 strcpy()。</li>
+<li>wcscspn()	不是从宽字符串前面开始计算字符，对应 strcspn()。</li>
+<li>wcsftime()	格式化的日期和时间输出，对应 strftime()。</li>
+<li>wcslen()	返回宽字符串的长度，对应 strlen()。</li>
+<li>wcsncat()	更安全地连接宽字符串，对应 strncat()。</li>
+<li>wcsncmp()	比较宽字符串，长度有限，对应 strncmp()。</li>
+<li>wcsncpy()	更安全地复制宽字符串，对应 strncpy()。</li>
+<li>wcspbrk()	在宽字符串中搜索一组宽字符中的一个，对应 strpbrk()。</li>
+<li>wcsrchr()	从末尾开始在宽字符串中查找宽字符，对应 strrchr()。</li>
+<li>wcsspn()	从宽字符串前面的集合中计算字符，对应 strspn()。</li>
+<li>wcsstr()	在另一个宽字符串中找到一个宽字符串，对应 strstr()。</li>
+<li>wcstod()	将宽字符串转换为 double，对应 strtod()。</li>
+<li>wcstof()	将宽字符串转换为 float，对应 strtof()。</li>
+<li>wcstok()	标记一个宽字符串，对应 strtok()。</li>
+<li>wcstold()	将宽字符串转换为 long double，对应 strtold()。</li>
+<li>wcstoll()	将宽字符串转换为 long long，对应 strtoll()。</li>
+<li>wcstol()	将宽字符串转换为 long，对应 strtol()。</li>
+<li>wcstoull()	将宽字符串转换为 unsigned long long，对应 strtoull()。</li>
+<li>wcstoul()	将宽字符串转换为 unsigned long，对应 strtoul()。</li>
+<li>wcsxfrm()	转换宽字符串以根据语言环境进行比较，对应 strxfrm()。</li>
+<li>wmemcmp()	比较内存中的宽字符，对应 memcmp()。</li>
+<li>wmemcpy()	复制宽字符内存，对应 memcpy()。</li>
+<li>wmemmove()	复制宽字符内存，可能重叠，对应 memmove()。</li>
+<li>wprintf()	格式化宽输出，对应 printf()。</li>
+<li>wscanf()	格式化宽输入，对应 scanf()。</li>
+</ul>
+<h2 id="多字节字符专用函数"><a href="#多字节字符专用函数" class="headerlink" title="多字节字符专用函数"></a>多字节字符专用函数</h2><p>wchar.h 也定义了一些多字节字符的专用函数。</p>
+<ul>
+<li>mbsinit() 判断 mbstate_t 是否处于初始转换状态。</li>
+<li>mbrlen()	给定转换状态时，计算多字节字符串的字节数，对应 mblen()。</li>
+<li>mbrtowc()	给定转换状态时，将多字节字符转换为宽字符，对应 mbtowc()。</li>
+<li>wctombr()	给定转换状态时，将宽字符转换为多字节字符，对应 wctomb()。</li>
+<li>mbsrtowcs()	给定转换状态时，将多字节字符串转换为宽字符串，对应 mbstowcs()。</li>
+<li>wcsrtombs() 给定转换状态时，将宽字符串转换为多字节字符串，对应 wcstombs()。</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/7cf93ab633ea43cd8b140844399e5733/" title="stdlib.h"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">stdlib.h</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/e75170bafb664c99b02517bc03259fc1/" title="wctype.h"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">wctype.h</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wchar-h"><span class="toc-number">1.</span> <span class="toc-text">wchar.h</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%E5%92%8C%E5%AE%8F"><span class="toc-number">1.1.</span> <span class="toc-text">类型别名和宏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#btowc-%EF%BC%8Cwctob"><span class="toc-number">1.2.</span> <span class="toc-text">btowc()，wctob()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fwide"><span class="toc-number">1.3.</span> <span class="toc-text">fwide()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BD%E5%AD%97%E7%AC%A6%E4%B8%93%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">宽字符专用函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%AD%97%E8%8A%82%E5%AD%97%E7%AC%A6%E4%B8%93%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">多字节字符专用函数</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

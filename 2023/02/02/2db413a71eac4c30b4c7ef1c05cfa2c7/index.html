@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>archiving | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="归档和备份gzipgzip 程序用来压缩文件，原文件的压缩版（添加gz后缀名）会替代原文件。gunzip 程序用来还原压缩版本。 12$ gzip foo.txt$ gunzip foo.txt.gz  gzip的参数如下。  -c	把输出写入到标准输出，并且保留原始文件。也有可能用–stdout 和–to-stdout 选项来指定。 -d	解压缩。正如 gunzip 命令一样。也可以用–deco">
+<meta property="og:type" content="article">
+<meta property="og:title" content="archiving">
+<meta property="og:url" content="http://example.com/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="归档和备份gzipgzip 程序用来压缩文件，原文件的压缩版（添加gz后缀名）会替代原文件。gunzip 程序用来还原压缩版本。 12$ gzip foo.txt$ gunzip foo.txt.gz  gzip的参数如下。  -c	把输出写入到标准输出，并且保留原始文件。也有可能用–stdout 和–to-stdout 选项来指定。 -d	解压缩。正如 gunzip 命令一样。也可以用–deco">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:13:57.063Z">
+<meta property="article:modified_time" content="2023-02-02T03:14:40.160Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/2db413a71eac4c30b4c7ef1c05cfa2c7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'archiving',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:14:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">archiving</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:13:57.063Z" title="发表于 2023-02-02 11:13:57">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:14:40.160Z" title="更新于 2023-02-02 11:14:40">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/">Bash</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/archives/">archives</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="归档和备份"><a href="#归档和备份" class="headerlink" title="归档和备份"></a>归档和备份</h1><h2 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h2><p>gzip 程序用来压缩文件，原文件的压缩版（添加<code>gz</code>后缀名）会替代原文件。gunzip 程序用来还原压缩版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gzip foo.txt</span><br><span class="line">$ gunzip foo.txt.gz</span><br></pre></td></tr></table></figure>
+
+<p><code>gzip</code>的参数如下。</p>
+<ul>
+<li>-c	把输出写入到标准输出，并且保留原始文件。也有可能用–stdout 和–to-stdout 选项来指定。</li>
+<li>-d	解压缩。正如 gunzip 命令一样。也可以用–decompress 或者–uncompress 选项来指定.</li>
+<li>-f	强制压缩，即使原始文件的压缩文件已经存在了，也要执行。也可以用–force 选项来指定。</li>
+<li>-h	显示用法信息。也可用–help 选项来指定。</li>
+<li>-l	列出每个被压缩文件的压缩数据。也可用–list 选项。</li>
+<li>-r	若命令的一个或多个参数是目录，则递归地压缩目录中的文件。也可用–recursive 选项来指定。</li>
+<li>-t	测试压缩文件的完整性。也可用–test 选项来指定。</li>
+<li>-v	显示压缩过程中的信息。也可用–verbose 选项来指定。</li>
+<li>-number	设置压缩指数。number 是一个在1（最快，最小压缩）到9（最慢，最大压缩）之间的整数。 数值1和9也可以各自用–fast 和–best 选项来表示。默认值是整数6。</li>
+</ul>
+<p>下面是一些例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看解压缩后的内容</span></span><br><span class="line">$ gunzip -c foo.txt | less</span><br></pre></td></tr></table></figure>
+
+<p><code>zcat</code>程序等同于带有-c 选项的 gunzip 命令。它可以像<code>cat</code>命令那样，用来查看<code>gzip</code>压缩文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ zcat foo.txt.gz | less</span><br></pre></td></tr></table></figure>
+
+<h2 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h2><p><code>bzip2</code>程序与<code>gzip</code>程序相似，但是使用了不同的压缩算法，舍弃了压缩速度，实现了更高的压缩级别。在大多数情况下，它的工作模式等同于<code>gzip</code>。 由<code>bzip2</code>压缩的文件，用扩展名<code>.bz2</code>表示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ bzip2 foo.txt</span><br><span class="line">$ bunzip2 foo.txt.bz2</span><br></pre></td></tr></table></figure>
+
+<p>gzip程序的所有选项（除了<code>-r</code>），bzip2 程序同样也支持。同样有 bunzip2 和 bzcat 程序来解压缩文件。bzip2 文件也带有 bzip2recover 程序，其会 试图恢复受损的 .bz2 文件。</p>
+<h2 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h2><p><code>zip</code>程序既是压缩工具，也是一个打包工具，读取和写入.zip文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ zip options zipfile file...</span><br></pre></td></tr></table></figure>
+
+<p>它的用法如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将指定目录压缩成zip文件</span></span><br><span class="line">$ zip -r playground.zip playground</span><br></pre></td></tr></table></figure>
+
+<p><code>zip</code>与<code>tar</code>命令有一个相反之处。如果压缩文件已存在，其将被更新而不是被替代。这意味着会保留此文件包，但是会添加新文件，同时替换匹配的文件。</p>
+<p>解压使用<code>unzip</code>命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unzip ../playground.zip</span><br></pre></td></tr></table></figure>
+
+<p><code>unzip</code>命令的参数如下。</p>
+<ul>
+<li><code>-l</code> 列出文件包中的内容而不解压</li>
+<li><code>-v</code> 显示冗余信息</li>
+<li><code>-p</code> 输出发送到标准输出</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unzip -p ls-etc.zip | less</span><br></pre></td></tr></table></figure>
+
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p><code>tar</code>是tape archive的简称，原来是一款制作磁带备份的工具，现在主要用于打包。一个 tar 包可以由一组独立的文件，一个或者多个目录，或者两者混合体组成。</p>
+<p><code>tar</code>程序的语法如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar mode[options] pathname...</span><br></pre></td></tr></table></figure>
+
+<p>tar支持以下模式。</p>
+<ul>
+<li>c 表示create，为文件和／或目录列表创建归档文件。</li>
+<li>x 抽取归档文件。</li>
+<li>r 追加具体的路径到归档文件的末尾。</li>
+<li>t 列出归档文件的内容。</li>
+</ul>
+<p>支持的参数如下。</p>
+<ul>
+<li>f 表示file，用来指定生成的文件。</li>
+</ul>
+<p>模式和参数可以写在一起，而且不需要开头的短横线。注意，必须首先指定模式，然后才是其它的选项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建子目录的tar包</span></span><br><span class="line">$ tar cf playground.tar playground</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看tar包内容</span></span><br><span class="line">$ tar tf playground.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看更详细的列表信息</span></span><br><span class="line">$ tar tvf playground.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原归档文件</span></span><br><span class="line">$ tar xf playground.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原单个文件</span></span><br><span class="line">$ tar xf archive.tar pathname</span><br><span class="line"></span><br><span class="line"><span class="comment"># 还原文件到指定目录</span></span><br><span class="line">$ tar xvf archive.tar -C /home/me/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 追加文件</span></span><br><span class="line">$ tar rf archive.tar file.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证归档文件内容是否正确</span></span><br><span class="line">$ tar tvfW archive.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 支持通配符</span></span><br><span class="line">$ tar xf ../playground2.tar --wildcards <span class="string">&#x27;home/me/playground/\*.txt&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，<code>tar</code>命令还原的时候，总是还原为相对路径。如果归档的时候，保存的是绝对路径，那么还原的时候，这个绝对路径会整个变成相对路径。</p>
+<p><code>find</code>命令可以与<code>tar</code>命令配合使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find playground -name <span class="string">&#x27;file.txt&#x27;</span> -<span class="built_in">exec</span> tar rf playground.tar <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;+&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的命令先用<code>find</code>程序找到所有名为<code>file.txt</code>的文件，然后使用追加模式（<code>r</code>）的<code>tar</code>命令，把匹配的文件添加到归档文件<code>playground.tar</code>里面。</p>
+<p>这种<code>tar</code>和<code>find</code>的配合使用，可以创建逐渐增加的目录树或者整个系统的备份。通过<code>find</code>命令匹配新于某个时间戳的文件，我们就能够创建一个归档文件，其只包含新于上一个 tar 包的文件。</p>
+<p>tar支持压缩功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打成gzip压缩包</span></span><br><span class="line">$ tar czvf assets.tar.gz dist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打成bz2压缩包</span></span><br><span class="line">$ tar cvfj assets.tar.bz2 dist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压 tar.gz 文件</span></span><br><span class="line">$ tar xzv archive.tar.gz</span><br><span class="line">$ tar xvf archive.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压bz2压缩包</span></span><br><span class="line">$ tar xvf archive.tar.bz2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示gzip压缩包内容</span></span><br><span class="line">$ tar tvf archive.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示bz2压缩包内容</span></span><br><span class="line">$ tar tvf archive.tar.bz2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从gzip压缩包取出单个文件</span></span><br><span class="line">$ tar zxvf archive.tar.gz file.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从bz2压缩包取出单个文件</span></span><br><span class="line">$ tar jxvf archive.tar.bz2 file.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按通配符取出文件</span></span><br><span class="line">$ tar zxvf archive.tar.gz --wildcards <span class="string">&#x27;*.php&#x27;</span></span><br><span class="line">$ tar jxvf archive.tar.bz2 --wildcards <span class="string">&#x27;*.php&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 追加文件到压缩包</span></span><br><span class="line">$ tar rvf archive.tar.gz xyz.txt</span><br><span class="line">$ tar rvf archive.tar.bz2 xyz.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h2><p><code>rsync</code>命令用于在多个目录之间、或者本地与远程目录之间同步。字母<code>r</code>表示<code>remote</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rsync options <span class="built_in">source</span> destination</span><br></pre></td></tr></table></figure>
+
+<p>source 和 destination 是下列选项之一：</p>
+<ul>
+<li>一个本地文件或目录</li>
+<li>一个远端文件或目录，以<code>[user@]host:path</code>的形式存在</li>
+<li>一个远端 rsync 服务器，由<code>rsync://[user@]host[:port]/path</code>指定</li>
+</ul>
+<p>注意 source 和 destination 两者之一必须是本地文件。rsync 不支持远端到远端的复制。</p>
+<p><code>rsync</code>命令的参数如下。</p>
+<ul>
+<li><code>-a</code> 递归和保护文件属性</li>
+<li><code>-v</code> 冗余输出</li>
+<li><code>--delete</code> 删除可能在备份设备中已经存在但却不再存在于源设备中的文件</li>
+<li><code>--rsh=ssh</code> 使用 ssh 程序作为远程 shell，目的地必须标注主机名。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 同步两个本地目录</span></span><br><span class="line">$ rsync -av playground foo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除源设备不存在的文件</span></span><br><span class="line">$ sudo rsync -av --delete /etc /home /usr/local /media/BigDisk/backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 远程同步</span></span><br><span class="line">$ sudo rsync -av --delete --rsh=ssh /etc /home /usr/local remote-sys:/backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 与远程rsync主机同步</span></span><br><span class="line">$ rsync -av -delete rsync://rsync.gtlib.gatech.edu/path/to/oss fedora-devel</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/25ea89ddb9bc4365a38e80c533eb32a6/" title="cp"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">cp</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/434260bbcab14e8d86202663e9b983f5/" title="awk"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">awk</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%92%E6%A1%A3%E5%92%8C%E5%A4%87%E4%BB%BD"><span class="toc-number">1.</span> <span class="toc-text">归档和备份</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gzip"><span class="toc-number">1.1.</span> <span class="toc-text">gzip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bzip2"><span class="toc-number">1.2.</span> <span class="toc-text">bzip2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zip"><span class="toc-number">1.3.</span> <span class="toc-text">zip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tar"><span class="toc-number">1.4.</span> <span class="toc-text">tar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rsync"><span class="toc-number">1.5.</span> <span class="toc-text">rsync</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

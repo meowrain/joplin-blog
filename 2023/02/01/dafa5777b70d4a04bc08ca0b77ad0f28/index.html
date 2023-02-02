@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>pre-install | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="安装前的准备 🧭 凡事预则立，不预则废这一章开始，我们正式开始安装 archlinux。但是我们首先要做一些准备工作。   🔖 这一节将会讨论：::: details 目录 [[toc]] :::  ::: tip ℹ️ 提示 由于当前 UEFI 已普及十余年，安装将全部以 UEFI + GPT 的形式进行，传统 BIOS 方式不再赘述。 ::: ::: tip ℹ️ 提示 指南中带有 EUL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pre-install">
+<meta property="og:url" content="http://example.com/2023/02/01/dafa5777b70d4a04bc08ca0b77ad0f28/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="安装前的准备 🧭 凡事预则立，不预则废这一章开始，我们正式开始安装 archlinux。但是我们首先要做一些准备工作。   🔖 这一节将会讨论：::: details 目录 [[toc]] :::  ::: tip ℹ️ 提示 由于当前 UEFI 已普及十余年，安装将全部以 UEFI + GPT 的形式进行，传统 BIOS 方式不再赘述。 ::: ::: tip ℹ️ 提示 指南中带有 EUL">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-01T04:57:59.108Z">
+<meta property="article:modified_time" content="2023-02-01T04:57:59.108Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/01/dafa5777b70d4a04bc08ca0b77ad0f28/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'pre-install',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-01 12:57:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">pre-install</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-01T04:57:59.108Z" title="发表于 2023-02-01 12:57:59">2023-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-01T04:57:59.108Z" title="更新于 2023-02-01 12:57:59">2023-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/">Arch-Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/apps/">apps</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="安装前的准备"><a href="#安装前的准备" class="headerlink" title="安装前的准备"></a>安装前的准备</h1><blockquote>
+<h3 id="🧭-凡事预则立，不预则废"><a href="#🧭-凡事预则立，不预则废" class="headerlink" title="🧭 凡事预则立，不预则废"></a>🧭 凡事预则立，不预则废</h3><p>这一章开始，我们正式开始安装 archlinux。但是我们首先要做一些准备工作。</p>
+</blockquote>
+<blockquote>
+<h3 id="🔖-这一节将会讨论："><a href="#🔖-这一节将会讨论：" class="headerlink" title="🔖 这一节将会讨论："></a>🔖 这一节将会讨论：</h3><p>::: details 目录</p>
+<p>[[toc]]</p>
+<p>:::</p>
+</blockquote>
+<p>::: tip ℹ️ 提示</p>
+<p>由于当前 UEFI 已普及十余年，安装将全部以 <code>UEFI + GPT</code> 的形式进行，传统 <code>BIOS</code> 方式不再赘述。</p>
+<p>:::</p>
+<p>::: tip ℹ️ 提示</p>
+<p>指南中带有 <sup>EULA</sup> 角标的软件代表是 <a target="_blank" rel="noopener" href="https://www.gnu.org/proprietary/proprietary.html">专有软件</a>。请自行斟酌是否使用。</p>
+<p>:::</p>
+<h2 id="1-确保网络环境"><a href="#1-确保网络环境" class="headerlink" title="1. 确保网络环境"></a>1. 确保网络环境</h2><p>如果你可以使用路由器分接出来的网线，以 dhcp 的方式直接上网，那么不用准备什么。如果你的环境只能使用无线网络安装，需要事先把自己所用的 wifi 名称改成自己能记住的英文名称。因为<strong>安装时无法显示和输入中文名的 wifi</strong>，你会看到一堆不知道是什么的方块，并且在安装过程中你将没有办法输入中文的无线名称进行连接。</p>
+<p><img src="/../static/rookie/pre-install/uefi-1.png" alt="wireless-network-card-switch"></p>
+<p>其次，有些笔记本电脑上存在无线网卡的硬件开关或者键盘控制，开机后安装前需要<strong>确保你的无线网卡硬件开关处于打开状态</strong>。</p>
+<h2 id="2-下载安装镜像"><a href="#2-下载安装镜像" class="headerlink" title="2. 下载安装镜像"></a>2. 下载安装镜像</h2><p>安装镜像 iso 在开源镜像站（推荐）或者 <a target="_blank" rel="noopener" href="https://archlinux.org/download/">archlinux 官方下载页面</a> 下载。</p>
+<p>下面是国内常用的提供 archlinux 安装镜像的开源镜像站（选一个即可）：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/">中国科学技术大学开源镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源软件镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/archlinux/">华为开源镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://mirror.lzu.edu.cn/archlinux/">兰州大学开源镜像站</a></li>
+</ul>
+<p><img src="/../static/rookie/pre-install/tuna.png" alt="清华大学开源软件镜像站"></p>
+<p>其中前两者点击网页右侧侧栏的获取下载链接，选择 archlinux 下载即可。</p>
+<p><img src="/../static/rookie/pre-install/huawei.png" alt="华为开源镜像站"></p>
+<p>后两者需要依次点击 <code>iso</code> &gt; <code>20XX.XX.XX</code> &gt; <code>archlinux-20XX.XX.XX-x86_64.iso</code>。</p>
+<p>::: warning ⚠️ 注意</p>
+<p>请确保下载最新的安装镜像！因为 archlinux 是滚动发行版，不存在使用旧的安装镜像安装旧版本的说法。</p>
+<p>这里也可以看出 archlinux 每月 1 日释出新的安装镜像。</p>
+<p>:::</p>
+<p><img src="/../static/rookie/pre-install/download-speed.png" alt="download-speed"></p>
+<p>中科大的开源镜像站下载速度还是很快的。</p>
+<h2 id="3-刻录安装-U-盘"><a href="#3-刻录安装-U-盘" class="headerlink" title="3. 刻录安装 U 盘"></a>3. 刻录安装 U 盘</h2><p>准备一个 2G 以上的 U 盘，刻录一个安装盘。</p>
+<h3 id="3-1-Windows"><a href="#3-1-Windows" class="headerlink" title="3-1. Windows"></a>3-1. Windows</h3><p>Windows 下推荐使用 <a target="_blank" rel="noopener" href="https://www.ventoy.net/cn/doc_start.html">Ventoy</a>、<a target="_blank" rel="noopener" href="https://rufus.ie/">Rufus</a> 或者 <a target="_blank" rel="noopener" href="https://www.poweriso.com/download.php">Power ISO</a><sup>EULA</sup> 进行 U 盘刻录。三者皆为免费使用的软件。具体操作请自行查阅，都非常简单。</p>
+<p>除此之外，如果你还嫌麻烦，还可以使用更为简单的安装盘制作工具 <a target="_blank" rel="noopener" href="https://www.balena.io/etcher/">balenaEtcher</a>：</p>
+<p><img src="/../static/rookie/pre-install/ethcer.png" alt="ethcer"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>使用 balenaEtcher 制作完成的安装盘若要重新作为普通 U 盘使用，需要用磁盘分区管理工具（如 <a target="_blank" rel="noopener" href="https://apps.kde.org/partitionmanager/">KDE 分区管理器</a>、<a target="_blank" rel="noopener" href="https://www.diskgenius.cn/">DiskGenius</a><sup>EULA</sup>）重建分区表才能正常格式化。</p>
+<p>:::</p>
+<h3 id="3-2-Linux"><a href="#3-2-Linux" class="headerlink" title="3-2. Linux"></a>3-2. Linux</h3><p>Linux 下同样可以使用 Ventoy 和 balenaEtcher，具体步骤可参阅 <a href="../advanced/make-install-disk.md#ventoy-%E6%8E%A8%E8%8D%90">Ventoy（推荐）</a> 以及 <a href="../advanced/make-install-disk.md#balenaetcher">balenaEtcher</a>。</p>
+<p>也可以直接用 <code>dd</code> 命令进行刻录，具体步骤可参阅 <a href="/advanced/make-install-disk.html#dd-%E5%91%BD%E4%BB%A4">dd 命令</a>。</p>
+<h2 id="4-为-archlinux-分出硬盘空间（可选）"><a href="#4-为-archlinux-分出硬盘空间（可选）" class="headerlink" title="4. 为 archlinux 分出硬盘空间（可选）"></a>4. 为 archlinux 分出硬盘空间（可选）</h2><p>如果目标是双系统（win10 + archlinux），并且 win10 和 archlinux 将要共存在一个硬盘上的话，往往要在 win10 使用的分区上分出空闲硬盘空间给 archlinux。这里建议<strong>至少分 <code>128GB</code> 给 archlinux</strong>。</p>
+<p><img src="/../static/rookie/pre-install/disk-1.png" alt="disk-step\_1"></p>
+<ol>
+<li>右键点击 <code>开始菜单</code> &gt; 点击 <code>磁盘管理</code></li>
+</ol>
+<p><img src="/../static/rookie/pre-install/disk-2.png" alt="disk-step\_2"></p>
+<ol start="2">
+<li>右键点击 <code>需要压缩的分区</code> &gt; 点击 <code>压缩卷</code></li>
+</ol>
+<p><img src="/../static/rookie/pre-install/disk-3.png" alt="disk-step\_3"></p>
+<ol start="3">
+<li><p>在 <code>输入压缩空间量(MB)</code> 输入需要分给 archlinux 的空闲硬盘空间大小。假设分配 <code>128GB</code> 则输入 <code>131072</code>（1GB &#x3D; 1024MB，128GB &#x3D; 128 * 1024MB &#x3D; 131072MB）</p>
+</li>
+<li><p>点击 <code>压缩</code>，完成之后关闭磁盘管理即可</p>
+</li>
+</ol>
+<p>::: warning ⚠️ 注意</p>
+<p>请不要做多余的动作！不要在这里为分出的硬盘空间创建分区！</p>
+<p>:::</p>
+<h2 id="5-获取-Bitlocker-恢复密钥"><a href="#5-获取-Bitlocker-恢复密钥" class="headerlink" title="5. 获取 Bitlocker 恢复密钥"></a>5. 获取 Bitlocker 恢复密钥</h2><p>若 win10 分区使用了 🔐 Bitlocker 加密，请提前获取恢复密钥。</p>
+<p>关于解锁密钥的查找请参阅 <a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/windows/%E5%9C%A8-windows-10-%E4%B8%AD%E6%9F%A5%E6%89%BE-bitlocker-%E6%81%A2%E5%A4%8D%E5%AF%86%E9%92%A5-6b71ad27-0b89-ea08-f143-056f5ab347d6">Mircosoft 相关页面</a>。</p>
+<p>一般来说使用与 win10 相同的微软帐号登录 <a target="_blank" rel="noopener" href="https://aka.ms/myrecoverykey">aka.ms 相关页面</a> 即可获取。</p>
+<h2 id="6-进入主板-BIOS-进行设置"><a href="#6-进入主板-BIOS-进行设置" class="headerlink" title="6. 进入主板 BIOS 进行设置"></a>6. 进入主板 BIOS 进行设置</h2><p><strong>插入优盘并开机</strong>。在开机的时候，按下 <code>F2</code> &#x2F; <code>F8</code> &#x2F; <code>F10</code> &#x2F; <code>DEL</code> 等（取决与你的主板型号，具体请查阅你主板的相关信息）按键，进入主板的 BIOS 设置界面。</p>
+<p>除此之外，如果你还嫌麻烦，还可以使用以下方法进入 BIOS：</p>
+<p><img src="/../static/rookie/pre-install/uefi-2.png" alt="uefi-step\_1"></p>
+<ol>
+<li>在 win10 下 按住 <code>Shift</code> 键同时点击 <code>重启</code></li>
+</ol>
+<p><img src="/../static/rookie/pre-install/uefi-3.png" alt="uefi-step\_2"></p>
+<ol start="2">
+<li><p>保持按住 <code>Shift</code> 键直到进入如图所示界面</p>
+</li>
+<li><p>选择 <code>疑难解答</code> 并回车 <code>Enter</code></p>
+</li>
+</ol>
+<p><img src="/../static/rookie/pre-install/uefi-4.png" alt="uefi-step\_3"></p>
+<ol start="4">
+<li>选择 <code>UEFI 固件设置</code> 并回车 <code>Enter</code></li>
+</ol>
+<p><img src="/../static/rookie/pre-install/uefi-5.png" alt="uefi-step\_4"></p>
+<ol start="5">
+<li>按下 <code>Enter</code> 重启，此时应该已经进入了 BIOS</li>
+</ol>
+<blockquote>
+<h4 id="🍧-碎碎念"><a href="#🍧-碎碎念" class="headerlink" title="🍧 碎碎念"></a>🍧 碎碎念</h4><p>随着时代的发展，主板的 BIOS 界面也越来越现代；很多主板都有了中文，根据主板 BIOS 界面的提示进行操作吧！</p>
+</blockquote>
+<h2 id="7-关闭-BIOS-设置中的-Secure-Boot"><a href="#7-关闭-BIOS-设置中的-Secure-Boot" class="headerlink" title="7. 关闭 BIOS 设置中的 Secure Boot"></a>7. 关闭 BIOS 设置中的 Secure Boot</h2><p><img src="/../static/rookie/pre-install/uefi-6.png" alt="uefi-step\_5"></p>
+<p>在类似名为 <code>security</code>（安全） 的选项卡中，找到一项名为 <code>Secure Boot</code>（安全启动，名称可能略有差异）的选项，选择 <code>Disable</code> 将其禁用。</p>
+<blockquote>
+<h4 id="🍧-碎碎念-1"><a href="#🍧-碎碎念-1" class="headerlink" title="🍧 碎碎念"></a>🍧 碎碎念</h4><p>有少数恶心的主板里面，<code>Secure Boot</code> 被设置为开启，却不存在关闭它的选项，但系统主板内置有 Windows 系统的公钥证书签名，使其只能加载 Windows，其它系统（包括 archlinux）一律不予加载。用户不能关闭它，还没法换系统，实在让人无语 😶</p>
+<p>如果你正好是这样的电脑，emmm… 不妨在虚拟机里尝试下 archlinux 吧！</p>
+</blockquote>
+<h2 id="8-调整启动方式为-UEFI（可能不需要）"><a href="#8-调整启动方式为-UEFI（可能不需要）" class="headerlink" title="8. 调整启动方式为 UEFI（可能不需要）"></a>8. 调整启动方式为 UEFI（可能不需要）</h2><p>在某些旧的主板里，需要调整启动模式为 <code>UEFI</code>，而非传统的 <code>BIOS/CSM</code>。在类似名为 <code>boot</code> 的选项卡中，找到类似名为 <code>Boot Mode</code> 的选项，确保将其调整为 <code>UEFI only</code>，而非 <code>legacy/CSM</code>。</p>
+<h2 id="9-调整硬盘启动顺序"><a href="#9-调整硬盘启动顺序" class="headerlink" title="9. 调整硬盘启动顺序"></a>9. 调整硬盘启动顺序</h2><p><img src="/../static/rookie/pre-install/uefi-7.png" alt="uefi-step\_6"></p>
+<p><img src="/../static/rookie/pre-install/uefi-8.png" alt="uefi-step\_7"></p>
+<p>在类似名为 <code>boot</code> 的选项卡中，找到类似名为 <code>Boot Options</code>（名称可能略有差异）的设置选项，将优盘的启动顺序调至首位。</p>
+<h2 id="10-保存-BIOS-设置"><a href="#10-保存-BIOS-设置" class="headerlink" title="10. 保存 BIOS 设置"></a>10. 保存 BIOS 设置</h2><p><img src="/../static/rookie/pre-install/uefi-9.png" alt="uefi-step\_8"></p>
+<p>最后保存 BIOS 设置并退出，一般的按键是 <code>F10</code>。</p>
+<h2 id="11-准备安装"><a href="#11-准备安装" class="headerlink" title="11. 准备安装"></a>11. 准备安装</h2><p><img src="/../static/rookie/pre-virt_vb-17.png" alt="archlinux-iso\_1"></p>
+<p><img src="/../static/rookie/pre-virt_vb-18.png" alt="archlinux-iso\_2"></p>
+<p>此时电脑重启，不出意外的话根据提示你应该可以顺利进入 archlinux 的安装界面了（有一头 🐄 牛牛在讲话）。</p>
+<p>::: tip ℹ️ 提示</p>
+<p>archlinux 安装盘应该一直插在 🖥️ 电脑上</p>
+<p>:::</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/01/d580da47a0624ecc8f4579757cadb486/" title="pre-install"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">pre-install</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/01/e152ca4f417e4e9e9c2dfc7054a457eb/" title="pre-install"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">pre-install</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">安装前的准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%AD-%E5%87%A1%E4%BA%8B%E9%A2%84%E5%88%99%E7%AB%8B%EF%BC%8C%E4%B8%8D%E9%A2%84%E5%88%99%E5%BA%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">🧭 凡事预则立，不预则废</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%96-%E8%BF%99%E4%B8%80%E8%8A%82%E5%B0%86%E4%BC%9A%E8%AE%A8%E8%AE%BA%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">🔖 这一节将会讨论：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%A1%AE%E4%BF%9D%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">1. 确保网络环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F"><span class="toc-number">1.2.</span> <span class="toc-text">2. 下载安装镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%BB%E5%BD%95%E5%AE%89%E8%A3%85-U-%E7%9B%98"><span class="toc-number">1.3.</span> <span class="toc-text">3. 刻录安装 U 盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Windows"><span class="toc-number">1.3.1.</span> <span class="toc-text">3-1. Windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Linux"><span class="toc-number">1.3.2.</span> <span class="toc-text">3-2. Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%BA-archlinux-%E5%88%86%E5%87%BA%E7%A1%AC%E7%9B%98%E7%A9%BA%E9%97%B4%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">4. 为 archlinux 分出硬盘空间（可选）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96-Bitlocker-%E6%81%A2%E5%A4%8D%E5%AF%86%E9%92%A5"><span class="toc-number">1.5.</span> <span class="toc-text">5. 获取 Bitlocker 恢复密钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%BF%9B%E5%85%A5%E4%B8%BB%E6%9D%BF-BIOS-%E8%BF%9B%E8%A1%8C%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">6. 进入主板 BIOS 进行设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%8D%A7-%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">🍧 碎碎念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%85%B3%E9%97%AD-BIOS-%E8%AE%BE%E7%BD%AE%E4%B8%AD%E7%9A%84-Secure-Boot"><span class="toc-number">1.7.</span> <span class="toc-text">7. 关闭 BIOS 设置中的 Secure Boot</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%8D%A7-%E7%A2%8E%E7%A2%8E%E5%BF%B5-1"><span class="toc-number">1.7.0.1.</span> <span class="toc-text">🍧 碎碎念</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E8%B0%83%E6%95%B4%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E4%B8%BA-UEFI%EF%BC%88%E5%8F%AF%E8%83%BD%E4%B8%8D%E9%9C%80%E8%A6%81%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">8. 调整启动方式为 UEFI（可能不需要）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E8%B0%83%E6%95%B4%E7%A1%AC%E7%9B%98%E5%90%AF%E5%8A%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.9.</span> <span class="toc-text">9. 调整硬盘启动顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E4%BF%9D%E5%AD%98-BIOS-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.10.</span> <span class="toc-text">10. 保存 BIOS 设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%87%86%E5%A4%87%E5%AE%89%E8%A3%85"><span class="toc-number">1.11.</span> <span class="toc-text">11. 准备安装</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

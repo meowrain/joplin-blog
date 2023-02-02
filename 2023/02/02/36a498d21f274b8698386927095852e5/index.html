@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>string | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="字符串操作本章介绍 Bash 字符串操作的语法。 字符串的长度获取字符串长度的语法如下。 1$&amp;#123;#varname&amp;#125;  下面是一个例子。 123$ myPath&#x3D;&#x2F;home&#x2F;cam&#x2F;book&#x2F;long.file.name$ echo $&amp;#123;#myPath&amp;#125;29  大括号&amp;#123;&amp;#125;是必需的，否则 Bash 会将$#理解成脚本的参数个数，将变量名理解成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="string">
+<meta property="og:url" content="http://example.com/2023/02/02/36a498d21f274b8698386927095852e5/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="字符串操作本章介绍 Bash 字符串操作的语法。 字符串的长度获取字符串长度的语法如下。 1$&amp;#123;#varname&amp;#125;  下面是一个例子。 123$ myPath&#x3D;&#x2F;home&#x2F;cam&#x2F;book&#x2F;long.file.name$ echo $&amp;#123;#myPath&amp;#125;29  大括号&amp;#123;&amp;#125;是必需的，否则 Bash 会将$#理解成脚本的参数个数，将变量名理解成">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:13:57.070Z">
+<meta property="article:modified_time" content="2023-02-02T03:14:42.307Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/36a498d21f274b8698386927095852e5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'string',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:14:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">string</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:13:57.070Z" title="发表于 2023-02-02 11:13:57">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:14:42.307Z" title="更新于 2023-02-02 11:14:42">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Bash/">Bash</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><p>本章介绍 Bash 字符串操作的语法。</p>
+<h2 id="字符串的长度"><a href="#字符串的长度" class="headerlink" title="字符串的长度"></a>字符串的长度</h2><p>获取字符串长度的语法如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;#varname&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>下面是一个例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ myPath=/home/cam/book/long.file.name</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;#myPath&#125;</span></span><br><span class="line">29</span><br></pre></td></tr></table></figure>
+
+<p>大括号<code>&#123;&#125;</code>是必需的，否则 Bash 会将<code>$#</code>理解成脚本的参数个数，将变量名理解成文本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$#myvar</span></span><br><span class="line">0myvar</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，Bash 将<code>$#</code>和<code>myvar</code>分开解释了。</p>
+<h2 id="子字符串"><a href="#子字符串" class="headerlink" title="子字符串"></a>子字符串</h2><p>字符串提取子串的语法如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;varname:offset:length&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面语法的含义是返回变量<code>$varname</code>的子字符串，从位置<code>offset</code>开始（从<code>0</code>开始计算），长度为<code>length</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ count=frogfootman</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;count:4:4&#125;</span></span><br><span class="line">foot</span><br></pre></td></tr></table></figure>
+
+<p>上面例子返回字符串<code>frogfootman</code>从4号位置开始的长度为4的子字符串<code>foot</code>。</p>
+<p>这种语法不能直接操作字符串，只能通过变量来读取字符串，并且不会改变原始字符串。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 报错</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;&quot;hello&quot;:2:3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，<code>&quot;hello&quot;</code>不是变量名，导致 Bash 报错。</p>
+<p>如果省略<code>length</code>，则从位置<code>offset</code>开始，一直返回到字符串的结尾。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ count=frogfootman</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;count:4&#125;</span></span><br><span class="line">footman</span><br></pre></td></tr></table></figure>
+
+<p>上面例子是返回变量<code>count</code>从4号位置一直到结尾的子字符串。</p>
+<p>如果<code>offset</code>为负值，表示从字符串的末尾开始算起。注意，负数前面必须有一个空格， 以防止与<code>$&#123;variable:-word&#125;</code>的变量的设置默认值语法混淆。这时还可以指定<code>length</code>，<code>length</code>可以是正值，也可以是负值（负值不能超过<code>offset</code>的长度）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ foo=<span class="string">&quot;This string is long.&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;foo: -5&#125;</span></span><br><span class="line">long.</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;foo: -5:2&#125;</span></span><br><span class="line">lo</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;foo: -5:-2&#125;</span></span><br><span class="line">lon</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，<code>offset</code>为<code>-5</code>，表示从倒数第5个字符开始截取，所以返回<code>long.</code>。如果指定长度<code>length</code>为<code>2</code>，则返回<code>lo</code>；如果<code>length</code>为<code>-2</code>，表示要排除从字符串末尾开始的2个字符，所以返回<code>lon</code>。</p>
+<h2 id="搜索和替换"><a href="#搜索和替换" class="headerlink" title="搜索和替换"></a>搜索和替换</h2><p>Bash 提供字符串搜索和替换的多种方法。</p>
+<p><strong>（1）字符串头部的模式匹配。</strong></p>
+<p>以下两种语法可以检查字符串开头，是否匹配给定的模式。如果匹配成功，就删除匹配的部分，返回剩下的部分。原始变量不会发生变化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果 pattern 匹配变量 variable 的开头，</span></span><br><span class="line"><span class="comment"># 删除最短匹配（非贪婪匹配）的部分，返回剩余部分</span></span><br><span class="line"><span class="variable">$&#123;variable#pattern&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 pattern 匹配变量 variable 的开头，</span></span><br><span class="line"><span class="comment"># 删除最长匹配（贪婪匹配）的部分，返回剩余部分</span></span><br><span class="line"><span class="variable">$&#123;variable##pattern&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面两种语法会删除变量字符串开头的匹配部分（将其替换为空），返回剩下的部分。区别是一个是最短匹配（又称非贪婪匹配），另一个是最长匹配（又称贪婪匹配）。</p>
+<p>匹配模式<code>pattern</code>可以使用<code>*</code>、<code>?</code>、<code>[]</code>等通配符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ myPath=/home/cam/book/long.file.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;myPath#/*/&#125;</span></span><br><span class="line">cam/book/long.file.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;myPath##/*/&#125;</span></span><br><span class="line">long.file.name</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，匹配的模式是<code>/*/</code>，其中<code>*</code>可以匹配任意数量的字符，所以最短匹配是<code>/home/</code>，最长匹配是<code>/home/cam/book/</code>。</p>
+<p>下面写法可以删除文件路径的目录部分，只留下文件名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ path=/home/cam/book/long.file.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;path##*/&#125;</span></span><br><span class="line">long.file.name</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，模式<code>*/</code>匹配目录部分，所以只返回文件名。</p>
+<p>下面再看一个例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ phone=<span class="string">&quot;555-456-1414&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;phone#*-&#125;</span></span><br><span class="line">456-1414</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;phone##*-&#125;</span></span><br><span class="line">1414</span><br></pre></td></tr></table></figure>
+
+<p>如果匹配不成功，则返回原始字符串。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ phone=<span class="string">&quot;555-456-1414&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;phone#444&#125;</span></span><br><span class="line">555-456-1414</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，原始字符串里面无法匹配模式<code>444</code>，所以原样返回。</p>
+<p>如果要将头部匹配的部分，替换成其他内容，采用下面的写法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模式必须出现在字符串的开头</span></span><br><span class="line"><span class="variable">$&#123;variable/#pattern/string&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">$ foo=JPG.JPG</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;foo/#JPG/jpg&#125;</span></span><br><span class="line">jpg.JPG</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，被替换的<code>JPG</code>必须出现在字符串头部，所以返回<code>jpg.JPG</code>。</p>
+<p><strong>（2）字符串尾部的模式匹配。</strong></p>
+<p>以下两种语法可以检查字符串结尾，是否匹配给定的模式。如果匹配成功，就删除匹配的部分，返回剩下的部分。原始变量不会发生变化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果 pattern 匹配变量 variable 的结尾，</span></span><br><span class="line"><span class="comment"># 删除最短匹配（非贪婪匹配）的部分，返回剩余部分</span></span><br><span class="line"><span class="variable">$&#123;variable%pattern&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 pattern 匹配变量 variable 的结尾，</span></span><br><span class="line"><span class="comment"># 删除最长匹配（贪婪匹配）的部分，返回剩余部分</span></span><br><span class="line"><span class="variable">$&#123;variable%%pattern&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面两种语法会删除变量字符串结尾的匹配部分（将其替换为空），返回剩下的部分。区别是一个是最短匹配（又称非贪婪匹配），另一个是最长匹配（又称贪婪匹配）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ path=/home/cam/book/long.file.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;path%.*&#125;</span></span><br><span class="line">/home/cam/book/long.file</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;path%%.*&#125;</span></span><br><span class="line">/home/cam/book/long</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，匹配模式是<code>.*</code>，其中<code>*</code>可以匹配任意数量的字符，所以最短匹配是<code>.name</code>，最长匹配是<code>.file.name</code>。</p>
+<p>下面写法可以删除路径的文件名部分，只留下目录部分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ path=/home/cam/book/long.file.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;path%/*&#125;</span></span><br><span class="line">/home/cam/book</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，模式<code>/*</code>匹配文件名部分，所以只返回目录部分。</p>
+<p>下面的写法可以替换文件的后缀名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ file=foo.png</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;file%.png&#125;</span>.jpg</span><br><span class="line">foo.jpg</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子将文件的后缀名，从<code>.png</code>改成了<code>.jpg</code>。</p>
+<p>下面再看一个例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ phone=<span class="string">&quot;555-456-1414&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;phone%-*&#125;</span></span><br><span class="line">555-456</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;phone%%-*&#125;</span></span><br><span class="line">555</span><br></pre></td></tr></table></figure>
+
+<p>如果匹配不成功，则返回原始字符串。</p>
+<p>如果要将尾部匹配的部分，替换成其他内容，采用下面的写法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模式必须出现在字符串的结尾</span></span><br><span class="line"><span class="variable">$&#123;variable/%pattern/string&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">$ foo=JPG.JPG</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;foo/%JPG/jpg&#125;</span></span><br><span class="line">JPG.jpg</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，被替换的<code>JPG</code>必须出现在字符串尾部，所以返回<code>JPG.jpg</code>。</p>
+<p><strong>（3）任意位置的模式匹配。</strong></p>
+<p>以下两种语法可以检查字符串内部，是否匹配给定的模式。如果匹配成功，就删除匹配的部分，换成其他的字符串返回。原始变量不会发生变化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果 pattern 匹配变量 variable 的一部分，</span></span><br><span class="line"><span class="comment"># 最长匹配（贪婪匹配）的那部分被 string 替换，但仅替换第一个匹配</span></span><br><span class="line"><span class="variable">$&#123;variable/pattern/string&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 pattern 匹配变量 variable 的一部分，</span></span><br><span class="line"><span class="comment"># 最长匹配（贪婪匹配）的那部分被 string 替换，所有匹配都替换</span></span><br><span class="line"><span class="variable">$&#123;variable//pattern/string&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面两种语法都是最长匹配（贪婪匹配）下的替换，区别是前一个语法仅仅替换第一个匹配，后一个语法替换所有匹配。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ path=/home/cam/foo/foo.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;path/foo/bar&#125;</span></span><br><span class="line">/home/cam/bar/foo.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;path//foo/bar&#125;</span></span><br><span class="line">/home/cam/bar/bar.name</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，前一个命令只替换了第一个<code>foo</code>，后一个命令将两个<code>foo</code>都替换了。</p>
+<p>下面的例子将分隔符从<code>:</code>换成换行符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -e <span class="variable">$&#123;PATH//:/&#x27;\n&#x27;&#125;</span></span><br><span class="line">/usr/local/bin</span><br><span class="line">/usr/bin</span><br><span class="line">/bin</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，<code>echo</code>命令的<code>-e</code>参数，表示将替换后的字符串的<code>\n</code>字符，解释为换行符。</p>
+<p>模式部分可以使用通配符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ phone=<span class="string">&quot;555-456-1414&quot;</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;phone/5?4/-&#125;</span></span><br><span class="line">55-56-1414</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子将<code>5-4</code>替换成<code>-</code>。</p>
+<p>如果省略了<code>string</code>部分，那么就相当于匹配的部分替换成空字符串，即删除匹配的部分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ path=/home/cam/foo/foo.name</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;path/.*/&#125;</span></span><br><span class="line">/home/cam/foo/foo</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中，第二个斜杠后面的<code>string</code>部分省略了，所以模式<code>.*</code>匹配的部分<code>.name</code>被删除后返回。</p>
+<p>前面提到过，这个语法还有两种扩展形式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模式必须出现在字符串的开头</span></span><br><span class="line"><span class="variable">$&#123;variable/#pattern/string&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模式必须出现在字符串的结尾</span></span><br><span class="line"><span class="variable">$&#123;variable/%pattern/string&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="改变大小写"><a href="#改变大小写" class="headerlink" title="改变大小写"></a>改变大小写</h2><p>下面的语法可以改变变量的大小写。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 转为大写</span></span><br><span class="line"><span class="variable">$&#123;varname^^&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转为小写</span></span><br><span class="line"><span class="variable">$&#123;varname,,&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>下面是一个例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ foo=heLLo</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;foo^^&#125;</span></span><br><span class="line">HELLO</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;foo,,&#125;</span></span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/105c2fa1270148d6817173265d8a12ec/" title="script"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">script</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/60a64d1be8b34013a8815f4d84d8bf38/" title="variable"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">variable</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">字符串操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">1.1.</span> <span class="toc-text">字符串的长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.2.</span> <span class="toc-text">子字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%92%8C%E6%9B%BF%E6%8D%A2"><span class="toc-number">1.3.</span> <span class="toc-text">搜索和替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B9%E5%8F%98%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="toc-number">1.4.</span> <span class="toc-text">改变大小写</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

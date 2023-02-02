@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>basic | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="Gitgit是一种源码管理系统（source code management，缩写为SCM）。它对当前文件提供版本管理功能，核心思想是对当前文件建立一个对象数据库（object database），将历史版本信息存放在这个数据库中。 git操作流程 安装git 提交用户名和电子邮件  12$ git config --global user.name &quot;Some One&quot;$ g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="basic">
+<meta property="og:url" content="http://example.com/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="Gitgit是一种源码管理系统（source code management，缩写为SCM）。它对当前文件提供版本管理功能，核心思想是对当前文件建立一个对象数据库（object database），将历史版本信息存放在这个数据库中。 git操作流程 安装git 提交用户名和电子邮件  12$ git config --global user.name &quot;Some One&quot;$ g">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-02T03:12:15.150Z">
+<meta property="article:modified_time" content="2023-02-02T03:12:28.670Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/02/5155bdc59ede4f9da5d2f98f7468f966/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'basic',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:12:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">basic</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-02T03:12:15.150Z" title="发表于 2023-02-02 11:12:15">2023-02-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:12:28.670Z" title="更新于 2023-02-02 11:12:28">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Git/">Git</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Git/wangdoc-git/">wangdoc-git</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p>git是一种源码管理系统（source code management，缩写为SCM）。它对当前文件提供版本管理功能，核心思想是对当前文件建立一个对象数据库（object database），将历史版本信息存放在这个数据库中。</p>
+<h2 id="git操作流程"><a href="#git操作流程" class="headerlink" title="git操作流程"></a>git操作流程</h2><ul>
+<li>安装git</li>
+<li>提交用户名和电子邮件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;Some One&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;someone@gmail.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>git init：新建一个git库</li>
+<li>git status：查看目前状态</li>
+<li>git add &lt;文件名&gt;：添加文件从工作区到暂存区</li>
+<li>git commit -m “提示信息”：从暂存区提交到代码仓库</li>
+<li>git log：查看提交commit的信息</li>
+<li>git remote add origin <a target="_blank" rel="noopener" href="https://github.com/try-git/try_git.git">https://github.com/try-git/try_git.git</a> : 添加远程指针</li>
+<li>git push -u origin master：将本地的master分支推送到远程origin主机，-u参数表示记住对应关系，下次可以直接git push推送。</li>
+<li>git pull origin master：将远程主机origin的代码取回本地，与本地的master分支合并</li>
+<li>git diff HEAD：查看与上一次commit的区别</li>
+</ol>
+<h3 id="发布一个版本"><a href="#发布一个版本" class="headerlink" title="发布一个版本"></a>发布一个版本</h3><p>为当前分支打上版本号。</p>
+<pre><code>$ git tag -a [VERSION] -m &quot;released [VERSION]&quot;
+$ git push origin [VERSION]
+</code></pre>
+<h2 id="git对象"><a href="#git对象" class="headerlink" title="git对象"></a>git对象</h2><p>对象数据库包含四类对象。</p>
+<ul>
+<li>Blob：包含二进制数据，它们是文件内容。只要文件内容改变，就会在对象数据库中生成一个blob对象。注意，blob对象只保存文件内容，不含文件名和文件存储位置等信息。如果文件名改变，或者文件储存位置改变，不会生成新的blob对象。</li>
+<li>Tree：blob对象的集合，以及它们的文件名和权限。一个tree对象描述一个时点上的一个目录。</li>
+<li>Commit：描述一个时点上的项目状态，包含一条log信息，一个tree对象和指向父节点（parent commits）的指针。第一个commit对象没有父节点。<ul>
+<li>紀錄 root tree SHA1</li>
+<li>紀錄 parent commit SHA1</li>
+<li>紀錄作者、時間和 commit message 資訊</li>
+</ul>
+</li>
+<li>tag</li>
+</ul>
+<p>对象数据库依赖SHA哈希函数。当一个对象加入数据库，它会被SHA函数处理，得到的结果就是该对象在数据库中的名字（前两个字节被当作目录名，用来提高效率）。</p>
+<p>git命令基本上是图数据库操作命令，用来删除&#x2F;操作节点、移动指针等等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git init</span><br><span class="line">$ <span class="built_in">echo</span> hello &gt; hello.txt</span><br><span class="line">$ git add .</span><br><span class="line">$ tree .git</span><br><span class="line"><span class="comment"># 存在 .git/objects/ce/013625030ba8dba906f756967f9e9ca394464a</span></span><br><span class="line"><span class="comment"># 這是 hello 內容的 SHA1</span></span><br><span class="line">$ <span class="built_in">printf</span> <span class="string">&quot;blob 6\x00hello\n&quot;</span> | shasum</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;hello&quot;</span> | git hash-object --stdin</span><br><span class="line">$ git cat-file -p ce0136</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面代码有几点需要注意。</p>
+<ul>
+<li><code>git add</code>命令就会生成二进制对象。</li>
+<li>shasum命令返回字符串的SHA哈希函数结果。</li>
+<li><code>git hash-object</code>命令计算一个文件的git对象ID，stdin参数表示从标准输入读取，而不是从本地文件读取。</li>
+<li><code>git cat-file</code>命令显示git对象文件的内容和大小信息，p参数表示以易于阅读的格式显示。</li>
+</ul>
+<p>树对象保存当前目录的快照。</p>
+<pre><code>040000 tree 0eed1217a2947f4930583229987d90fe5e8e0b74 data
+100664 blob 5e40c0877058c504203932e5136051cf3cd3519b letter.txt
+100664 blob 274c0052dd5408f8ae2bc8440029ff67d79bc5c3 number.txt
+</code></pre>
+<p>commit（快照）对象也保存在<code>.git/objects</code>目录。</p>
+<pre><code>tree ffe298c3ce8bb07326f888907996eaa48d266db4
+author Mary Rose Cook &lt;mary@maryrosecook.com&gt; 1424798436 -0500
+committer Mary Rose Cook &lt;mary@maryrosecook.com&gt; 1424798436 -0500
+
+a1
+</code></pre>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>指定全局的.gitignore文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global core.excludesfile=/Users/flores/.gitignore</span><br></pre></td></tr></table></figure>
+
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>.git&#x2F;refs&#x2F;heads：保存各个分支的指针</li>
+<li>.git&#x2F;HEAD 文件，保存HEAD指针</li>
+</ul>
+<!---->
+
+<pre><code>ref: refs/heads/master
+</code></pre>
+<p>上面代码说明HEAD指向<code>.git/refs/heads/master</code>文件，该文件是一个Hash值。</p>
+<pre><code>a87cc0f39d12e51be8d68eab5cef1d31e8807a1c
+</code></pre>
+<ul>
+<li>.git&#x2F;refs&#x2F;tags：保存tag指针</li>
+</ul>
+<h3 id="缓冲区域（index）"><a href="#缓冲区域（index）" class="headerlink" title="缓冲区域（index）"></a>缓冲区域（index）</h3><p>Index区域（.git&#x2F;index）是一个二进制文件，用来保存当前目录在某个时点的状态。</p>
+<p><code>git init</code>命令用来创建index区域，以及对象数据库（.dircache&#x2F;objects）。</p>
+<p>100644 為檔案模式,表示這是一個普通檔案；100755 表示可執行檔,120000 表示 symbolic link。</p>
+<p><code>.git/index</code>文件，保存暂存区的文件名和对应的Hash值，每行对应一个文件。下面是一个例子。</p>
+<pre><code>data/letter.txt 5e40c0877058c504203932e5136051cf3cd3519b
+data/number.txt 274c0052dd5408f8ae2bc8440029ff67d79bc5c3
+</code></pre>
+<h2 id="Git-commit的全过程"><a href="#Git-commit的全过程" class="headerlink" title="Git commit的全过程"></a>Git commit的全过程</h2><ol>
+<li>用內容產生 blob object</li>
+<li>寫入 file mode, blob SHA1, file name 到 staging area</li>
+<li>根據 staging area 產生 Tree object</li>
+<li>用 root tree SHA1 和 parent commit SHA1 產生<br>commit object</li>
+<li>用 commit SHA1 更新 master 參考</li>
+</ol>
+<p>如何不用 <code>git add</code> 和 <code>git commit</code>指令完成 commit 動作?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># git add的部分</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;hola&quot;</span> | git hash-object -w --stdin</span><br><span class="line">$ git update-index --add --cacheinfo \</span><br><span class="line">100644 5c1b14949828006ed75a3e8858957f86a2f7e2eb hola.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># git commit的部分</span></span><br><span class="line"></span><br><span class="line">$ git write-tree</span><br><span class="line">$ git commit-tree 27b9d5 -m <span class="string">&quot;Second commit&quot;</span> -p 30b060</span><br><span class="line">$ git update-ref refs/heads/master 97b806c9e5561a08e0df1f1a60857baad3a1f02e</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="父节点"><a href="#父节点" class="headerlink" title="父节点"></a>父节点</h2><p>合并产生的新节点，会有两个父节点。第一个是当前所在分支的父节点，第二个合并进来的那个分支的父节点。</p>
+<h2 id="Tag对象"><a href="#Tag对象" class="headerlink" title="Tag对象"></a>Tag对象</h2><p>Tag 分兩種:annotated tag 才會產生 object。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git tag -a release</span><br><span class="line">$ git rev-parse release</span><br><span class="line">$ git cat-file -p 2450f3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>tag对象的内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">object 309be0</span><br><span class="line">type commit</span><br><span class="line">tag release</span><br><span class="line">tagger ihower 1375383070 +0800</span><br><span class="line">Release!</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference（指针）"><a href="#Reference（指针）" class="headerlink" title="Reference（指针）"></a>Reference（指针）</h2><p>所谓指针（reference），只是一个链接，用来指向其他物体，方便引用。Git有三种指针，但是所有指针归根结底都是指向某个commit。</p>
+<ul>
+<li>Tag指针：指向某个commit，或者指向某个tag对象。保存位置在.git&#x2F;refs&#x2F;tags&#x2F;目录，文件名为tag名，内容为某个commit或ref object的SHA1哈希。</li>
+<li>Branch指针：指向某个commit。每次该分支有新的commit，指针就会变动。</li>
+<li>HEAD指针：指向目前所在的Branch，用来区分目前在哪个分支。比如，内容为ref: refs&#x2F;heads&#x2F;<br>master。</li>
+</ul>
+<h2 id="团队开发模式"><a href="#团队开发模式" class="headerlink" title="团队开发模式"></a>团队开发模式</h2><p>集中式工作流程：團隊內部私有專案，大家都有權限 Push 到共用的 Repository</p>
+<p>管理員工作流程：適合一般 Open Source 專案,只有少部分人有權限可以 Push到 Repository,其他開發者用用 request pull 請求合併。例如 GitHub 提供的 Fork 和 Pull Request 功能。</p>
+<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><h3 id="github-flow"><a href="#github-flow" class="headerlink" title="github flow"></a>github flow</h3><ul>
+<li>master 是 stable&#x2F;production 可佈署的版本</li>
+<li>任何開發從 master branch 分支出 feature branch</li>
+<li>送 pull request 開始進行行討論、code review和測試</li>
+<li>最後合併回 master 代表可以佈署了</li>
+</ul>
+<p>pros and cons</p>
+<ul>
+<li>簡單、清楚、容易了解</li>
+<li>搭配 Github 的 Pull Request 介面</li>
+<li>沒有 release branch,東⻄一進 master 就上 production</li>
+</ul>
+<h3 id="Ruby-on-Rails"><a href="#Ruby-on-Rails" class="headerlink" title="Ruby on Rails"></a>Ruby on Rails</h3><ul>
+<li>master 是開發版本</li>
+<li>feature branches 審核完後,合併進 master</li>
+<li>maintenance branches,用 cherry-pick 做 backporting</li>
+<li>基本上就是 Github flow 加上 maintenance branches 維護舊版的設計</li>
+<li>版本號(Tag)打在 master 上,透過 preview 和 beta 的版本號提前釋出</li>
+</ul>
+<h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><ul>
+<li>master 預備釋出的版本,feature branches 從這裡分支出去</li>
+<li>feature branch 完成後,合併進 next</li>
+<li>next 整合版本,完成的 feature branch 先合併到這裡進行測試</li>
+<li>在 next 測好的 feature branch,才合併進 master</li>
+<li>可以將 master 合併進 next,減少之後的 code conflicts</li>
+<li>不會將 next 合併進 master</li>
+<li>nightly 每天 1:00 UTC 自動從 next branch 分支支出來跑自動測試</li>
+</ul>
+<h2 id="Git远程操作"><a href="#Git远程操作" class="headerlink" title="Git远程操作"></a>Git远程操作</h2><p>Git的repo一般是用来指本地库，远程库（remote）主要用来存档、合作、分享和触发持续集成。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>corbet, <a target="_blank" rel="noopener" href="https://lwn.net/Articles/131657/">The guts of git</a>: 最早的一篇介绍Git的文章，可以了解Git的总体设计思路</li>
+<li>张文钿, <a target="_blank" rel="noopener" href="http://ihower.tw/blog/archives/7938">git从微观到宏观</a></li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/02/e7235e37d577407ea3dd144d8d832e79/" title="git-branch"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">git-branch</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/02/8e12a1e3fc2d4a63b8936904797680f6/" title="branch"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">branch</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">1.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">git操作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="toc-number">1.1.1.</span> <span class="toc-text">发布一个版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.</span> <span class="toc-text">git对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E5%9F%9F%EF%BC%88index%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">缓冲区域（index）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-commit%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">Git commit的全过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%B6%E8%8A%82%E7%82%B9"><span class="toc-number">1.5.</span> <span class="toc-text">父节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tag%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.6.</span> <span class="toc-text">Tag对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference%EF%BC%88%E6%8C%87%E9%92%88%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">Reference（指针）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.8.</span> <span class="toc-text">团队开发模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">1.9.</span> <span class="toc-text">分支管理策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#github-flow"><span class="toc-number">1.9.1.</span> <span class="toc-text">github flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ruby-on-Rails"><span class="toc-number">1.9.2.</span> <span class="toc-text">Ruby on Rails</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMake"><span class="toc-number">1.9.3.</span> <span class="toc-text">CMake</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="toc-number">1.10.</span> <span class="toc-text">Git远程操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.11.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

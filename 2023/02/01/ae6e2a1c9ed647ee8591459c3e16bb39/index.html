@@ -1,0 +1,473 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>transparent | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="archlinux 透明代理 🕊 纵使千山多万壑，犹有青鸾踏云间全球化浪潮无法阻挡，我们常常有访问一些资料的客观需求。但有的时候因为一些因素往往导致无法正常访问（包括但不限于终端中下载文件特别慢、无法访问部分网站、部分应用无法正常使用等）。虽然前路千沟万壑，但无法阻挡我们前行的脚步。本节我们通过设置透明代理解决这一问题   🔖 这一节将会讨论：::: details 目录 [[toc]] ::">
+<meta property="og:type" content="article">
+<meta property="og:title" content="transparent">
+<meta property="og:url" content="http://example.com/2023/02/01/ae6e2a1c9ed647ee8591459c3e16bb39/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="archlinux 透明代理 🕊 纵使千山多万壑，犹有青鸾踏云间全球化浪潮无法阻挡，我们常常有访问一些资料的客观需求。但有的时候因为一些因素往往导致无法正常访问（包括但不限于终端中下载文件特别慢、无法访问部分网站、部分应用无法正常使用等）。虽然前路千沟万壑，但无法阻挡我们前行的脚步。本节我们通过设置透明代理解决这一问题   🔖 这一节将会讨论：::: details 目录 [[toc]] ::">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-01T04:57:59.108Z">
+<meta property="article:modified_time" content="2023-02-01T04:57:59.108Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/01/ae6e2a1c9ed647ee8591459c3e16bb39/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'transparent',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-01 12:57:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">transparent</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-01T04:57:59.108Z" title="发表于 2023-02-01 12:57:59">2023-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-01T04:57:59.108Z" title="更新于 2023-02-01 12:57:59">2023-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/">Arch-Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/rookie/">rookie</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="archlinux-透明代理"><a href="#archlinux-透明代理" class="headerlink" title="archlinux 透明代理"></a>archlinux 透明代理</h1><blockquote>
+<h3 id="🕊-纵使千山多万壑，犹有青鸾踏云间"><a href="#🕊-纵使千山多万壑，犹有青鸾踏云间" class="headerlink" title="🕊 纵使千山多万壑，犹有青鸾踏云间"></a>🕊 纵使千山多万壑，犹有青鸾踏云间</h3><p>全球化浪潮无法阻挡，我们常常有访问一些资料的客观需求。但有的时候因为一些因素往往导致无法正常访问（包括但不限于<strong>终端中下载文件特别慢、无法访问部分网站、部分应用无法正常使用</strong>等）。虽然前路千沟万壑，但无法阻挡我们前行的脚步。本节我们通过设置透明代理解决这一问题</p>
+</blockquote>
+<blockquote>
+<h3 id="🔖-这一节将会讨论："><a href="#🔖-这一节将会讨论：" class="headerlink" title="🔖 这一节将会讨论："></a>🔖 这一节将会讨论：</h3><p>::: details 目录</p>
+<p>[[toc]]</p>
+<p>:::</p>
+</blockquote>
+<p>::: danger ☢️ 警告</p>
+<p><em>第六条　计算机信息网络直接进行国际联网，必须使用邮电部国家公用电信网提供的国际出入口信道。</em></p>
+<p><em>任何单位和个人不得自行建立或者使用其他信道进行国际联网。</em></p>
+<p>-- 中华人民共和国计算机信息网络国际联网管理暂行规定</p>
+<p>:::</p>
+<h2 id="鉴于Qv2ray原项目已停止开发，新的版本还不够完善，有魔法上网需求者建议使用v2rayA替代Qv2ray"><a href="#鉴于Qv2ray原项目已停止开发，新的版本还不够完善，有魔法上网需求者建议使用v2rayA替代Qv2ray" class="headerlink" title="鉴于Qv2ray原项目已停止开发，新的版本还不够完善，有魔法上网需求者建议使用v2rayA替代Qv2ray"></a>鉴于Qv2ray原项目已<a target="_blank" rel="noopener" href="https://github.com/Qv2ray/Qv2ray">停止开发</a>，新的版本还不够完善，有魔法上网需求者建议使用v2rayA替代Qv2ray</h2><p>v2rayA的优势：</p>
+<ul>
+<li>支持一键开启全局代理，配置方便</li>
+<li>客户端运行在浏览器中，轻量</li>
+</ul>
+<h3 id="安装v2ray和v2rayA"><a href="#安装v2ray和v2rayA" class="headerlink" title="安装v2ray和v2rayA:"></a>安装v2ray和v2rayA:</h3><p>::: tip ℹ️ 提示</p>
+<p>v2rayA 2.0版本全面转向 V2Ray 第五代版本，不支持第四代与 Xray，建议升级 V2Ray 到 5.10 版本。<br>如果你坚持使用 Xray，那么你可以停留在 1.x 版本，或者自行编译 Master 分支。</p>
+<p>:::</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S v2ray v2raya</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S v2ray</span><br><span class="line">yay -S aur/v2raya</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<h3 id="配置v2raya"><a href="#配置v2raya" class="headerlink" title="配置v2raya"></a>配置v2raya</h3><p>安装后启动服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> --now v2raya</span><br></pre></td></tr></table></figure>
+
+<p>随后在开始菜单中搜索 v2rayA，点击即可打开浏览器页面。在其中加入订阅(没有魔法上网结点？请参考<a target="_blank" rel="noopener" href="https://archlinuxstudio.github.io/ArchLinuxTutorial/#/rookie/fxckGFW?id=%e5%b7%b2%e6%9c%89%e7%a7%91%e5%ad%a6%e4%b8%8a%e7%bd%91%e7%9a%84%e8%8a%82%e7%82%b9%e7%9a%84%e6%83%85%e5%86%b5">原文档相关内容</a>)。在设置中建议开启全局透明代理(选择<code>大陆白名单</code>)，同时开启防止 DNS 劫持功能，否则可能会拿不到被 DNS 污染的资源(如 github raw)。</p>
+<h2 id="安装和配置Qv2ray"><a href="#安装和配置Qv2ray" class="headerlink" title="安装和配置Qv2ray"></a>安装和配置Qv2ray</h2><h3 id="1-安装-Qv2ray-和-V2Ray-x2F-Xray-内核"><a href="#1-安装-Qv2ray-和-V2Ray-x2F-Xray-内核" class="headerlink" title="1. 安装 Qv2ray 和 V2Ray &#x2F; Xray 内核"></a>1. 安装 Qv2ray 和 V2Ray &#x2F; Xray 内核</h3><p>通过以下命令安装 <a target="_blank" rel="noopener" href="https://github.com/Qv2ray/Qv2ray">Qv2ray</a><sup>cn</sup> 和 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/?sort=&q=v2ray&maintainer=&flagged=">V2Ray</a> &#x2F; <a target="_blank" rel="noopener" href="https://github.com/XTLS/Xray-core">Xray</a><sup>cn</sup> 内核：</p>
+<p>:::: code-group<br>::: code-group-item V2Ray</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S qv2ray-dev-git v2ray</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item Xray</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S qv2ray-dev-git xray</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p>::: tip ℹ️ 提示</p>
+<p>若安装 V2Ray 核心时报错，请尝试更换镜像源。</p>
+<p>:::</p>
+<p><img src="/../static/rookie/transparent_qv2ray.png" alt="Qv2ray"></p>
+<blockquote>
+<h4 id="📑-相关资料：Qv2ray"><a href="#📑-相关资料：Qv2ray" class="headerlink" title="📑 相关资料：Qv2ray"></a>📑 相关资料：Qv2ray</h4><p>Qv2ray 是一个使用 Qt 编写的跨平台的 v2ray 图形前端。</p>
+</blockquote>
+<h3 id="2-配置-Qv2ray"><a href="#2-配置-Qv2ray" class="headerlink" title="2. 配置 Qv2ray"></a>2. 配置 Qv2ray</h3><ol>
+<li>打开 Qv2ray &gt; 点击 <code>首选项</code>：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_cfg-1.png" alt="Qv2ray\_config-1"></p>
+<ol start="2">
+<li>在 <code>内核设置</code> 选项卡中，点击 <code>检查 V2Ray 核心设置</code> 以验证 V2Ray 核心设置：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_cfg-2.png" alt="Qv2ray\_config-2"></p>
+<p>::: tip ℹ️ 提示</p>
+<ol>
+<li><p>若使用 Xray 内核，则先需修改：</p>
+<ol>
+<li><p><code>V2Ray 核心可执行文件路径</code> 为 <code>/usr/bin/xray</code></p>
+</li>
+<li><p><code>V2Ray 资源目录</code> 为 <code>/usr/share/xray</code></p>
+</li>
+</ol>
+</li>
+<li><p>再点击 <code>检查 V2Ray 核心设置</code> 以验证 Xray 核心设置：</p>
+</li>
+</ol>
+<p><img src="/../static/rookie/transparent_cfg-3.png" alt="Qv2ray\_config-3"></p>
+<p>:::</p>
+<h3 id="3-配置订阅"><a href="#3-配置订阅" class="headerlink" title="3. 配置订阅"></a>3. 配置订阅</h3><ol>
+<li>在主窗口中点击 <code>分组</code>：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_cfg-4.png" alt="Qv2ray\_config-4"></p>
+<ol start="2">
+<li>修改 <code>分组名称</code> 的 <code>默认分组</code> 为自定义名称（通常为 ✈ 场名称）：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_cfg-5.png" alt="Qv2ray\_config-5"></p>
+<ol start="3">
+<li><p>切换到 <code>订阅设置</code> 选项卡并进行如下配置：</p>
+<ol>
+<li><p>勾选 <code>此组是一个订阅</code></p>
+</li>
+<li><p>设置 <code>订阅地址</code> 为 ✈ 场提供的 <code>订阅链接</code></p>
+</li>
+<li><p>点击 <code>更新订阅</code> 按钮并等待完成</p>
+</li>
+<li><p>点击 <code>确定</code> 以应用设置并关闭对话框</p>
+</li>
+</ol>
+</li>
+</ol>
+<p><img src="/../static/rookie/transparent_cfg-6.png" alt="Qv2ray\_config-6"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>若使用 <code>qv2ray-dev-git</code><sup>cn</sup>，则需要注意的是最新的 <code>qv2ray-dev-git</code> 已经将机场的默认订阅类型改为规范 <code>SIP008</code>。</p>
+<p>如果你的 ✈ 场订阅类型为 <code>base64</code>，则需要在 <code>订阅设置</code> 面板 &gt; <code>订阅类型</code> 中，将 <code>SIP008</code> 改为 <code>base64</code>，否则你将拿不到订阅链接中的任何节点。</p>
+<p>:::</p>
+<h3 id="4-通过系统代理方式尝试连接"><a href="#4-通过系统代理方式尝试连接" class="headerlink" title="4. 通过系统代理方式尝试连接"></a>4. 通过系统代理方式尝试连接</h3><ol>
+<li>双击分组中添加的订阅即可查看更新出的节点，右键并点击 <code>测试延迟</code> 可以测试分组或节点的延迟：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_connect-1.png" alt="Qv2ray\_connect-1"></p>
+<ol start="2">
+<li>右键需要连接的节点 &gt; 点击 <code>连接到此服务器</code> 即可连接：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_connect-2.png" alt="Qv2ray\_connect-2"></p>
+<ol start="3">
+<li>打开不存在的网站验证连接：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_connect-3.png" alt="Qv2ray\_connect-3"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>Qv2ray 会自动配置系统代理。也可以点击托盘图标 &gt; 在弹出菜单中，依次选择 <code>系统代理</code> &gt; <code>启用 / 禁用系统代理</code> 以启用或禁用系统代理。</p>
+<p>:::</p>
+<p>::: tip ℹ️ 提示</p>
+<p>GNOME 的系统代理设置非常有效。这是因为 GNOME 的系统代理设置得到了普遍的适配。</p>
+<p>但是 KDE 的系统代理设置更像是一个玩具。甚至 KDE 系列应用程序本身也不会读取和使用那个配置。所以我们需要通过设置透明代理的方式解决这个问题。</p>
+<p>同时这也可以使终端下的应用使用代理连接（如 git）。</p>
+<p>:::</p>
+<h3 id="5-安装-cgproxy"><a href="#5-安装-cgproxy" class="headerlink" title="5. 安装 cgproxy"></a>5. 安装 cgproxy</h3><p>通过以下命令安装 <a target="_blank" rel="noopener" href="https://github.com/springzfx/cgproxy">cgproxy</a><sup>cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S cgproxy-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/cgproxy</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<h3 id="6-配置-Qv2ray-透明代理设置"><a href="#6-配置-Qv2ray-透明代理设置" class="headerlink" title="6. 配置 Qv2ray 透明代理设置"></a>6. 配置 Qv2ray 透明代理设置</h3><ol>
+<li>打开 Qv2ray &gt; <code>首选项</code> &gt; <code>入站设置</code> &gt; 取消勾选 <code>设置系统代理</code>：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_transparent-qv2ray-1.png" alt="Qv2ray\_transparent-1"></p>
+<ol start="2">
+<li>勾选 <code>透明代理设置</code>：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_transparent-qv2ray-2.png" alt="Qv2ray\_transparent-2"></p>
+<p>其它设置保持默认即可，<code>IPv4 端口</code> 可自定义为其它端口。</p>
+<p>::: tip ℹ️ 提示</p>
+<p>关于代理 <code>udp</code> 流量的设置稍微有一些复杂，配置有误便会导致无法上网。</p>
+<p>本指南不对此展开介绍，如有需要可参考 <a target="_blank" rel="noopener" href="https://www.v2ray.com/chapter_02/04_dns.html">Project V 官方网站相关内容</a>。一般情况下不需要代理 <code>udp</code> 流量。</p>
+<p>而属于 <code>udp</code> 类型的 <code>dns</code> 流量，我们只需要在系统设置里设置一个可用的 DNS 服务器即可。</p>
+<p>:::</p>
+<ol start="3">
+<li>点击 <code>确定</code> 保存设置</li>
+</ol>
+<h3 id="7-配置-cgproxy"><a href="#7-配置-cgproxy" class="headerlink" title="7. 配置 cgproxy"></a>7. 配置 cgproxy</h3><ol>
+<li>通过 <code>vim</code> 编辑 <code>/etc/cgproxy/config.json</code> 文件：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/cgproxy/config.json</span><br></pre></td></tr></table></figure>
+
+<p>进行如下修改：</p>
+<ul>
+<li>在 <code>cgroup_proxy</code> 中括号里加上 <code>&quot;/&quot;</code>（包含引号）</li>
+<li>将 <code>port</code> 改为 Qv2ray 首选项里的透明代理端口（默认是和 Qv2ray 默认对应的 <code>12345</code>）</li>
+<li>将 <code>enable_dns</code>、<code>enable_udp</code>、<code>enable_ipv6</code> 改为 <code>false</code></li>
+<li>如果希望当本机作为网关设备时为连接到本机网关的其他设备（如连接到本机开设的 wifi 热点的设备）也提供透明代理，则将 <code>enable_gateway</code> 改为 <code>true</code></li>
+</ul>
+<p><img src="/../static/rookie/transparent_cgproxy.png" alt="cgproxy"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>cgproxy 默认配置是代理所有 <code>tcp</code> 和 <code>udp</code>、<code>ipv4</code> 和 <code>ipv6</code> 的流量。</p>
+<p>如果不希望代理其中的某种（些）流量，则将对应的 <code>enable_xxx</code> 改为 <code>false</code>。注意，这里的配置要和 Qv2ray 选项里的配置一致（例如 Qv2ray 选项里没有勾选 <code>udp</code>，则这里务必把 <code>enable_udp</code> 改为 <code>false</code>）</p>
+<p>:::</p>
+<ol start="2">
+<li>保存并退出 <code>vim</code></li>
+</ol>
+<h3 id="8-配置可用的-DNS-服务"><a href="#8-配置可用的-DNS-服务" class="headerlink" title="8. 配置可用的 DNS 服务"></a>8. 配置可用的 DNS 服务</h3><ol>
+<li>打开 <code>系统设置</code> &gt; 点击侧栏 <code>连接</code>：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_system-cfg-1.png" alt="system-config\_step-1"></p>
+<ol start="2">
+<li>选择当前连接 &gt; 点击 <code>ipv4</code> 选项卡：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_system-cfg-2.png" alt="system-config\_step-2"></p>
+<ol start="3">
+<li>在 <code>其它 DNS 服务器</code> 中添加没有污染的 DNS 服务器：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_system-cfg-3.png" alt="system-config\_step-3"></p>
+<ol start="4">
+<li>保存并退出系统设置</li>
+</ol>
+<h3 id="9-启动-cgproxy-服务"><a href="#9-启动-cgproxy-服务" class="headerlink" title="9. 启动 cgproxy 服务"></a>9. 启动 cgproxy 服务</h3><ol>
+<li><p>在 Qv2ray 中连接一个节点</p>
+</li>
+<li><p>在 Qv2ray 托盘菜单中关闭系统代理（如果已经启动）</p>
+</li>
+<li><p>通过以下命令启动 cgproxy 服务：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start cgproxy.service</span><br></pre></td></tr></table></figure>
+
+<p>::: tip ℹ️ 提示</p>
+<p>每次重启后都要重新命令启动 cgproxy 服务。</p>
+<p>若要设为开机自启，请执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> cgproxy.service</span><br></pre></td></tr></table></figure>
+
+<p>若要关闭 cgproxy 服务，请执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop cgproxy.service</span><br></pre></td></tr></table></figure>
+
+<p>:::</p>
+<ol start="4">
+<li>通过以下命令检查 cgproxy 服务运行情况：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status cgproxy.service</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../static/rookie/transparent_cgproxy-start.png" alt="cgproxy-start"></p>
+<ol start="5">
+<li>打开不存在的网站验证连接：</li>
+</ol>
+<p><img src="/../static/rookie/transparent_check.png" alt="check"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>如果 cgproxy 不生效 😢，请尝试以下步骤：</p>
+<ol>
+<li>观察 Qv2ray 日志，看流量是否被定向到了 Qv2ray</li>
+<li>如果没有，请检查配置是否准确、cgproxy 服务是否开启等</li>
+<li>如果还是没发现问题，尝试更换端口</li>
+<li>使用以下命令尝试给核心文件加上相应的特权：</li>
+</ol>
+<p>:::</p>
+<p>:::: code-group<br>::: code-group-item V2Ray</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">setcap</span> <span class="string">&quot;cap_net_admin,cap_net_bind_service=ep&quot;</span> /usr/bin/v2ray</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item Xray</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">setcap</span> <span class="string">&quot;cap_net_admin,cap_net_bind_service=ep&quot;</span> /usr/bin/xray</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<h2 id="Clash"><a href="#Clash" class="headerlink" title="Clash"></a>Clash</h2><p>clash 本身是一个网络连接的代理内核，通过预先定义的<strong>规则</strong>，对网络连接进行转发。clash 内核规定了配置文件 <code>config.yaml</code> 的格式。支持VMess、Shadowsocks、Trojan、Snell 协议。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置文件</span></span><br><span class="line">vim ~/.config/clash/config.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="Clash-for-Windows"><a href="#Clash-for-Windows" class="headerlink" title="Clash for Windows"></a>Clash for Windows</h3><p>这是一个比较推荐的客户端，支持Windows&#x2F;macOS&#x2F;Linux ，基于Clash 和 Electron 的一个GUI 客户端。未开源</p>
+<pre><code>yay -S clash-for-windows-bin
+</code></pre>
+<h2 id="其它代理方法（非透明代理）"><a href="#其它代理方法（非透明代理）" class="headerlink" title="其它代理方法（非透明代理）"></a>其它代理方法（非透明代理）</h2><blockquote>
+<p>虽然 cgproxy 很好，但有的时候就是会有诡异的 bug。本指南为了内容的全面性，介绍其它的代理方法。</p>
+</blockquote>
+<h3 id="系统代理"><a href="#系统代理" class="headerlink" title="系统代理"></a>系统代理</h3><p>如步骤 <a href="./transparent.md#_4-%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86%E6%96%B9%E5%BC%8F%E5%B0%9D%E8%AF%95%E8%BF%9E%E6%8E%A5">4. 通过系统代理方式尝试连接</a> 所述，但在很多应用不生效（主流浏览器已支持 KDE 的系统代理）。</p>
+<h3 id="应用自身的代理配置"><a href="#应用自身的代理配置" class="headerlink" title="应用自身的代理配置"></a>应用自身的代理配置</h3><h4 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h4><p>Firefox 可使用系统代理，也可手动配置：</p>
+<p><img src="/../static/rookie/transparent/firefox.png" alt="Firefox"></p>
+<h4 id="Telegram"><a href="#Telegram" class="headerlink" title="Telegram"></a>Telegram</h4><ol>
+<li>点击 <code>Settings</code> &gt; <code>Advanced</code> &gt; <code>Connection type</code> &gt; <code>Use custom proxy</code></li>
+</ol>
+<p><img src="/../static/rookie/transparent/telegram-1.png" alt="Telegram\_step-1"></p>
+<ol start="2">
+<li>点击 <code>ADD PROXY</code> &gt; 填写合适的类型和端口 &gt; <code>SAVE</code>：</li>
+</ol>
+<p><img src="/../static/rookie/transparent/telegram-2.png" alt="Telegram\_step-2"></p>
+<h4 id="Visual-Studio-Code（code-OSS）"><a href="#Visual-Studio-Code（code-OSS）" class="headerlink" title="Visual Studio Code（code OSS）"></a>Visual Studio Code（code OSS）</h4><ol>
+<li><p>点击 <code>File</code>（<code>文件</code>） &gt; <code>Preference</code>（<code>首选项</code>） &gt; <code>Settings</code>（<code>设置</code>）</p>
+</li>
+<li><p>搜索 <code>proxy</code>，在其中填入 http 代理地址（<code>http://127.0.0.1:xxxx</code>）即可：</p>
+</li>
+</ol>
+<p><img src="/../static/rookie/transparent/vscode.png" alt="vscode"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>其它应用请自行寻找代理设置。</p>
+<p>:::</p>
+<h3 id="export"><a href="#export" class="headerlink" title="export"></a>export</h3><p>通过以下 <code>export</code> 命令设置当前终端的代理方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:xxxx</span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:xxxx</span><br><span class="line"><span class="built_in">export</span> all_proxy=http://127.0.0.1:xxxx</span><br></pre></td></tr></table></figure>
+
+<p>::: tip ℹ️ 提示</p>
+<p>不同终端命令所识别的环境变量名不同，如 <code>all_proxy</code> 对 <code>curl</code> 生效，而对 <code>wget</code> 则不生效，具体可查看各个命令的 <code>man page</code></p>
+<p>:::</p>
+<h3 id="proxychains-ng"><a href="#proxychains-ng" class="headerlink" title="proxychains-ng"></a>proxychains-ng</h3><p>如果对于一个应用，KDE 系统代理不生效，在终端 <code>export</code> 了 <code>ALL_PROXY</code> 变量再用终端启动此应用代理也不生效，并且这个应用自身也没有配置代理的选项，此时可以尝试使用 proxychains-ng。</p>
+<p>它可以为单行命令配置代理。它是一个预加载的 hook，允许通过一个或多个 SOCKS 或 HTTP 代理重定向现有动态链接程序的 TCP 流量。</p>
+<ol>
+<li>通过以下命令安装 proxychains-ng 包：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S proxychains-ng</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>通过 <code>vim</code> 编辑 <code>/etc/proxychains.conf</code> 文件：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/proxychains.conf</span><br></pre></td></tr></table></figure>
+
+<p>把配置文件中最后两行改为 Qv2ray 代理的 ip 和端口：</p>
+<p><img src="/../static/rookie/transparent/proxychains-1.png" alt="proxychains\_step-1"></p>
+<p>在 <code>proxy_dns</code> 一行前添加 <code>#</code> 注释掉此行，否则使用 <code>proxychains</code> 启动 yay 会报错：</p>
+<p><img src="/../static/rookie/transparent/proxychains-2.png" alt="proxychains\_step-2"></p>
+<p>在 <code>quiet_mode</code> 一行前删除 <code>#</code> 解注释掉此行，以关闭调用 library 产生的输出：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Quiet mode (no output from library)</span></span><br><span class="line"><span class="attr">quiet_mode</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用代理方式为在单一命令前添加 <code>proxychains</code> 前缀：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains %<span class="built_in">command</span>%</span><br></pre></td></tr></table></figure>
+
+<p>如使用 proxychains-ng 代理 yay:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains yay -Syyu</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../static/rookie/transparent/proxychains-3.png" alt="proxychains\_step-3"></p>
+<blockquote>
+<p>📔 本节参考资料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://qv2ray.net/lang/zh/">Qv2ray</a></li>
+</ul>
+</blockquote>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/01/ac2931223bbb42afb1b9541b5a23a1dd/" title="pre-install"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">pre-install</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/01/b33eea2068bd46b78f9980f6ba82c07d/" title="pre-install"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">pre-install</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#archlinux-%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">archlinux 透明代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%95%8A-%E7%BA%B5%E4%BD%BF%E5%8D%83%E5%B1%B1%E5%A4%9A%E4%B8%87%E5%A3%91%EF%BC%8C%E7%8A%B9%E6%9C%89%E9%9D%92%E9%B8%BE%E8%B8%8F%E4%BA%91%E9%97%B4"><span class="toc-number">1.0.1.</span> <span class="toc-text">🕊 纵使千山多万壑，犹有青鸾踏云间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%96-%E8%BF%99%E4%B8%80%E8%8A%82%E5%B0%86%E4%BC%9A%E8%AE%A8%E8%AE%BA%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">🔖 这一节将会讨论：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%89%B4%E4%BA%8EQv2ray%E5%8E%9F%E9%A1%B9%E7%9B%AE%E5%B7%B2%E5%81%9C%E6%AD%A2%E5%BC%80%E5%8F%91%EF%BC%8C%E6%96%B0%E7%9A%84%E7%89%88%E6%9C%AC%E8%BF%98%E4%B8%8D%E5%A4%9F%E5%AE%8C%E5%96%84%EF%BC%8C%E6%9C%89%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%E9%9C%80%E6%B1%82%E8%80%85%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8v2rayA%E6%9B%BF%E4%BB%A3Qv2ray"><span class="toc-number">1.1.</span> <span class="toc-text">鉴于Qv2ray原项目已停止开发，新的版本还不够完善，有魔法上网需求者建议使用v2rayA替代Qv2ray</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85v2ray%E5%92%8Cv2rayA"><span class="toc-number">1.1.1.</span> <span class="toc-text">安装v2ray和v2rayA:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEv2raya"><span class="toc-number">1.1.2.</span> <span class="toc-text">配置v2raya</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AEQv2ray"><span class="toc-number">1.2.</span> <span class="toc-text">安装和配置Qv2ray</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85-Qv2ray-%E5%92%8C-V2Ray-x2F-Xray-%E5%86%85%E6%A0%B8"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 安装 Qv2ray 和 V2Ray &#x2F; Xray 内核</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%91-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99%EF%BC%9AQv2ray"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">📑 相关资料：Qv2ray</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE-Qv2ray"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 配置 Qv2ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E8%AE%A2%E9%98%85"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 配置订阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86%E6%96%B9%E5%BC%8F%E5%B0%9D%E8%AF%95%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 通过系统代理方式尝试连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AE%89%E8%A3%85-cgproxy"><span class="toc-number">1.2.5.</span> <span class="toc-text">5. 安装 cgproxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE-Qv2ray-%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.6.</span> <span class="toc-text">6. 配置 Qv2ray 透明代理设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E9%85%8D%E7%BD%AE-cgproxy"><span class="toc-number">1.2.7.</span> <span class="toc-text">7. 配置 cgproxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E9%85%8D%E7%BD%AE%E5%8F%AF%E7%94%A8%E7%9A%84-DNS-%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.8.</span> <span class="toc-text">8. 配置可用的 DNS 服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%90%AF%E5%8A%A8-cgproxy-%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.9.</span> <span class="toc-text">9. 启动 cgproxy 服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clash"><span class="toc-number">1.3.</span> <span class="toc-text">Clash</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Clash-for-Windows"><span class="toc-number">1.3.1.</span> <span class="toc-text">Clash for Windows</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E4%BB%A3%E7%90%86%E6%96%B9%E6%B3%95%EF%BC%88%E9%9D%9E%E9%80%8F%E6%98%8E%E4%BB%A3%E7%90%86%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">其它代理方法（非透明代理）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%90%86"><span class="toc-number">1.4.1.</span> <span class="toc-text">系统代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%87%AA%E8%BA%AB%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text">应用自身的代理配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Firefox"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">Firefox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Telegram"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">Telegram</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Visual-Studio-Code%EF%BC%88code-OSS%EF%BC%89"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">Visual Studio Code（code OSS）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#export"><span class="toc-number">1.4.3.</span> <span class="toc-text">export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proxychains-ng"><span class="toc-number">1.4.4.</span> <span class="toc-text">proxychains-ng</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>daily | 知识库</title><meta name="author" content="Public"><meta name="copyright" content="Public"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="常用软件 🌼 采菊东篱下，悠然见南山本小节讨论日常常用的软件，包括浏览器、电子书阅读器、截图工具、网盘、图片查看器等等   🔖 这一节将会讨论：::: details 目录 [[toc]] :::  ::: tip ℹ️ 提示 指南中带有 aur 角标的软件代表是在 AUR（Arch User Repository）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="daily">
+<meta property="og:url" content="http://example.com/2023/02/01/9ffcef65aedc4205b8853199fa13e0a8/index.html">
+<meta property="og:site_name" content="知识库">
+<meta property="og:description" content="常用软件 🌼 采菊东篱下，悠然见南山本小节讨论日常常用的软件，包括浏览器、电子书阅读器、截图工具、网盘、图片查看器等等   🔖 这一节将会讨论：::: details 目录 [[toc]] :::  ::: tip ℹ️ 提示 指南中带有 aur 角标的软件代表是在 AUR（Arch User Repository）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg">
+<meta property="article:published_time" content="2023-02-01T04:57:59.104Z">
+<meta property="article:modified_time" content="2023-02-02T03:21:23.773Z">
+<meta property="article:author" content="Public">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/02/01/9ffcef65aedc4205b8853199fa13e0a8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'daily',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 11:21:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script>if (location.pathname.endsWith('/')) {location += 'index.html';}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://meowrain.cn/upload/2022/11/QQ%E5%9B%BE%E7%89%8720221127155827.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">495</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">47</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="知识库"><span class="site-name">知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">daily</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-01T04:57:59.104Z" title="发表于 2023-02-01 12:57:59">2023-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T03:21:23.773Z" title="更新于 2023-02-02 11:21:23">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/">Arch-Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/Arch-Linux/apps/">apps</a></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><h1 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h1><blockquote>
+<h3 id="🌼-采菊东篱下，悠然见南山"><a href="#🌼-采菊东篱下，悠然见南山" class="headerlink" title="🌼 采菊东篱下，悠然见南山"></a>🌼 采菊东篱下，悠然见南山</h3><p>本小节讨论日常常用的软件，包括浏览器、电子书阅读器、截图工具、网盘、图片查看器等等</p>
+</blockquote>
+<blockquote>
+<h3 id="🔖-这一节将会讨论："><a href="#🔖-这一节将会讨论：" class="headerlink" title="🔖 这一节将会讨论："></a>🔖 这一节将会讨论：</h3><p>::: details 目录</p>
+<p>[[toc]]</p>
+<p>:::</p>
+</blockquote>
+<p>::: tip ℹ️ 提示</p>
+<p>指南中带有 <sup>aur</sup> 角标的软件代表是在 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/">AUR</a>（Arch User Repository）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新不及时、无法安装、使用出错等。</p>
+<p>指南中带有 <sup>cn</sup> 角标的软件代表是在 <a target="_blank" rel="noopener" href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/">archlinuxcn</a>（Arch Linux 中文社区仓库）中用户自行打包的软件。不在 arch 官方支持范围内，可能会出现各种问题如更新不及时、无法安装、使用出错等。</p>
+<p>指南中带有 <sup>EULA</sup> 角标的软件代表是 <a target="_blank" rel="noopener" href="https://www.gnu.org/proprietary/proprietary.html">专有软件</a>。请自行斟酌是否使用。</p>
+<p>:::</p>
+<h2 id="🏄🏻-网页浏览器"><a href="#🏄🏻-网页浏览器" class="headerlink" title="🏄🏻 网页浏览器"></a>🏄🏻 网页浏览器</h2><h3 id="Mozilla-Firefox"><a href="#Mozilla-Firefox" class="headerlink" title="Mozilla Firefox"></a>Mozilla Firefox</h3><p>::: tip ℹ️ 提示</p>
+<p>在步骤 <a href=":/73eac22b9b1e42f08b3823da9db304ee#_6-%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD%E5%8C%85">6. 安装基础功能包</a> 中若已安装，则无需重复安装。</p>
+<p>:::</p>
+<p>火狐浏览器（Mozilla Firefox）是一个自由开源的网页浏览器，由 <a target="_blank" rel="noopener" href="https://foundation.mozilla.org/">Mozilla 基金会</a> 及其非营利子公司 <a target="_blank" rel="noopener" href="https://www.mozilla.org/zh-CN/about/">Mozilla 公司</a> 开发。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/firefox/">Firefox 浏览器</a>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S firefox</span><br></pre></td></tr></table></figure>
+
+<p>同时还有 <a target="_blank" rel="noopener" href="https://www.mozilla.org/zh-CN/firefox/developer/">Firefox 浏览器开发者版</a>，使用此版本可获得最新功能、高速性能，以及打造开放 Web 所需的开发工具：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S firefox-developer-edition</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/ac7117f052b84f32885f26208d6c7acd.png" alt="firefox-developer-edition"></p>
+<h3 id="Chromium"><a href="#Chromium" class="headerlink" title="Chromium"></a>Chromium</h3><p>::: tip ℹ️ 提示</p>
+<p>在步骤 <a href=":/73eac22b9b1e42f08b3823da9db304ee#_6-%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD%E5%8C%85">6. 安装基础功能包</a> 中若已安装，则无需重复安装。</p>
+<p>:::</p>
+<p><a target="_blank" rel="noopener" href="https://www.chromium.org/">Chromium</a> 是 Google 为发展浏览器 Google Chrome 而发布的免费开源软件项目，以 <a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/LICENSE">BSD 许可协议</a> 等数种许可发行并开源。Chromium 与 Google Chrome 共享大部分代码和功能。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/chromium/">Chromium</a>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S chromium</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/3c1dff03a57040119427fc4a66c10f52.png" alt="chromium"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>Chromium 已不支持登录谷歌帐号进行同步。若有需要请使用 <a href=":/9ffcef65aedc4205b8853199fa13e0a8#google-chrome">Google Chrome</a>。</p>
+<p>:::</p>
+<h3 id="Brave"><a href="#Brave" class="headerlink" title="Brave"></a>Brave</h3><p>Brave 是一个基于 Chromium 网页浏览器及其 Blink 排版引擎的自由开源的网页浏览器，由 Mozilla 项目的联合创始人、JavaScript 的创造者布兰登·艾克宣布。它宣称阻止网站跟踪器和移除侵入式网络广告。该浏览器也宣称通过与广告客户分享更少数据来改善网络隐私。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/falkon/">Brave</a><sup>cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S brave-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/brave-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S brave-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/b1d82fa481e9494f9fe0221af2bdce8d.png" alt="brave"></p>
+<h3 id="Falkon"><a href="#Falkon" class="headerlink" title="Falkon"></a>Falkon</h3><p>Falkon 是 KDE 开发的一款全新的 Qt 网络浏览器。它是一款轻量级的跨平台浏览器。这个项目当初仅仅作为教育项目。但是从一开始，Falkon 就成长为一款功能丰富的浏览器。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/falkon/">Falkon</a><sup>extra &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item extra</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S falkon</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S falkon-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/b50a417c10d640a280965a4ec6f191ed.png" alt="falkon"></p>
+<h3 id="Tor-浏览器"><a href="#Tor-浏览器" class="headerlink" title="Tor 浏览器"></a>Tor 浏览器</h3><p><a target="_blank" rel="noopener" href="https://www.torproject.org/zh-CN/">Tor 浏览器</a> 是实现匿名通信的自由软件。其名源于“The Onion Router”（洋葱路由器）的英语缩写。用户可透过 Tor 浏览器接达由全球志愿者免费提供，包含 6000+ 个中继的覆盖网络，从而达至隐藏用户真实地址、避免网络监控及流量分析的目的。Tor 浏览器用户的互联网活动（包括浏览在线网站、帖子以及即时消息等通信形式）<strong>相对</strong>较难追踪。Tor 的设计原意在于保障用户的个人隐私，以及不受监控地进行秘密通信的自由和能力。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/tor-browser/">Tor 浏览器</a><sup>cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S tor-browser</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S tor-browser</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/309b1b38d11d4a82852327a6ca6d92f6.png" alt="tor"></p>
+<h3 id="Mircrosoft-Edge"><a href="#Mircrosoft-Edge" class="headerlink" title="Mircrosoft Edge"></a>Mircrosoft Edge</h3><p>Microsoft Edge（微软前沿浏览器）是一个由微软研发的浏览器，于 2015 年 1 月 21 日公布，2015 年 3 月 30 日公开发布第一个预览版。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/microsoft-edge-stable-bin">Microsoft Edge</a><sup>EULA &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item aur（beta）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S microsoft-edge-beta-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur（dev）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S microsoft-edge-dev-bin</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/626099df2e24425caec67d269b69624e.png" alt="edge"></p>
+<h3 id="Google-Chrome"><a href="#Google-Chrome" class="headerlink" title="Google Chrome"></a>Google Chrome</h3><p>Google Chrome 是由 Google 开发的免费网页浏览器。Chrome 相应的开放源代码计划名为 Chromium，而 Google Chrome 本身是专有软件，未开放全部源代码。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/google-chrome/">Google Chrome</a><sup>EULA &#x2F; cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S google-chrome</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S google-chrome</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/0066215c823e4820a17e02e3ceff3d83.png" alt="chrome"></p>
+<h3 id="Opera"><a href="#Opera" class="headerlink" title="Opera"></a>Opera</h3><p>Opera 是由 Opera 软件公司为个人电脑推出的网页浏览器。</p>
+<p>Opera 软件公司为纳斯达克上市的挪威软件公司，现在已被中国商人周亚辉联合 <a target="_blank" rel="noopener" href="https://www.360.cn/">奇虎 360</a> 收购。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/community/x86_64/opera/">Opera</a><sup>EULA &#x2F; community &#x2F; cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item community</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S opera</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item cn（beta）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S opera-beta</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur（beta）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/opera-beta</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/4d5c0b0ba8c5445fb83ebbb29b3eef01.png" alt="opera"></p>
+<h3 id="Vivaldi"><a href="#Vivaldi" class="headerlink" title="Vivaldi"></a>Vivaldi</h3><p>‎Vivaldi‎‎ 是韦瓦第技术（Vivaldi Technologies）公司开发的网页浏览器 ‎‎。由创始人谭咏文（前 ‎‎Opera 软件公司的首席执行官、创始人）与富田龙起（Tatsuki Tomita，前 Opera 软件公司资深副总经理）在离开 Opera 公司后另起炉灶新创办的浏览器 ‎‎。 ‎</p>
+<p>‎Vivaldi 追求「为我们的朋友而打造」，旨在为原先 Opera 的忠实用户，如高阶技术专家、重度的互联网用户，提供原 Presto Opera 的诸多专属功能，例如自订面板、笔记、分页群组、单键快捷键等等。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/community/x86_64/vivaldi/">‎Vivaldi</a><sup>EULA</sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S vivaldi</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/737a4463811d4155803e03971fad0eb4.png" alt="vivaldi"></p>
+<h2 id="📖-PDF-以及电子书阅读器"><a href="#📖-PDF-以及电子书阅读器" class="headerlink" title="📖 PDF 以及电子书阅读器"></a>📖 PDF 以及电子书阅读器</h2><p>PDF 可以使用上述的网页浏览器进行查看，也可使用专门的阅读器。而一些特别的电子书格式（如 azw3）则只能使用专门的电子书阅读器。</p>
+<h3 id="Okular"><a href="#Okular" class="headerlink" title="Okular"></a>Okular</h3><p>Okular 是 KDE 开发的一款功能丰富、轻巧快速的跨平台文档阅读器。可以使用它来阅读 PDF 文档、漫画电子书、Epub 电子书，浏览图像，显示 Markdown 文档等。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/okular/">Okular</a><sup>extra &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item extra</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S okular</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S okular-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/8bbd503a54c841b6b431c64afa31f86c.png" alt="okular"></p>
+<h3 id="calibre"><a href="#calibre" class="headerlink" title="calibre"></a>calibre</h3><p>calibre 是一款功能强大且易于使用的电子书管理器。支持 epub、txt、azw3 等文件格式。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/community/x86_64/calibre/">calibre</a><sup>community &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item community</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S calibre</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S calibre-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/62cb67b5b70d419199c288d037517eec.png" alt="calibre"></p>
+<h2 id="📷-截图工具"><a href="#📷-截图工具" class="headerlink" title="📷 截图工具"></a>📷 截图工具</h2><h3 id="火焰截图"><a href="#火焰截图" class="headerlink" title="火焰截图"></a>火焰截图</h3><p><a target="_blank" rel="noopener" href="https://github.com/flameshot-org/flameshot">火焰截图（Flameshot）</a> 是一款强大但简单易用的屏幕截图软件。截图后可以进行快捷的编辑。</p>
+<p>::: details 视频指南（视频不清晰请前往哔哩哔哩观看）</p>
+<div
+  style="
+    position: relative;
+    padding: 30% 45%;
+    margin-top: 32px;
+  "
+>
+  <iframe
+    style="position: absolute; width: 100%; height: 100%; left: 0; top: 0"
+    src="//player.bilibili.com/player.html?aid=417575346&bvid=BV1hV411H7Sf&cid=322832461&page=1&as_wide=1&high_quality=1&danmaku=1"
+    scrolling="no"
+    border="0"
+    frameborder="no"
+    framespacing="0"
+    allowfullscreen="true"
+  ></iframe>
+</div>
+
+<p>:::</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/community/x86_64/flameshot/">火焰截图</a><sup>community &#x2F; cn &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item community</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S flameshot</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item cn (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S flameshot-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/flameshot-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+</li>
+<li><p>配置快捷键：</p>
+<ol>
+<li><p>打开 <code>系统设置</code> &gt; 点击侧栏 <code>快捷键</code> &gt; <code>自定义快捷键</code></p>
+</li>
+<li><p>点击 <code>编辑</code> &gt; <code>新建</code> &gt; <code>全局快捷键</code> &gt; <code>命令/URL：</code></p>
+</li>
+<li><p>点击选项卡 <code>触发器</code> &gt; 将 <code>快捷键</code> 设置为自定义快捷键：</p>
+</li>
+</ol>
+<p><img src="/resources/0b7da7de21ab4443a930216543dc87c2.png" alt="flameshot-1"></p>
+<ol start="4">
+<li>点击选项卡 <code>动作</code> &gt; 将 <code>命令/URL：</code> 设置为 <code>flameshot gui</code>：</li>
+</ol>
+<p><img src="/resources/b2c6f517f57d42caa43cfa9ce60dd687.png" alt="flameshot-2"></p>
+</li>
+</ol>
+<h3 id="Spectacle"><a href="#Spectacle" class="headerlink" title="Spectacle"></a>Spectacle</h3><p>Spectacle 是 KDE 开发的用于抓取桌面截图的简单应用程序。它可以抓取整个桌面、单个显示器、当前活动窗口、鼠标所在的窗口或是屏幕上的一块矩形区域的图像。截取的图像可被打印、发送到其它应用程序进行处理、或是直接保存下来。</p>
+<p>相比火焰截图可以准确的抓取单个窗口，但编辑功能没有火焰截图强大。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/spectacle/">Spectacle</a><sup>extra &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item extra</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S spectacle</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S spectacle-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/199f93a6fbc541acaa97663d07a4840b.png" alt="spectacle"></p>
+<h2 id="💾-网盘存储"><a href="#💾-网盘存储" class="headerlink" title="💾 网盘存储"></a>💾 网盘存储</h2><p>带有客户端的网盘可以使用 <a target="_blank" rel="noopener" href="https://mega.io/start">MEGA</a>、<a target="_blank" rel="noopener" href="https://pan.baidu.com/">百度网盘</a> 以及 <a target="_blank" rel="noopener" href="https://www.jianguoyun.com/">坚果云</a>。其它网盘如 <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/microsoft-365/onedrive/online-cloud-storage">Microsoft OneDrive</a>、<a target="_blank" rel="noopener" href="https://www.google.com/intl/zh-CN/drive/">Google 云端硬盘</a> 直接使用网页版即可。</p>
+<h3 id="MEGA"><a href="#MEGA" class="headerlink" title="MEGA"></a>MEGA</h3><p>MEGA 是 Mega Limited 公司推出的一款云存储服务。2013 年 1 月 19 日在新西兰上线，该服务供应商广泛宣传其隐私性，所有文件在上传之前进行本地加密，提供 20 GB 的免费存储空间，付费账户最高存储空间可达 16 TB。</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/megasync">MEGA</a><sup>EULA &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item cn</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S megasync</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S aur/megasync</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+</li>
+<li><p>根据提示登录账户以及配置同步文件夹后即可：</p>
+<p><img src="/resources/35d10c280f5548fca786e715f010e4f4.png" alt="megasync"></p>
+</li>
+</ol>
+<p>::: tip ℹ️ 提示</p>
+<p>虽然该服务供应商广泛宣传其隐私性，但是否将数据存储在其服务器仍需用户判断：</p>
+<ul>
+<li><code>2015</code> —— 7 月 1 日，MEGA 创始人金·达康（Kim Dotcom）在技术网站 Slashdot 表示，他将不信任 MEGA 服务，并声称该公司已经受到因犯有欺诈罪被通缉的中国投资者闫永明（中国吉林通化快大茂人，1969 年 6 月 15 日出生，曾为通化金马药业集团有限公司董事长，因涉嫌职务侵占犯罪被吉林省通化市公安局立案，2001 年 11 月逃亡新西兰，2005 年 8 月 22 日由国际刑警组织发布红色通缉令）的恶意收购</li>
+<li><code>2016</code><ul>
+<li>8 月 23 日，闫永明与新西兰法院达成和解，需缴纳 4285 万新西兰币的财产，包括 Mega 公司 18.8%的股份</li>
+<li>11 月 12 日，在中央反腐败协调小组国际追逃追赃工作办公室的统筹协调下，经中新两国执法部门密切合作，潜逃海外 15 年之久的闫永明回国投案自首</li>
+</ul>
+</li>
+<li><code>2017</code> —— 1 月 12 日，闫永明返回新西兰</li>
+</ul>
+<p>:::</p>
+<h3 id="百度网盘"><a href="#百度网盘" class="headerlink" title="百度网盘"></a>百度网盘</h3><p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/baidunetdisk-bin/">百度网盘</a><sup>EULA &#x2F; aur</sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S baidunetdisk-bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/f99e23f6748e4c639d0cd1d25b36fce5.png" alt="baidunetdisk"></p>
+<h3 id="坚果云"><a href="#坚果云" class="headerlink" title="坚果云"></a>坚果云</h3><p>坚果云通过文件自动同步、共享、备份功能，为用户实现智能文件管理，提供高效办公解决方案。</p>
+<p>坚果云是微软加速器云存储合作伙伴，IBM 全球创业企业扶持计划成员，安全稳定的服务着数百万企业用户，包括东风雷诺、郑州日产、上海通用、银河证券、中石油、中海油、阿里巴巴等大型企事业单位。</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/nutstore-experimental/">坚果云实验版</a><sup>EULA &#x2F; aur</sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S nutstore-experimental</span><br></pre></td></tr></table></figure>
+
+<p>::: tip ℹ️ 提示</p>
+<p><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/nutstore/">坚果云稳定版</a><sup>EULA &#x2F; cn &#x2F; aur</sup> 的界面存在问题，请使用坚果云实验版<sup>EULA &#x2F; aur</sup>。</p>
+<p>:::</p>
+</li>
+<li><p>类似 <a href=":/9ffcef65aedc4205b8853199fa13e0a8#mega">MEGA</a>，根据提示登录账户以及配置同步文件夹后即可</p>
+</li>
+</ol>
+<h2 id="🖼️-图像查看器"><a href="#🖼️-图像查看器" class="headerlink" title="🖼️ 图像查看器"></a>🖼️ 图像查看器</h2><p>除了 Gwenview，还有其它开源免费的优秀图片浏览器可供选择。</p>
+<h3 id="Gwenview"><a href="#Gwenview" class="headerlink" title="Gwenview"></a>Gwenview</h3><p>::: tip ℹ️ 提示</p>
+<p>在步骤 <a href=":/73eac22b9b1e42f08b3823da9db304ee#_6-%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD%E5%8C%85">6. 安装基础功能包</a> 中若已安装，则无需重复安装。</p>
+<p>:::</p>
+<p>Gwenview 是 KDE 出品的一款轻便易用的图像查看器，是浏览、显示多张图像时的理想工具。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/gwenview/">Gwenview</a><sup>extra &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item extra</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S gwenview</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S gwenview-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/a05bdcc541df4f9b84a0dd4b58d02861.png" alt="gwenview"></p>
+<h3 id="nomacs"><a href="#nomacs" class="headerlink" title="nomacs"></a>nomacs</h3><p>nomacs 是一个免费的开源图像查看器，支持多平台。可以使用它来查看所有常见的图像格式，包括 RAW 和 psd 图像。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/community/x86_64/nomacs/">nomacs</a><sup>community &#x2F; aur</sup>：</p>
+<p>:::: code-group<br>::: code-group-item community</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S nomacs</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S nomacs-git</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+<p><img src="/resources/5a2763bace5446f9aece3ea6b4b9ab43.png" alt="nomacs-1"></p>
+<p>::: tip ℹ️ 提示</p>
+<p>可能需要在菜单栏 <code>编辑</code> &gt; <code>设置</code> &gt; 侧边栏 <code>一般</code> &gt; <code>颜色设置</code> 中改变颜色以适应暗色模式：</p>
+<p><img src="/resources/87c5a71959f042798aa78c2adcee49b9.png" alt="nomacs-2"></p>
+<p>:::</p>
+<h3 id="Ristretto"><a href="#Ristretto" class="headerlink" title="Ristretto"></a>Ristretto</h3><p>Xfce 开发的图像查看器。相对来说更加简洁。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/ristretto/">Ristretto</a>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S ristretto</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/5dcf97467a4b475a863653b75f0bf205.png" alt="ristretto"></p>
+<h3 id="feh"><a href="#feh" class="headerlink" title="feh"></a>feh</h3><blockquote>
+<p>🔗 相关链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Feh_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">archWiki 相关内容</a></li>
+</ul>
+</blockquote>
+<p>feh 是一款轻巧而功能强大的图像查看器，通过命令行操作，<strong>还可用于管理缺少此类功能的独立窗口管理器的桌面壁纸</strong>。</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/feh/">feh</a><sup>extra &#x2F; aur</sup>。若需要读取 SVG 图像，则还需要安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/imagemagick/"><code>imagemagick</code></a>：</p>
+<p>:::: code-group<br>::: code-group-item extra</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S feh imagemagick</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::: code-group-item aur (git)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S feh-git imagemagick</span><br></pre></td></tr></table></figure>
+
+<p>:::<br>::::</p>
+</li>
+<li><p>通过以下命令使用 feh。feh 是高度可配置的。有关选项的完整列表，请运行 <code>feh --help</code> 或 <code>man feh</code>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">feh /path/of/pic <span class="comment"># 查看图像</span></span><br><span class="line">feh --conversion-timeout 1 /path/of/svg <span class="comment"># 查看 SVG 图像</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="XnView-MP"><a href="#XnView-MP" class="headerlink" title="XnView MP"></a>XnView MP</h3><p>XnView MP 是一个免费的图像查看器，可以轻松打开和编辑照片文件。图像查看器支持所有主要图像格式（JPEG、TIFF、PNG、GIF、WEBP、PSD、JPEG2000、OpenEXR、camera RAW、HEIC、PDF、DNG、CR2）。</p>
+<p>作为图像查看器，拥有诸如颜色调整、图像大小调整、裁剪、屏幕捕获、元数据编辑（IPTC、XMP）等功能。XnView MP 具有易于使用的类似浏览器的界面，允许您快速查看图像和照片，还可以进行图像管理。并且有批重命名、批转换器、重复图像查找、图像比较等功能，还可以创建联系表、幻灯片。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/xnviewmp"><code>XnView MP</code></a><sup>EULA &#x2F; aur</sup>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S xnviewmp</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/51bc1ddd0abf46009a8d5a362d6d3c52.png" alt="xnviewmp-1"></p>
+<p><img src="/resources/387994dee50c4601827f59705930a926.png" alt="xnviewmp-2"></p>
+<h2 id="🧰-实用工具"><a href="#🧰-实用工具" class="headerlink" title="🧰 实用工具"></a>🧰 实用工具</h2><p>日常用到的各类小工具有很多实现，其中 <a target="_blank" rel="noopener" href="https://apps.kde.org/zh-cn/">KDE 的套件</a> 中就有很多，可以自行查询。</p>
+<p>此处仅列出几个常用的小工具。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/kcalc/">KCalc</a> —— 科学计算器</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S kcalc</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/5fc9389a5fd646afb1fed1ef063454d0.png" alt="kcalc"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/kamoso/">Kamoso</a> —— 相机</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S kamoso</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/73d7ad63fa57419ba6e380ddb76e17b3.png" alt="kamoso"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://archlinux.org/packages/extra/x86_64/ktimer/">KTimer</a> —— 倒计时执行器</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S ktimer</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/71115cb6adf24e0e92fe61edf98e89c3.png" alt="ktimer"></p>
+</li>
+</ul>
+<h2 id="🍷-Wine"><a href="#🍷-Wine" class="headerlink" title="🍷 Wine"></a>🍷 Wine</h2><blockquote>
+<p>🔗 相关链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Wine_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">archWiki 相关内容</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.winehq.org/%E4%B8%BB%E9%A1%B5">WineWiki</a></li>
+</ul>
+</blockquote>
+<p>Wine 是类 UNIX 系统下运行 Windows 程序的“兼容层”，是正在持续开发中的自由软件。在 Wine 中运行的 Windows 程序，就如同运行原生 Linux 程序一样，不会有模拟器那样的严重性能问题。</p>
+<p>::: warning ⚠️ 注意</p>
+<p>Wine 不是沙箱。如果很重视安全，请使用虚拟机。</p>
+<p>:::</p>
+<ol>
+<li><p>安装 <a target="_blank" rel="noopener" href="https://archlinux.org/packages/multilib/x86_64/wine/">Wine</a> 以及其它相关依赖：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S wine wine-mono wine_gecko wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls \</span><br><span class="line">mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error \</span><br><span class="line">lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo \</span><br><span class="line">sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama \</span><br><span class="line">ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 \</span><br><span class="line">lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过以下命令配置 <code>Wine</code>。随后会弹出一个窗口，可对 Wine 进行配置。Wine 默认路径为 ~&#x2F;.wine：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winecfg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过以下命令运行简单的 Windows 应用：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wine /path/of/xxx.exe</span><br></pre></td></tr></table></figure>
+
+<p><img src="/resources/d0006705fac9424c9fc091110fb3c0a1.png" alt="wine"></p>
+<p>::: danger ☢️ 警告</p>
+<p>千万<strong>不要</strong>以 root 身份运行 Wine！</p>
+<p>:::</p>
+</li>
+</ol>
+<p>::: tip ℹ️ 提示</p>
+<p>有关解决 Wine 字体显示异常请参考 <a href=":/4ce78d7e80aa4ee78776fc5d65365acc#%E5%AE%89%E8%A3%85-windows-%E5%AD%97%E4%BD%93">安装 Windows 字体</a>。</p>
+<p>:::</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/01/636691b6f22b46fd92b438f28b74be09/" title="media"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">media</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/01/0c6b2b494a154bcc9b3d1b89d8808603/" title="system-ctl"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">system-ctl</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">常用软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8C%BC-%E9%87%87%E8%8F%8A%E4%B8%9C%E7%AF%B1%E4%B8%8B%EF%BC%8C%E6%82%A0%E7%84%B6%E8%A7%81%E5%8D%97%E5%B1%B1"><span class="toc-number">1.0.1.</span> <span class="toc-text">🌼 采菊东篱下，悠然见南山</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%96-%E8%BF%99%E4%B8%80%E8%8A%82%E5%B0%86%E4%BC%9A%E8%AE%A8%E8%AE%BA%EF%BC%9A"><span class="toc-number">1.0.2.</span> <span class="toc-text">🔖 这一节将会讨论：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8F%84%F0%9F%8F%BB-%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">🏄🏻 网页浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mozilla-Firefox"><span class="toc-number">1.1.1.</span> <span class="toc-text">Mozilla Firefox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chromium"><span class="toc-number">1.1.2.</span> <span class="toc-text">Chromium</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Brave"><span class="toc-number">1.1.3.</span> <span class="toc-text">Brave</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Falkon"><span class="toc-number">1.1.4.</span> <span class="toc-text">Falkon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tor-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">1.1.5.</span> <span class="toc-text">Tor 浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mircrosoft-Edge"><span class="toc-number">1.1.6.</span> <span class="toc-text">Mircrosoft Edge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Chrome"><span class="toc-number">1.1.7.</span> <span class="toc-text">Google Chrome</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Opera"><span class="toc-number">1.1.8.</span> <span class="toc-text">Opera</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vivaldi"><span class="toc-number">1.1.9.</span> <span class="toc-text">Vivaldi</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%96-PDF-%E4%BB%A5%E5%8F%8A%E7%94%B5%E5%AD%90%E4%B9%A6%E9%98%85%E8%AF%BB%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">📖 PDF 以及电子书阅读器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Okular"><span class="toc-number">1.2.1.</span> <span class="toc-text">Okular</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calibre"><span class="toc-number">1.2.2.</span> <span class="toc-text">calibre</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%B7-%E6%88%AA%E5%9B%BE%E5%B7%A5%E5%85%B7"><span class="toc-number">1.3.</span> <span class="toc-text">📷 截图工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%AB%E7%84%B0%E6%88%AA%E5%9B%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">火焰截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spectacle"><span class="toc-number">1.3.2.</span> <span class="toc-text">Spectacle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%BE-%E7%BD%91%E7%9B%98%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.</span> <span class="toc-text">💾 网盘存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MEGA"><span class="toc-number">1.4.1.</span> <span class="toc-text">MEGA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98"><span class="toc-number">1.4.2.</span> <span class="toc-text">百度网盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%9A%E6%9E%9C%E4%BA%91"><span class="toc-number">1.4.3.</span> <span class="toc-text">坚果云</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%96%BC%EF%B8%8F-%E5%9B%BE%E5%83%8F%E6%9F%A5%E7%9C%8B%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">🖼️ 图像查看器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gwenview"><span class="toc-number">1.5.1.</span> <span class="toc-text">Gwenview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nomacs"><span class="toc-number">1.5.2.</span> <span class="toc-text">nomacs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ristretto"><span class="toc-number">1.5.3.</span> <span class="toc-text">Ristretto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#feh"><span class="toc-number">1.5.4.</span> <span class="toc-text">feh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XnView-MP"><span class="toc-number">1.5.5.</span> <span class="toc-text">XnView MP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B0-%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">1.6.</span> <span class="toc-text">🧰 实用工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8D%B7-Wine"><span class="toc-number">1.7.</span> <span class="toc-text">🍷 Wine</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://meowrain.cn">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div></div></body></html>
